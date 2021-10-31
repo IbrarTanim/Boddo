@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/blankView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/thirty"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/rlMain" />
+
+    <RelativeLayout
+        android:id="@+id/rlMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/blankView">
+
+        <LinearLayout
+            android:id="@+id/llMenueBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/forty"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1.5"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:paddingLeft="@dimen/two"
+                android:paddingTop="@dimen/five"
+                android:paddingRight="@dimen/five"
+                android:paddingBottom="@dimen/five"
+                android:scaleType="fitCenter"
+                android:src="@drawable/boddo_logo_356" />
+
+            <View
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight="4" />
+
+            <ImageView
+                android:id="@+id/ivHotlistIcon"
+                android:layout_width="@dimen/forty"
+                android:layout_height="@dimen/forty"
+                android:layout_marginRight="@dimen/ten"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/hotlist_icon_09_01_2021" />
+
+            <ImageView
+                android:id="@+id/upload_new_image"
+                android:layout_width="@dimen/forty"
+                android:layout_height="@dimen/forty"
+                android:layout_marginRight="@dimen/ten"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/camera_icon_09_01_2021" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llMenueBar"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/twenty"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forty"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    app:tabBackground="@drawable/tab_selected_unselected_bg"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorHeight="@dimen/paddin_4dp"
+                    app:tabMode="fixed"
+                    app:tabPadding="@dimen/five"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="@color/gray">
+
+                </com.google.android.material.tabs.TabLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llScrollBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/top_photo_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_marginBottom="@dimen/ten"
+                    android:background="@color/app_bg_color"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:id="@+id/profile_image_hotlist"
+                        android:layout_width="80dp"
+                        android:layout_height="100dp"
+                        android:background="@color/transparent">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/user_image_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/rokan"
+                            app:riv_mutate_background="true"
+                            app:riv_oval="false" />
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/app_color" />
+
+
+                        <TextView
+                            android:id="@+id/TvJoinHotlist"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="Join Hotlist"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:textStyle="bold" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/civJoinHotlist"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="15dp"
+                            android:src="@drawable/join_hotlist_icon"
+                            android:tint="@color/white"
+                            app:civ_border_color="@color/white"
+                            app:civ_border_width="3dp" />
+
+
+                    </RelativeLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recent_hot_list_recycler_view"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/app_bg_color"
+                    android:orientation="vertical">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.nex3z.notificationbadge.NotificationBadge
+                    android:id="@+id/badging_photo_blog_view"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="220dp"
+                    app:badgeBackground="@drawable/badging_bg"
+                    app:maxTextLength="2" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.nex3z.notificationbadge.NotificationBadge
+                    android:id="@+id/badging_top_photo_view"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerHorizontal="true"
+                    app:badgeBackground="@drawable/badging_bg"
+                    app:maxTextLength="2" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
