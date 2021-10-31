@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.boddo.btm.Adepter.ChatRequestAdapter;
@@ -27,6 +28,7 @@ import net.boddo.btm.Utills.Data;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +41,9 @@ public class ChatRequestActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private ChatRequestAdepter chatRequestAdepter;
     private TextView tvBackAllLikes;
+    private LinearLayout llmNoChatRequest;
+    private ChatRequest chatRequest;
+    private List<ChatRequest.RequestedMessage> requestedMessageList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,7 @@ public class ChatRequestActivity extends AppCompatActivity {
 
         rvChartRequest = findViewById(R.id.rvChartRequest);
         tvBackAllLikes = findViewById(R.id.tvBackAllLikes);
+        llmNoChatRequest = findViewById(R.id.llmNoChatRequest);
         chatRequestModelArrayList = new ArrayList<>();
         tvBackAllLikes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,11 +66,18 @@ public class ChatRequestActivity extends AppCompatActivity {
             public void onResponse(Call<ChatRequest> call, Response<ChatRequest> response) {
                 if(response.isSuccessful()){
                     if(response.body().getRequestedMessage().size()!=0){
-                        chatRequestAdepter = new ChatRequestAdepter(getApplicationContext(),response.body().getRequestedMessage());
+                        chatRequest = response.body();
+                        requestedMessageList = chatRequest.getRequestedMessage();
+                        llmNoChatRequest.setVisibility(View.GONE);
+                        rvChartRequest.setVisibility(View.VISIBLE);
+                        chatRequestAdepter = new ChatRequestAdepter(getApplicationContext(),requestedMessageList);
                         GridLayoutManager glm = new GridLayoutManager(getApplicationContext(),2);
                         rvChartRequest.setLayoutManager(glm);
                         rvChartRequest.setAdapter(chatRequestAdepter);
 
+                    }else {
+                        llmNoChatRequest.setVisibility(View.VISIBLE);
+                        rvChartRequest.setVisibility(View.GONE);
                     }
                 }
             }

@@ -29,6 +29,18 @@
     <string name="notifications_admin_channel_name">Global channel</string>
     //end of ariful
 
+    //no-match description for recent match
+    <string name="noMatchTitle">Meet your match</string>
+    <string name="noMatchDescription"></string>
+    <string name="upload_profile">Upload your profile</string>
+    ////no-match description for recent match
+
+    //no-chat_request description for recent match
+    <string name="noChatTitle">Get chat request</string>
+    <string name="noChatDescription"></string>
+
+    ////no-chat_request description for recent match
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
