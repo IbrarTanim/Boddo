@@ -153,9 +153,10 @@
                     android:id="@+id/civStory"
                     android:layout_width="@dimen/sixty"
                     android:layout_height="@dimen/sixty"
-                    app:civ_circle_background_color="@color/recentChat"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:src="@drawable/ic_online_icon_31_10_2021"
+                    android:layout_centerHorizontal="true"
+                    app:civ_circle_background_color="@color/recentChat" />
 
                 <com.nex3z.notificationbadge.NotificationBadge
                     android:layout_width="28dp"
