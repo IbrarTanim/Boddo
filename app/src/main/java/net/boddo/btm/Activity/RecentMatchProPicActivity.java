@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.boddo.btm.Adepter.ChatRequestAdepter;
@@ -18,6 +19,7 @@ import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +32,9 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private RecentMatchProPicAdepter recentMatchAdepter;
     private TextView tvBackNewMatches;
+    private RecentMatchModel recentMatchModel;
+    private List<RecentMatchModel.Match> matchList;
+    private LinearLayout llmNoMatch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,7 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
 
         rvRecentMatch = findViewById(R.id.rvRecentMatch);
         tvBackNewMatches = findViewById(R.id.tvBackNewMatches);
+        llmNoMatch = findViewById(R.id.llmNoMatch);
         recentMatchModelArrayList = new ArrayList<>();
         tvBackNewMatches.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,11 +58,19 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
             public void onResponse(Call<RecentMatchModel> call, Response<RecentMatchModel> response) {
                 if(response.isSuccessful()){
                     if(response.body().getMatches().size()!=0){
-                        recentMatchAdepter = new RecentMatchProPicAdepter(getApplicationContext(),response.body().getMatches());
+                        recentMatchModel = response.body();
+                        matchList = recentMatchModel.getMatches();
+                        rvRecentMatch.setVisibility(View.VISIBLE);
+                        llmNoMatch.setVisibility(View.GONE);
+                      //  matchList.clear();
+                        recentMatchAdepter = new RecentMatchProPicAdepter(getApplicationContext(),matchList);
                         GridLayoutManager glm = new GridLayoutManager(getApplicationContext(),2);
                         rvRecentMatch.setLayoutManager(glm);
                         rvRecentMatch.setAdapter(recentMatchAdepter);
 
+                    }else {
+                        rvRecentMatch.setVisibility(View.GONE);
+                        llmNoMatch.setVisibility(View.VISIBLE);
                     }
                 }
             }
