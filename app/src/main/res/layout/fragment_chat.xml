@@ -266,7 +266,7 @@
                 android:id="@+id/active_user_chatList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"/>
+               />
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -323,8 +323,9 @@
                         android:background="@color/app_bg_color"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:gravity="bottom|center"
+                        android:gravity="center"
                         android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/ten"
                         android:weightSum="2">
 
                         <Button
