@@ -58,6 +58,7 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
             public void onResponse(Call<RecentMatchModel> call, Response<RecentMatchModel> response) {
                 if(response.isSuccessful()){
                     if(response.body().getMatches().size()!=0){
+                        // Testing .....
                         recentMatchModel = response.body();
                         matchList = recentMatchModel.getMatches();
                         rvRecentMatch.setVisibility(View.VISIBLE);
