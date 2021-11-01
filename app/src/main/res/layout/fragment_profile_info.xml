@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rlMain" />-->
 
     <LinearLayout
-        android:id="@+id/rlMain"
+        android:id="@+id/storyRlMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -32,7 +32,7 @@
                 android:layout_weight="0.2" />
 
             <TextView
-                android:id="@+id/tvBackAllLikes"
+                android:id="@+id/tvBackAllLStory"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

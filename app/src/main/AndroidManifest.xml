@@ -30,8 +30,9 @@
         android:windowSoftInputMode="adjustPan"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
-        <activity android:name=".Activity.RecentMatchProPicActivity"></activity>
-        <activity android:name=".Activity.ChatRequestActivity"></activity>
+        <activity android:name=".Activity.StoryActivity"></activity>
+        <activity android:name=".Activity.RecentMatchProPicActivity" />
+        <activity android:name=".Activity.ChatRequestActivity" />
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:screenOrientation="portrait"

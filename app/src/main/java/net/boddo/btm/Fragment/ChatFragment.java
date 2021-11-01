@@ -45,6 +45,7 @@ import java.util.List;
 
 import net.boddo.btm.Activity.ChatRequestActivity;
 import net.boddo.btm.Activity.RecentMatchProPicActivity;
+import net.boddo.btm.Activity.StoryActivity;
 import net.boddo.btm.Adepter.ChatHistoryListAdeptar;
 import net.boddo.btm.Adepter.photoblog.HotlistAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -103,6 +104,7 @@ public class ChatFragment extends Fragment {
     BroadcastReceiver broadcastReceiver;
     //private static final String TAG = "ActiveChatFragment";
     ApiInterface apiInterface;
+    private LinearLayout llmNoChatListMsg;
     //until here
 
 
@@ -150,8 +152,17 @@ public class ChatFragment extends Fragment {
         civRecentMatchs = view.findViewById(R.id.civRecentMatchs);
         civChatRequest = view.findViewById(R.id.civChatRequest);
         civStory = view.findViewById(R.id.civStory);
+        llmNoChatListMsg = view.findViewById(R.id.llmNoChatListMsg);
         civStory.setCircleBackgroundColorResource(R.color.black);
         Glide.with(getActivity()).load(Data.profilePhoto).into(civMesssageProfic);
+
+        civStory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), StoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         civRecentMatchs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -367,13 +378,15 @@ public class ChatFragment extends Fragment {
 
                 if (activeChat.getChatList().size() == 0) {
                     chatHistoryRecyclerView.setVisibility(View.GONE);
-                    emptyView.setVisibility(View.VISIBLE);
+                    llmNoChatListMsg.setVisibility(View.VISIBLE);
+//                    emptyView.setVisibility(View.VISIBLE);
                 } else {
                     List<ActiveChat.ChatList> chatLists = activeChat.getChatList();
                     chatHistoryRecyclerView.setVisibility(View.VISIBLE);
+                    llmNoChatListMsg.setVisibility(View.GONE);
                     chatHistoryListAdeptar = new ChatHistoryListAdeptar(getActivity(), chatLists);
                     chatHistoryRecyclerView.setAdapter(chatHistoryListAdeptar);
-                    emptyView.setVisibility(View.GONE);
+                 //   emptyView.setVisibility(View.GONE);
                 }
             }
 
