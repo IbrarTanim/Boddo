@@ -66,6 +66,7 @@ public class ChatRequestActivity extends AppCompatActivity {
             public void onResponse(Call<ChatRequest> call, Response<ChatRequest> response) {
                 if(response.isSuccessful()){
                     if(response.body().getRequestedMessage().size()!=0){
+                        //dipto testing
                         chatRequest = response.body();
                         requestedMessageList = chatRequest.getRequestedMessage();
                         llmNoChatRequest.setVisibility(View.GONE);
