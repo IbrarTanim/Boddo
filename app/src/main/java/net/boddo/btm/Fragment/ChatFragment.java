@@ -361,7 +361,7 @@ public class ChatFragment extends Fragment {
             public void onResponse(Call<ActiveChat> call, Response<ActiveChat> response) {
                 activeChat = response.body();
                 if (activeChat.getStatus().equals(Constants.SUCCESS)) {
-
+                    //chat fragment 4/11/2021
                     if (activeChat.getUnseenMessage() != 0) {
                         Data.UnseenMessageCount = activeChat.getUnseenMessage();
                         FirebaseCloudMessagingService.bottom_chatButton_dot = 1;
