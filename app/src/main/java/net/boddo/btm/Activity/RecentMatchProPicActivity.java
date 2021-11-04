@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -27,11 +28,13 @@ import retrofit2.Response;
 
 public class RecentMatchProPicActivity extends AppCompatActivity {
 
+    RecentMatchProPicActivity activity;
+
     private RecyclerView rvRecentMatch;
     private ArrayList<RecentMatchModel> recentMatchModelArrayList;
     private ApiInterface apiInterface;
     private RecentMatchProPicAdepter recentMatchAdepter;
-    private TextView tvBackNewMatches;
+    private TextView tvBackNewMatches, tvDiscoverUserProfileChatFragment;
     private RecentMatchModel recentMatchModel;
     private List<RecentMatchModel.Match> matchList;
     private LinearLayout llmNoMatch;
@@ -40,17 +43,35 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_match_pro_pic);
+        activity = this;
 
         rvRecentMatch = findViewById(R.id.rvRecentMatch);
         tvBackNewMatches = findViewById(R.id.tvBackNewMatches);
+        tvDiscoverUserProfileChatFragment = findViewById(R.id.tvDiscoverUserProfileChatFragment);
         llmNoMatch = findViewById(R.id.llmNoMatch);
         recentMatchModelArrayList = new ArrayList<>();
-        tvBackNewMatches.setOnClickListener(new View.OnClickListener() {
+
+
+        tvDiscoverUserProfileChatFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, AllUsersActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+         tvBackNewMatches.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+
+
+
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<RecentMatchModel> call = apiInterface.getRecentMatchData(Data.userId, Constants.SECRET_KEY);
         call.enqueue(new Callback<RecentMatchModel>() {

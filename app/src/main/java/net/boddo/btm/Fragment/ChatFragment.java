@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.boddo.btm.Activity.ChatRequestActivity;
+import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Activity.RecentMatchProPicActivity;
 import net.boddo.btm.Activity.StoryActivity;
 import net.boddo.btm.Adepter.ChatHistoryListAdeptar;
@@ -95,8 +96,8 @@ public class ChatFragment extends Fragment {
 
     ChatHistoryListAdeptar chatHistoryListAdeptar;
     //SwipeRefreshLayout refreshLayout;
-    TextView emptyView;
-    CircleImageView civMesssageProfic,civRecentMatchs,civChatRequest, civStory;
+    TextView emptyView, tvUpdateProfileChatFragment;
+    CircleImageView civMesssageProfic, civRecentMatchs, civChatRequest, civStory;
 
     EditText edtSearch;
     ActiveChat activeChat;
@@ -147,14 +148,22 @@ public class ChatFragment extends Fragment {
         badgingMessageRequestView = view.findViewById(R.id.badging_message_request_view);
         //refreshLayout = view.findViewById(R.id.refresh_layout);
         emptyView = view.findViewById(R.id.empty_view);
+        tvUpdateProfileChatFragment = view.findViewById(R.id.tvUpdateProfileChatFragment);
         edtSearch = view.findViewById(R.id.edtSearch);
         civMesssageProfic = view.findViewById(R.id.civMesssageProfic);
         civRecentMatchs = view.findViewById(R.id.civRecentMatchs);
         civChatRequest = view.findViewById(R.id.civChatRequest);
         civStory = view.findViewById(R.id.civStory);
         llmNoChatListMsg = view.findViewById(R.id.llmNoChatListMsg);
-        civStory.setCircleBackgroundColorResource(R.color.black);
         Glide.with(getActivity()).load(Data.profilePhoto).into(civMesssageProfic);
+
+        tvUpdateProfileChatFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProfileOneActivity.class);
+                startActivity(intent);
+            }
+        });
 
         civStory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +172,7 @@ public class ChatFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
 
         civRecentMatchs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,7 +261,6 @@ public class ChatFragment extends Fragment {
 //        });
 //        RequestQueue queue = Volley.newRequestQueue(getActivity());
 //        queue.add(request);
-
 
 
         chatList = new ArrayList<>();
@@ -351,6 +360,7 @@ public class ChatFragment extends Fragment {
             }
         };
     }
+
     //On Test 4/11/2021
     public void getAllActiveChatList() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
@@ -386,7 +396,7 @@ public class ChatFragment extends Fragment {
                     llmNoChatListMsg.setVisibility(View.GONE);
                     chatHistoryListAdeptar = new ChatHistoryListAdeptar(getActivity(), chatLists);
                     chatHistoryRecyclerView.setAdapter(chatHistoryListAdeptar);
-                 //   emptyView.setVisibility(View.GONE);
+                    //   emptyView.setVisibility(View.GONE);
                 }
             }
 
@@ -400,22 +410,22 @@ public class ChatFragment extends Fragment {
 
     public void getAllRecentChatData() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Log.e("userId", "getAllRecentChatList: "+Data.userId);
-        Call<RecentMatchModel> call = apiInterface.getRecentMatchData(Data.userId,Constants.SECRET_KEY);
+        Log.e("userId", "getAllRecentChatList: " + Data.userId);
+        Call<RecentMatchModel> call = apiInterface.getRecentMatchData(Data.userId, Constants.SECRET_KEY);
 
         call.enqueue(new Callback<RecentMatchModel>() {
             @Override
             public void onResponse(Call<RecentMatchModel> call, Response<RecentMatchModel> response) {
                 recentMatch = response.body();
 
-                List<RecentMatchModel.Match> matchList =   recentMatch.getMatches();
-              //  Log.e("responsevalue", "onResponse: "+recentMatch.setMatches());
-                Log.e("rrr", "onResponse: "+response.body().getMatches().size());
+                List<RecentMatchModel.Match> matchList = recentMatch.getMatches();
+                //  Log.e("responsevalue", "onResponse: "+recentMatch.setMatches());
+                Log.e("rrr", "onResponse: " + response.body().getMatches().size());
 
 
                 if (recentMatch.getStatus().equals(Constants.SUCCESS)) {
 
-                    for(RecentMatchModel.Match matchData : matchList){
+                    for (RecentMatchModel.Match matchData : matchList) {
                         Glide.with(getActivity())
                                 .load(matchData.getProfilePhoto())
                                 .into(civRecentMatchs);
@@ -435,7 +445,6 @@ public class ChatFragment extends Fragment {
                     }*/
 
 
-
                 } else {
                     //Log.d(TAG, "onResponse: something wrong");
                 }
@@ -444,7 +453,7 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void onFailure(Call<RecentMatchModel> call, Throwable t) {
-                Log.e("fail", "onFailure: "+t.getLocalizedMessage() );
+                Log.e("fail", "onFailure: " + t.getLocalizedMessage());
             }
         });
 
@@ -452,25 +461,24 @@ public class ChatFragment extends Fragment {
 
     public void getChatRequestData() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Log.e("userId", "getAllRecentChatList: "+Data.userId);
-        Call<ChatRequest> call = apiInterface.getAllRequestedList(Constants.SECRET_KEY,Data.userId);
+        Log.e("userId", "getAllRecentChatList: " + Data.userId);
+        Call<ChatRequest> call = apiInterface.getAllRequestedList(Constants.SECRET_KEY, Data.userId);
 
         call.enqueue(new Callback<ChatRequest>() {
             @Override
             public void onResponse(Call<ChatRequest> call, Response<ChatRequest> response) {
 
 
-                List<ChatRequest.RequestedMessage> matchList =   response.body().getRequestedMessage();
+                List<ChatRequest.RequestedMessage> matchList = response.body().getRequestedMessage();
                 //  Log.e("responsevalue", "onResponse: "+recentMatch.setMatches());
-                Log.e("rrr", "onResponse: "+response.body().getRequestedMessage().size());
+                Log.e("rrr", "onResponse: " + response.body().getRequestedMessage().size());
 
 
                 if (response.body().getStatus().equals(Constants.SUCCESS)) {
 
-                    for(ChatRequest.RequestedMessage matchData : matchList){
+                    for (ChatRequest.RequestedMessage matchData : matchList) {
                         Glide.with(getActivity()).load(matchData.getProfilePhoto()).into(civChatRequest);
                     }
-
 
 
                 } else {
@@ -481,7 +489,7 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ChatRequest> call, Throwable t) {
-                Log.e("fail", "onFailure: "+t.getLocalizedMessage() );
+                Log.e("fail", "onFailure: " + t.getLocalizedMessage());
             }
         });
 
