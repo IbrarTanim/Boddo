@@ -351,7 +351,7 @@ public class ChatFragment extends Fragment {
             }
         };
     }
-
+    //On Test 4/11/2021
     public void getAllActiveChatList() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<ActiveChat> call = apiInterface.getAllChatList(Constants.SECRET_KEY, Data.userId);
