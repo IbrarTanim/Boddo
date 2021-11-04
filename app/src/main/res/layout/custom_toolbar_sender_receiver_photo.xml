@@ -14,39 +14,11 @@
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     tools:targetApi="lollipop">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_view_receiver"
-            android:layout_width="44dp"
-            android:layout_height="43dp"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background_shep" />
-
-        <TextView
-            android:id="@+id/text_view_receiver_message_count"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignBottom="@+id/image_view_receiver"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="-18dp"
-            android:layout_toRightOf="@+id/image_view_receiver"
-            android:background="@drawable/private_chat_message_count_bg"
-            android:gravity="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_size_8sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:gravity="center_vertical"
         android:layout_weight="1">
 
         <TextView
@@ -72,34 +44,133 @@
             android:layout_centerInParent="true"
             android:text="@string/offline"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_10sp" />
+            android:textSize="@dimen/text_size_10sp"
+            android:visibility="gone"/>
     </RelativeLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_view_receiver"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background_shep" />
+
+            <TextView
+                android:id="@+id/text_view_receiver_message_count"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignBottom="@+id/image_view_receiver"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toStartOf="@+id/image_view_receiver"
+                android:background="@drawable/private_chat_message_count_bg"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_8sp"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_view_sender"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background_shep" />
+
+            <TextView
+                android:id="@+id/text_view_sender_message_count"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignBottom="@+id/image_view_sender"
+                android:layout_marginRight="-18dp"
+                android:layout_toStartOf="@+id/image_view_sender"
+                android:background="@drawable/private_chat_message_count_bg"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_8sp" />
+        </RelativeLayout>
+
+
+    </FrameLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
         android:layout_weight="1">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_view_sender"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+        <TextView
+            android:id="@+id/second_name_online_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background_shep" />
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/Chat"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_view_sender_message_count"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignBottom="@+id/image_view_sender"
-            android:layout_marginRight="-18dp"
-            android:layout_toStartOf="@+id/image_view_sender"
-            android:background="@drawable/private_chat_message_count_bg"
-            android:gravity="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_size_8sp" />
+            android:id="@+id/second_online_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/second_name_online_textView"
+            android:layout_centerInParent="true"
+            android:text="@string/offline"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_10sp"
+            android:visibility="gone"/>
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:layout_weight="1.2">
+
+        <TextView
+            android:id="@+id/menu_name_online_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="&#8230;"
+            android:textSize="20sp"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/gray"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
 
 </LinearLayout>

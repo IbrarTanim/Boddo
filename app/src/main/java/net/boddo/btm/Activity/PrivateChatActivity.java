@@ -20,12 +20,14 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -131,6 +133,12 @@ public class PrivateChatActivity extends AppCompatActivity {
     @BindView(R.id.layout_footer)
     RelativeLayout layout_footer;
 
+    @BindView(R.id.menu_name_online_textView)
+    TextView menu_name_online_textView;
+
+    @BindView(R.id.RLPrivateChatScreen)
+    RelativeLayout RLPrivateChatScreen;
+
     Dialog mDialog;
     PrettyDialog prettyDialog;
 
@@ -173,6 +181,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     String[] firstPortionOfMyName;
     boolean isBlocked = false;
     boolean isBlockedMe = false;
+    Boolean b = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +239,33 @@ public class PrivateChatActivity extends AppCompatActivity {
         setUpUIForMessage();
         getAllMessage();
         getLocalBroadCastReceiver();
+
+        //menu_name_online_textView
+        menu_name_online_textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(PrivateChatActivity.this,v);
+                popupMenu.getMenuInflater().inflate(R.menu.screen_color_menu,popupMenu.getMenu());
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        if(b==true){
+                            b=false;
+                            RLPrivateChatScreen.setBackgroundColor(Color.rgb(63, 66, 77));
+
+                        }else {
+                            b=true;
+                            RLPrivateChatScreen.setBackgroundColor(Color.WHITE);
+
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
+        //menu_name_online_textView
 
         //firebase RealTime Database
 
