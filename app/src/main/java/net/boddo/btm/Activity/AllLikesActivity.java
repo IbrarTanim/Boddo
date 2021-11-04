@@ -1,12 +1,10 @@
 package net.boddo.btm.Activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -14,13 +12,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.boddo.btm.Adepter.AllLikesAdapter;
-import net.boddo.btm.Adepter.photoblog.PhotoLovedAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Model.Likes;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
-import net.boddo.btm.Utills.GridSpacingItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +48,7 @@ public class AllLikesActivity extends AppCompatActivity {
         sharedpreferences = activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
         rvAllLikes = findViewById(R.id.rvAllLikes);
-        tvBackAllLikes = findViewById(R.id.tvBackAllLikes);
+        tvBackAllLikes = findViewById(R.id.tvBackAllLStory);
 
         tvBackAllLikes.setOnClickListener(new View.OnClickListener() {
             @Override

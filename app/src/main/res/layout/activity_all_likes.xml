@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/forty"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/rlMain" />
+        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
 
     <LinearLayout
-        android:id="@+id/rlMain"
+        android:id="@+id/storyRlMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/twenty"
@@ -35,7 +35,7 @@
                 android:layout_weight="0.1" />
 
             <TextView
-                android:id="@+id/tvBackAllLikes"
+                android:id="@+id/tvBackAllLStory"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

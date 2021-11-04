@@ -56,6 +56,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -572,6 +573,12 @@ public class PrivateChatActivity extends AppCompatActivity {
         msgContent = editTextMessage.getText().toString().replace("'","\'");
         if (msgContent.length() > 0 && !msgContent.equals("")) {
             apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("secret_key",Constants.SECRET_KEY);
+            jsonObject.addProperty("user_id",Data.userId);
+            jsonObject.addProperty("other_user_id",Data.otherUserId);
+            jsonObject.addProperty("message",msgContent);
+            Log.e("responeCheck", "onSendButtonClicked: "+jsonObject.toString() );
             Call<ChatAppMsgDTO> call = apiInterface.startChat(Constants.SECRET_KEY, Data.userId, Data.otherUserId, msgContent);
             call.enqueue(new Callback<ChatAppMsgDTO>() {
                 @Override

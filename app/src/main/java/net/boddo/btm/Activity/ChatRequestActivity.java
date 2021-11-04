@@ -1,31 +1,21 @@
 package net.boddo.btm.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import net.boddo.btm.Adepter.ChatRequestAdapter;
 import net.boddo.btm.Adepter.ChatRequestAdepter;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
-import net.boddo.btm.Event.Event;
-import net.boddo.btm.Fragment.ChatRequestFragment;
 import net.boddo.btm.Model.ChatRequest;
-import net.boddo.btm.Model.RecentMatchModel;
 import net.boddo.btm.R;
-import net.boddo.btm.Services.FirebaseCloudMessagingService;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +39,9 @@ public class ChatRequestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_request);
 
-        rvChartRequest = findViewById(R.id.rvChartRequest);
-        tvBackAllLikes = findViewById(R.id.tvBackAllLikes);
-        llmNoChatRequest = findViewById(R.id.llmNoChatRequest);
+        rvChartRequest = findViewById(R.id.rvStory);
+        tvBackAllLikes = findViewById(R.id.tvBackAllLStory);
+        llmNoChatRequest = findViewById(R.id.llmStory);
         chatRequestModelArrayList = new ArrayList<>();
         tvBackAllLikes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +56,7 @@ public class ChatRequestActivity extends AppCompatActivity {
             public void onResponse(Call<ChatRequest> call, Response<ChatRequest> response) {
                 if(response.isSuccessful()){
                     if(response.body().getRequestedMessage().size()!=0){
+                        //dipto testing
                         chatRequest = response.body();
                         requestedMessageList = chatRequest.getRequestedMessage();
                         llmNoChatRequest.setVisibility(View.GONE);

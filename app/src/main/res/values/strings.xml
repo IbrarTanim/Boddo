@@ -41,6 +41,19 @@
 
     ////no-chat_request description for recent match
 
+    //story
+    <string name="storyTitle">Everyone has a story</string>
+    <string name="storyDescription"></string>
+
+    ////story
+
+    //chat_list for chat fragment
+    <string name="chatListTitle">See your messages</string>
+    <string name="chatListDescription"></string>
+
+    ////chat_list for chat fragment
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
