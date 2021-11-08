@@ -115,7 +115,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:padding="10dp"
-              android:src="@drawable/ic_no_match_screen_icon_31_10_21" />
+              android:src="@drawable/no_chat_request_screen_icon_31_10_21" />
 
           <TextView
               android:layout_width="wrap_content"

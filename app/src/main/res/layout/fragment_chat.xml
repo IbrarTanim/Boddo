@@ -109,7 +109,7 @@
                     android:layout_below="@+id/civRecentMatchs"
                     android:layout_marginTop="@dimen/ten"
                     android:gravity="center"
-                    android:text="Recent matchs"
+                    android:text="Recent matches"
                     android:textSize="@dimen/ten" />
             </RelativeLayout>
 
