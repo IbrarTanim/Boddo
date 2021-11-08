@@ -103,8 +103,8 @@ public class PrivateChatActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view_message)
     RecyclerView recyclerView;
     //emoji
-    @BindView(R.id.emoji_btn)
-    ImageView emojiButton;
+   /* @BindView(R.id.emoji_btn)
+    ImageView emojiButton;*/
     //more
     @BindView(R.id.more_btn)
     ImageView moreButton;
@@ -189,8 +189,8 @@ public class PrivateChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_private_chat);
         ButterKnife.bind(this);
         View rootView = getWindow().getDecorView().getRootView();
-        emojIcon = new EmojIconActions(PrivateChatActivity.this, rootView, editTextMessage, emojiButton);
-        emojIcon.ShowEmojIcon();
+        /*emojIcon = new EmojIconActions(PrivateChatActivity.this, rootView, editTextMessage, emojiButton);
+        emojIcon.ShowEmojIcon();*/
 
         for (int i = 0; i < DashBoadActivity.myBlockList.size(); i++) {
             if (DashBoadActivity.myBlockList.get(i).getBlockedUserId().equals(Data.otherUserId)) {

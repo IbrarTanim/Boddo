@@ -30,7 +30,7 @@ public class SupportWebViewActivity extends AppCompatActivity {
         faqButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SupportWebViewActivity.this,FAQActivity.class);
+                Intent intent = new Intent(SupportWebViewActivity.this, FAQActivity.class);
                 startActivity(intent);
             }
         });

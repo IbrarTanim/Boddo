@@ -1,142 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/privateChat"
     xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/privateChat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/app_bg_color"
     android:clipToPadding="false"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context="net.boddo.btm.Activity.PrivateChatActivity">
+
     <RelativeLayout
         android:id="@+id/RLPrivateChatScreen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:elevation="@dimen/elevation_5dp">
+
         <include
             android:id="@+id/custom_toolbar_chatroom"
             layout="@layout/custom_toolbar_sender_receiver_photo" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_message"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/custom_toolbar_chatroom" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/other_profile_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_centerInParent="true"
             android:src="@drawable/default_img"
-            app:civ_border_color="@color/green_500"
             android:visibility="gone"
+            app:civ_border_color="@color/green_500"
             app:civ_border_width="3dp" />
 
         <TextView
             android:id="@+id/messageTV1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/chat_mess1"
+            android:layout_below="@id/other_profile_image"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:text="@string/chat_mess1"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:visibility="gone"
-            android:layout_below="@id/other_profile_image"
-            />
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/messageTV2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start chatting now and write something nice"
+            android:layout_below="@id/other_profile_image"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:text="Start chatting now and write something nice"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:visibility="gone"
-            android:layout_below="@id/other_profile_image"
-            />
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/messageTV3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You liked each other"
-            android:layout_marginRight="30dp"
+            android:layout_above="@id/other_profile_image"
             android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
+            android:text="You liked each other"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:visibility="gone"
             android:textSize="24dp"
-            android:layout_above="@id/other_profile_image" />
+            android:visibility="gone" />
 
     </RelativeLayout>
+
     <TextView
         android:id="@+id/text_view_typing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_5_dp"
+        android:padding="@dimen/paddin_4dp"
         android:text="@string/typing"
         android:textAppearance="?android:textAppearanceSmall"
-        android:padding="@dimen/paddin_4dp"
         android:textColor="@color/colorPrimary"
-        android:layout_margin="@dimen/margin_5_dp"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
+
     <RelativeLayout
         android:id="@+id/layout_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/margin_5_dp">
+        android:background="@color/white"
+        android:padding="@dimen/five">
 
         <LinearLayout
             android:id="@+id/message_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <ImageView
+
+            <!--<ImageView
                 android:id="@+id/emoji_btn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:padding="4dp"
-                android:src="@drawable/smile" />
+                android:src="@drawable/smile" />-->
 
             <ImageView
                 android:id="@+id/more_btn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:padding="4dp"
-                android:src="@drawable/ic_caret_arrow_up" />
+                android:padding="@dimen/ten"
+                android:src="@drawable/ic_picture_share_icon_08_11_2021" />
+
             <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
                 android:id="@+id/emojicon_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/messagebox_shape"
+                android:background="@color/transparent"
+                android:hint="Type message."
                 android:imeOptions="actionSend"
                 android:inputType="textMultiLine"
-                android:padding="10dp"
-                android:minLines="1"
-                android:hint="Write something..."
                 android:maxLines="3"
-                emojicon:emojiconSize="28sp" />
+                android:minLines="1"
+                android:padding="10dp"
+                android:textSize="@dimen/fifteen"
+                emojicon:emojiconSize="@dimen/twenty" />
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:padding="7dp"
+                android:src="@drawable/ic_latest_message_popup_icon_08_11_2021" />
+
             <ImageView
                 android:id="@+id/submit_btn"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
-                android:padding="5dp"
-                android:src="@drawable/ic_send"
-                android:tint="@color/colorAccent"
-                />
+                android:padding="7dp"
+                android:src="@drawable/send_icon_20_03_01_2021_normal"
+                android:tint="@color/colorAccent" />
+
         </LinearLayout>
+
     </RelativeLayout>
 </LinearLayout>
