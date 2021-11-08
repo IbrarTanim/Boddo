@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/forty"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
+        app:layout_constraintBottom_toTopOf="@+id/llRecentMatchBlank" />
 
     <LinearLayout
-        android:id="@+id/storyRlMain"
+        android:id="@+id/llRecentMatchBlank"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/twenty"

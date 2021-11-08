@@ -27,7 +27,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RecentMatchProPicActivity extends AppCompatActivity {
-
     RecentMatchProPicActivity activity;
 
     private RecyclerView rvRecentMatch;
@@ -37,7 +36,7 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
     private TextView tvBackNewMatches, tvDiscoverUserProfileChatFragment;
     private RecentMatchModel recentMatchModel;
     private List<RecentMatchModel.Match> matchList;
-    private LinearLayout llmNoMatch;
+    private LinearLayout llmNoMatch, llRecentMatchBlank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +48,7 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
         tvBackNewMatches = findViewById(R.id.tvBackNewMatches);
         tvDiscoverUserProfileChatFragment = findViewById(R.id.tvDiscoverUserProfileChatFragment);
         llmNoMatch = findViewById(R.id.llmNoMatch);
+        llRecentMatchBlank = findViewById(R.id.llRecentMatchBlank);
         recentMatchModelArrayList = new ArrayList<>();
 
 

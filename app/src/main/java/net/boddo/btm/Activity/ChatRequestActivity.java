@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -25,48 +26,65 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChatRequestActivity extends AppCompatActivity {
+    ChatRequestActivity activity;
 
     private RecyclerView rvChartRequest;
     private ArrayList<ChatRequest> chatRequestModelArrayList;
     private ApiInterface apiInterface;
     private ChatRequestAdepter chatRequestAdepter;
-    private TextView tvBackAllLikes;
+    private TextView tvBackChartRequest, tvUpdateYourProfileChatRequest;
     private LinearLayout llmNoChatRequest;
     private ChatRequest chatRequest;
     private List<ChatRequest.RequestedMessage> requestedMessageList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_request);
 
-        rvChartRequest = findViewById(R.id.rvStory);
-        tvBackAllLikes = findViewById(R.id.tvBackAllLStory);
-        llmNoChatRequest = findViewById(R.id.llmStory);
+        activity = this;
+
+        rvChartRequest = findViewById(R.id.rvChartRequest);
+        tvBackChartRequest = findViewById(R.id.tvBackChartRequest);
+        tvUpdateYourProfileChatRequest = findViewById(R.id.tvUpdateYourProfileChatRequest);
+        llmNoChatRequest = findViewById(R.id.llmNoChatRequest);
         chatRequestModelArrayList = new ArrayList<>();
-        tvBackAllLikes.setOnClickListener(new View.OnClickListener() {
+
+        tvBackChartRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+
+        tvUpdateYourProfileChatRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, ProfileOneActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<ChatRequest> call = apiInterface.getAllRequestedList(Constants.SECRET_KEY, Data.userId);
         call.enqueue(new Callback<ChatRequest>() {
             @Override
             public void onResponse(Call<ChatRequest> call, Response<ChatRequest> response) {
-                if(response.isSuccessful()){
-                    if(response.body().getRequestedMessage().size()!=0){
+                if (response.isSuccessful()) {
+                    if (response.body().getRequestedMessage().size() != 0) {
                         //dipto testing
                         chatRequest = response.body();
                         requestedMessageList = chatRequest.getRequestedMessage();
                         llmNoChatRequest.setVisibility(View.GONE);
                         rvChartRequest.setVisibility(View.VISIBLE);
-                        chatRequestAdepter = new ChatRequestAdepter(getApplicationContext(),requestedMessageList);
-                        GridLayoutManager glm = new GridLayoutManager(getApplicationContext(),2);
+                        chatRequestAdepter = new ChatRequestAdepter(getApplicationContext(), requestedMessageList);
+                        GridLayoutManager glm = new GridLayoutManager(getApplicationContext(), 2);
                         rvChartRequest.setLayoutManager(glm);
                         rvChartRequest.setAdapter(chatRequestAdepter);
 
-                    }else {
+                    } else {
                         llmNoChatRequest.setVisibility(View.VISIBLE);
                         rvChartRequest.setVisibility(View.GONE);
                     }

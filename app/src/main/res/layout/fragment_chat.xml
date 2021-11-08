@@ -301,6 +301,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/thirty"
+                        android:layout_marginRight="@dimen/thirty"
                         android:layout_marginTop="@dimen/ten"
                         android:gravity="center"
                         android:text="Send your first message to other members by visiting another member's profile. What have you got to loss?"
