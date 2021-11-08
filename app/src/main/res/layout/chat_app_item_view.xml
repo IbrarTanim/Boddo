@@ -21,7 +21,8 @@
             android:gravity="center_horizontal"
             android:padding="@dimen/padding_8dp"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/app_bg_color" />
+            android:textColor="#4D4E4F"
+            android:textSize="@dimen/thirteen" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +41,7 @@
             android:background="@drawable/chat_bubble_left"
             android:padding="10dp"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/white"
+            android:textColor="#434343"
             android:textStyle="bold" />
 
         <TextView
@@ -52,7 +53,7 @@
 
         <RelativeLayout
             android:id="@+id/left_image_borger"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="160dp">
 
             <ImageView
@@ -60,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:scaleType="centerCrop"
+                android:scaleType="fitStart"
                 android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>
@@ -81,7 +82,7 @@
             android:background="@drawable/chat_bubble_right"
             android:padding="10dp"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -94,7 +95,7 @@
 
         <RelativeLayout
             android:id="@+id/right_image_borger"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="160dp">
 
             <ImageView
@@ -103,7 +104,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
+                android:scaleType="fitEnd"
                 android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>
