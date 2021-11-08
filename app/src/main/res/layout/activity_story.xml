@@ -94,10 +94,16 @@
                             android:layout_marginLeft="@dimen/ten"
                             android:layout_marginBottom="@dimen/five"
                             android:layout_weight="15"
-                            android:visibility="visible" />
+                            android:visibility="gone" />
 
 
                     </LinearLayout>
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:id="@+id/storyPB"/>
 
 
                 </LinearLayout>
@@ -110,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
 
                 <View

@@ -2,12 +2,16 @@ package net.boddo.btm.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import net.boddo.btm.Adepter.ChatRequestAdepter;
@@ -36,6 +40,7 @@ public class ChatRequestActivity extends AppCompatActivity {
     private LinearLayout llmNoChatRequest;
     private ChatRequest chatRequest;
     private List<ChatRequest.RequestedMessage> requestedMessageList;
+    private ProgressBar charRequestPB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class ChatRequestActivity extends AppCompatActivity {
 
         rvChartRequest = findViewById(R.id.rvChartRequest);
         tvBackChartRequest = findViewById(R.id.tvBackChartRequest);
+        charRequestPB = findViewById(R.id.charRequestPB);
         tvUpdateYourProfileChatRequest = findViewById(R.id.tvUpdateYourProfileChatRequest);
         llmNoChatRequest = findViewById(R.id.llmNoChatRequest);
         chatRequestModelArrayList = new ArrayList<>();
@@ -78,21 +84,37 @@ public class ChatRequestActivity extends AppCompatActivity {
                         chatRequest = response.body();
                         requestedMessageList = chatRequest.getRequestedMessage();
                         llmNoChatRequest.setVisibility(View.GONE);
+                        charRequestPB.setVisibility(View.GONE);
                         rvChartRequest.setVisibility(View.VISIBLE);
                         chatRequestAdepter = new ChatRequestAdepter(getApplicationContext(), requestedMessageList);
-                        GridLayoutManager glm = new GridLayoutManager(getApplicationContext(), 2);
-                        rvChartRequest.setLayoutManager(glm);
+                        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+                        rvChartRequest.setLayoutManager(llm);
                         rvChartRequest.setAdapter(chatRequestAdepter);
 
                     } else {
-                        llmNoChatRequest.setVisibility(View.VISIBLE);
-                        rvChartRequest.setVisibility(View.GONE);
+                        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                llmNoChatRequest.setVisibility(View.VISIBLE);
+                                rvChartRequest.setVisibility(View.GONE);
+                                charRequestPB.setVisibility(View.GONE);
+                            }
+                        },2000);
+
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<ChatRequest> call, Throwable t) {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        llmNoChatRequest.setVisibility(View.VISIBLE);
+                        rvChartRequest.setVisibility(View.GONE);
+                        charRequestPB.setVisibility(View.GONE);
+                    }
+                },2000);
 
             }
         });

@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -106,6 +109,7 @@ public class ChatFragment extends Fragment {
     //private static final String TAG = "ActiveChatFragment";
     ApiInterface apiInterface;
     private LinearLayout llmNoChatListMsg;
+    private ProgressBar active_chatProgressBar;
     //until here
 
 
@@ -146,6 +150,7 @@ public class ChatFragment extends Fragment {
 
         badgingMessCountView = view.findViewById(R.id.badging_messCount_view);
         badgingMessageRequestView = view.findViewById(R.id.badging_message_request_view);
+        active_chatProgressBar = view.findViewById(R.id.active_chatProgressBar);
         //refreshLayout = view.findViewById(R.id.refresh_layout);
         emptyView = view.findViewById(R.id.empty_view);
         tvUpdateProfileChatFragment = view.findViewById(R.id.tvUpdateProfileChatFragment);
@@ -387,13 +392,24 @@ public class ChatFragment extends Fragment {
                 }
 
                 if (activeChat.getChatList().size() == 0) {
-                    chatHistoryRecyclerView.setVisibility(View.GONE);
-                    llmNoChatListMsg.setVisibility(View.VISIBLE);
+                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            active_chatProgressBar.setVisibility(View.GONE);
+                          //  chatHistoryRecyclerView.setVisibility(View.GONE);
+                            llmNoChatListMsg.setVisibility(View.VISIBLE);
+                            Toast.makeText(getActivity(), "ac", Toast.LENGTH_SHORT).show();
+                        }
+                    }, 2000);
+
+
+
 //                    emptyView.setVisibility(View.VISIBLE);
                 } else {
                     List<ActiveChat.ChatList> chatLists = activeChat.getChatList();
                     chatHistoryRecyclerView.setVisibility(View.VISIBLE);
-                    llmNoChatListMsg.setVisibility(View.GONE);
+                   // llmNoChatListMsg.setVisibility(View.GONE);
+                    active_chatProgressBar.setVisibility(View.GONE);
                     chatHistoryListAdeptar = new ChatHistoryListAdeptar(getActivity(), chatLists);
                     chatHistoryRecyclerView.setAdapter(chatHistoryListAdeptar);
                     //   emptyView.setVisibility(View.GONE);
@@ -402,6 +418,16 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ActiveChat> call, Throwable t) {
+
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        active_chatProgressBar.setVisibility(View.GONE);
+                        //  chatHistoryRecyclerView.setVisibility(View.GONE);
+                        llmNoChatListMsg.setVisibility(View.VISIBLE);
+
+                    }
+                }, 2000);
 
             }
         });

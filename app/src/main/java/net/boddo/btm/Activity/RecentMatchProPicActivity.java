@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import net.boddo.btm.Adepter.ChatRequestAdepter;
@@ -37,6 +40,7 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
     private RecentMatchModel recentMatchModel;
     private List<RecentMatchModel.Match> matchList;
     private LinearLayout llmNoMatch, llRecentMatchBlank;
+    private ProgressBar recentMatchPB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
         tvBackNewMatches = findViewById(R.id.tvBackNewMatches);
         tvDiscoverUserProfileChatFragment = findViewById(R.id.tvDiscoverUserProfileChatFragment);
         llmNoMatch = findViewById(R.id.llmNoMatch);
+        recentMatchPB = findViewById(R.id.recentMatchPB);
         llRecentMatchBlank = findViewById(R.id.llRecentMatchBlank);
         recentMatchModelArrayList = new ArrayList<>();
 
@@ -84,6 +89,7 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
                         matchList = recentMatchModel.getMatches();
                         rvRecentMatch.setVisibility(View.VISIBLE);
                         llmNoMatch.setVisibility(View.GONE);
+                        recentMatchPB.setVisibility(View.GONE);
                       //  matchList.clear();
                         recentMatchAdepter = new RecentMatchProPicAdepter(getApplicationContext(),matchList);
                         GridLayoutManager glm = new GridLayoutManager(getApplicationContext(),2);
@@ -91,14 +97,29 @@ public class RecentMatchProPicActivity extends AppCompatActivity {
                         rvRecentMatch.setAdapter(recentMatchAdepter);
 
                     }else {
-                        rvRecentMatch.setVisibility(View.GONE);
-                        llmNoMatch.setVisibility(View.VISIBLE);
+                        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                rvRecentMatch.setVisibility(View.GONE);
+                                recentMatchPB.setVisibility(View.GONE);
+                                llmNoMatch.setVisibility(View.VISIBLE);
+                            }
+                        },2000);
+
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<RecentMatchModel> call, Throwable t) {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        rvRecentMatch.setVisibility(View.GONE);
+                        recentMatchPB.setVisibility(View.GONE);
+                        llmNoMatch.setVisibility(View.VISIBLE);
+                    }
+                },2000);
 
             }
         });
