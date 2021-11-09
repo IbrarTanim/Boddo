@@ -261,10 +261,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rvNotification">
 
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/active_chatProgressBar"
+                android:layout_centerInParent="true"
+                android:visibility="visible"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/active_user_chatList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
 
 
             <LinearLayout
@@ -273,7 +281,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/app_bg_color"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
 
                 <LinearLayout

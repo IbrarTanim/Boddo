@@ -31,15 +31,15 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
 
     public ChatRequestViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_all_recent_match,parent,false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_all_chat_request,parent,false);
         return new ChatRequestViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ChatRequestAdepter.ChatRequestViewHolder holder, int position) {
-        holder.name.setText(chatRequestModelArrayList.get(position).getLastMessage()+", ");
-        holder.age.setText(chatRequestModelArrayList.get(position).getLastMessageTime());
-        holder.address.setText(chatRequestModelArrayList.get(position).getFirstName());
+        holder.name.setText(chatRequestModelArrayList.get(position).getFirstName()+", ");
+      //  holder.age.setText(chatRequestModelArrayList.get(position).getLastMessageTime());
+      //  holder.address.setText(chatRequestModelArrayList.get(position).getFirstName());
         Picasso.get().load(chatRequestModelArrayList.get(position).getProfilePhoto()).into(holder.imageView);
         //Picasso.get().load(R.drawable.ic_message_icon_31_10_2021).into(holder.civMessageRecentMatch);
 
@@ -60,11 +60,11 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
         public ChatRequestViewHolder(View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.chatRequestIV);
-            name = itemView.findViewById(R.id.chatRequestNameTV);
-            age = itemView.findViewById(R.id.chatRequestAgeTV);
-            address = itemView.findViewById(R.id.chatRequestAddressTV);
-            civMessageRecentMatch = itemView.findViewById(R.id.civMessageRecentMatch);
+            imageView = itemView.findViewById(R.id.civChatRequestItem);
+            name = itemView.findViewById(R.id.chatRequest_usernameTV);
+           // age = itemView.findViewById(R.id.chatRequestAgeTV);
+          //  address = itemView.findViewById(R.id.chatRequestAddressTV);
+          //  civMessageRecentMatch = itemView.findViewById(R.id.civMessageRecentMatch);
 
         }
     }
