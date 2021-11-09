@@ -5,15 +5,14 @@
     android:layout_marginBottom="@dimen/one"
     android:background="@color/white">
 
-
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/civChatRequestItem"
         android:layout_width="60dp"
         android:layout_height="80dp"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/ten"
         android:layout_marginTop="@dimen/ten"
-        android:layout_centerVertical="true"
-        android:src="@drawable/add_user" />
+        android:src="@drawable/ic_default_message_screen_profile_picture_04_11_2021" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -26,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="@dimen/ten"
-            android:text="Saikot"
+            android:gravity="top|left"
+            android:layout_marginTop="@dimen/thirty"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="@dimen/seventeen"
@@ -40,7 +39,9 @@
             android:layout_below="@+id/chatRequest_usernameTV"
             android:layout_marginLeft="10dp"
             android:gravity="top|left"
-            android:text="Can we be friends?"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:maxLines="1"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@color/black"
             android:textSize="@dimen/twelve" />
@@ -54,11 +55,11 @@
             android:layout_marginLeft="@dimen/thirty"
             android:layout_marginTop="@dimen/ten"
             android:layout_marginBottom="@dimen/ten"
-            android:background="@drawable/bg_rounded_blank"
+            android:background="@drawable/bg_rounded_button"
             android:gravity="center"
             android:text="Decline"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/ten" />
 
         <Button
@@ -66,23 +67,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/chatRequest_messageTV"
-            android:layout_toRightOf="@+id/chatRequest_declineBtn"
             android:layout_marginTop="@dimen/ten"
             android:layout_marginBottom="@dimen/ten"
-            android:background="@drawable/bg_rounded_blank"
+            android:layout_toRightOf="@+id/chatRequest_declineBtn"
+            android:background="@drawable/bg_rounded_button"
             android:gravity="center"
             android:text="Accept"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/ten" />
 
 
     </RelativeLayout>
-
-
-
-
-
 
 
 </RelativeLayout>

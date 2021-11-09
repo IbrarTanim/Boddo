@@ -1,5 +1,6 @@
 package net.boddo.btm.Adepter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 import net.boddo.btm.Model.ChatRequest;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.SearchUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +40,25 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
 
     @Override
     public void onBindViewHolder(ChatRequestAdepter.ChatRequestViewHolder holder, int position) {
-        holder.name.setText(chatRequestModelArrayList.get(position).getFirstName()+", ");
-      //  holder.age.setText(chatRequestModelArrayList.get(position).getLastMessageTime());
-      //  holder.address.setText(chatRequestModelArrayList.get(position).getFirstName());
-        Picasso.get().load(chatRequestModelArrayList.get(position).getProfilePhoto()).into(holder.imageView);
-        //Picasso.get().load(R.drawable.ic_message_icon_31_10_2021).into(holder.civMessageRecentMatch);
+        holder.name.setText(chatRequestModelArrayList.get(position).getFirstName());
+        holder.chatRequest_messageTV.setText(chatRequestModelArrayList.get(position).getLastMessage());
+        Picasso.get().load(chatRequestModelArrayList.get(position).getProfilePhoto()).into(holder.civChatRequestItem);
+
+
+      /*  holder.civChatRequestItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                *//*Data.pd = new ProgressDialog(context);
+                Data.pd.setTitle("Loading...");
+                Data.pd.setMessage("Please wait for a while...");
+                SearchUser userProfile = new SearchUser(context);
+                Data.otherUserId = chatRequestModelArrayList.get(position).getUserOne();
+                userProfile.searchUserInfo();
+                Data.pd.show();*//*
+
+            }
+        });*/
+
 
     }
 
@@ -53,18 +70,17 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
 
     public class ChatRequestViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
-        TextView name,age,address;
-        CircleImageView civMessageRecentMatch;
+        TextView name,chatRequest_messageTV;
+        CircleImageView civChatRequestItem;
 
         public ChatRequestViewHolder(View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.civChatRequestItem);
+            civChatRequestItem = itemView.findViewById(R.id.civChatRequestItem);
             name = itemView.findViewById(R.id.chatRequest_usernameTV);
-           // age = itemView.findViewById(R.id.chatRequestAgeTV);
-          //  address = itemView.findViewById(R.id.chatRequestAddressTV);
-          //  civMessageRecentMatch = itemView.findViewById(R.id.civMessageRecentMatch);
+            chatRequest_messageTV = itemView.findViewById(R.id.chatRequest_messageTV);
+
+
 
         }
     }

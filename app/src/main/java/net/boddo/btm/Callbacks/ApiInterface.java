@@ -516,8 +516,8 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("new-match.php")
-    Call<RecentMatchModel>getRecentMatchData(@Field("user_id") String userId,
-                                             @Field("secret_key") int secretKey);
+    Call<RecentMatchModel> getRecentMatchData(@Field("user_id") String userId,
+                                              @Field("secret_key") int secretKey);
 
 
 }
