@@ -45,19 +45,19 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
         Picasso.get().load(chatRequestModelArrayList.get(position).getProfilePhoto()).into(holder.civChatRequestItem);
 
 
-      /*  holder.civChatRequestItem.setOnClickListener(new View.OnClickListener() {
+        holder.civChatRequestItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                *//*Data.pd = new ProgressDialog(context);
+                Data.pd = new ProgressDialog(context);
                 Data.pd.setTitle("Loading...");
                 Data.pd.setMessage("Please wait for a while...");
                 SearchUser userProfile = new SearchUser(context);
                 Data.otherUserId = chatRequestModelArrayList.get(position).getUserOne();
                 userProfile.searchUserInfo();
-                Data.pd.show();*//*
+                Data.pd.show();
 
             }
-        });*/
+        });
 
 
     }

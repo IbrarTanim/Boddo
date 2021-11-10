@@ -1,176 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/custom_toolbar_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:elevation="@dimen/elevation_8dp"
-    android:fitsSystemWindows="true"
-    android:minHeight="?attr/actionBarSize"
-    android:orientation="horizontal"
-    android:padding="@dimen/padding_8dp"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    tools:targetApi="lollipop">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center_vertical"
-        android:layout_weight="1">
+        android:layout_height="@dimen/seventy"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/two_name_online_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/Chat"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/seven"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_chat_11_11_2021" />
 
-        <TextView
-            android:id="@+id/online_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/two_name_online_textView"
-            android:layout_centerInParent="true"
-            android:text="@string/offline"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_10sp"
-            android:visibility="gone"/>
-    </RelativeLayout>
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        <View
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/five">
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="8"
+            android:gravity="center">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_view_receiver"
-                android:layout_width="40dp"
-                android:layout_height="35dp"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/background_shep" />
+            <LinearLayout
+                android:id="@+id/llOthersUserChat"
+                android:layout_width="@dimen/hundred_fifty"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/text_view_receiver_message_count"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignBottom="@+id/image_view_receiver"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_toStartOf="@+id/image_view_receiver"
-                android:background="@drawable/private_chat_message_count_bg"
-                android:gravity="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_size_8sp"
-                android:layout_centerInParent="true"/>
+                <TextView
+                    android:id="@+id/tvOtherUserChat"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Other User"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen" />
+
+
+                <RelativeLayout
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_default_message_screen_profile_picture_04_11_2021"
+                        app:civ_border_color="@color/transparent"
+                        app:civ_border_width="3dp" />
+
+                    <TextView
+                        android:layout_width="@dimen/thirty"
+                        android:layout_height="@dimen/thirty"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/ic_message_count_icon_left_11_11_2021"
+                        android:gravity="center"
+                        android:text="32"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/ten" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/hundred_fifty"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="-20dp"
+                android:layout_toEndOf="@+id/llOthersUserChat"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_default_message_screen_profile_picture_04_11_2021"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="3dp" />
+
+                    <TextView
+                        android:layout_width="@dimen/thirty"
+                        android:layout_height="@dimen/thirty"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/ic_message_count_icon_right_11_11_2021"
+                        android:gravity="center"
+                        android:text="32"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/ten" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Self User"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen" />
+
+            </LinearLayout>
+
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp">
+        <View
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_view_sender"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/background_shep" />
+        <ImageView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/seven"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dot_chat_11_11" />
 
-            <TextView
-                android:id="@+id/text_view_sender_message_count"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignBottom="@+id/image_view_sender"
-                android:layout_marginRight="-18dp"
-                android:layout_toStartOf="@+id/image_view_sender"
-                android:background="@drawable/private_chat_message_count_bg"
-                android:gravity="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_size_8sp" />
-        </RelativeLayout>
+    </LinearLayout>
 
 
-    </FrameLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center_vertical"
-        android:layout_weight="1">
-
-        <TextView
-            android:id="@+id/second_name_online_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/Chat"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/second_online_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/second_name_online_textView"
-            android:layout_centerInParent="true"
-            android:text="@string/offline"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_10sp"
-            android:visibility="gone"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center_vertical"
-        android:layout_weight="1.2">
-
-        <TextView
-            android:id="@+id/menu_name_online_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="&#8230;"
-            android:textSize="20sp"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/gray"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

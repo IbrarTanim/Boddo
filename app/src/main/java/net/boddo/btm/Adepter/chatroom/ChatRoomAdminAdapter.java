@@ -122,7 +122,7 @@ public class ChatRoomAdminAdapter extends RecyclerView.Adapter<ChatRoomAdminAdap
                 }
             });
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Data.pd = new ProgressDialog(context);
@@ -134,7 +134,7 @@ public class ChatRoomAdminAdapter extends RecyclerView.Adapter<ChatRoomAdminAdap
                 Data.pd.show();
 
             }
-        });
+        });*/
     }
 
     @Override
