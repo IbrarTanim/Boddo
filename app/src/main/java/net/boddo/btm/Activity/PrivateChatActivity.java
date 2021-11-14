@@ -85,9 +85,12 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     @BindView(R.id.two_name_online_textView)
     TextView textViewTwoUsersName;
-    @BindView(R.id.online_status)
-    TextView textViewOnlineStatus;
-    //sender
+    TextView second_name_online_textView;
+    ImageView ivBackMessageChat;
+
+    /*@BindView(R.id.online_status)
+    TextView textViewOnlineStatus;*/
+
 
     @BindView(R.id.image_view_sender)
     CircleImageView imageViewSender;
@@ -124,8 +127,6 @@ public class PrivateChatActivity extends AppCompatActivity {
     EmojiconEditText editTextMessage;
     @BindView(R.id.submit_btn)
     ImageView sendButton;
-    @BindView(R.id.custom_toolbar_chatroom)
-    LinearLayout customToolbar;
 
     @BindView(R.id.text_view_typing)
     TextView text_view_typing;
@@ -134,7 +135,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     RelativeLayout layout_footer;
 
     @BindView(R.id.menu_name_online_textView)
-    TextView menu_name_online_textView;
+    ImageView menu_name_online_textView;
 
     @BindView(R.id.RLPrivateChatScreen)
     RelativeLayout RLPrivateChatScreen;
@@ -191,6 +192,15 @@ public class PrivateChatActivity extends AppCompatActivity {
         View rootView = getWindow().getDecorView().getRootView();
         /*emojIcon = new EmojIconActions(PrivateChatActivity.this, rootView, editTextMessage, emojiButton);
         emojIcon.ShowEmojIcon();*/
+
+        second_name_online_textView = findViewById(R.id.second_name_online_textView);
+        ivBackMessageChat = findViewById(R.id.ivBackMessageChat);
+        ivBackMessageChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         for (int i = 0; i < DashBoadActivity.myBlockList.size(); i++) {
             if (DashBoadActivity.myBlockList.get(i).getBlockedUserId().equals(Data.otherUserId)) {
@@ -341,7 +351,7 @@ public class PrivateChatActivity extends AppCompatActivity {
             }
         });
         userOnlineRef = database.getReference("UserOnline");
-        userOnlineRef.child(Data.otherUserId).addValueEventListener(new ValueEventListener() {
+        /*userOnlineRef.child(Data.otherUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -366,16 +376,18 @@ public class PrivateChatActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
             }
-        });
+        });*/
 
         firstPortionOfMyName = Data.userFirstName.split(" ");
 
         if (otherUserNameFromActiveList.equals("")) {
             firstPortionOfName = Data.otherUserFirstName.split(" ");
-            textViewTwoUsersName.setText(firstPortionOfName[0] + " & " + firstPortionOfMyName[0]);
+            textViewTwoUsersName.setText(firstPortionOfName[0]);
+            second_name_online_textView.setText(firstPortionOfMyName[0]);
         } else {
             firstPortionOfName = otherUserNameFromActiveList.split(" ");
-            textViewTwoUsersName.setText(firstPortionOfName[0] + " & " + firstPortionOfMyName[0]);
+            textViewTwoUsersName.setText(firstPortionOfName[0]);
+            second_name_online_textView.setText(firstPortionOfMyName[0]);
         }
     }
 
