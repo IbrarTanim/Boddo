@@ -48,9 +48,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:gravity="top|left"
-            android:padding="@dimen/ten"
-            android:src="@drawable/dot_menu_icons_1_3_2021" />
-
+            android:padding="@dimen/ten" />
 
         <TextView
             android:id="@+id/tvMessageTime"
@@ -58,9 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:paddingBottom="@dimen/five"
             android:layout_marginRight="@dimen/ten"
             android:gravity="top|left"
+            android:paddingBottom="@dimen/five"
             android:text="1:10 am"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@color/black"

@@ -9,15 +9,14 @@
         android:id="@+id/titlrLayout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/colorPrimary">
+        android:background="#96CC72">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Your Photo Gallery"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:text="Send a picture"
+            android:padding="@dimen/five"
+            android:textSize="@dimen/fifteen"
             android:textColor="@color/white" />
     </RelativeLayout>
 

@@ -54,7 +54,9 @@ public class ChatHistoryListAdeptar extends RecyclerView.Adapter<ChatHistoryList
 
         Picasso.get().load(chatList.get(position).getProfilePhoto()).into(holder.userPhoto);
         holder.userName.setText(chatList.get(position).getFirstName());
-        holder.tvMessageTime.setText(chatList.get(position).getLastMessageTime());
+        holder.tvMessageTime.setText(Helper.getLastActionTime(chatList.get(position).getLastMessageTime()));
+        //String valueCheck = String.valueOf(Helper.getLastActionTime(chatList.get(position).getLastMessageTime()));
+
 
         if (chatList.get(position).getIsSeen().equals(Data.userId)) {
             String dataCheck = chatList.get(position).getMessage();

@@ -217,7 +217,6 @@ public class PrivateChatActivity extends AppCompatActivity {
                     .setMessageColor(R.color.red_A700).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                 @Override
                 public void onClick() {
-
                     myBlockDialog.dismiss();
 
                 }
