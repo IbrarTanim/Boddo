@@ -398,7 +398,6 @@ public class ChatFragment extends Fragment {
                             active_chatProgressBar.setVisibility(View.GONE);
                           //  chatHistoryRecyclerView.setVisibility(View.GONE);
                             llmNoChatListMsg.setVisibility(View.VISIBLE);
-                            Toast.makeText(getActivity(), "ac", Toast.LENGTH_SHORT).show();
                         }
                     }, 2000);
 

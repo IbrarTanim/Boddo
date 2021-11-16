@@ -134,7 +134,7 @@ The limitations and exclusions of liability set out in this  Section and elsewhe
     <string name="forgot_password">Forgot password?</string>
     <string name="create_new_account">Create new account</string>
     <string name="buycredit_futter">Through the credits You can view who liked, visit, favorite you. Also you can join Be See feature to explore your self and extend your chat request,update more photos and many more!.</string>
-    <string name="chat_mess1">You have 5 chat request per day. Send a chat request and wait for the acceptance. Once they accept, you can start the conversation.</string>
+    <string name="chat_mess1">You have 3 chat request per day. Write something impressive to get a reply.</string>
     <string name="todo">TODO</string>
     <string name="sstext">Hold Photo to make Profile Picture or Change the order</string>
     <string name="you_have_been_kicked_for_45_minutes">You have been kicked for 45 minutes.</string>

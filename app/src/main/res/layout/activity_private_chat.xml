@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -29,55 +30,77 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/custom_toolbar_chatroom" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/other_profile_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/default_img"
+        <RelativeLayout
+            android:id="@+id/rvFirstTimeBG"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
             android:visibility="gone"
-            app:civ_border_color="@color/green_500"
-            app:civ_border_width="3dp" />
+            android:layout_centerInParent="true"
+            android:background="@color/white">
 
-        <TextView
-            android:id="@+id/messageTV1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/other_profile_image"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:text="@string/chat_mess1"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/messageTV3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/other_profile_image"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                android:text="You liked each other"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/messageTV2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/other_profile_image"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:text="Start chatting now and write something nice"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvTopMessageFirstTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/other_profile_image"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                android:text="Send a chat request"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/messageTV3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/other_profile_image"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
-            android:text="You liked each other"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="24dp"
-            android:visibility="gone" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/other_profile_image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/default_img"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/messageTV1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/other_profile_image"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:text="@string/chat_mess1"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/messageTV2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/other_profile_image"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:text="Start chatting now and write something nice"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:visibility="gone" />
+        </RelativeLayout>
+
 
     </RelativeLayout>
 

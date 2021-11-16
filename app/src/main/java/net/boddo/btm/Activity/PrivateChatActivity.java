@@ -114,8 +114,11 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     @BindView(R.id.other_profile_image)
     ImageView otherProfile;
+
     @BindView(R.id.messageTV1)
     TextView messageTV1;
+    TextView tvTopMessageFirstTime;
+    RelativeLayout rvFirstTimeBG;
 
     @BindView(R.id.messageTV2)
     TextView messageTV2;
@@ -193,6 +196,8 @@ public class PrivateChatActivity extends AppCompatActivity {
         /*emojIcon = new EmojIconActions(PrivateChatActivity.this, rootView, editTextMessage, emojiButton);
         emojIcon.ShowEmojIcon();*/
 
+        tvTopMessageFirstTime = findViewById(R.id.tvTopMessageFirstTime);
+        rvFirstTimeBG = findViewById(R.id.rvFirstTimeBG);
         second_name_online_textView = findViewById(R.id.second_name_online_textView);
         ivBackMessageChat = findViewById(R.id.ivBackMessageChat);
         ivBackMessageChat.setOnClickListener(new View.OnClickListener() {
@@ -500,7 +505,9 @@ public class PrivateChatActivity extends AppCompatActivity {
 
                         if (sizeOfArrayList == 0) {
                             otherProfile.setVisibility(View.VISIBLE);
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
                             messageTV1.setVisibility(View.INVISIBLE);
+                            tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
                             messageTV2.setVisibility(View.VISIBLE);
                             messageTV3.setVisibility(View.VISIBLE);
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
@@ -510,7 +517,9 @@ public class PrivateChatActivity extends AppCompatActivity {
                         } else {
 
                             otherProfile.setVisibility(View.INVISIBLE);
+                            rvFirstTimeBG.setVisibility(View.INVISIBLE);
                             messageTV1.setVisibility(View.INVISIBLE);
+                            tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
                             messageTV2.setVisibility(View.INVISIBLE);
                             messageTV3.setVisibility(View.INVISIBLE);
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
@@ -522,14 +531,18 @@ public class PrivateChatActivity extends AppCompatActivity {
 
                         if (sizeOfArrayList == 0) {
                             otherProfile.setVisibility(View.VISIBLE);
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
                             messageTV1.setVisibility(View.VISIBLE);
+                            tvTopMessageFirstTime.setVisibility(View.VISIBLE);
                             messageTV2.setVisibility(View.INVISIBLE);
                             messageTV3.setVisibility(View.INVISIBLE);
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
                             recyclerView.setVisibility(View.INVISIBLE);
                         } else {
                             otherProfile.setVisibility(View.INVISIBLE);
+                            rvFirstTimeBG.setVisibility(View.INVISIBLE);
                             messageTV1.setVisibility(View.INVISIBLE);
+                            tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
                             messageTV2.setVisibility(View.INVISIBLE);
                             messageTV3.setVisibility(View.INVISIBLE);
                         Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
