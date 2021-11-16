@@ -177,5 +177,18 @@
 
         </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/tvWait"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/five"
+            android:text="Please wait"
+            android:gravity="center"
+            android:textSize="@dimen/fifteen"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
     </RelativeLayout>
 </LinearLayout>

@@ -118,6 +118,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     @BindView(R.id.messageTV1)
     TextView messageTV1;
     TextView tvTopMessageFirstTime;
+    TextView tvWait;
     RelativeLayout rvFirstTimeBG;
 
     @BindView(R.id.messageTV2)
@@ -196,6 +197,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         /*emojIcon = new EmojIconActions(PrivateChatActivity.this, rootView, editTextMessage, emojiButton);
         emojIcon.ShowEmojIcon();*/
 
+        tvWait = findViewById(R.id.tvWait);
         tvTopMessageFirstTime = findViewById(R.id.tvTopMessageFirstTime);
         rvFirstTimeBG = findViewById(R.id.rvFirstTimeBG);
         second_name_online_textView = findViewById(R.id.second_name_online_textView);
@@ -530,6 +532,7 @@ public class PrivateChatActivity extends AppCompatActivity {
                     }else {
 
                         if (sizeOfArrayList == 0) {
+                            //farabi
                             otherProfile.setVisibility(View.VISIBLE);
                             rvFirstTimeBG.setVisibility(View.VISIBLE);
                             messageTV1.setVisibility(View.VISIBLE);
@@ -659,11 +662,23 @@ public class PrivateChatActivity extends AppCompatActivity {
                             countMessages();
                         } else if (response.body().getRequest().equals("requested")) {
                             if (msgDtoList.size() == 1) {
-                                final Dialog dialog = new Dialog(PrivateChatActivity.this);
+
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
+                                tvWait.setVisibility(View.VISIBLE);
+                                tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+                                tvTopMessageFirstTime.setText("Chat request sent");
+                                messageTV1.setVisibility(View.VISIBLE);
+                                messageTV1.setText("Your chat request sent, Please wait for user approval.");
+                                otherProfile.setVisibility(View.VISIBLE);
+                                Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+
+
+                                //farabi
+                                /*final Dialog dialog = new Dialog(PrivateChatActivity.this);
                                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                                 LayoutInflater inflater = (LayoutInflater) PrivateChatActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                                 view = inflater.inflate(R.layout.custom_alert_dialog_for_message, null, false);
-                                ImageButton close = view.findViewById(R.id.bt_close); /*HERE YOU CAN FIND YOU IDS AND SET TEXTS OR BUTTONS*/
+                                ImageButton close = view.findViewById(R.id.bt_close); *//*HERE YOU CAN FIND YOU IDS AND SET TEXTS OR BUTTONS*//*
                                 TextView closeButton = view.findViewById(R.id.close_button);
                                 dialog.setContentView(view);
                                 final Window window = dialog.getWindow();
@@ -682,8 +697,13 @@ public class PrivateChatActivity extends AppCompatActivity {
                                         dialog.dismiss();
                                     }
                                 });
-                                dialog.show();
-                                editTextMessage.setText("");
+                                dialog.show();*/
+                                //editTextMessage.setText("");
+
+
+
+
+
                             } else {
                                 message = response.body().getSingleMessage();
                                 msgDtoList.add(message);
