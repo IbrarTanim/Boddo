@@ -83,6 +83,7 @@ import retrofit2.Response;
 
 public class PrivateChatActivity extends AppCompatActivity {
 
+
     @BindView(R.id.two_name_online_textView)
     TextView textViewTwoUsersName;
     TextView second_name_online_textView;
@@ -198,6 +199,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         emojIcon.ShowEmojIcon();*/
 
         tvWait = findViewById(R.id.tvWait);
+
         tvTopMessageFirstTime = findViewById(R.id.tvTopMessageFirstTime);
         rvFirstTimeBG = findViewById(R.id.rvFirstTimeBG);
         second_name_online_textView = findViewById(R.id.second_name_online_textView);

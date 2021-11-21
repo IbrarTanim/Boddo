@@ -34,9 +34,9 @@
             android:id="@+id/rvFirstTimeBG"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:visibility="gone"
             android:layout_centerInParent="true"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/messageTV3"
@@ -125,7 +125,7 @@
         <LinearLayout
             android:id="@+id/message_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/fifty"
             android:orientation="horizontal">
 
             <!--<ImageView
@@ -181,13 +181,12 @@
         <TextView
             android:id="@+id/tvWait"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/fifty"
             android:background="@color/white"
-            android:padding="@dimen/five"
-            android:text="Please wait"
             android:gravity="center"
-            android:textSize="@dimen/fifteen"
+            android:text="Please wait"
             android:textColor="@color/black"
+            android:textSize="@dimen/fifteen"
             android:visibility="gone" />
 
     </RelativeLayout>
