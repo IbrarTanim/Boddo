@@ -23,6 +23,7 @@ import net.boddo.btm.Model.PalupBuyCredits;
 import net.boddo.btm.Model.PhotoBlog;
 import net.boddo.btm.Model.Pojo;
 import net.boddo.btm.Model.ProfileImageLoader;
+import net.boddo.btm.Model.ProfileUser;
 import net.boddo.btm.Model.RecentMatchModel;
 import net.boddo.btm.Model.RoomFriendMessageClass;
 import net.boddo.btm.Model.Transaction;
@@ -127,6 +128,20 @@ public interface ApiInterface {
                            @Field("secret_key") int secret_key,
                            @Field("key") String key,
                            @Field("value") String value);
+
+
+    @FormUrlEncoded
+    @POST("profile-update.php")
+    Call<User> editProfile(@Field("secret_key") int secret_key,
+                             @Field("key") String key,
+                             @Field("value") String value,
+                             @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("all_room_admins.php")
+    Call<ProfileUser> updateProfile(@Field("secret_key") int secret_key);
+
+
 
 
     //other user finding api

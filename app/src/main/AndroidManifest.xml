@@ -30,7 +30,14 @@
         android:windowSoftInputMode="adjustPan"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
-        <activity android:name=".Activity.StoryActivity"></activity>
+        <activity android:name=".Activity.DeleteAccountActivity"></activity>
+        <activity android:name=".Activity.PasswordActivity" />
+        <activity android:name=".Activity.EmailVerifiedActivity" />
+        <activity android:name=".Activity.BirthDateActivity" />
+        <activity android:name=".Activity.GenderActivity" />
+        <activity android:name=".Activity.UserName" />
+        <activity android:name=".Activity.FullNameActivity" />
+        <activity android:name=".Activity.StoryActivity" />
         <activity android:name=".Activity.RecentMatchProPicActivity" />
         <activity android:name=".Activity.ChatRequestActivity" />
         <activity

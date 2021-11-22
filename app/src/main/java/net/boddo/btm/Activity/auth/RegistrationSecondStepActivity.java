@@ -287,6 +287,7 @@ public class RegistrationSecondStepActivity extends AppCompatActivity {
                     final User user = pojo.getUser();
                     try {
                         Data.userId = user.getUserId();
+                        Data.userEmail = emailAddress;
                         Data.saveLoggedInData(user);
                         loadProfileImages();
                         SharedPref.setIsLoggedIn(IS_LOGGED_IN, true);

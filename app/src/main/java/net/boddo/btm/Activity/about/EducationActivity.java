@@ -3,6 +3,7 @@ package net.boddo.btm.Activity.about;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -290,6 +291,7 @@ public class EducationActivity extends AppCompatActivity {
         if (isChanged) {
             AboutUpdate update = new AboutUpdate(this);
             update.updateAbout(key, value);
+            Log.e("key_value", "saveToServer: "+key+"\n"+value );
         }
     }
 
