@@ -222,6 +222,7 @@ public class BirthdateFragment extends Fragment {
                         final User user = pojo.getUser();
                         try {
                             Data.userId = user.getUserId();
+                            Data.userEmail = email;
                             Data.saveLoggedInData(user);
                             loadProfileImages();
                             SharedPref.setIsLoggedIn(IS_LOGGED_IN, true);

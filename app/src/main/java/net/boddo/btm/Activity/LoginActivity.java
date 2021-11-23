@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.JsonObject;
 import com.valdesekamdem.library.mdtoast.MDToast;
 
 import java.util.UUID;
@@ -28,6 +29,7 @@ import net.boddo.btm.Model.Pojo;
 import net.boddo.btm.Model.ProfileImageLoader;
 import net.boddo.btm.Model.User;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.AuthPreference;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.SharedPref;
@@ -69,6 +71,7 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
     String userAgent;
     Pojo pojo;
     SharedPref sharedPref;
+    AuthPreference authPreference;
     public static int isBonusAvailable = 0;
     LoadingDialog loadingDialog;
 
@@ -79,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
         ButterKnife.bind(this);
 
         sharedPref = new SharedPref(this);
+        authPreference = new AuthPreference(this);
 
         tvForgetPassword = findViewById(R.id.tvForgetPassword);
         tvForgetPassword.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +97,7 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
         userAgent = System.getProperty("http.agent");
         if (SharedPref.getCheckBoxResult(IS_CHECKED)) {
             mRemamberMe.setChecked(true);
+            String s = SharedPref.getUserEmail(EMAIL);
             email.setText(SharedPref.getUserEmail(EMAIL));
             userPassword.setText(SharedPref.getUserPassword(PASSWORD));
         } else {
@@ -141,7 +146,10 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
     }
 
     private void login(String fcmToken) {
+        Log.e("fcmToken", "login: "+fcmToken );
         final String token = UUID.randomUUID().toString();
+        Log.e("fcmToken", "login: "+token );
+
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
         String emailData = email.getText().toString().trim();
@@ -150,6 +158,8 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
         String tokenData = token;
         String fcmTokenData = fcmToken;
         String userAgentData = userAgent;
+
+
 
         Call<Pojo> call = apiInterface.login(email.getText().toString().trim(), userPassword.getText().toString(), Constants.SECRET_KEY, token, fcmToken, userAgent);
         call.enqueue(new Callback<Pojo>() {
@@ -164,6 +174,8 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
                     SharedPref.setLikeCount("LikeCount", likeNotifacition);
                     SharedPref.setFavoriteCount("FavoriteCount", favoriteNotifacition);
                     SharedPref.setVisitorCount("VisitorCount", visitorNotifacition);
+                    AuthPreference.setEmail("email",emailData);
+                    AuthPreference.setEmail("password",passwordData);
                     if (!pojo.getLoginBonus().equals("no")) {
                         isBonusAvailable = Integer.parseInt(pojo.getLoginBonus());
                     }
