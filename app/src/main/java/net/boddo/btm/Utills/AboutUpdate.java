@@ -3,6 +3,8 @@ package net.boddo.btm.Utills;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.JsonObject;
+
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Model.User;
@@ -23,6 +25,8 @@ public class AboutUpdate {
     public boolean updateAbout(String key, String value) {
         result = false;
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Log.e("key", "updateAbout: "+key );
+        Log.e("key", "updateAbout: "+value );
         Call<User> call = apiInterface.updateAbout(Data.userId, Constants.SECRET_KEY, key, value);
         call.enqueue(new Callback<User>() {
             @Override

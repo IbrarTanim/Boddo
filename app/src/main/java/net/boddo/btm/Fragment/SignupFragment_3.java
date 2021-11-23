@@ -161,6 +161,7 @@ public class SignupFragment_3 extends Fragment implements Constants {
                     try {
                         loadingContainer.setVisibility(View.VISIBLE);
                         Data.userId = user.getUserId();
+                        Data.userEmail = emailAddress;
                         Data.saveLoggedInData(user);
                         loadProfileImages();
                         SharedPref.setIsLoggedIn(IS_LOGGED_IN, true);
