@@ -26,6 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class FullNameActivity extends AppCompatActivity {
+    FullNameActivity activity;
 
     private EditText edtFullName;
     private TextView counterFullName,tvSave,tvBack;
@@ -35,6 +36,7 @@ public class FullNameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_name);
+        activity = this;
 
         edtFullName = findViewById(R.id.edtFullName);
         counterFullName = findViewById(R.id.counterFullName);
@@ -63,7 +65,7 @@ public class FullNameActivity extends AppCompatActivity {
         tvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                goTOProfileAndAccountActivity();
             }
         });
 
@@ -86,7 +88,7 @@ public class FullNameActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(FullNameActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show();
                             goTOProfileAndAccountActivity();
 
                         }
@@ -104,7 +106,7 @@ public class FullNameActivity extends AppCompatActivity {
     }
 
     private void goTOProfileAndAccountActivity() {
-        startActivity(new Intent(FullNameActivity.this,ProfileAndAccountsActivity.class));
+        startActivity(new Intent(activity, ProfileAndAccountsActivity.class));
         finish();
     }
 }
