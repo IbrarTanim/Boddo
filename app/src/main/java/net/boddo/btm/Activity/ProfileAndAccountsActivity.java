@@ -118,7 +118,7 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
                     startActivity(intent);
                     finish();
                     break;
-                case R.id.tvEmailVerified:
+                case R.id.tvEmail:
                     intent = new Intent(activity,EmailVerifiedActivity.class);
                     startActivity(intent);
                     finish();

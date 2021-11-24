@@ -58,6 +58,7 @@ public class BirthDateActivity extends AppCompatActivity {
 
                 Log.e("date", "onCreate: "+date );
 
+
                 apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
                 Call<User> call = apiInterface.editProfile(Constants.SECRET_KEY,"date_of_birth",date, Data.userId);
                 call.enqueue(new Callback<User>() {
@@ -65,6 +66,7 @@ public class BirthDateActivity extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(BirthDateActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Data.userDateOfBirgh = date;
                             goTOProfileAndAccountActivity();
                         }
                     }

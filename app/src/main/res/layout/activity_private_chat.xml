@@ -28,7 +28,7 @@
             android:id="@+id/recycler_view_message"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/custom_toolbar_chatroom" />
+            android:layout_below="@+id/rvFirstTimeBG" />
 
         <RelativeLayout
             android:id="@+id/rvFirstTimeBG"
@@ -184,9 +184,10 @@
             android:layout_height="@dimen/fifty"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Please wait"
+            android:hint="Please wait"
             android:textColor="@color/black"
             android:textSize="@dimen/fifteen"
+            android:clickable="false"
             android:visibility="gone" />
 
     </RelativeLayout>
