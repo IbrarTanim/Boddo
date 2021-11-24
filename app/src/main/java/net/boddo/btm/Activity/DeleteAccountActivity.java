@@ -2,29 +2,46 @@ package net.boddo.btm.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import net.boddo.btm.Callbacks.ApiClient;
+import net.boddo.btm.Callbacks.ApiInterface;
+import net.boddo.btm.Model.User;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.Constants;
+import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.SharedPref;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DeleteAccountActivity extends AppCompatActivity implements View.OnClickListener {
 
+    DeleteAccountActivity activity;
     private TextView tvMeetSomeone,tvMeetSomeoneElseWhere,tvResetMyAccount,
-            tvNoLongerInterested,tvQualityOfApp,tvOther;
+            tvNoLongerInterested,tvQualityOfApp,tvOther,tvSave;
+    private ApiInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_account);
 
+        activity = this;
         tvMeetSomeone = findViewById(R.id.tvMeetSomeone);
         tvMeetSomeoneElseWhere = findViewById(R.id.tvMeetSomeoneElseWhere);
         tvResetMyAccount = findViewById(R.id.tvResetMyAccount);
         tvNoLongerInterested = findViewById(R.id.tvNoLongerInterested);
         tvQualityOfApp = findViewById(R.id.tvQualityOfApp);
         tvOther = findViewById(R.id.tvOther);
+        tvSave = findViewById(R.id.tvSave);
 
         tvMeetSomeone.setOnClickListener(this);
         tvMeetSomeoneElseWhere.setOnClickListener(this);
@@ -92,7 +109,56 @@ public class DeleteAccountActivity extends AppCompatActivity implements View.OnC
                 tvOther.setBackground(getResources().getDrawable(R.drawable.green_shade_button_bg));
                 break;
 
-
         }
+
+        tvSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+                Call<User> call = apiInterface.closeAccount(Data.userId,Constants.SECRET_KEY);
+
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.isSuccessful()){
+                            logout();
+                            Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Log.e("error", "onFailure: "+t.getLocalizedMessage() );
+                    }
+                });
+
+            }
+        });
+    }
+
+    private void logout() {
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<String> call = apiInterface.logout(Data.userId, Constants.SECRET_KEY);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body().equals("success")) {
+                    Intent intent = new Intent(activity, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    SharedPref.setLastChatRoom(Constants.LAST_CHAT_ROOM, "");
+                    SharedPref.setIsLoggedIn(Constants.IS_LOGGED_IN, false);
+                    SharedPref.setUserId(Constants.USER_ID, "");
+                    SharedPref.setUserAccessToken(Constants.ACCESS_TOKEN, "");
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -145,6 +145,9 @@ public class PrivateChatActivity extends AppCompatActivity {
     @BindView(R.id.RLPrivateChatScreen)
     RelativeLayout RLPrivateChatScreen;
 
+  //  @BindView(R.id.chat_left_msg_text_view)
+    TextView chat_left_msg_text_view;
+
     Dialog mDialog;
     PrettyDialog prettyDialog;
 
@@ -202,6 +205,7 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         tvTopMessageFirstTime = findViewById(R.id.tvTopMessageFirstTime);
         rvFirstTimeBG = findViewById(R.id.rvFirstTimeBG);
+        chat_left_msg_text_view = findViewById(R.id.chat_left_msg_text_view);
         second_name_online_textView = findViewById(R.id.second_name_online_textView);
         ivBackMessageChat = findViewById(R.id.ivBackMessageChat);
         ivBackMessageChat.setOnClickListener(new View.OnClickListener() {
@@ -272,6 +276,7 @@ public class PrivateChatActivity extends AppCompatActivity {
                         if(b==true){
                             b=false;
                             RLPrivateChatScreen.setBackgroundColor(Color.rgb(63, 66, 77));
+                            chat_left_msg_text_view.setBackgroundColor(Color.rgb(74,81,90));
 
                         }else {
                             b=true;
@@ -674,13 +679,17 @@ public class PrivateChatActivity extends AppCompatActivity {
                                 otherProfile.setVisibility(View.VISIBLE);
                                 Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
 
+                                moreButton.setVisibility(View.GONE);
+                                sendButton.setVisibility(View.GONE);
+                                editTextMessage.setText("");
+
 
                                 //farabi
                                 /*final Dialog dialog = new Dialog(PrivateChatActivity.this);
                                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                                 LayoutInflater inflater = (LayoutInflater) PrivateChatActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                                 view = inflater.inflate(R.layout.custom_alert_dialog_for_message, null, false);
-                                ImageButton close = view.findViewById(R.id.bt_close); *//*HERE YOU CAN FIND YOU IDS AND SET TEXTS OR BUTTONS*//*
+                                ImageButton close = view.findViewById(R.id.bt_close); *//**//*HERE YOU CAN FIND YOU IDS AND SET TEXTS OR BUTTONS*//**//*
                                 TextView closeButton = view.findViewById(R.id.close_button);
                                 dialog.setContentView(view);
                                 final Window window = dialog.getWindow();

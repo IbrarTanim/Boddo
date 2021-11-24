@@ -70,6 +70,7 @@ public class EmailVerifiedActivity extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(EmailVerifiedActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            AuthPreference.setEmail("email",myName);
                             goTOProfileAndAccountActivity();
                         }
                     }

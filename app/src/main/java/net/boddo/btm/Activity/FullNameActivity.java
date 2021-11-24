@@ -19,6 +19,7 @@ import net.boddo.btm.Model.User;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.SharedPref;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,16 +27,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class FullNameActivity extends AppCompatActivity {
-    FullNameActivity activity;
 
+    FullNameActivity activity;
     private EditText edtFullName;
     private TextView counterFullName,tvSave,tvBack;
     private ApiInterface apiInterface;
     private ImageView tvClearFullName;
+    private SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_name);
+
         activity = this;
 
         edtFullName = findViewById(R.id.edtFullName);
@@ -43,6 +46,7 @@ public class FullNameActivity extends AppCompatActivity {
         tvSave = findViewById(R.id.tvSave);
         tvClearFullName = findViewById(R.id.tvClearFullName);
         tvBack = findViewById(R.id.tvBack);
+        sharedPref = new SharedPref(activity);
 
         edtFullName.setText(Data.userFirstName);
         edtFullName.addTextChangedListener(new TextWatcher() {
@@ -88,7 +92,8 @@ public class FullNameActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FullNameActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Data.userFirstName  =  myName;
                             goTOProfileAndAccountActivity();
 
                         }
@@ -106,7 +111,7 @@ public class FullNameActivity extends AppCompatActivity {
     }
 
     private void goTOProfileAndAccountActivity() {
-        startActivity(new Intent(activity, ProfileAndAccountsActivity.class));
+        startActivity(new Intent(activity,ProfileAndAccountsActivity.class));
         finish();
     }
 }

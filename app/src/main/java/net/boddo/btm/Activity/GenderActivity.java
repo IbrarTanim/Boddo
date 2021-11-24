@@ -26,7 +26,7 @@ public class GenderActivity extends AppCompatActivity {
 
     private RadioGroup rgGender;
     private RadioButton rbMale,rbFemale;
-    private String gender = "male";
+    private String gender = "Male";
     private TextView tvBack,tvSave;
     private ApiInterface apiInterface;
     @Override
@@ -50,8 +50,8 @@ public class GenderActivity extends AppCompatActivity {
         });
 
         gender = Data.userGender;
-      //  Toast.makeText(GenderActivity.this, ""+gender, Toast.LENGTH_SHORT).show();
-        if(gender.equals("male")){
+
+        if(gender.equals("Male")){
             rbMale.setChecked(true);
 
         }else {
@@ -79,6 +79,7 @@ public class GenderActivity extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(GenderActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Data.userGender = gender;
                             goTOProfileAndAccountActivity();
                         }
                     }

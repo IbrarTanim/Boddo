@@ -138,6 +138,11 @@ public interface ApiInterface {
                              @Field("user_id") String user_id);
 
     @FormUrlEncoded
+    @POST("self-close-account.php")
+    Call<User> closeAccount(@Field("user_id") String user_id,
+                            @Field("secret_key") int secret_key);
+
+    @FormUrlEncoded
     @POST("all_room_admins.php")
     Call<ProfileUser> updateProfile(@Field("secret_key") int secret_key);
 

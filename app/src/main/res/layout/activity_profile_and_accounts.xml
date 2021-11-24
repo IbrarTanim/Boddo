@@ -213,6 +213,7 @@
                     android:drawableRight="@drawable/arrow_icon_28_02_2021"
                     android:drawablePadding="@dimen/five"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:text="(Verified)" />
 
             </LinearLayout>
