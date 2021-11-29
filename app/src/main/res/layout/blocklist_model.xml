@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/margin_5_dp">
+    android:layout_marginBottom="@dimen/spacing_xsmall">
 
 
     <RelativeLayout
@@ -24,20 +24,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/profile_image"
             android:text="parvez"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/block_user_last_message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:layout_below="@+id/block_user_name"
+            android:text="3 days ago"
+            android:textSize="@dimen/twelve"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black" />
+
+
 
         <Button
             android:id="@+id/unBlockButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/button2"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_marginBottom="@dimen/ten"
+            android:background="@drawable/button2_pink"
+            android:gravity="center"
             android:text="Unblock"
-            android:textColor="@color/white" />
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/white"
+            android:textSize="@dimen/ten" />
 
     </RelativeLayout>
 

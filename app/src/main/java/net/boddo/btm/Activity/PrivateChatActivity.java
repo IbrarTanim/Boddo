@@ -263,10 +263,11 @@ public class PrivateChatActivity extends AppCompatActivity {
             otherUserNameFromActiveList = getIntent().getStringExtra(Constants.RECEIVER_NAME);
         }
 
-        getRequestAcceptDetails();
+
         setUpUIForMessage();
         getAllMessage();
         getLocalBroadCastReceiver();
+        getRequestAcceptDetails();
 
 
 

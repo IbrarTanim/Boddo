@@ -4,38 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eceef0"
     tools:context=".Activity.BlockListActivity">
 
     <LinearLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:background="@drawable/button1"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/TVBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Block List"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:text="Blocked"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:drawablePadding="@dimen/fifteen"
+            android:drawableLeft="@drawable/back_icon_20_26_12_2020"/>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/viewID"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/top"/>
 
     <!--<android.support.v4.widget.SwipeRefreshLayout-->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top">
+        android:layout_below="@+id/viewID">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/block_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp">
+            >
 
         </androidx.recyclerview.widget.RecyclerView>
 

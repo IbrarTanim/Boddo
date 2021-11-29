@@ -96,7 +96,7 @@ public class BlockListAdepter extends RecyclerView.Adapter<BlockListAdepter.Bloc
     public class BlockListViewHolder extends RecyclerView.ViewHolder {
 
         ImageView blockUserPhoto;
-        TextView userName;
+        TextView userName,block_user_last_message_time;
         Button unBlockButton;
 
         public BlockListViewHolder(@NonNull View itemView) {
@@ -105,6 +105,7 @@ public class BlockListAdepter extends RecyclerView.Adapter<BlockListAdepter.Bloc
             blockUserPhoto = itemView.findViewById(R.id.profile_image);
             userName = itemView.findViewById(R.id.block_user_name);
             unBlockButton = itemView.findViewById(R.id.unBlockButton);
+            block_user_last_message_time = itemView.findViewById(R.id.block_user_last_message_time);
 
 
         }
