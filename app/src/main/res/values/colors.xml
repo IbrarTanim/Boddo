@@ -573,8 +573,7 @@
     <color name="grey_1000">#1a1a1a</color>
     <color name="dark">#3F424D</color>
     <color name="medium_light_gray">#a0a09e</color>
-    <color name="green_shade">#96cd72</color>
-
+    <color name="green_shade">#96cc72</color>
 
     <color name="ctColor">#9b193f</color>
 </resources>

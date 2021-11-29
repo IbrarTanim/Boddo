@@ -40,12 +40,12 @@
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:drawableLeft="@drawable/ic_close_9_6_2021"
+                android:drawableLeft="@drawable/back_chat_11_11_2021"
                 android:drawablePadding="@dimen/thirty"
                 android:gravity="left|center"
                 android:text="Edit date of birth"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/fifteen" />
 
 
         </LinearLayout>
@@ -66,11 +66,11 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/five"
                 android:background="@color/white"
-                android:gravity="center|left"
+                android:gravity="center"
                 android:paddingLeft="@dimen/fifteen"
                 android:text="Your real birthday"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sixteen"
+                android:textSize="@dimen/fifteen"
                 android:textStyle="normal" />
 
             <View
@@ -100,13 +100,13 @@
             <TextView
                 android:id="@+id/tvSave"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/seventy"
+                android:layout_height="@dimen/fifty"
                 android:layout_margin="@dimen/fifty"
                 android:background="@drawable/button2"
                 android:gravity="center"
                 android:text="Save"
                 android:textColor="@color/white"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/fifteen" />
 
 
         </LinearLayout>

@@ -40,16 +40,15 @@
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:drawableLeft="@drawable/ic_close_9_6_2021"
+                android:drawableLeft="@drawable/back_chat_11_11_2021"
                 android:drawablePadding="@dimen/thirty"
                 android:gravity="left|center"
                 android:text="Edit email"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/fifteen" />
 
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,11 +65,11 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/five"
                 android:background="@color/white"
-                android:gravity="center|left"
+                android:gravity="center"
                 android:paddingLeft="@dimen/fifteen"
                 android:text="Your valid email address"
                 android:textColor="@color/black"
-                android:textSize="@dimen/thirteen"
+                android:textSize="@dimen/fifteen"
                 android:textStyle="normal" />
 
             <View
@@ -81,7 +80,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="7"
+                android:layout_weight="5"
                 android:background="@color/white"
                 android:orientation="vertical">
 
@@ -91,11 +90,10 @@
                     android:layout_height="@dimen/zero"
                     android:layout_marginTop="@dimen/ten"
                     android:layout_marginRight="@dimen/ten"
-                    android:layout_weight="2"
+                    android:layout_weight="1.5"
                     android:background="@color/transparent"
                     android:scaleType="fitEnd"
                     android:src="@drawable/cancel" />
-
 
 
                 <EditText
@@ -104,20 +102,18 @@
                     android:layout_height="@dimen/zero"
                     android:layout_marginLeft="@dimen/five"
                     android:layout_marginRight="@dimen/five"
-                    android:layout_weight="6"
-                    android:maxLines="3"
-                    android:gravity="center_vertical"
-                    android:backgroundTint="@color/app_bg_color"
-                    android:text="Sarwarhossain@boddo.net"
+                    android:layout_weight="3.7"
+                    android:backgroundTint="@color/gray_light"
+                    android:gravity="bottom"
                     android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:text="Sarwarhossain@boddo.net"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/fifteen"
                     android:textStyle="normal" />
 
 
-
                 <TextView
-
                     android:id="@+id/counterFullName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
@@ -129,22 +125,24 @@
 
             </LinearLayout>
 
-
             <TextView
                 android:id="@+id/tvSave"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/seventy"
-                android:layout_margin="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginLeft="@dimen/fifty"
+                android:layout_marginTop="@dimen/fifty"
+                android:layout_marginRight="@dimen/fifty"
                 android:background="@drawable/button2"
                 android:gravity="center"
                 android:text="Save"
                 android:textColor="@color/white"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/fifteen" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/forty"
                 android:layout_marginLeft="50dp"
+                android:layout_marginTop="@dimen/twenty"
                 android:layout_marginRight="50dp"
                 android:gravity="center"
                 android:text="Please open the link that email within 24 hours to verify your new email address."

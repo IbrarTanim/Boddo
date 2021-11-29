@@ -54,7 +54,6 @@
     ////chat_list for chat fragment
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

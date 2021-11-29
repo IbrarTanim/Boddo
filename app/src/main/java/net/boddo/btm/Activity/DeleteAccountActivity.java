@@ -27,7 +27,8 @@ public class DeleteAccountActivity extends AppCompatActivity implements View.OnC
 
     DeleteAccountActivity activity;
     private TextView tvMeetSomeone,tvMeetSomeoneElseWhere,tvResetMyAccount,
-            tvNoLongerInterested,tvQualityOfApp,tvOther,tvSave;
+            tvNoLongerInterested,tvQualityOfApp,tvOther,tvSave, tvBackDelete;
+
     private ApiInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class DeleteAccountActivity extends AppCompatActivity implements View.OnC
         tvQualityOfApp = findViewById(R.id.tvQualityOfApp);
         tvOther = findViewById(R.id.tvOther);
         tvSave = findViewById(R.id.tvSave);
+        tvBackDelete = findViewById(R.id.tvBackDelete);
 
         tvMeetSomeone.setOnClickListener(this);
         tvMeetSomeoneElseWhere.setOnClickListener(this);
@@ -49,6 +51,7 @@ public class DeleteAccountActivity extends AppCompatActivity implements View.OnC
         tvNoLongerInterested.setOnClickListener(this);
         tvQualityOfApp.setOnClickListener(this);
         tvOther.setOnClickListener(this);
+        tvBackDelete.setOnClickListener(this);
 
     }
 
@@ -108,6 +111,15 @@ public class DeleteAccountActivity extends AppCompatActivity implements View.OnC
                 tvQualityOfApp.setBackground(getResources().getDrawable(R.drawable.username_save_button));
                 tvOther.setBackground(getResources().getDrawable(R.drawable.green_shade_button_bg));
                 break;
+
+
+                case R.id.tvBackDelete:
+                    startActivity(new Intent(activity,ProfileAndAccountsActivity.class));
+                    finish();
+                break;
+
+
+
 
         }
 

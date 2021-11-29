@@ -199,22 +199,12 @@
                     android:id="@+id/tvEmail"
                     android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="sarwar@boddo.net" />
-
-                <TextView
-                    android:id="@+id/tvEmailVerified"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/twenty"
                     android:layout_weight="1"
                     android:drawableRight="@drawable/arrow_icon_28_02_2021"
                     android:drawablePadding="@dimen/five"
                     android:gravity="center"
-                    android:visibility="gone"
-                    android:text="(Verified)" />
+                    android:text="sarwar@boddo.net" />
 
             </LinearLayout>
 
@@ -232,7 +222,7 @@
                     android:layout_marginLeft="@dimen/ten"
                     android:layout_weight="1"
                     android:gravity="left|center"
-                    android:text="Passsword"
+                    android:text="Password"
                     android:textColor="@color/black" />
 
                 <TextView

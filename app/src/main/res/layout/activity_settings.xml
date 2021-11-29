@@ -385,9 +385,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/thirty_five"
+                    android:layout_height="@dimen/thirty"
                     android:orientation="horizontal">
-
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -410,7 +409,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Made with love in Bangladesh"
-                        android:textSize="@dimen/twenty" />
+                        android:textSize="@dimen/fifteen" />
 
 
                 </LinearLayout>

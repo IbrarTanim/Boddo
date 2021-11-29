@@ -7,7 +7,6 @@
     android:background="@color/app_bg_color"
     tools:context=".Activity.DeleteAccountActivity">
 
-
     <View
         android:id="@+id/blankView"
         android:layout_width="match_parent"
@@ -23,7 +22,6 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/blankView">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
@@ -37,25 +35,24 @@
                 android:layout_weight="0.1" />
 
             <TextView
-                android:id="@+id/tvBack"
+                android:id="@+id/tvBackDelete"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:drawableLeft="@drawable/ic_close_9_6_2021"
+                android:drawableLeft="@drawable/back_chat_11_11_2021"
                 android:drawablePadding="@dimen/thirty"
                 android:gravity="left|center"
                 android:text="Delete Account"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/fifteen" />
 
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight="10"
+            android:layout_weight="14.5"
             android:orientation="vertical">
 
             <View
@@ -67,17 +64,15 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/five"
                 android:background="@color/white"
-                android:gravity="center|left"
-                android:paddingLeft="@dimen/fifteen"
+                android:gravity="center"
                 android:text="Please share a quick reason for deleting your profile to confirm"
                 android:textColor="@color/black"
-                android:textSize="13sp"
+                android:textSize="@dimen/fifteen"
                 android:textStyle="normal" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="35dp" />
-
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -95,14 +90,14 @@
                         android:id="@+id/tvMeetSomeone"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/fifty"
-                        android:layout_marginTop="5dp"
                         android:layout_marginLeft="@dimen/forty"
+                        android:layout_marginTop="5dp"
                         android:layout_marginRight="@dimen/forty"
                         android:background="@drawable/username_save_button"
                         android:gravity="center"
                         android:text="I MET SOMEONE ON BODDO"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/thirteen" />
+                        android:textSize="@dimen/fifteen" />
 
 
                     <TextView
@@ -110,13 +105,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/fifty"
                         android:layout_marginLeft="@dimen/forty"
-                        android:layout_marginRight="@dimen/forty"
                         android:layout_marginTop="@dimen/twelve"
+                        android:layout_marginRight="@dimen/forty"
                         android:background="@drawable/username_save_button"
                         android:gravity="center"
                         android:text="I MET SOMEONE ELSEWHERE"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/thirteen" />
+                        android:textSize="@dimen/fifteen" />
 
 
                     <TextView
@@ -124,39 +119,39 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/fifty"
                         android:layout_marginLeft="@dimen/forty"
-                        android:layout_marginRight="@dimen/forty"
                         android:layout_marginTop="@dimen/twelve"
+                        android:layout_marginRight="@dimen/forty"
                         android:background="@drawable/username_save_button"
                         android:gravity="center"
                         android:text="I WANT TO RESET MY ACCOUNT"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/thirteen" />
+                        android:textSize="@dimen/fifteen" />
 
                     <TextView
                         android:id="@+id/tvNoLongerInterested"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/fifty"
                         android:layout_marginLeft="@dimen/forty"
-                        android:layout_marginRight="@dimen/forty"
                         android:layout_marginTop="@dimen/twelve"
+                        android:layout_marginRight="@dimen/forty"
                         android:background="@drawable/username_save_button"
                         android:gravity="center"
                         android:text="NO LONGER INTERESTED"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/thirteen" />
+                        android:textSize="@dimen/fifteen" />
 
                     <TextView
                         android:id="@+id/tvQualityOfApp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/fifty"
                         android:layout_marginLeft="@dimen/forty"
-                        android:layout_marginRight="@dimen/forty"
                         android:layout_marginTop="@dimen/twelve"
+                        android:layout_marginRight="@dimen/forty"
                         android:background="@drawable/username_save_button"
                         android:gravity="center"
                         android:text="QUALITY OF APP"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/thirteen" />
+                        android:textSize="@dimen/fifteen" />
 
 
                     <TextView
@@ -164,14 +159,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/fifty"
                         android:layout_marginLeft="@dimen/forty"
-                        android:layout_marginRight="@dimen/forty"
                         android:layout_marginTop="@dimen/twelve"
+                        android:layout_marginRight="@dimen/forty"
                         android:background="@drawable/username_save_button"
                         android:gravity="center"
                         android:text="OTHER"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/thirteen" />
-
+                        android:textSize="@dimen/fifteen" />
 
 
                     <TextView
@@ -183,21 +177,13 @@
                         android:gravity="center"
                         android:text="Confirm"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/twenty" />
-
-
+                        android:textSize="@dimen/fifteen" />
 
 
                 </LinearLayout>
 
 
             </ScrollView>
-
-
-
-
-
-
 
 
         </LinearLayout>
