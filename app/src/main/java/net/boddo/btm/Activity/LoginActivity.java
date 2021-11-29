@@ -180,7 +180,16 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
                         isBonusAvailable = Integer.parseInt(pojo.getLoginBonus());
                     }
                     if (!user.getIsSuspended().equals("") && user.getIsSuspended().equals("1")) {
-                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+
+
+                        Intent intent = new Intent(LoginActivity.this, AccountCloseStatusActivity.class);
+                        intent.putExtra("UserName", user.getUserName());
+                        startActivity(intent);
+                        finish();
+
+
+                        //farabi
+                        /*if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                             final PrettyDialog prettyDialog = new PrettyDialog(LoginActivity.this);
                             prettyDialog.setTitle("Dear " + user.getUserName() + ",")
                                     .setMessage("You have been suspended from palup.Please try to contact with palup administrator for more information")
@@ -191,6 +200,7 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
                                         }
                                     }).show();
                         } else {
+                            //farabi
                             final PrettyDialog prettyDialog = new PrettyDialog(LoginActivity.this);
                             prettyDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setTitle("Dear " + user.getUserName() + ",")
                                     .setMessage("You have been suspended from palup.Please try to contact with palup administrator for more information")
@@ -200,7 +210,9 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
                                             prettyDialog.dismiss();
                                         }
                                     }).show();
-                        }
+                        }*/
+
+
                     } else {
                         SharedPref.setUserId(USER_ID, user.getUserId());
                         SharedPref.setUserAccessToken(ACCESS_TOKEN, token);

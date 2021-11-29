@@ -30,7 +30,10 @@
         android:windowSoftInputMode="adjustPan"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
-        <activity android:name=".Activity.DeleteAccountActivity"></activity>
+        <activity
+            android:name=".Activity.AccountCloseStatusActivity"
+            android:exported="false" />
+        <activity android:name=".Activity.DeleteAccountActivity" />
         <activity android:name=".Activity.PasswordActivity" />
         <activity android:name=".Activity.EmailVerifiedActivity" />
         <activity android:name=".Activity.BirthDateActivity" />

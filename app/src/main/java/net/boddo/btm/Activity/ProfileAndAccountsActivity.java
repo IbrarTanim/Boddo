@@ -34,7 +34,7 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
     ApiInterface apiInterface;
     private SharedPref sharedPref;
     private TextView tvBackProfileAndAccounts, tvUID, tvVersion,tvFullName,
-            tvUserName,tvGender,tvDate,tvEmailVerified,tvPassword,tvEmail;
+            tvUserName,tvGender,tvDate,tvPassword,tvEmail;
     private LinearLayout llDeleteAccount;
     private AuthPreference authPreference;
 
@@ -54,7 +54,6 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
         tvEmail = findViewById(R.id.tvEmail);
         tvGender = findViewById(R.id.tvGender);
         tvDate = findViewById(R.id.tvBirthDate);
-        tvEmailVerified = findViewById(R.id.tvEmailVerified);
         tvPassword = findViewById(R.id.tvPassword);
         llDeleteAccount = findViewById(R.id.llDeleteAccount);
 
@@ -64,15 +63,14 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
         tvDate.setText(Data.userDateOfBirgh);
 
         tvEmail.setText(AuthPreference.getEmail("email"));
-        if(Data.isUserEmailVerified){
+
+        /*if(Data.isUserEmailVerified){
             tvEmailVerified.setText("(Verified)");
         }else {
             tvEmailVerified.setText("(Not Verified)");
-        }
+        }*/
 
         tvUID.setText(Data.userId);
-
-
 
         tvUID.setText("UID: " + Data.userId);
         tvVersion.setText(BuildConfig.VERSION_NAME);
@@ -80,7 +78,6 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
         tvFullName.setOnClickListener(this);
         tvUserName.setOnClickListener(this);
         tvGender.setOnClickListener(this);
-        tvEmailVerified.setOnClickListener(this);
         llDeleteAccount.setOnClickListener(this);
         tvPassword.setOnClickListener(this);
         tvDate.setOnClickListener(this);

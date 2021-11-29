@@ -203,7 +203,15 @@ public class SplashScreenActivity extends AppCompatActivity implements Constants
                         LoginActivity.isBonusAvailable = Integer.parseInt(pojo.getLoginBonus());
                     }
                     if (!user.getIsSuspended().equals("") && user.getIsSuspended().equals("1")) {
-                        final PrettyDialog prettyDialog = new PrettyDialog(SplashScreenActivity.this);
+
+                        // farabi
+
+                        Intent intent = new Intent(SplashScreenActivity.this, AccountCloseStatusActivity.class);
+                        intent.putExtra("UserName", user.getUserName());
+                        startActivity(intent);
+                        finish();
+
+                       /* final PrettyDialog prettyDialog = new PrettyDialog(SplashScreenActivity.this);
                         prettyDialog.setTitle("Dear " + user.getUserName() + ",")
                                 .setMessage("You have been suspended from palup.Please try to contact with palup administrator for more information")
                                 .setIcon(R.drawable.ic_warning_white_24dp)
@@ -213,8 +221,10 @@ public class SplashScreenActivity extends AppCompatActivity implements Constants
                                         prettyDialog.dismiss();
                                         finish();
                                     }
-                                }).show();
-                    } else {
+                                }).show();*/
+                    }
+
+                    else {
                         Data.userId = user.getUserId();
                         loadProfileImages();
                     }

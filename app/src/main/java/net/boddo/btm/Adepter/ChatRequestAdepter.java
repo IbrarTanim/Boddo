@@ -2,6 +2,7 @@ package net.boddo.btm.Adepter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import net.boddo.btm.Callbacks.ApiClient;
+import net.boddo.btm.Callbacks.ApiInterface;
+import net.boddo.btm.Model.ChatAppMsgDTO;
 import net.boddo.btm.Model.ChatRequest;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.SearchUser;
 
@@ -21,6 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.ChatRequestViewHolder> {
 
@@ -60,6 +68,17 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
         });
 
 
+        holder.chatRequest_acceptBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                acceptedRequest(chatRequestModelArrayList.get(position).getUserOne(),position);
+            }
+        });
+
+
+
+
+
     }
 
     @Override
@@ -70,7 +89,7 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
 
     public class ChatRequestViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name,chatRequest_messageTV;
+        TextView name,chatRequest_messageTV, chatRequest_acceptBtn;
         CircleImageView civChatRequestItem;
 
         public ChatRequestViewHolder(View itemView) {
@@ -79,10 +98,41 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
             civChatRequestItem = itemView.findViewById(R.id.civChatRequestItem);
             name = itemView.findViewById(R.id.chatRequest_usernameTV);
             chatRequest_messageTV = itemView.findViewById(R.id.chatRequest_messageTV);
+            chatRequest_acceptBtn = itemView.findViewById(R.id.chatRequest_acceptBtn);
 
 
 
         }
+    }
+
+
+    public void acceptedRequest(String otherUserId, final int position) {
+        String msgContent  = Data.userFirstName + " accepted the request. "+ Constants.REQUEST_STRING;
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<ChatAppMsgDTO> call = apiInterface.startChat(Constants.SECRET_KEY, Data.userId, otherUserId, msgContent);
+        call.enqueue(new Callback<ChatAppMsgDTO>() {
+            @Override
+            public void onResponse(Call<ChatAppMsgDTO> call, Response<ChatAppMsgDTO> response) {
+                String responeCheck = response.toString();
+                if (response.body().getStatus().equals("success")) {
+                    if (response.body().getRequest().equals("accepted")) {
+                        removeAt(position);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ChatAppMsgDTO> call, Throwable t) {
+                Log.d("PrivateChatActivity", t.getMessage());
+            }
+        });
+    }
+
+    public void removeAt(int position) {
+        chatRequestModelArrayList.remove(position);
+//        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, chatRequestModelArrayList.size());
+
     }
 
 }

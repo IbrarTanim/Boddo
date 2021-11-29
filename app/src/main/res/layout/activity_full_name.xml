@@ -40,16 +40,15 @@
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:drawableLeft="@drawable/ic_close_9_6_2021"
+                android:drawableLeft="@drawable/back_chat_11_11_2021"
                 android:drawablePadding="@dimen/thirty"
                 android:gravity="left|center"
                 android:text="Edit full name"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/fifteen" />
 
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,11 +65,10 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="@dimen/five"
                 android:background="@color/white"
-                android:gravity="center|left"
-                android:paddingLeft="@dimen/fifteen"
+                android:gravity="center"
                 android:text="Using your real name is important to establish identity and find friends."
                 android:textColor="@color/black"
-                android:textSize="@dimen/sixteen"
+                android:textSize="@dimen/fifteen"
                 android:textStyle="normal" />
 
             <View
@@ -104,16 +102,16 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/seven"
-                    android:layout_marginRight="@dimen/five"
-                    android:textStyle="bold"/>
+                    android:layout_marginLeft="@dimen/ten"
+                    android:layout_marginRight="@dimen/ten"
+                    android:textStyle="normal"/>
 
                 <EditText
                     android:id="@+id/edtFullName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
-                    android:layout_marginLeft="@dimen/five"
-                    android:layout_marginRight="@dimen/five"
+                    android:layout_marginLeft="@dimen/seven"
+                    android:layout_marginRight="@dimen/ten"
                     android:layout_weight="2.4"
                     android:maxLines="3"
                     android:maxLength="25"
@@ -121,14 +119,11 @@
                     android:backgroundTint="@color/app_bg_color"
                     android:text="Sarwar Hossain"
                     android:inputType="textMultiLine"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sixteen"
+                    android:textColor="@color/gray_light"
+                    android:textSize="@dimen/fifteen"
                     android:textStyle="normal" />
 
-
-
                 <TextView
-
                     android:id="@+id/counterFullName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
@@ -145,13 +140,13 @@
             <TextView
                 android:id="@+id/tvSave"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/seventy"
+                android:layout_height="@dimen/fifty"
                 android:layout_margin="@dimen/fifty"
                 android:background="@drawable/button2"
                 android:gravity="center"
                 android:text="Save"
                 android:textColor="@color/white"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/fifteen" />
 
 
         </LinearLayout>
