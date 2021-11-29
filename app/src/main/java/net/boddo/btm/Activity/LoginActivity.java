@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
     CheckBox mRemamberMe;
     @BindView(R.id.button_login)
     Button loginBTN;
+
     TextView tvForgetPassword;
 
     @BindView(R.id.text_view_more_option)
@@ -157,6 +158,8 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
         String tokenData = token;
         String fcmTokenData = fcmToken;
         String userAgentData = userAgent;
+
+
 
         Call<Pojo> call = apiInterface.login(email.getText().toString().trim(), userPassword.getText().toString(), Constants.SECRET_KEY, token, fcmToken, userAgent);
         call.enqueue(new Callback<Pojo>() {

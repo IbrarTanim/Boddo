@@ -1,5 +1,6 @@
 package net.boddo.btm.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -84,6 +85,7 @@ import retrofit2.Response;
 public class PrivateChatActivity extends AppCompatActivity {
 
 
+    PrivateChatActivity activity;
     @BindView(R.id.two_name_online_textView)
     TextView textViewTwoUsersName;
     TextView second_name_online_textView;
@@ -191,12 +193,15 @@ public class PrivateChatActivity extends AppCompatActivity {
     boolean isBlocked = false;
     boolean isBlockedMe = false;
     Boolean b = true;
+    Boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private_chat);
         ButterKnife.bind(this);
+
+        activity = this;
         View rootView = getWindow().getDecorView().getRootView();
         /*emojIcon = new EmojIconActions(PrivateChatActivity.this, rootView, editTextMessage, emojiButton);
         emojIcon.ShowEmojIcon();*/
@@ -258,9 +263,12 @@ public class PrivateChatActivity extends AppCompatActivity {
             otherUserNameFromActiveList = getIntent().getStringExtra(Constants.RECEIVER_NAME);
         }
 
+        getRequestAcceptDetails();
         setUpUIForMessage();
         getAllMessage();
         getLocalBroadCastReceiver();
+
+
 
         //menu_name_online_textView
         menu_name_online_textView.setOnClickListener(new View.OnClickListener() {
@@ -276,7 +284,6 @@ public class PrivateChatActivity extends AppCompatActivity {
                         if(b==true){
                             b=false;
                             RLPrivateChatScreen.setBackgroundColor(Color.rgb(63, 66, 77));
-                            chat_left_msg_text_view.setBackgroundColor(Color.rgb(74,81,90));
 
                         }else {
                             b=true;
@@ -404,6 +411,122 @@ public class PrivateChatActivity extends AppCompatActivity {
         }
     }
 
+    private void getRequestAcceptDetails() {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+
+
+        mLastClickTime = SystemClock.elapsedRealtime();
+        msgContent = editTextMessage.getText().toString().replace("'","\'");
+        if (msgContent.length() > 0 && !msgContent.equals("")) {
+            apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("secret_key",Constants.SECRET_KEY);
+            jsonObject.addProperty("user_id",Data.userId);
+            jsonObject.addProperty("other_user_id",Data.otherUserId);
+            jsonObject.addProperty("message",msgContent);
+            Log.e("responeCheck", "onSendButtonClicked: "+jsonObject.toString() );
+            Call<ChatAppMsgDTO> call = apiInterface.startChat(Constants.SECRET_KEY, Data.userId, Data.otherUserId, msgContent);
+            call.enqueue(new Callback<ChatAppMsgDTO>() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onResponse(Call<ChatAppMsgDTO> call, Response<ChatAppMsgDTO> response) {
+                    String responeCheck = response.toString();
+
+                    if(response.body().getRequest().equals("accepted") && msgDtoList.size() > 1){
+                        rvFirstTimeBG.setVisibility(View.GONE);
+                        Log.e("accepted", "onResponse: accepted" );
+
+                    }else if (response.body().getStatus().equals("success")) {
+                        if (response.body().getRequest().equals("accepted")) {
+                            message = response.body().getSingleMessage();
+                            msgDtoList.add(message);
+                            int newMsgPosition = msgDtoList.size() - 1;
+                            // NotifyEvent recycler view insert one new data.
+                            chatAppMsgAdapter.notifyItemInserted(newMsgPosition);
+                            // Scroll RecyclerView to the last message.
+                            recyclerView.scrollToPosition(newMsgPosition);
+                            // Empty the input edit text box.
+
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
+                            messageTV3.setVisibility(View.VISIBLE);
+                          //  messageTV3.setText("Chat request accepted");
+                            tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+                            messageTV2.setVisibility(View.VISIBLE);
+                            messageTV2.setText("Start the conversation & write something impressive");
+                            otherProfile.setVisibility(View.VISIBLE);
+                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+
+                            tvTopMessageFirstTime.setVisibility(View.GONE);
+
+
+
+                            editTextMessage.setText("");
+                            //increase the sender message amount
+                            countMessages();
+                        }  else if (response.body().getRequest().equals("requested")) {
+                            if (msgDtoList.size() == 1) {
+
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
+                                tvWait.setVisibility(View.VISIBLE);
+                                tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+                                tvTopMessageFirstTime.setText("Chat request sent");
+                                messageTV1.setVisibility(View.VISIBLE);
+                                messageTV1.setText("Your chat request sent, Please wait for user approval.");
+                                otherProfile.setVisibility(View.VISIBLE);
+                                Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+
+                                moreButton.setVisibility(View.GONE);
+                                sendButton.setVisibility(View.GONE);
+                                editTextMessage.setText("");
+
+
+                            } else {
+                                message = response.body().getSingleMessage();
+                                msgDtoList.add(message);
+                                int newMsgPosition = msgDtoList.size() - 1;
+                                chatAppMsgAdapter.notifyItemInserted(newMsgPosition);
+                                recyclerView.scrollToPosition(newMsgPosition);
+                                editTextMessage.setText("");
+                                countMessages();
+                            }
+                        } else if (response.body().getRequest().equals("request limit expired")) {
+
+                            dialogShow();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ChatAppMsgDTO> call, Throwable t) {
+                    Log.d("PrivateChatActivity", t.getMessage());
+                }
+            });
+        } else {
+            Log.d(PrivateChatActivity.class.getSimpleName(), "Nothing ");
+        }
+    }
+
+    private void chatRequestNotAcceptedMsg() {
+
+
+            rvFirstTimeBG.setVisibility(View.VISIBLE);
+            tvWait.setVisibility(View.VISIBLE);
+            tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+            tvTopMessageFirstTime.setText("Chat request sent");
+            messageTV1.setVisibility(View.VISIBLE);
+            messageTV1.setText("Your chat request sent, Please wait for user approval.");
+            otherProfile.setVisibility(View.VISIBLE);
+           // Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+
+            moreButton.setVisibility(View.GONE);
+            sendButton.setVisibility(View.GONE);
+            editTextMessage.setText("");
+            
+    }
+
     public void dialogShow() {
 
         prettyDialog = new PrettyDialog(this);
@@ -502,9 +625,13 @@ public class PrivateChatActivity extends AppCompatActivity {
         call.enqueue(new Callback<ChatAppMsgDTO>() {
             @Override
             public void onResponse(Call<ChatAppMsgDTO> call, Response<ChatAppMsgDTO> response) {
+
                 if (response.body().getStatus().equals("success")) {
                     msgDtoList = response.body().getMessage();
                     sizeOfArrayList = msgDtoList.size();
+                    Log.e("msgDtoList", "onResponse: "+msgDtoList.size() );
+
+
 
                     if (isCheck){
                         OthersProfileFragment.isMatch = true;
@@ -523,7 +650,12 @@ public class PrivateChatActivity extends AppCompatActivity {
                             recyclerView.setVisibility(View.INVISIBLE);
                             OthersProfileFragment.isMatch = false;
                              isCheck = true;
-                        } else {
+                        }else if(sizeOfArrayList == 1){
+                            chatRequestNotAcceptedMsg();
+                        }else if(sizeOfArrayList > 1){
+                            rvFirstTimeBG.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }else {
 
                             otherProfile.setVisibility(View.INVISIBLE);
                             rvFirstTimeBG.setVisibility(View.INVISIBLE);
@@ -548,15 +680,25 @@ public class PrivateChatActivity extends AppCompatActivity {
                             messageTV3.setVisibility(View.INVISIBLE);
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
                             recyclerView.setVisibility(View.INVISIBLE);
+                        }else if(sizeOfArrayList == 1){
+                            chatRequestNotAcceptedMsg();
+                        }else if(sizeOfArrayList > 1){
+                            rvFirstTimeBG.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
                         } else {
+
+
                             otherProfile.setVisibility(View.INVISIBLE);
-                            rvFirstTimeBG.setVisibility(View.INVISIBLE);
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
                             messageTV1.setVisibility(View.INVISIBLE);
                             tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
-                            messageTV2.setVisibility(View.INVISIBLE);
-                            messageTV3.setVisibility(View.INVISIBLE);
-                        Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-                        recyclerView.setVisibility(View.VISIBLE);
+                            messageTV2.setVisibility(View.VISIBLE);
+                            messageTV2.setText("Start the conversation & write something impressive");
+                            messageTV3.setVisibility(View.VISIBLE);
+                            messageTV3.setText("Chat request accepted");
+                            otherProfile.setVisibility(View.VISIBLE);
+                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+                            recyclerView.setVisibility(View.VISIBLE);
                     }
 
                     }
@@ -639,6 +781,8 @@ public class PrivateChatActivity extends AppCompatActivity {
         if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
             return;
         }
+
+
         mLastClickTime = SystemClock.elapsedRealtime();
         msgContent = editTextMessage.getText().toString().replace("'","\'");
         if (msgContent.length() > 0 && !msgContent.equals("")) {
@@ -651,6 +795,7 @@ public class PrivateChatActivity extends AppCompatActivity {
             Log.e("responeCheck", "onSendButtonClicked: "+jsonObject.toString() );
             Call<ChatAppMsgDTO> call = apiInterface.startChat(Constants.SECRET_KEY, Data.userId, Data.otherUserId, msgContent);
             call.enqueue(new Callback<ChatAppMsgDTO>() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onResponse(Call<ChatAppMsgDTO> call, Response<ChatAppMsgDTO> response) {
                     String responeCheck = response.toString();
@@ -664,6 +809,22 @@ public class PrivateChatActivity extends AppCompatActivity {
                             // Scroll RecyclerView to the last message.
                             recyclerView.scrollToPosition(newMsgPosition);
                             // Empty the input edit text box.
+
+                            rvFirstTimeBG.setVisibility(View.GONE);
+                            flag = true;
+                         /*   messageTV3.setVisibility(View.VISIBLE);
+                           // messageTV3.setText("Send a chat request");
+                            messageTV3.setText("Chat request accepted");
+                            tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+                            messageTV2.setVisibility(View.VISIBLE);
+                            messageTV2.setText("Start the conversation & write something impressive");
+                            otherProfile.setVisibility(View.VISIBLE);
+                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);*/
+
+                            tvTopMessageFirstTime.setVisibility(View.GONE);
+
+
+
                             editTextMessage.setText("");
                             //increase the sender message amount
                             countMessages();
@@ -830,6 +991,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getLocalBroadCastReceiver();
+      //  chatRequestNotAcceptedMsg();
     }
 
     @Override
