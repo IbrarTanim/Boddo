@@ -1,6 +1,7 @@
 package net.boddo.btm.Adepter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import net.boddo.btm.Model.Blocklist;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.Helper;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,6 +61,11 @@ public class BlockListAdepter extends RecyclerView.Adapter<BlockListAdepter.Bloc
 
         Picasso.get().load(blockList.get(i).getProfilePhoto()).into(holder.blockUserPhoto);
         holder.userName.setText(blockList.get(i).getFirstName());
+       // holder.userName.setText(blockList.get(i).getCreatedAt());
+        Log.e("createdAT", "onBindViewHolder: "+blockList.get(i).getCreatedAt() );
+       // Helper.getLastActionTime(chatList.get(position).getLastMessageTime())
+        holder.block_user_last_message_time.setText(Helper.getLastActionTime(blockList.get(i).getCreatedAt()));
+
         holder.unBlockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +20,7 @@ import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.SearchUser;
+import net.boddo.btm.interfaces.getChartRequestAccepted;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +34,12 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
 
     private Context context;
     private ArrayList<ChatRequest.RequestedMessage> chatRequestModelArrayList;
+    private getChartRequestAccepted chartRequestAccepted;
 
     public ChatRequestAdepter(Context context, List<ChatRequest.RequestedMessage> chatRequestModelArrayList) {
         this.context = context;
         this.chatRequestModelArrayList = (ArrayList<ChatRequest.RequestedMessage>) chatRequestModelArrayList;
+        this.chartRequestAccepted = chartRequestAccepted;
     }
 
     public ChatRequestViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -131,7 +133,9 @@ public class ChatRequestAdepter extends RecyclerView.Adapter<ChatRequestAdepter.
     public void removeAt(int position) {
         chatRequestModelArrayList.remove(position);
 //        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, chatRequestModelArrayList.size());
+        //chartRequestAccepted.onClickChat(chatRequestModelArrayList);
+        notifyDataSetChanged();
+       // notifyItemRangeChanged(position, chatRequestModelArrayList.size());
 
     }
 

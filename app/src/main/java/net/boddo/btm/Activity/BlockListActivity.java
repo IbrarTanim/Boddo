@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class BlockListActivity extends AppCompatActivity {
 
-    TextView notView;
+    TextView notView,tvBackBlockList;
     SwipeRefreshLayout swipeRefreshLayout;
 
     List<Blocklist>blocklist;
@@ -43,6 +43,7 @@ public class BlockListActivity extends AppCompatActivity {
         notView = findViewById(R.id.not_visitor_view);
         swipeRefreshLayout = findViewById(R.id.refreshLayout);
         recyclerView = findViewById(R.id.block_recyclerView);
+        tvBackBlockList = findViewById(R.id.tvBackBlockList);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
@@ -61,6 +62,13 @@ public class BlockListActivity extends AppCompatActivity {
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 },3000) ;
+            }
+        });
+
+        tvBackBlockList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
