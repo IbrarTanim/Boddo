@@ -1,7 +1,6 @@
 package net.boddo.btm.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +20,7 @@ import net.boddo.btm.Model.ChatRequest;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.interfaces.getChartRequestAccepted;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,4 +122,13 @@ public class ChatRequestActivity extends AppCompatActivity {
 
     }
 
+
+
+   /* @Override
+    public void onClickChat(ArrayList<ChatRequest.RequestedMessage> chatRequestModelArrayList) {
+        if(requestedMessageList!=null && requestedMessageList.size() > 0){
+
+        }
+
+    }*/
 }

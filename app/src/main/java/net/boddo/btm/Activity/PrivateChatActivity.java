@@ -194,6 +194,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     boolean isBlockedMe = false;
     Boolean b = true;
     Boolean flag = false;
+    String accepted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -263,10 +264,22 @@ public class PrivateChatActivity extends AppCompatActivity {
             otherUserNameFromActiveList = getIntent().getStringExtra(Constants.RECEIVER_NAME);
         }
 
-        getRequestAcceptDetails();
+        //response.body().getRequest().equals("accepted")
+
+
         setUpUIForMessage();
         getAllMessage();
         getLocalBroadCastReceiver();
+        getRequestAcceptDetails();
+
+
+
+        if(accepted!=null && accepted.equals("accepted")){
+            rvFirstTimeBG.setVisibility(View.GONE);
+            Log.e("accepted", "onCreate: accepted");
+        }else {
+            rvFirstTimeBG.setVisibility(View.VISIBLE);
+        }
 
 
 
@@ -435,9 +448,25 @@ public class PrivateChatActivity extends AppCompatActivity {
                 public void onResponse(Call<ChatAppMsgDTO> call, Response<ChatAppMsgDTO> response) {
                     String responeCheck = response.toString();
 
-                    if(response.body().getRequest().equals("accepted") && msgDtoList.size() > 1){
-                        rvFirstTimeBG.setVisibility(View.GONE);
+                    accepted=response.body().getRequest();
+                    if(response.body().getRequest().equals("accepted")){
+                       // rvFirstTimeBG.setVisibility(View.GONE);
+                        otherProfile.setVisibility(View.INVISIBLE);
+                        rvFirstTimeBG.setVisibility(View.VISIBLE);
+                        messageTV1.setVisibility(View.INVISIBLE);
+                        tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
+                        messageTV2.setVisibility(View.VISIBLE);
+                        messageTV2.setText("Start the conversation & write something impressive");
+                        messageTV3.setVisibility(View.VISIBLE);
+                        messageTV3.setText("Chat request accepted");
+                        otherProfile.setVisibility(View.VISIBLE);
+                        Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+                        recyclerView.setVisibility(View.VISIBLE);
                         Log.e("accepted", "onResponse: accepted" );
+                         if(sizeOfArrayList > 1){
+                            rvFirstTimeBG.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
 
                     }else if (response.body().getStatus().equals("success")) {
                         if (response.body().getRequest().equals("accepted")) {
@@ -652,9 +681,6 @@ public class PrivateChatActivity extends AppCompatActivity {
                              isCheck = true;
                         }else if(sizeOfArrayList == 1){
                             chatRequestNotAcceptedMsg();
-                        }else if(sizeOfArrayList > 1){
-                            rvFirstTimeBG.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
                         }else {
 
                             otherProfile.setVisibility(View.INVISIBLE);
@@ -682,12 +708,9 @@ public class PrivateChatActivity extends AppCompatActivity {
                             recyclerView.setVisibility(View.INVISIBLE);
                         }else if(sizeOfArrayList == 1){
                             chatRequestNotAcceptedMsg();
-                        }else if(sizeOfArrayList > 1){
-                            rvFirstTimeBG.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
-                        } else {
+                        }else {
 
-
+                            accepted=response.body().getRequest();
                             otherProfile.setVisibility(View.INVISIBLE);
                             rvFirstTimeBG.setVisibility(View.VISIBLE);
                             messageTV1.setVisibility(View.INVISIBLE);
