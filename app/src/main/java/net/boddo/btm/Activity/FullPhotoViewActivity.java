@@ -196,6 +196,8 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
     @BindView(R.id.more_button)
     ImageView morebutton;
 
+
+
     PhotoBlogAdapter adapter;
     PrivacyNetworkCall privacyNetworkCall;
     boolean isHidden = false;

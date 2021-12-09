@@ -140,7 +140,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
                             android:layout_alignParentBottom="true"
-                            android:background="@color/app_color" />
+                            android:background="#96cc72" />
 
 
                         <TextView
@@ -150,7 +150,7 @@
                             android:layout_alignParentBottom="true"
                             android:gravity="center"
                             android:singleLine="true"
-                            android:text="Join Hotlist"
+                            android:text="JOIN HOTLIST"
                             android:textColor="@color/white"
                             android:textSize="10dp"
                             android:textStyle="bold" />

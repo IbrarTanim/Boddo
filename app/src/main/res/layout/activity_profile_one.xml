@@ -267,7 +267,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="About"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -281,7 +282,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Gallery"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -295,7 +297,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Gifts"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -304,12 +307,13 @@
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:background="@drawable/bg_rounded_blank"
-                                        android:drawableLeft="@drawable/ic_story_icon_26_09_2021"
+                                        android:drawableLeft="@drawable/ic_story"
                                         android:gravity="center"
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Story"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                 </LinearLayout>

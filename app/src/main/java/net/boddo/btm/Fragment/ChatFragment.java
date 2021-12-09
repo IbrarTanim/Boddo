@@ -451,7 +451,7 @@ public class ChatFragment extends Fragment {
                 if (recentMatch.getStatus().equals(Constants.SUCCESS)) {
 
                     for (RecentMatchModel.Match matchData : matchList) {
-                        Glide.with(getActivity())
+                        Glide.with(getContext())
                                 .load(matchData.getProfilePhoto())
                                 .into(civRecentMatchs);
                     }

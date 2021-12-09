@@ -158,8 +158,13 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
             TvJoinHotlist.setText("Joined");
         }*/
 
+        if(Data.profilePhoto.equals("")){
+            Glide.with(getActivity()).load(R.drawable.ic_default_hotlist_picture).apply(RequestOptions.bitmapTransform(new RoundedCorners(10))).into(userImageView);
 
-        Glide.with(getActivity()).load(Data.profilePhoto).apply(RequestOptions.bitmapTransform(new RoundedCorners(10))).into(userImageView);
+        }else {
+            Glide.with(getActivity()).load(Data.profilePhoto).apply(RequestOptions.bitmapTransform(new RoundedCorners(10))).into(userImageView);
+
+        }
         getRecentHotList();
         setup();
         adapter = new PhotoBlogTabAdapter(getActivity().getSupportFragmentManager());

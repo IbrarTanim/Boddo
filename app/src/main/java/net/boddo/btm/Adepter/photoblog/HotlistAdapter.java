@@ -54,9 +54,8 @@ public class HotlistAdapter extends RecyclerView.Adapter<HotlistAdapter.HotlistV
             Glide.with(ctx).load(hotlist[i].getProfilePhoto()).apply(RequestOptions.bitmapTransform(new RoundedCorners(10))).into(hotlistViewHolder.imageView);
         }*/
 
-
-
         Glide.with(ctx).load(hotlist[i].getProfilePhoto()).apply(RequestOptions.bitmapTransform(new RoundedCorners(10))).into(hotlistViewHolder.imageView);
+
 
         hotlistViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override

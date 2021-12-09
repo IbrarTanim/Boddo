@@ -6,16 +6,38 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/hundrad">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/logo"
             android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:padding="@dimen/twenty"
             android:src="@drawable/ic_splash_screen_10_08_2021" />
+
+        <TextView
+            android:id="@+id/meetMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meet, Match &amp; Chat"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:layout_below="@+id/logo"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Friends | Family | Dating | Community"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"/>
+
 
     </RelativeLayout>
 

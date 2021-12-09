@@ -33,11 +33,12 @@
         <TextView
             android:id="@+id/message_textView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_below="@+id/online_username_textView"
             android:layout_marginLeft="10dp"
             android:gravity="top|left"
             android:text="Small bit of message say Hello !"
+            android:paddingRight="15dp"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@color/black"
             android:textSize="@dimen/twelve" />

@@ -4,7 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="250dp"
     android:layout_marginTop="@dimen/ten"
-    android:layout_marginRight="@dimen/ten">
+    android:layout_marginRight="@dimen/ten"
+    android:layout_marginBottom="10dp">
 
     <RelativeLayout
         android:id="@+id/like_favorite_layout"
@@ -32,7 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/five"
             android:layout_marginBottom="@dimen/five"
-            android:padding="@dimen/seven"
+            android:padding="@dimen/ten"
             android:src="@drawable/ic_message_icon_31_10_2021"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/seven"
@@ -43,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/recent_match_itembg"
+            android:background="#96CC72"
             android:orientation="vertical">
 
             <LinearLayout
@@ -70,6 +71,7 @@
                     android:layout_weight="1"
                     android:gravity="left|center"
                     android:text="32"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="@dimen/fifteen" />
 

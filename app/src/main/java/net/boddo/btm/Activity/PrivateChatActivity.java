@@ -48,6 +48,7 @@ import net.boddo.btm.Model.ChatAppMsgDTO;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.FlagPreference;
 import net.boddo.btm.Utills.Helper;
 import net.boddo.btm.Utills.Limitation;
 import net.boddo.btm.Utills.SearchUser;
@@ -195,6 +196,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     Boolean b = true;
     Boolean flag = false;
     String accepted;
+    FlagPreference flagPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +210,14 @@ public class PrivateChatActivity extends AppCompatActivity {
         emojIcon.ShowEmojIcon();*/
 
         tvWait = findViewById(R.id.tvWait);
+
+        flagPreference = new FlagPreference(this);
+        String f = FlagPreference.getFlag("flag");
+        if(f.equals("")){
+            flag = false;
+        }else {
+            flag = true;
+        }
 
         tvTopMessageFirstTime = findViewById(R.id.tvTopMessageFirstTime);
         rvFirstTimeBG = findViewById(R.id.rvFirstTimeBG);
@@ -414,6 +424,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         firstPortionOfMyName = Data.userFirstName.split(" ");
 
         if (otherUserNameFromActiveList.equals("")) {
+            Log.e("otherUserNameFrom", "onCreate: "+otherUserNameFromActiveList );
             firstPortionOfName = Data.otherUserFirstName.split(" ");
             textViewTwoUsersName.setText(firstPortionOfName[0]);
             second_name_online_textView.setText(firstPortionOfMyName[0]);
@@ -451,50 +462,59 @@ public class PrivateChatActivity extends AppCompatActivity {
                     accepted=response.body().getRequest();
                     if(response.body().getRequest().equals("accepted")){
                        // rvFirstTimeBG.setVisibility(View.GONE);
-                        otherProfile.setVisibility(View.INVISIBLE);
-                        rvFirstTimeBG.setVisibility(View.VISIBLE);
-                        messageTV1.setVisibility(View.INVISIBLE);
-                        tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
-                        messageTV2.setVisibility(View.VISIBLE);
-                        messageTV2.setText("Start the conversation & write something impressive");
-                        messageTV3.setVisibility(View.VISIBLE);
-                        messageTV3.setText("Chat request accepted");
-                        otherProfile.setVisibility(View.VISIBLE);
-                        Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-                        recyclerView.setVisibility(View.VISIBLE);
-                        Log.e("accepted", "onResponse: accepted" );
-                         if(sizeOfArrayList > 1){
+
+                        if(flag==true){
                             rvFirstTimeBG.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
+                        }else{
+                            otherProfile.setVisibility(View.INVISIBLE);
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
+                            messageTV1.setVisibility(View.INVISIBLE);
+                            tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
+                            messageTV2.setVisibility(View.VISIBLE);
+                            messageTV2.setText("Start the conversation & write something impressive");
+                            messageTV3.setVisibility(View.VISIBLE);
+                            messageTV3.setText("Chat request accepted");
+                            otherProfile.setVisibility(View.VISIBLE);
+                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            Log.e("accepted", "onResponse: accepted" );
                         }
 
                     }else if (response.body().getStatus().equals("success")) {
                         if (response.body().getRequest().equals("accepted")) {
-                            message = response.body().getSingleMessage();
-                            msgDtoList.add(message);
-                            int newMsgPosition = msgDtoList.size() - 1;
-                            // NotifyEvent recycler view insert one new data.
-                            chatAppMsgAdapter.notifyItemInserted(newMsgPosition);
-                            // Scroll RecyclerView to the last message.
-                            recyclerView.scrollToPosition(newMsgPosition);
-                            // Empty the input edit text box.
 
-                            rvFirstTimeBG.setVisibility(View.VISIBLE);
-                            messageTV3.setVisibility(View.VISIBLE);
-                          //  messageTV3.setText("Chat request accepted");
-                            tvTopMessageFirstTime.setVisibility(View.VISIBLE);
-                            messageTV2.setVisibility(View.VISIBLE);
-                            messageTV2.setText("Start the conversation & write something impressive");
-                            otherProfile.setVisibility(View.VISIBLE);
-                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+                            if(flag==true){
+                                rvFirstTimeBG.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }else {
+                                message = response.body().getSingleMessage();
+                                msgDtoList.add(message);
+                                int newMsgPosition = msgDtoList.size() - 1;
+                                // NotifyEvent recycler view insert one new data.
+                                chatAppMsgAdapter.notifyItemInserted(newMsgPosition);
+                                // Scroll RecyclerView to the last message.
+                                recyclerView.scrollToPosition(newMsgPosition);
+                                // Empty the input edit text box.
 
-                            tvTopMessageFirstTime.setVisibility(View.GONE);
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
+                                messageTV3.setVisibility(View.VISIBLE);
+                                //  messageTV3.setText("Chat request accepted");
+                                tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+                                messageTV2.setVisibility(View.VISIBLE);
+                                messageTV2.setText("Start the conversation & write something impressive");
+                                otherProfile.setVisibility(View.VISIBLE);
+                                Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+
+                                tvTopMessageFirstTime.setVisibility(View.GONE);
 
 
 
-                            editTextMessage.setText("");
-                            //increase the sender message amount
-                            countMessages();
+                                editTextMessage.setText("");
+                                //increase the sender message amount
+                                countMessages();
+                            }
+
                         }  else if (response.body().getRequest().equals("requested")) {
                             if (msgDtoList.size() == 1) {
 
@@ -540,6 +560,8 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     private void chatRequestNotAcceptedMsg() {
 
+        flag = false;
+        FlagPreference.setFlag("flag",flag.toString());
 
             rvFirstTimeBG.setVisibility(View.VISIBLE);
             tvWait.setVisibility(View.VISIBLE);
@@ -710,18 +732,25 @@ public class PrivateChatActivity extends AppCompatActivity {
                             chatRequestNotAcceptedMsg();
                         }else {
 
-                            accepted=response.body().getRequest();
-                            otherProfile.setVisibility(View.INVISIBLE);
-                            rvFirstTimeBG.setVisibility(View.VISIBLE);
-                            messageTV1.setVisibility(View.INVISIBLE);
-                            tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
-                            messageTV2.setVisibility(View.VISIBLE);
-                            messageTV2.setText("Start the conversation & write something impressive");
-                            messageTV3.setVisibility(View.VISIBLE);
-                            messageTV3.setText("Chat request accepted");
-                            otherProfile.setVisibility(View.VISIBLE);
-                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-                            recyclerView.setVisibility(View.VISIBLE);
+                            if(flag==true){
+                                rvFirstTimeBG.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }else {
+
+                                accepted=response.body().getRequest();
+                                otherProfile.setVisibility(View.INVISIBLE);
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
+                                messageTV1.setVisibility(View.INVISIBLE);
+                                tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
+                                messageTV2.setVisibility(View.VISIBLE);
+                                messageTV2.setText("Start the conversation & write something impressive");
+                                messageTV3.setVisibility(View.VISIBLE);
+                                messageTV3.setText("Chat request accepted");
+                                otherProfile.setVisibility(View.VISIBLE);
+                                Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }
+
                     }
 
                     }
@@ -835,6 +864,9 @@ public class PrivateChatActivity extends AppCompatActivity {
 
                             rvFirstTimeBG.setVisibility(View.GONE);
                             flag = true;
+                            FlagPreference.setFlag("flag",flag.toString());
+
+
                          /*   messageTV3.setVisibility(View.VISIBLE);
                            // messageTV3.setText("Send a chat request");
                             messageTV3.setText("Chat request accepted");

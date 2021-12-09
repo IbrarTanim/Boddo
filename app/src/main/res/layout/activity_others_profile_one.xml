@@ -186,7 +186,7 @@
                                 android:layout_height="@dimen/seventy"
                                 android:layout_gravity="center_vertical"
                                 android:background="@drawable/background_shep_round_white"
-                                android:elevation="0dp"
+                                android:elevation="5dp"
                                 app:cardCornerRadius="100dp"
                                 app:cardElevation="20dp">
 
@@ -247,6 +247,8 @@
                                 android:orientation="vertical"
                                 android:padding="@dimen/ten"
                                 android:weightSum="2.5">
+
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -355,7 +357,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="About"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -369,7 +372,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Gallery"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -383,7 +387,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Gifts"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -392,12 +397,13 @@
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:background="@drawable/bg_rounded_blank"
-                                        android:drawableLeft="@drawable/ic_story_icon_26_09_2021"
+                                        android:drawableLeft="@drawable/ic_story"
                                         android:gravity="center"
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Story"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                 </LinearLayout>

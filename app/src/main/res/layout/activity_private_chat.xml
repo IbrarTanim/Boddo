@@ -72,7 +72,24 @@
                 android:layout_height="200dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/default_img"
-                android:visibility="visible" />
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/IVOther_profile_image"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/default_img"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/IVMy_profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/IVOther_profile_image"
+                android:src="@drawable/default_img"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/messageTV1"
