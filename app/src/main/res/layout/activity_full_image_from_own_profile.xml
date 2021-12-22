@@ -155,7 +155,8 @@
                 android:text="Public"
                 android:textColor="@color/white"
                 android:textSize="@dimen/fifteen"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout

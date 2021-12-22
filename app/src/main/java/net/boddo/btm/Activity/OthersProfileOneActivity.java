@@ -416,7 +416,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
             public void onResponse(Call<String> call, Response<String> response) {
                 String stute = response.body();
                 if (stute.equals("block")) {
-                    Toast.makeText(activity, Data.otherUserName + " is Block Successful.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "You have blocked "+Data.otherUserName + " successfully", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(activity, BlockListActivity.class);
                     activity.finish();
                     startActivity(i);

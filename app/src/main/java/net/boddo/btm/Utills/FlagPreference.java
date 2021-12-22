@@ -23,4 +23,6 @@ public class FlagPreference {
         editor.putString(key, value);
         editor.commit();
     }
+
+
 }

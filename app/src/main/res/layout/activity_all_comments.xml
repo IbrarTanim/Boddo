@@ -81,66 +81,77 @@
         </androidx.core.widget.NestedScrollView>
 
 
-        <LinearLayout
-            android:id="@+id/message_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
-            <!-- <ImageView
-                 android:id="@+id/emoji_btn"
-                 android:layout_width="20dp"
-                 android:layout_height="40dp"
-                 android:layout_gravity="center_vertical"
-                 android:padding="4dp"
-                 android:background="@drawable/messagebox_shape"
-                 android:src="@drawable/smile"
-                 android:visibility="invisible" />-->
-
-            <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
-                android:id="@+id/emojicon_edit_text"
-                android:layout_width="367dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/ten"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:gravity="center|left"
-                android:hint="Type a comment"
-                android:imeOptions="actionSend"
-                android:inputType="textMultiLine"
-                android:maxLines="3"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
-
-            <RelativeLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp">
 
 
-                <ImageView
-                    android:id="@+id/submit_btn"
+            <LinearLayout
+                android:id="@+id/message_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@drawable/blocked_user_dialog_bag"
+                android:shadowDx = "-2"
+                android:shadowDy = "-2"
+                android:shadowRadius = "1"
+                android:orientation="horizontal"
+                android:shadowColor = "#E8E8E8">
+
+
+                <!-- <ImageView
+                     android:id="@+id/emoji_btn"
+                     android:layout_width="20dp"
+                     android:layout_height="40dp"
+                     android:layout_gravity="center_vertical"
+                     android:padding="4dp"
+                     android:background="@drawable/messagebox_shape"
+                     android:src="@drawable/smile"
+                     android:visibility="invisible" />-->
+
+                <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
+                    android:id="@+id/emojicon_edit_text"
+                    android:layout_width="367dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/ten"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="center|left"
+                    android:hint="Type a comment"
+                    android:imeOptions="actionSend"
+                    android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:textColor="@color/black"
+                    />
+
+                <RelativeLayout
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerInParent="true"
-                    android:padding="@dimen/five"
-                    android:src="@drawable/send_icon_20_03_01_2021_touch"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/submitButtonTouch"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerInParent="true"
-                    android:padding="@dimen/five"
-                    android:src="@drawable/send_icon_20_03_01_2021_normal" />
+                    android:layout_height="match_parent">
 
 
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/submit_btn"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/five"
+                        android:src="@drawable/send_icon_20_03_01_2021_touch"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/submitButtonTouch"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/five"
+                        android:src="@drawable/send_icon_20_03_01_2021_normal" />
 
 
-        </LinearLayout>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
 
     </LinearLayout>
 

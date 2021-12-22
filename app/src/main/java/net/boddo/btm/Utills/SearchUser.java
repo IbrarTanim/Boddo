@@ -3,8 +3,12 @@ package net.boddo.btm.Utills;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import net.boddo.btm.Activity.BlockListActivity;
 import net.boddo.btm.Activity.DashBoadActivity;
 import net.boddo.btm.Activity.OthersProfileActivity;
 import net.boddo.btm.Activity.OthersProfileOneActivity;
@@ -44,7 +48,26 @@ public class SearchUser {
         if (isBlocked) {
 
             final PrettyDialog myBlockDialog = new PrettyDialog(context);
-            myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessage(" You have  Blocked this user")
+            myBlockDialog.setContentView(R.layout.blocked_user);
+            final Button blockedList =myBlockDialog.findViewById(R.id.BtnBlockedList);
+            final Button cancel =myBlockDialog.findViewById(R.id.button_decline);
+
+
+            blockedList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, BlockListActivity.class));
+                    myBlockDialog.dismiss();
+                }
+            });
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myBlockDialog.dismiss();
+                }
+            });
+
+            myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessage("You have  Blocked this user")
                     .setMessageColor(R.color.red_A700).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                 @Override
                 public void onClick() {
@@ -71,7 +94,7 @@ public class SearchUser {
 
             if (isBlockedMe) {
 
-                final PrettyDialog myBlockDialog = new PrettyDialog(context);
+               /* final PrettyDialog myBlockDialog = new PrettyDialog(context);
                 myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessage(" You have been Blocked by this user")
                         .setMessageColor(R.color.red_A700).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
@@ -82,7 +105,9 @@ public class SearchUser {
                 }).show();
                 if (Data.pd != null){
                     Data.pd.dismiss();
-                }
+                }*/
+                Toast.makeText(context, "Sorry, you have been blocked by this user", Toast.LENGTH_SHORT).show();
+
 
 
             }else {

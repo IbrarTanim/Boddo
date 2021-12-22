@@ -91,7 +91,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -118,7 +118,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -144,7 +144,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -174,7 +174,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -200,7 +200,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -230,7 +230,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -263,7 +263,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -293,7 +293,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -319,7 +319,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 
@@ -348,7 +348,7 @@
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="@dimen/twenty_five"
+                        android:padding="27dp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/arrow_icon_28_02_2021" />
 

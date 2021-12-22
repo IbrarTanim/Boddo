@@ -48,6 +48,7 @@ import net.boddo.btm.Model.UserPhotoBlogImages;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.Helper;
 import net.boddo.btm.Utills.SearchUser;
 import net.boddo.btm.test.BottomSheetNavigationComment;
 import net.boddo.btm.test.PrivacyNetworkCall;
@@ -360,6 +361,7 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
 
 
     private void isLiked() {
+
         progressBar.setVisibility(View.VISIBLE);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<Likes> call = apiInterface.isLiked(Constants.SECRET_KEY, Data.userId, photoId);
@@ -386,7 +388,7 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
     private void initValues() {
 
         Glide.with(this).load(detailsOfPhotoBlogImage.getPhoto()).into(ivFullScreen);
-        Glide.with(this).load(detailsOfPhotoBlogImage.getPhoto()).into(profileImageView);
+        Glide.with(this).load(Data.profilePhoto).into(profileImageView);
         //Glide.with(this).load(detailsOfPhotoBlogImage.getProfilePhoto()).into(profileImageView);
 
 
@@ -397,7 +399,13 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
         amountOfLikes = Integer.parseInt(detailsOfPhotoBlogImage.getLike());
         photoId = Integer.parseInt(detailsOfPhotoBlogImage.getId());
         description.setText(detailsOfPhotoBlogImage.getDescription());
-        dateTv.setText(detailsOfPhotoBlogImage.getCreatedAt());
+        dateTv.setText(Helper.getLastActionTime(detailsOfPhotoBlogImage.getCreatedAt()));
+
+        Log.e("Matched", "initValues: "+detailsOfPhotoBlogImage.getMatched() );
+        Log.e("Like", "initValues: "+detailsOfPhotoBlogImage.getLike() );
+        Log.e("Comment", "initValues: "+detailsOfPhotoBlogImage.getComment() );
+        Log.e("id", "initValues: "+detailsOfPhotoBlogImage.getId() );
+        Log.e("Description", "initValues: "+detailsOfPhotoBlogImage.getDescription() );
 
     }
 

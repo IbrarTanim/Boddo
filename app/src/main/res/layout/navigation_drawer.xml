@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:alpha="1"
         android:scaleType="centerCrop"
-        android:src="@drawable/default_image" />
+        android:background="#96cc72"/>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"

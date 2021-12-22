@@ -215,6 +215,18 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
         motoDialog = new Dialog(this);
         motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
 
+        profileCircleImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, new ProfileOneFragment()).disallowAddToBackStack();
+                fragmentTransaction.commit();
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+        });
+
         if (getIntent().hasExtra("message_count")) {
             message_count = getIntent().getLongExtra("message_count", 0);
         }
@@ -416,16 +428,16 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
                 Intent searchUserIntent = new Intent(DashBoadActivity.this, AllUsersActivity.class);
                 startActivity(searchUserIntent);
                 break;
-            case R.id.palup_balance_menu:
+          /*  case R.id.palup_balance_menu:
                 // Boddo Credit
                 Intent plaupIntent = new Intent(DashBoadActivity.this, BuyCreditActivity.class);
                 startActivity(plaupIntent);
-                break;
-            case R.id.support_menu:
+                break;*/
+           /* case R.id.support_menu:
                 //do somthing
                 Intent supportIntent = new Intent(DashBoadActivity.this, SupportWebViewActivity.class);
                 startActivity(supportIntent);
-                break;
+                break;*/
             case R.id.setting_menu:
                 //do somthing
                 Intent settingIntent = new Intent(DashBoadActivity.this, SettingsActivity.class);
@@ -557,7 +569,7 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
         protected Void doInBackground(Void... params) {
             if (ProfileFragment.imageList != null) {
                 if (ProfileFragment.imageList.size() < 1) {
-                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_image);
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.green_shade_button_bg);
                 } else {
                     bitmap = getBitmapFromURL(Data.profilePhoto);
                     assert bitmap != null;
@@ -576,7 +588,7 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
             imageView.setImageBitmap(blurredBitmap);
             if (ProfileFragment.imageList != null) {
                 if (ProfileFragment.imageList.size() < 1) {
-                    Picasso.get().load(R.drawable.default_image).into(profileCircleImage);
+                    Picasso.get().load(R.drawable.default_profile_picture).into(profileCircleImage);
                 } else {
                     Picasso.get().load(ProfileFragment.imageList.get(0).getPhoto()).into(profileCircleImage);
                 }

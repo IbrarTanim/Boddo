@@ -30,13 +30,14 @@ public class AllLikesAdapter extends RecyclerView.Adapter<AllLikesAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView civAllLikesProfilePic;
-        TextView tvAllLikesName, tvAllLikesTime;
+        TextView tvAllLikesName, tvAllLikesTime,tvAllLikesFirstName;
 
         public MyViewHolder(View view) {
             super(view);
             civAllLikesProfilePic = view.findViewById(R.id.civAllLikesProfilePic);
             tvAllLikesName = view.findViewById(R.id.tvAllLikesName);
             tvAllLikesTime = view.findViewById(R.id.tvAllLikesTime);
+            tvAllLikesFirstName = view.findViewById(R.id.tvAllLikesFirstName);
         }
     }
 
@@ -65,9 +66,11 @@ public class AllLikesAdapter extends RecyclerView.Adapter<AllLikesAdapter.MyView
             }
         });
 
+        holder.tvAllLikesFirstName.setText(list.get(position).getFirstName());
         holder.tvAllLikesName.setText("@" + list.get(position).getUserName());
         //holder.tvAllLikesName.setText("@" + Data.userFirstName);
-        holder.tvAllLikesTime.setText(Data.userAccountCreated);
+        //holder.tvAllLikesTime.setText(Data.userAccountCreated+" dfd");
+        holder.tvAllLikesTime.setText(Helper.getLastActionTime(Data.userAccountCreated));
 
 
     }

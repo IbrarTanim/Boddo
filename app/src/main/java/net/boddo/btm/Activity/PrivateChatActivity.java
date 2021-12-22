@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +39,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.boddo.btm.Adepter.LikeFavoriteAdepter;
 import net.boddo.btm.Event.Event;
 import net.boddo.btm.Adepter.ChatAppMsgAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -186,6 +188,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     EmojiconTextView textView;
     EmojIconActions emojIcon;
     private long mLastClickTime = 0;
+    private List<String> likedMeList;
 
     View view;
 
@@ -213,10 +216,11 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         flagPreference = new FlagPreference(this);
         String f = FlagPreference.getFlag("flag");
-        if(f.equals("")){
-            flag = false;
-        }else {
+        Log.e("f", "onCreate: "+f );
+        if(f.equals("true")){
             flag = true;
+        }else {
+            flag = false;
         }
 
         tvTopMessageFirstTime = findViewById(R.id.tvTopMessageFirstTime);
@@ -242,6 +246,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         if (isBlocked) {
             layout_footer.setVisibility(View.GONE);
             final PrettyDialog myBlockDialog = new PrettyDialog(this);
+            myBlockDialog.setContentView(R.layout.blocked_user);
             myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessage(" You have  Blocked this user")
                     .setMessageColor(R.color.red_A700).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                 @Override
@@ -463,9 +468,13 @@ public class PrivateChatActivity extends AppCompatActivity {
                     if(response.body().getRequest().equals("accepted")){
                        // rvFirstTimeBG.setVisibility(View.GONE);
 
-                        if(flag==true){
-                            rvFirstTimeBG.setVisibility(View.GONE);
+                        if(flag==true && Data.otherUserId.equals(otherUserId) ){
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
+                            messageTV2.setVisibility(View.VISIBLE);
+                            messageTV3.setVisibility(View.VISIBLE);
+                            messageTV3.setText("Chat request accepted");
+                            messageTV2.setText("Start the conversation & write something impressive");
                         }else{
                             otherProfile.setVisibility(View.INVISIBLE);
                             rvFirstTimeBG.setVisibility(View.VISIBLE);
@@ -484,9 +493,13 @@ public class PrivateChatActivity extends AppCompatActivity {
                     }else if (response.body().getStatus().equals("success")) {
                         if (response.body().getRequest().equals("accepted")) {
 
-                            if(flag==true){
-                                rvFirstTimeBG.setVisibility(View.GONE);
+                            if(flag==true && flag==true && Data.otherUserId.equals(otherUserId) ){
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
                                 recyclerView.setVisibility(View.VISIBLE);
+                                messageTV2.setVisibility(View.VISIBLE);
+                                messageTV3.setVisibility(View.VISIBLE);
+                                messageTV3.setText("Chat request accepted");
+                                messageTV2.setText("Start the conversation & write something impressive");
                             }else {
                                 message = response.body().getSingleMessage();
                                 msgDtoList.add(message);
@@ -560,8 +573,8 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     private void chatRequestNotAcceptedMsg() {
 
-        flag = false;
-        FlagPreference.setFlag("flag",flag.toString());
+       // flag = false;
+    //    FlagPreference.setFlag("flag",flag.toString());
 
             rvFirstTimeBG.setVisibility(View.VISIBLE);
             tvWait.setVisibility(View.VISIBLE);
@@ -578,8 +591,9 @@ public class PrivateChatActivity extends AppCompatActivity {
             
     }
 
-    public void dialogShow() {
+    /*public void dialogShow() {
 
+        //dipto
         prettyDialog = new PrettyDialog(this);
 
         prettyDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
@@ -638,7 +652,118 @@ public class PrivateChatActivity extends AppCompatActivity {
                 palupDailog();
             }
         }).show();
+    }*/
+
+    public void dialogShow() {
+        final Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.chat_request_limit);
+        dialog.setCancelable(false);
+
+        final TextView tvFindoutMessage = dialog.findViewById(R.id.tvFindoutMessage);
+        final Button payView = dialog.findViewById(R.id.payjoin);
+        final Button btnDiscoverBoddoPlus = dialog.findViewById(R.id.btnDiscoverBoddoPlus);
+        final Button notnow = dialog.findViewById(R.id.notnow);
+
+       // tvFindoutMessage.setText("You have reached your daily chat request limits. Buy more chat request or activate Boddo Plus.");
+
+
+        payView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //showPrettyDialog(holder, position, message);
+                if (Integer.parseInt(Data.userPalupPoint) >= Limitation.LIKE_FAV_VISITOR_CREDITS) {
+
+                    PrettyDialog jj = new PrettyDialog(PrivateChatActivity.this);
+                    jj.setTitle("Dear " + Data.userName)
+                            .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
+                            .setMessage("You don't have sufficient balance").setMessageColor(R.color.red_A700);
+
+                    jj.show();
+                } else {
+
+                    insufficientCredits();
+
+                }
+
+
+                dialog.dismiss();
+            }
+        });
+
+        btnDiscoverBoddoPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPalupPlusWindow();
+                dialog.dismiss();
+            }
+        });
+
+
+        notnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
     }
+
+    public void insufficientCredits() {
+        final Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.insufficient_credits_likefavorit_adapter);
+        dialog.setCancelable(false);
+
+        final Button payjoin = dialog.findViewById(R.id.payjoin);
+        final Button btnDiscoverBoddoPlusInsufficient = dialog.findViewById(R.id.btnDiscoverBoddoPlusInsufficient);
+        final Button notnow = dialog.findViewById(R.id.notnow);
+
+        payjoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PrivateChatActivity.this, BuyCreditActivity.class);
+                intent.putExtra("BuyCredits", true);
+                //context.overridePendingTransition(0, 0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+
+        btnDiscoverBoddoPlusInsufficient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPalupPlusWindow();
+                dialog.dismiss();
+            }
+        });
+
+
+        notnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
+
+    public void goToPalupPlusWindow() {
+
+        Intent intent = new Intent(this, BuyCreditActivity.class);
+        intent.putExtra("Membership", true);
+        //overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+
+
+    }
+
 
     private void palupDailog() {
         mDialog = new Dialog(this);

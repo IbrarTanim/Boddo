@@ -110,6 +110,8 @@ public class OthersGalleryPhotoActivity extends AppCompatActivity {
                 //addNewPhoto();
                 Intent intent = new Intent(activity, ImageUploadActivity.class);
                 startActivity(intent);
+                Toast.makeText(activity, "ivCameraOthersGalleryPhoto", Toast.LENGTH_SHORT).show();
+
             }
         });
 

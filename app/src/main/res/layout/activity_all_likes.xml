@@ -42,7 +42,6 @@
                 android:drawableLeft="@drawable/back_icon_20_26_12_2020"
                 android:drawablePadding="@dimen/ten"
                 android:gravity="left|center"
-                android:text="10 Likes"
                 android:textColor="@color/black"
                 android:textSize="@dimen/twenty" />
 

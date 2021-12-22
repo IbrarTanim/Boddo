@@ -256,7 +256,7 @@ public class OthersProfileFragment extends Fragment {
             public void onResponse(Call<String> call, Response<String> response) {
                 String stute = response.body();
                 if (stute.equals("block")) {
-                    Toast.makeText(getContext(), Data.otherUserName + " is Block Successful.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "You have blocked "+Data.otherUserName + " successfully", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(), BlockListActivity.class);
                     getActivity().finish();
                     startActivity(i);

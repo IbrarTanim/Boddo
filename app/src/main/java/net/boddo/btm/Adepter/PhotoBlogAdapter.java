@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import net.boddo.btm.Activity.BlockListActivity;
 import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Activity.DashBoadActivity;
 import net.boddo.btm.Activity.FullPhotoViewActivity;
+import net.boddo.btm.Activity.PrivateChatActivity;
 import net.boddo.btm.Activity.photoblog.OnLoveListener;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
@@ -236,24 +239,29 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
             }
         }
         if (isBlocked) {
+
             final PrettyDialog myBlockDialog = new PrettyDialog(context);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
-                        .setMessage(" You have  Blocked this user")
+               /* myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
+                        .setMessage("You have  Blocked this user")
                         .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
                 }).show();
+*/
+                haveBlockedUser();
+
             } else {
-                myBlockDialog.setMessage(" You have  Blocked this user")
+                /*myBlockDialog.setMessage(" You have  Blocked this user")
                         .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
-                }).show();
+                }).show();*/
+                haveBlockedUser();
 
             }
 
@@ -266,29 +274,72 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                 }
             }
             if (isBlockedMe) {
-                final PrettyDialog myBlockDialog = new PrettyDialog(context);
+              //  final PrettyDialog myBlockDialog = new PrettyDialog(context);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                    /*myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, You have been blocked by this user", Toast.LENGTH_SHORT).show();
+
+
                 } else {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                   /* myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, you have been blocked by this user", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 viewImage(position);
             }
         }
     }
+
+    private void haveBlockedUser() {
+        //Toast.makeText(context, "blocked", Toast.LENGTH_SHORT).show();
+
+        final PrettyDialog myBlockDialog = new PrettyDialog(context);
+        myBlockDialog.setContentView(R.layout.blocked_user);
+        final Button blockedList =myBlockDialog.findViewById(R.id.BtnBlockedList);
+        final Button cancel =myBlockDialog.findViewById(R.id.button_decline);
+
+
+        blockedList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, BlockListActivity.class));
+                myBlockDialog.dismiss();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myBlockDialog.dismiss();
+            }
+        });
+
+        myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessage("You have  Blocked this user")
+                .setMessageColor(R.color.red_A700).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
+            @Override
+            public void onClick() {
+
+                myBlockDialog.dismiss();
+
+            }
+        }).show();
+        if (Data.pd != null){
+            Data.pd.dismiss();
+        }
+    }
+
+
 
     private void isBlockedFullPage(int position) {
         boolean isBlocked = false;
@@ -303,21 +354,26 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
         if (isBlocked) {
             final PrettyDialog myBlockDialog = new PrettyDialog(context);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+               /* Toast.makeText(context, "block", Toast.LENGTH_SHORT).show();
                 myBlockDialog.setMessage(" You have  Blocked  this user")
                         .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
-                }).show();
+                }).show();*/
+                haveBlockedUser();
             } else {
+               /* Toast.makeText(context, "block1", Toast.LENGTH_SHORT).show();
                 myBlockDialog.setMessage(" You have  Blocked  this user")
                         .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
-                }).show();
+                }).show();*/
+
+                haveBlockedUser();
             }
         } else {
             for (int j = 0; j < DashBoadActivity.whoBlockMeList.size(); j++) {
@@ -329,21 +385,25 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
             if (isBlockedMe) {
                 final PrettyDialog myBlockDialog = new PrettyDialog(context);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                   /* myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, you have been blocked by this user", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                    /*myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, you have been blocked by this user",Toast.LENGTH_SHORT).show();
+
                 }
             } else {
                 viewImage(position);
