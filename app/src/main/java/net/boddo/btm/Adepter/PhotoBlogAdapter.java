@@ -1,9 +1,11 @@
 package net.boddo.btm.Adepter;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -78,6 +81,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
         view.startAnimation(anim);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull final PhotoBlogAdapter.PhotoBlogViewHolder holder, final int position) {
 
@@ -145,6 +149,8 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                     Glide.with(holder.PhotoBlogImageView.getContext()).load(photoBlogList[position].getPhoto()).into(holder.PhotoBlogImageView);
                     holder.quetionMark.setVisibility(View.VISIBLE);
                     holder.blurEffect.setVisibility(View.VISIBLE);
+                    holder.post.setVisibility(View.GONE);
+
                     holder.profileQuetionMark.setVisibility(View.VISIBLE);
                     holder.profileBlurEffect.setVisibility(View.VISIBLE);
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +167,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                         }
                     });
                     holder.imageViewLove.setVisibility(View.GONE);
+
                     // setScaleAnimation(holder.itemView);
                 }
             }
@@ -523,6 +530,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
         TextView quetionMark, profileQuetionMark;
         LinearLayout blurEffect, profileBlurEffect;
         ImageView imageViewLove;
+        CardView cardViewID;
 
         public PhotoBlogViewHolder(@NonNull View itemView) {
             super(itemView);

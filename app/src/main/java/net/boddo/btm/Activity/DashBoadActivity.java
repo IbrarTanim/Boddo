@@ -389,8 +389,15 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
         navigation_moto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashBoadActivity.this, BuyCreditActivity.class);
+              /*  Intent intent = new Intent(DashBoadActivity.this, BuyCreditActivity.class);
                 intent.putExtra(Constants.PALUP_PLUS, Constants.PALUP_PLUS);
+                startActivity(intent);*/
+
+                Intent intent = new Intent(activity, BuyCreditActivity.class);
+                intent.putExtra("Membership", true);
+                activity.overridePendingTransition(0, 0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                activity.finish();
                 startActivity(intent);
             }
         });
