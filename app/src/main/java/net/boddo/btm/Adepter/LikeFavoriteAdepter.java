@@ -163,7 +163,9 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
                         holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
                     } else {
                         holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+
                     }
+
 
                     Picasso.get().load(likedMeList.get(position).getProfilePhoto()).into(holder.likeimageView);
                     holder.likeimageView.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +175,6 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
                         }
                     });
                 } else {
-
 
                     holder.tvUserNameActivity.setText(likedMeList.get(position).getName());
                     holder.tvUserAgeActivity.setText(age);
@@ -187,6 +188,7 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
                     Picasso.get().load(likedMeList.get(position).getProfilePhoto()).into(holder.likeimageView);
                     //holder.quetionMark.setVisibility(View.VISIBLE);
                     holder.blurEffect.setVisibility(View.VISIBLE);
+                    holder.rlUserInfoActivity.setVisibility(View.INVISIBLE);
                     holder.likeimageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -246,6 +248,8 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
             @Override
             public void onClick(View v) {
                 //showPrettyDialog(holder, position, message);
+                Log.e("IntergerValue", "onClick: "+Integer.parseInt(Data.userPalupPoint));
+                Log.e("IntergerValue", "onClick: "+Limitation.LIKE_FAV_VISITOR_CREDITS);
 
                 if (Integer.parseInt(Data.userPalupPoint) >= Limitation.LIKE_FAV_VISITOR_CREDITS) {
                     apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
@@ -254,6 +258,7 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
                             String res = response.body();
+
                             if (res.equals("success")) {
 
                                 Picasso.get().load(likedMeList.get(position).getProfilePhoto()).into(holder.likeimageView);
@@ -268,6 +273,7 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
 
                                 //holder.quetionMark.setVisibility(View.INVISIBLE);
                                 holder.blurEffect.setVisibility(View.INVISIBLE);
+                                holder.rlUserInfoActivity.setVisibility(View.VISIBLE);
                                 Data.userPalupPoint = String.valueOf(Integer.parseInt(Data.userPalupPoint) - 15);
                                 EventBus.getDefault().post(new Event(Constants.UNLOCK_FAVORITE_IMAGE));
                                 EventBus.getDefault().post(new Event(Constants.UPDATE_PALUP_POINT));
@@ -340,7 +346,7 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
         TextView tvUserNameActivity, tvUserAgeActivity;
         ImageView ivMaleFemale;
         LinearLayout blurEffect;
-        RelativeLayout layout;
+        RelativeLayout layout,rlUserInfoActivity;
 
         public LoveFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -351,6 +357,7 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
             ivMaleFemale = itemView.findViewById(R.id.ivMaleFemale);
             tvUserNameActivity = itemView.findViewById(R.id.tvUserNameActivity);
             tvUserAgeActivity = itemView.findViewById(R.id.tvUserAgeActivity);
+            rlUserInfoActivity = itemView.findViewById(R.id.rlUserInfoActivity);
         }
     }
 

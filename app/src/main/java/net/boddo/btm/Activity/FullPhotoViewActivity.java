@@ -221,6 +221,7 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
         position = getIntent().getExtras().getInt("position");
         int posi = position;
 
+
        /* topLayout.setEnabled(false);
         topLayout.setOnClickListener(null);*/
 
@@ -321,6 +322,15 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
 
             }
         });
+
+//likeProblem
+        if(amountOfLikes<=0){
+            like_button.setImageDrawable(getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
+
+        }else {
+            like_button.setImageDrawable(getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
+
+        }
 
         /*commentButton.setOnClickListener(new View.OnClickListener() {*/
 
@@ -668,6 +678,7 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
 
 
                     if (!isLikeButtonClicked && loverList.size() > 0) {
+                        Log.e("visible", "onResponse: visible" );
                         imageDetailsLayout.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.VISIBLE);
                         recyclerView.setLayoutManager(new LinearLayoutManager(FullPhotoViewActivity.this, LinearLayoutManager.HORIZONTAL, false));
@@ -676,6 +687,8 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
                         isLikeButtonClicked = true;
 
                     } else {
+                        Log.e("visible", "onResponse: nonvisible" );
+
                         imageDetailsLayout.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         isLikeButtonClicked = false;

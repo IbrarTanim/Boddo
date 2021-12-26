@@ -111,6 +111,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                     public void onClick(View v) {
                         //Todo onLove call
                         onLoveListener.giveLove(position);
+
                     }
                 });
 //              setScaleAnimation(holder.itemView);
@@ -439,6 +440,8 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
             holder.post.setText(blog.getDescription());
         }
         holder.textViewLikedCount.setText(blog.getLike());
+        Data.likeCountValue = blog.getLike();
+        Log.e("like", "seeAllData: "+Data.likeCountValue);
         holder.textViewCommentCount.setText(blog.getComment());
         holder.tvViewCount.setText(blog.getViews() + "");
 

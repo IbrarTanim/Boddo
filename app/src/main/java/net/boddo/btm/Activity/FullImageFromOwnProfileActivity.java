@@ -359,7 +359,7 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
         });
     }
 
-
+//likeProblem
     private void isLiked() {
 
         progressBar.setVisibility(View.VISIBLE);
@@ -369,6 +369,7 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
             @Override
             public void onResponse(Call<Likes> call, Response<Likes> response) {
                 Likes isLiked = response.body();
+                String test = isLiked.getIsLiked();
                 if (isLiked.getIsLiked().equals("yes")) {
                     like_button.setImageDrawable(getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
                 } else if (isLiked.getIsLiked().equals("no")) {
