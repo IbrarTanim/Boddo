@@ -238,7 +238,7 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
 
         if (viewType.equals("like")) {
             tvFindoutMessage.setText("Find out who's liked your profile.");
-        } else if (viewType.equals("fevorite")) {
+        } else if (viewType.equals(Constants.FAVORITE_VIEW_TYPE)) {
             tvFindoutMessage.setText("Find out who's favorite your profile.");
         } else if (viewType.equals("visitors")) {
             tvFindoutMessage.setText("Find out who's visited your profile.");

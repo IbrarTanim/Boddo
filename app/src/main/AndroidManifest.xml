@@ -30,6 +30,7 @@
         android:windowSoftInputMode="adjustPan"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
+        <activity android:name=".Activity.SelectStatusActivity"></activity>
         <activity
             android:name=".Activity.AccountCloseStatusActivity"
             android:exported="false" />

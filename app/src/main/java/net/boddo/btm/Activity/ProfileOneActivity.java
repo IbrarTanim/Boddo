@@ -61,6 +61,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
     TextView ageGenderCountry, tvAge, tvAboutProfile, tvGalleryProfile, tvGiftsProfile, tvStoryProfile;
     ImageView ivBackProfileOneActivity, ivProfileImage;
     PageIndicatorView indecator;
+    String position = "0";
 
     ProfileImageLoaderAdapter imageLoaderAdapter;
     public static List<ProfileImageLoader.ProfileImageInfo> imageList;
@@ -76,6 +77,13 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         activity = this;
         ButterKnife.bind(this);
 
+        String name = getIntent().getStringExtra("name");
+        int position = getIntent().getIntExtra("position",0);
+
+
+
+
+        Log.e("details", "onCreate: "+name+" "+position );
         imageViewPager = findViewById(R.id.profile_image_view_pager);
         firstNameAndUserName = findViewById(R.id.text_view_first_name_and_user_name);
         tvUserNameProfile = findViewById(R.id.tvUserNameProfile);
@@ -98,6 +106,20 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         tvStoryProfile.setOnClickListener(this);
         tvAboutProfile.setOnClickListener(this);
 
+        if(position>0){
+            Data.userMoto = name.toString();
+            Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
+            motoTextViewButton.setText(Data.userMoto);
+            final Dialog motoDialog = new Dialog(activity);
+            motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
+            if (!Data.userMoto.equals("")) {
+                motoTextViewButton.setText(Data.userMoto);
+            } else {
+                motoTextViewButton.setText("Update your status!");
+            }
+
+        }
+
         final Dialog motoDialog = new Dialog(activity);
         motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
         if (!Data.userMoto.equals("")) {
@@ -119,6 +141,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
 
                 }
                 Button cancelAbout = motoDialog.findViewById(R.id.cancel_moto);
+                Button selectStatus = motoDialog.findViewById(R.id.btnSelectStatus);
                 final ImageView saveMoto = motoDialog.findViewById(R.id.save_moto);
                 final ImageView submitButtonTouch = motoDialog.findViewById(R.id.submitButtonTouch);
                 final TextView counter = motoDialog.findViewById(R.id.counter_moto);
@@ -151,7 +174,16 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
                 cancelAbout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Log.e("cancel", "onClick: cancel" );
                         motoDialog.dismiss();
+                    }
+                });
+                selectStatus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        startActivity(new Intent(getApplicationContext(),SelectStatusActivity.class));
+                        finish();
                     }
                 });
                 saveMoto.setOnClickListener(new View.OnClickListener() {

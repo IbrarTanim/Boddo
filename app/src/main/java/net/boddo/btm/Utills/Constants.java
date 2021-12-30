@@ -37,7 +37,7 @@ public interface Constants {
     String CHAT_TYPE_ROOM = "chatroom";
     String MATCHED = "matched";
     String UNMATCHED = "unmatch";
-    String FEVORITE = "Fevorite";
+    String FEVORITE = "fevorite";
     String VISITOR = "visitor";
     String REQUEST_STRING = "$2y$12$5C05oYdYo0ZJkLZZVZNulu5GhjEnwDXOeJrh2yev4rWYgF04qSjeK";
     public static final String FAVORITE_VIEW_TYPE = "favorite";

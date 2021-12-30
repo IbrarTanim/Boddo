@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -21,14 +22,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.badoualy.stepperindicator.StepperIndicator;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.valdesekamdem.library.mdtoast.MDToast;
 
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -89,16 +98,20 @@ public class BirthdateFragment extends Fragment {
     Calendar calendar;
     DatePickerDialog datePickerDialog;
     String age = "";
+    String bAge = "";
     ArrayList<String> userInfo;
 
     String fcmToken;
     String androidID;
     String userAgent;
+    Period p;
 
     TextView more_option_text_view;
     StepperIndicator indicator;
 
     LoadingDialog loadingDialog;
+
+    int day,month,year;
 
     private BaseCommunicator communicator;
 
@@ -144,19 +157,28 @@ public class BirthdateFragment extends Fragment {
     public void onDateOfBirthClicked() {
         calendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(Objects.requireNonNull(getActivity()), AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int current_month = month + 1;
 //              String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
                 dateOfBirth.setText(dayOfMonth + "/" + current_month + "/" + year);
                 age = dayOfMonth + "/" + current_month + "/" + year;
+                bAge = year+""+current_month+""+dayOfMonth;
+
+
+
+
+
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @OnClick(R.id.join_button)
     public void onJoinButtonClicked() {
+
 
         loadingDialog.showDialog();
         uniqueId = UUID.randomUUID().toString();
@@ -165,8 +187,36 @@ public class BirthdateFragment extends Fragment {
 
         Login login = new Login(userName, email, fullName, password, gender, age, Constants.SECRET_KEY, uniqueId, fcmToken, userAgent, androidID);
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date();
+
+
+
+        SimpleDateFormat simpleDateForma = new SimpleDateFormat("dd/MM/yyyy");
+        Log.e("today", "onCreate: "+ formatter.format(date));
+
+        Log.e("birthdayDate", "onJoinButtonClicked: "+simpleDateForma.format(Date.parse(age)));
+        Log.e("birthdayDate", "onJoinButtonClicked: "+age);
+        Log.e("birthdayDate", "onJoinButtonClicked: "+bAge);
+
+       int currentDate = Integer.parseInt(formatter.format(date));
+       int birthdayDate = Integer.parseInt(bAge);
+
+        int ageCalculate = (currentDate - birthdayDate) / 10000;
+
+        Log.e("ageCalculate", "onJoinButtonClicked: "+currentDate+" "+birthdayDate+" "+ageCalculate);
+
+
+
+        if(ageCalculate <18){
+            Toast.makeText(getContext(), "You have to be 18+ to use Boddo", Toast.LENGTH_SHORT).show();
+            loadingDialog.hideDialog();
+            return;
+        }
+
 
         if (!age.equals("")) {
+            Log.e("age", "onJoinButtonClicked: "+age );
             if (Helper.isNetworkAvailable(getActivity())) {
                 if (Helper.internetIsConnected()) {
                     new LoginAsync().execute();

@@ -34,7 +34,7 @@
             android:layout_below="@+id/title"
             android:orientation="vertical">
 
-            <RadioButton
+           <!-- <RadioButton
                 android:id="@+id/male"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,29 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="@string/female"
-                android:textColor="@color/radio_flat_text_selector" />
+                android:textColor="@color/radio_flat_text_selector" />-->
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:layoutDirection="rtl"
+                android:buttonTint="#96CC72"
+                android:padding="8dp"
+                android:checked="true"
+                android:text="Male"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:layoutDirection="rtl"
+                android:buttonTint="#96CC72"
+                android:padding="8dp"
+                android:text="Female"
+                android:textAppearance="?android:textAppearanceMedium" />
 
         </RadioGroup>
 

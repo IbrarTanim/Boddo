@@ -106,9 +106,9 @@
                                 android:id="@+id/tvUserNameProfileOthers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/twenty"
+                                android:layout_marginLeft="@dimen/twenty_five"
                                 android:layout_marginTop="@dimen/five"
-                                android:layout_marginRight="@dimen/twenty"
+                                android:layout_marginRight="@dimen/twenty_five"
                                 android:layout_marginBottom="@dimen/five"
                                 android:gravity="center"
                                 android:text="Sadia"
@@ -118,12 +118,39 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="@dimen/eighty"
-                            android:layout_height="@dimen/forty"
                             android:layout_below="@+id/llName"
+                            android:id="@+id/genderUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/forty"
                             android:layout_alignParentLeft="true"
                             android:layout_marginLeft="@dimen/ten"
                             android:background="@drawable/bg_rounded_black_transparent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvUserGenderProfileOthers"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/twenty_five"
+                                android:layout_marginTop="@dimen/five"
+                                android:layout_marginRight="@dimen/twenty_five"
+                                android:layout_marginBottom="@dimen/five"
+                                android:gravity="center"
+                                android:text="Male"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/fifteen" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="@dimen/eighty"
+                            android:layout_height="@dimen/forty"
+                            android:layout_below="@+id/genderUser"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/ten"
+                            android:layout_marginRight="@dimen/ten"
+                            android:background="@drawable/bg_rounded_black_transparent"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -285,6 +312,7 @@
                                         android:layout_weight="2" />
 
                                 </LinearLayout>
+
 
                                 <TextView
                                     android:id="@+id/text_view_age_gender_countryOthers"

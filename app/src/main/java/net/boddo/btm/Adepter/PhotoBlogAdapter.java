@@ -39,6 +39,7 @@ import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.Helper;
+import net.boddo.btm.Utills.LikeUnlikePicturePrefs;
 import net.boddo.btm.Utills.Limitation;
 import net.boddo.btm.Utills.Response;
 import net.boddo.btm.Utills.SearchUser;
@@ -55,10 +56,12 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
     String viewType;
     String about, age, matchedCount, posi;
     Dialog mDialog;
+    boolean flag = false;
 
     private final static int FADE_DURATION = 300;
     private static final String TAG = "PhotoBlogAdapter";
     OnLoveListener onLoveListener;
+    LikeUnlikePicturePrefs likeUnlikePicturePrefs;
 
     public PhotoBlogAdapter(Context context, PhotoBlog[] photoBlogList, String viewType, OnLoveListener listener) {
         this.context = context;
@@ -85,6 +88,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
     @Override
     public void onBindViewHolder(@NonNull final PhotoBlogAdapter.PhotoBlogViewHolder holder, final int position) {
 
+        likeUnlikePicturePrefs = new LikeUnlikePicturePrefs(context);
         if (viewType.equals("TopPhoto")) {
             if (Data.isPalupPlusSubcriber) {
                 seeAllData(holder, position);
@@ -110,7 +114,10 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                     @Override
                     public void onClick(View v) {
                         //Todo onLove call
+                        Log.e("hello", "onClick: hay" );
                         onLoveListener.giveLove(position);
+
+
 
                     }
                 });
@@ -140,6 +147,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                         @Override
                         public void onClick(View v) {
                             //Todo onLove call
+                            Log.e("hello", "onClick: hay" );
                             onLoveListener.giveLove(position);
                         }
                     });
@@ -193,6 +201,19 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                 @Override
                 public void onClick(View v) {
                     //Todo onLove call
+                    Log.e("hello", "onClick: hay3" );
+                    if(photoBlogList[position].getIsPhotoLikedByMe() == 1){
+                        Log.e("hello", "onClick: "+position );
+                        Log.e("hello", "onClick: "+photoBlogList[position].getIsPhotoLikedByMe() );
+                        flag = false;
+                        LikeUnlikePicturePrefs.setFlagStatus("likeUnlike",flag);
+                        Log.e("flag", "seeAllData: "+flag );
+                    }else {
+                        Log.e("hello", "onClick: "+photoBlogList[position].getIsPhotoLikedByMe() );
+                        flag = true;
+                        LikeUnlikePicturePrefs.setFlagStatus("likeUnlike",flag);
+                        Log.e("flag", "seeAllData: "+flag );
+                    }
                     onLoveListener.giveLove(position);
                 }
             });
@@ -448,8 +469,12 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
         if (photoBlogList[position].getIsPhotoLikedByMe() != null) {
             if (photoBlogList[position].getIsPhotoLikedByMe() == 1) {
                 holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
+
+
+
             } else {
                 holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_black_love_or_like));
+
             }
         }
 //        posi = String.valueOf(photoBlogList.get(position));
