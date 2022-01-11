@@ -78,7 +78,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/forty"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -90,11 +90,13 @@
                     android:layout_weight="1"
                     app:tabBackground="@drawable/tab_selected_unselected_bg"
                     app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/white"
-                    app:tabIndicatorHeight="@dimen/paddin_4dp"
+                    app:tabIndicatorColor="#54AE4C"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabIndicatorFullWidth="true"
+                    style="@style/AppTabLayout"
                     app:tabMode="fixed"
                     app:tabPadding="@dimen/five"
-                    app:tabSelectedTextColor="@color/white"
+                    app:tabSelectedTextColor="@color/gray"
                     app:tabTextColor="@color/gray">
 
                 </com.google.android.material.tabs.TabLayout>

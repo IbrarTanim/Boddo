@@ -168,7 +168,7 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
         getRecentHotList();
         setup();
         adapter = new PhotoBlogTabAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new FragmentPhotoBlogAllUser(), "Just In");
+        adapter.addFragment(new FragmentPhotoBlogAllUser(), "Latest photoblog");
         /*adapter.addFragment(new FriendsFragment(), "Friends");
         adapter.addFragment(new TrendyFragment(), "Trendy");*/
         adapter.addFragment(new TopPhotoFragment(), "Top photos");

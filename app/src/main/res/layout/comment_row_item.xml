@@ -12,16 +12,15 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/commentor_image_view"
-            android:layout_width="@dimen/eighty"
-            android:layout_height="@dimen/eighty"
-            android:layout_marginTop="@dimen/twenty"
+            android:layout_width="@dimen/forty"
+            android:layout_height="@dimen/forty"
+            android:layout_marginTop="@dimen/thirty"
             android:layout_marginLeft="@dimen/five"
             android:src="@drawable/rokan" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:orientation="vertical">
 
             <LinearLayout
@@ -30,10 +29,10 @@
                 android:layout_weight="10"
                 android:orientation="horizontal">
 
-                <View
+               <!-- <View
                     android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.5" />-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -56,6 +55,7 @@
                             android:layout_weight="6"
                             android:gravity="left|center"
                             android:text="Sarwar"
+                            android:layout_marginLeft="10dp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/fifteen"
                             android:textStyle="bold" />
@@ -79,6 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left|center"
+                        android:layout_marginLeft="10dp"
                         android:scrollbars="vertical"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/black" />

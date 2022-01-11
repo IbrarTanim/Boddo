@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.boddo.btm.Activity.AboutActivity;
 import net.boddo.btm.Activity.BlockListActivity;
 import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Activity.LoginActivity;
@@ -41,7 +42,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     Intent intent;
     TextView tvBackSettings, tvLogout;
-    ImageView ivProfileAndAccounts, ivMembership, ivMyTransaction, ivNotification, ivTermsOfService, ivBuyCredits;
+    ImageView ivProfileAndAccounts, ivMembership, ivMyTransaction, ivNotification, ivTermsOfService, ivBuyCredits,ivAboutSettingActivity;
 
 
     /*@BindView(R.id.notification_settings_switch)
@@ -96,6 +97,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         ivBuyCredits = findViewById(R.id.ivBuyCredits);
         ivTermsOfService = findViewById(R.id.ivTermsOfService);
         tvLogout = findViewById(R.id.tvLogout);
+        ivAboutSettingActivity = findViewById(R.id.ivAboutSettingActivity);
 
 
         Bundle extras = getIntent().getExtras();
@@ -115,6 +117,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         ivNotification.setOnClickListener(this);
         tvBackSettings.setOnClickListener(this);
         ivProfileAndAccounts.setOnClickListener(this);
+        ivAboutSettingActivity.setOnClickListener(this);
 
 
         /*if (Data.isPalupPlusSubcriber == true) {
@@ -203,6 +206,10 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 finish();
                 startActivity(intent);
+                break;
+
+            case R.id.ivAboutSettingActivity:
+                startActivity(new Intent(activity, AboutActivity.class));
                 break;
 
 

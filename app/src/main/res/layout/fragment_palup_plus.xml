@@ -400,6 +400,27 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
+                    android:layout_weight="0.3" />
+
+                <TextView
+                    android:id="@+id/continue_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zero"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/fifty"
+                    android:layout_marginRight="@dimen/fifty"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_green"
+                    android:gravity="center"
+                    android:text="Next"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/twenty"
+                    app:fontFamily="sans-serif-medium" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zero"
                     android:layout_weight="0.5" />
 
                 <TextView
@@ -431,21 +452,7 @@
                     android:textSize="@dimen/twelve"
                     app:fontFamily="sans-serif-medium" />
 
-                <TextView
-                    android:id="@+id/continue_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/zero"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/fifty"
-                    android:layout_marginRight="@dimen/fifty"
-                    android:layout_weight="1"
-                    android:background="@drawable/button2"
-                    android:gravity="center"
-                    android:text="Continue"
-                    android:textAppearance="?android:textAppearanceMedium"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/twenty"
-                    app:fontFamily="sans-serif-medium" />
+
 
 
                 <View

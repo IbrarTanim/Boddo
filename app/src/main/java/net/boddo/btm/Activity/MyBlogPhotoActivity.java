@@ -110,7 +110,7 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //addNewPhoto();
-                Toast.makeText(activity, "ivCameraMyBlogPhoto", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(activity, "ivCameraMyBlogPhoto", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(activity, ImageUploadActivity.class);
                 startActivity(intent);
             }

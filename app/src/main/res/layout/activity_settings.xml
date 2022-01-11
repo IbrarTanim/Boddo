@@ -366,6 +366,36 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="About" />
+
+                    <ImageView
+                        android:id="@+id/ivAboutSettingActivity"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="27dp"
+                        android:scaleType="fitEnd"
+                        android:src="@drawable/arrow_icon_28_02_2021" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/seventy"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:id="@+id/tvLogout"
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"

@@ -92,7 +92,7 @@ public class FullNameActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(FullNameActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FullNameActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                             Data.userFirstName  =  myName;
                             goTOProfileAndAccountActivity();
 
