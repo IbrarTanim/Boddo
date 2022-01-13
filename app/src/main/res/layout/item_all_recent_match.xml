@@ -100,12 +100,15 @@
 
                 <TextView
                     android:id="@+id/startChatMessageRecentMatch"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/five"
                     android:layout_weight="1.5"
                     android:gravity="center"
-                    android:padding="@dimen/five"
+                    android:paddingLeft="@dimen/thirteen"
+                    android:paddingRight="@dimen/thirteen"
+                    android:paddingTop="@dimen/five"
+                    android:paddingBottom="@dimen/five"
                     android:text="START A CHAT"
                     android:textColor="@color/black"
                     android:textSize="@dimen/thirteen"
