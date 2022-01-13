@@ -63,14 +63,14 @@ public class PasswordActivity extends AppCompatActivity {
                     return;
                 }if(newPassword.equals(repeatPassword) ){
                     apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-                    Call<User> call = apiInterface.editProfile(Constants.SECRET_KEY,"Successfully updated",newPassword, Data.userId);
+                    Call<User> call = apiInterface.editProfile(Constants.SECRET_KEY,"password",newPassword, Data.userId);
                     Log.e("myName", "onCreate: "+newPassword );
                     Log.e("myName", "onCreate: "+repeatPassword );
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             if(response.isSuccessful()){
-                                Toast.makeText(PasswordActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PasswordActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                                 AuthPreference.setPassword("password",newPassword);
                                 goTOProfileAndAccountActivity();
                             }

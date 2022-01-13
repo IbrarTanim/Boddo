@@ -78,12 +78,29 @@ public class RecentMatchProPicAdepter extends RecyclerView.Adapter<RecentMatchPr
             }
         });
 
-        holder.civMessageRecentMatch.setOnClickListener(new View.OnClickListener() {
+        holder.startChatMessageRecentMatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
+               // Intent intent = new Intent(context.getApplicationContext(), PrivateChatActivity.class);
+               // context.startActivity(intent);
+                /*Intent intent1 = new Intent(context, PrivateChatActivity.class);
+                if (Data.isMatched.equals("yes")) {
+                    isMatch = true;
+                }
+                intent1.putExtra("other_user_id", Data.otherUserId);
+                context.startActivity(intent1);*/
+            }
+        });
+
+
+
+      /*  holder.civMessageRecentMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
-               /* Intent intent = new Intent(context.getApplicationContext(), PrivateChatActivity.class);
-                context.startActivity(intent);*/
+                Intent intent = new Intent(context.getApplicationContext(), PrivateChatActivity.class);
+                context.startActivity(intent);
                 Intent intent = new Intent(context, PrivateChatActivity.class);
                 if (Data.isMatched.equals("yes")) {
                     isMatch = true;
@@ -91,7 +108,9 @@ public class RecentMatchProPicAdepter extends RecyclerView.Adapter<RecentMatchPr
                 intent.putExtra("other_user_id", Data.otherUserId);
                 context.startActivity(intent);
             }
-        });
+        });*/
+
+
 
     }
 
@@ -103,8 +122,8 @@ public class RecentMatchProPicAdepter extends RecyclerView.Adapter<RecentMatchPr
     class RecentMatchProPicViewHolder extends RecyclerView.ViewHolder {
 
         RoundedImageView imageView;
-        TextView name, age, address;
-        CircleImageView civMessageRecentMatch;
+        TextView name, age, address,startChatMessageRecentMatch;
+       // CircleImageView civMessageRecentMatch;
 
         public RecentMatchProPicViewHolder(View itemView) {
             super(itemView);
@@ -113,7 +132,8 @@ public class RecentMatchProPicAdepter extends RecyclerView.Adapter<RecentMatchPr
             name = itemView.findViewById(R.id.chatRequestNameTV);
             age = itemView.findViewById(R.id.chatRequestAgeTV);
             address = itemView.findViewById(R.id.chatRequestAddressTV);
-            civMessageRecentMatch = itemView.findViewById(R.id.civMessageRecentMatch);
+            startChatMessageRecentMatch = itemView.findViewById(R.id.startChatMessageRecentMatch);
+          //  civMessageRecentMatch = itemView.findViewById(R.id.civMessageRecentMatch);
 
         }
     }
