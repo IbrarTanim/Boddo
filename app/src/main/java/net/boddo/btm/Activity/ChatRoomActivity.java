@@ -566,6 +566,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("yes", "onClick: yes");
                 showEnteredIntoChatRoom(whichRoomIsClicked, "left");
                 dialog.dismiss();
                 finish();

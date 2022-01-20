@@ -98,7 +98,7 @@ public class FavoriteFragment extends Fragment {
 
                     layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                     favoriteRecyclerView.setLayoutManager(layoutManager);
-                    likeFavoriteAdepter = new LikeFavoriteAdepter(getContext(), likedMeList,"fevorite");
+                    likeFavoriteAdepter = new LikeFavoriteAdepter(getContext(), likedMeList,Constants.FAVORITE_VIEW_TYPE);
                     favoriteRecyclerView.setAdapter(likeFavoriteAdepter);
                 }
             }

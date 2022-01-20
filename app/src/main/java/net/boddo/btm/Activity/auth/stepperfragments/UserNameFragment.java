@@ -72,6 +72,7 @@ public class UserNameFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 userName = etUserName.getText().toString();
+
                 if (userName.length() >= 3) {
                     if (isUserNameValid(userName)) {
                         Call<String> call = apiInterface.checkUserNameExist(userName, SECRET_KEY);
@@ -80,7 +81,8 @@ public class UserNameFragment extends Fragment {
                             public void onResponse(Call<String> call, Response<String> response) {
                                 String result = response.body();
                                 if (result.equals("User Name Already Exist")) {
-                                    etUserName.setError(getResources().getString(R.string.user_name_exist));
+                                   // etUserName.setError(getResources().getString(R.string.user_name_exist));
+                                    Toast.makeText(getActivity().getApplicationContext(), "This username is already taken", Toast.LENGTH_LONG).show();
                                     userNameExist = true;
                                 } else {
                                     userNameExist = false;
@@ -93,10 +95,12 @@ public class UserNameFragment extends Fragment {
                             }
                         });
                     } else {
-                        Toast.makeText(getActivity(), "user Name not valid", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Username is not valid", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    etUserName.setError(getResources().getString(R.string.enter_user_name_limite));
+                   // etUserName.setError(getResources().getString(R.string.enter_user_name_limite));
+                  //  Toast.makeText(getActivity().getApplicationContext(), "Username must be not less than 3 letters", Toast.LENGTH_SHORT).show();
+                    userNameExist = true;
                 }
                 }
         });
@@ -104,8 +108,14 @@ public class UserNameFragment extends Fragment {
     }
     @OnClick(R.id.next_button)
     void onNext(){
-        if (!userNameExist){
+         if (!userNameExist && etUserName.getText().toString().length() > 2){
             stepToFullName();
+        }else if(userNameExist==true &&  etUserName.getText().toString().length() < 3){
+            Toast.makeText(getActivity().getApplicationContext(), "Username must be not less than 3 letters", Toast.LENGTH_LONG).show();
+        }else if(etUserName.getText().toString().length() == 0){
+            Toast.makeText(getActivity().getApplicationContext(), "You need a username", Toast.LENGTH_LONG).show();
+        }else if(userNameExist==true){
+            Toast.makeText(getActivity().getApplicationContext(), "This username is already taken", Toast.LENGTH_LONG).show();
         }
     }
     private void stepToFullName() {

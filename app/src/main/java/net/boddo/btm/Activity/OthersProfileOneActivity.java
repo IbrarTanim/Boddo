@@ -87,7 +87,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
     TextView firstNameAndUserName, tvUserNameProfile;
     TextView ageGenderCountry, tvAge, tvOnlineNow;
     ImageView ivBackOthersActivity, like_button_others, ivRandomDelete, ivCommentsOtherProfile;
-    TextView tvAboutOtherProfile, tvGalleryOtherProfile, tvGiftsOtherProfile, tvStoryOtherProfile;
+    TextView tvAboutOtherProfile, tvGalleryOtherProfile, tvGiftsOtherProfile, tvStoryOtherProfile,tvUserGenderProfileOthers;
 
     @BindView(R.id.image_indicator)
     PageIndicatorView indecator;
@@ -127,6 +127,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
         tvGalleryOtherProfile = findViewById(R.id.tvGalleryOtherProfile);
         tvGiftsOtherProfile = findViewById(R.id.tvGiftsOtherProfile);
         tvStoryOtherProfile = findViewById(R.id.tvStoryOtherProfile);
+        tvUserGenderProfileOthers = findViewById(R.id.tvUserGenderProfileOthers);
 
 
         llOthersProfileMenue.setOnClickListener(this);
@@ -143,6 +144,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
         ivCommentsOtherProfile.setOnClickListener(this);
 
         tvUserNameProfile.setText(" @" + Data.otherUserName);
+        tvUserGenderProfileOthers.setText(Data.otherUserGender);
         ageGenderCountry.setText(" Current location : " + Data.otherUserLocation);
         firstNameAndUserName.setText(Data.otherUserFirstName);
 
@@ -416,7 +418,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
             public void onResponse(Call<String> call, Response<String> response) {
                 String stute = response.body();
                 if (stute.equals("block")) {
-                    Toast.makeText(activity, Data.otherUserName + " is Block Successful.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "You have blocked "+Data.otherUserName + " successfully", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(activity, BlockListActivity.class);
                     activity.finish();
                     startActivity(i);

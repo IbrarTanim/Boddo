@@ -262,6 +262,12 @@
         <item name="android:textColor">@color/colorRed</item>
     </style>
 
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+    </style>
+
+
     <dimen name="size_54sp">54sp</dimen>
 
 

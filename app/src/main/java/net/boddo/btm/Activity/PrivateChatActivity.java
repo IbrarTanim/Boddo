@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +39,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.boddo.btm.Adepter.LikeFavoriteAdepter;
 import net.boddo.btm.Event.Event;
 import net.boddo.btm.Adepter.ChatAppMsgAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -48,6 +50,7 @@ import net.boddo.btm.Model.ChatAppMsgDTO;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.FlagPreference;
 import net.boddo.btm.Utills.Helper;
 import net.boddo.btm.Utills.Limitation;
 import net.boddo.btm.Utills.SearchUser;
@@ -185,6 +188,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     EmojiconTextView textView;
     EmojIconActions emojIcon;
     private long mLastClickTime = 0;
+    private List<String> likedMeList;
 
     View view;
 
@@ -195,6 +199,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     Boolean b = true;
     Boolean flag = false;
     String accepted;
+    FlagPreference flagPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,6 +214,15 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         tvWait = findViewById(R.id.tvWait);
 
+        flagPreference = new FlagPreference(this);
+        String f = FlagPreference.getFlag("flag");
+        Log.e("f", "onCreate: "+f );
+        if(f.equals("true")){
+            flag = true;
+        }else {
+            flag = false;
+        }
+
         tvTopMessageFirstTime = findViewById(R.id.tvTopMessageFirstTime);
         rvFirstTimeBG = findViewById(R.id.rvFirstTimeBG);
         chat_left_msg_text_view = findViewById(R.id.chat_left_msg_text_view);
@@ -221,9 +235,6 @@ public class PrivateChatActivity extends AppCompatActivity {
             }
         });
 
-        String test = Data.otherUserId;
-        Toast.makeText(activity, Data.otherUserId, Toast.LENGTH_SHORT).show();
-
         for (int i = 0; i < DashBoadActivity.myBlockList.size(); i++) {
             if (DashBoadActivity.myBlockList.get(i).getBlockedUserId().equals(Data.otherUserId)) {
                 isBlocked = true;
@@ -235,6 +246,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         if (isBlocked) {
             layout_footer.setVisibility(View.GONE);
             final PrettyDialog myBlockDialog = new PrettyDialog(this);
+            myBlockDialog.setContentView(R.layout.blocked_user);
             myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessage(" You have  Blocked this user")
                     .setMessageColor(R.color.red_A700).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                 @Override
@@ -246,7 +258,6 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         }
 
-        //farabi
         if (getIntent().hasExtra(Constants.OTHER_USER_ID)) {
             if (!getIntent().getStringExtra(Constants.OTHER_USER_ID).equals("")) {
                 otherUserId = getIntent().getStringExtra(Constants.OTHER_USER_ID);
@@ -418,6 +429,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         firstPortionOfMyName = Data.userFirstName.split(" ");
 
         if (otherUserNameFromActiveList.equals("")) {
+            Log.e("otherUserNameFrom", "onCreate: "+otherUserNameFromActiveList );
             firstPortionOfName = Data.otherUserFirstName.split(" ");
             textViewTwoUsersName.setText(firstPortionOfName[0]);
             second_name_online_textView.setText(firstPortionOfMyName[0]);
@@ -455,49 +467,67 @@ public class PrivateChatActivity extends AppCompatActivity {
                     accepted=response.body().getRequest();
                     if(response.body().getRequest().equals("accepted")){
                        // rvFirstTimeBG.setVisibility(View.GONE);
-                        otherProfile.setVisibility(View.INVISIBLE);
-                        rvFirstTimeBG.setVisibility(View.VISIBLE);
-                        messageTV1.setVisibility(View.INVISIBLE);
-                        tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
-                        messageTV2.setVisibility(View.VISIBLE);
-                        messageTV2.setText("Start the conversation & write something impressive");
-                        messageTV3.setVisibility(View.VISIBLE);
-                        messageTV3.setText("Chat request accepted");
-                        otherProfile.setVisibility(View.VISIBLE);
-                        Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-                        recyclerView.setVisibility(View.VISIBLE);
-                        Log.e("accepted", "onResponse: accepted" );
-                         if(sizeOfArrayList > 1){
-                            rvFirstTimeBG.setVisibility(View.GONE);
+
+                        if(flag==true && Data.otherUserId.equals(otherUserId) ){
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
+                            messageTV2.setVisibility(View.VISIBLE);
+                            messageTV3.setVisibility(View.VISIBLE);
+                            messageTV3.setText("Chat request accepted");
+                            messageTV2.setText("Start the conversation & write something impressive");
+                        }else{
+                            otherProfile.setVisibility(View.INVISIBLE);
+                            rvFirstTimeBG.setVisibility(View.VISIBLE);
+                            messageTV1.setVisibility(View.INVISIBLE);
+                            tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
+                            messageTV2.setVisibility(View.VISIBLE);
+                            messageTV2.setText("Start the conversation & write something impressive");
+                            messageTV3.setVisibility(View.VISIBLE);
+                            messageTV3.setText("Chat request accepted");
+                            otherProfile.setVisibility(View.VISIBLE);
+                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            Log.e("accepted", "onResponse: accepted" );
                         }
 
                     }else if (response.body().getStatus().equals("success")) {
                         if (response.body().getRequest().equals("accepted")) {
-                            message = response.body().getSingleMessage();
-                            msgDtoList.add(message);
-                            int newMsgPosition = msgDtoList.size() - 1;
-                            // NotifyEvent recycler view insert one new data.
-                            chatAppMsgAdapter.notifyItemInserted(newMsgPosition);
-                            // Scroll RecyclerView to the last message.
-                            recyclerView.scrollToPosition(newMsgPosition);
-                            // Empty the input edit text box.
 
-                            rvFirstTimeBG.setVisibility(View.VISIBLE);
-                            messageTV3.setVisibility(View.VISIBLE);
-                          //  messageTV3.setText("Chat request accepted");
-                            tvTopMessageFirstTime.setVisibility(View.VISIBLE);
-                            messageTV2.setVisibility(View.VISIBLE);
-                            messageTV2.setText("Start the conversation & write something impressive");
-                            otherProfile.setVisibility(View.VISIBLE);
-                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-                            tvTopMessageFirstTime.setVisibility(View.GONE);
+                            if(flag==true && flag==true && Data.otherUserId.equals(otherUserId) ){
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                                messageTV2.setVisibility(View.VISIBLE);
+                                messageTV3.setVisibility(View.VISIBLE);
+                                messageTV3.setText("Chat request accepted");
+                                messageTV2.setText("Start the conversation & write something impressive");
+                            }else {
+                                message = response.body().getSingleMessage();
+                                msgDtoList.add(message);
+                                int newMsgPosition = msgDtoList.size() - 1;
+                                // NotifyEvent recycler view insert one new data.
+                                chatAppMsgAdapter.notifyItemInserted(newMsgPosition);
+                                // Scroll RecyclerView to the last message.
+                                recyclerView.scrollToPosition(newMsgPosition);
+                                // Empty the input edit text box.
+
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
+                                messageTV3.setVisibility(View.VISIBLE);
+                                //  messageTV3.setText("Chat request accepted");
+                                tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+                                messageTV2.setVisibility(View.VISIBLE);
+                                messageTV2.setText("Start the conversation & write something impressive");
+                                otherProfile.setVisibility(View.VISIBLE);
+                                Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+
+                                tvTopMessageFirstTime.setVisibility(View.GONE);
 
 
 
-                            editTextMessage.setText("");
-                            //increase the sender message amount
-                            countMessages();
+                                editTextMessage.setText("");
+                                //increase the sender message amount
+                                countMessages();
+                            }
+
                         }  else if (response.body().getRequest().equals("requested")) {
                             if (msgDtoList.size() == 1) {
 
@@ -509,6 +539,7 @@ public class PrivateChatActivity extends AppCompatActivity {
                                 messageTV1.setText("Your chat request sent, Please wait for user approval.");
                                 otherProfile.setVisibility(View.VISIBLE);
                                 Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+
                                 moreButton.setVisibility(View.GONE);
                                 sendButton.setVisibility(View.GONE);
                                 editTextMessage.setText("");
@@ -542,6 +573,8 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     private void chatRequestNotAcceptedMsg() {
 
+       // flag = false;
+    //    FlagPreference.setFlag("flag",flag.toString());
 
             rvFirstTimeBG.setVisibility(View.VISIBLE);
             tvWait.setVisibility(View.VISIBLE);
@@ -550,7 +583,7 @@ public class PrivateChatActivity extends AppCompatActivity {
             messageTV1.setVisibility(View.VISIBLE);
             messageTV1.setText("Your chat request sent, Please wait for user approval.");
             otherProfile.setVisibility(View.VISIBLE);
-           Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+           // Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
 
             moreButton.setVisibility(View.GONE);
             sendButton.setVisibility(View.GONE);
@@ -558,8 +591,9 @@ public class PrivateChatActivity extends AppCompatActivity {
             
     }
 
-    public void dialogShow() {
+    /*public void dialogShow() {
 
+        //dipto
         prettyDialog = new PrettyDialog(this);
 
         prettyDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
@@ -618,7 +652,118 @@ public class PrivateChatActivity extends AppCompatActivity {
                 palupDailog();
             }
         }).show();
+    }*/
+
+    public void dialogShow() {
+        final Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.chat_request_limit);
+        dialog.setCancelable(false);
+
+        final TextView tvFindoutMessage = dialog.findViewById(R.id.tvFindoutMessage);
+        final Button payView = dialog.findViewById(R.id.payjoin);
+        final Button btnDiscoverBoddoPlus = dialog.findViewById(R.id.btnDiscoverBoddoPlus);
+        final Button notnow = dialog.findViewById(R.id.notnow);
+
+       // tvFindoutMessage.setText("You have reached your daily chat request limits. Buy more chat request or activate Boddo Plus.");
+
+
+        payView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //showPrettyDialog(holder, position, message);
+                if (Integer.parseInt(Data.userPalupPoint) >= Limitation.LIKE_FAV_VISITOR_CREDITS) {
+
+                    PrettyDialog jj = new PrettyDialog(PrivateChatActivity.this);
+                    jj.setTitle("Dear " + Data.userName)
+                            .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
+                            .setMessage("You don't have sufficient balance").setMessageColor(R.color.red_A700);
+
+                    jj.show();
+                } else {
+
+                    insufficientCredits();
+
+                }
+
+
+                dialog.dismiss();
+            }
+        });
+
+        btnDiscoverBoddoPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPalupPlusWindow();
+                dialog.dismiss();
+            }
+        });
+
+
+        notnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
     }
+
+    public void insufficientCredits() {
+        final Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.insufficient_credits_likefavorit_adapter);
+        dialog.setCancelable(false);
+
+        final Button payjoin = dialog.findViewById(R.id.payjoin);
+        final Button btnDiscoverBoddoPlusInsufficient = dialog.findViewById(R.id.btnDiscoverBoddoPlusInsufficient);
+        final Button notnow = dialog.findViewById(R.id.notnow);
+
+        payjoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PrivateChatActivity.this, BuyCreditActivity.class);
+                intent.putExtra("BuyCredits", true);
+                //context.overridePendingTransition(0, 0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+
+        btnDiscoverBoddoPlusInsufficient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPalupPlusWindow();
+                dialog.dismiss();
+            }
+        });
+
+
+        notnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
+
+    public void goToPalupPlusWindow() {
+
+        Intent intent = new Intent(this, BuyCreditActivity.class);
+        intent.putExtra("Membership", true);
+        //overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+
+
+    }
+
 
     private void palupDailog() {
         mDialog = new Dialog(this);
@@ -712,18 +857,25 @@ public class PrivateChatActivity extends AppCompatActivity {
                             chatRequestNotAcceptedMsg();
                         }else {
 
-                            accepted=response.body().getRequest();
-                            otherProfile.setVisibility(View.INVISIBLE);
-                            rvFirstTimeBG.setVisibility(View.VISIBLE);
-                            messageTV1.setVisibility(View.INVISIBLE);
-                            tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
-                            messageTV2.setVisibility(View.VISIBLE);
-                            messageTV2.setText("Start the conversation & write something impressive");
-                            messageTV3.setVisibility(View.VISIBLE);
-                            messageTV3.setText("Chat request accepted");
-                            otherProfile.setVisibility(View.VISIBLE);
-                            Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-                            recyclerView.setVisibility(View.VISIBLE);
+                            if(flag==true){
+                                rvFirstTimeBG.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }else {
+
+                                accepted=response.body().getRequest();
+                                otherProfile.setVisibility(View.INVISIBLE);
+                                rvFirstTimeBG.setVisibility(View.VISIBLE);
+                                messageTV1.setVisibility(View.INVISIBLE);
+                                tvTopMessageFirstTime.setVisibility(View.INVISIBLE);
+                                messageTV2.setVisibility(View.VISIBLE);
+                                messageTV2.setText("Start the conversation & write something impressive");
+                                messageTV3.setVisibility(View.VISIBLE);
+                                messageTV3.setText("Chat request accepted");
+                                otherProfile.setVisibility(View.VISIBLE);
+                                Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }
+
                     }
 
                     }
@@ -837,6 +989,9 @@ public class PrivateChatActivity extends AppCompatActivity {
 
                             rvFirstTimeBG.setVisibility(View.GONE);
                             flag = true;
+                            FlagPreference.setFlag("flag",flag.toString());
+
+
                          /*   messageTV3.setVisibility(View.VISIBLE);
                            // messageTV3.setText("Send a chat request");
                             messageTV3.setText("Chat request accepted");

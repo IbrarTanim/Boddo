@@ -44,7 +44,7 @@ public class HotlistAdapter extends RecyclerView.Adapter<HotlistAdapter.HotlistV
 
     @Override
     public void onBindViewHolder(@NonNull HotlistViewHolder holder, final int position) {
-        holder.name.setText(hotlists[position].getUserName());
+        holder.name.setText("@"+hotlists[position].getUserName());
         String bid = "BID: " + hotlists[position].getBid() + " Credits";
         holder.bid.setText(bid);
         holder.serial.setText(String.valueOf(position + 1));

@@ -108,7 +108,7 @@ public class HotlistDialogFragment extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 submitButton.setTextColor(getResources().getColor(R.color.white));
-                submitButton.setBackground(getResources().getDrawable(R.drawable.app_color_bg));
+                submitButton.setBackground(getResources().getDrawable(R.drawable.button2));
 
             }
 
@@ -319,7 +319,14 @@ public class HotlistDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                goToBuyCredit();
+                //goToBuyCredit();
+
+                Intent intent = new Intent(v.getContext(), BuyCreditActivity.class);
+                intent.putExtra("BuyCredits", true);
+                // activity.overridePendingTransition(0, 0);
+                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                // activity.finish();
+                v.getContext().startActivity(intent);
             }
         });
         final Button btnDialogCancel = dialog.findViewById(R.id.btnDialogCancel);
@@ -390,10 +397,13 @@ public class HotlistDialogFragment extends DialogFragment {
 
 
     public void goToBuyCredit() {
-        Intent intent = new Intent(getActivity(), BuyCreditActivity.class);
-        //intent.putExtra(Constants.PALUP_PLUS, Constants.PALUP_PLUS);
-        //startActivity(intent);
-        getActivity().startActivity(intent);
+        //Toast.makeText(activity, "BuyCredits", Toast.LENGTH_SHORT).show();
+       /* Intent intent = new Intent(getActivity(), BuyCreditActivity.class);
+        intent.putExtra("BuyCredits", true);
+        // activity.overridePendingTransition(0, 0);
+        // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        // activity.finish();
+        getActivity().startActivity(intent);*/
 
 
     }

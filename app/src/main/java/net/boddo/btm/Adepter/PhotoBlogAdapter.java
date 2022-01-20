@@ -1,9 +1,11 @@
 package net.boddo.btm.Adepter;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,16 +17,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import net.boddo.btm.Activity.BlockListActivity;
 import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Activity.DashBoadActivity;
 import net.boddo.btm.Activity.FullPhotoViewActivity;
+import net.boddo.btm.Activity.PrivateChatActivity;
 import net.boddo.btm.Activity.photoblog.OnLoveListener;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
@@ -33,6 +39,7 @@ import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.Helper;
+import net.boddo.btm.Utills.LikeUnlikePicturePrefs;
 import net.boddo.btm.Utills.Limitation;
 import net.boddo.btm.Utills.Response;
 import net.boddo.btm.Utills.SearchUser;
@@ -49,10 +56,12 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
     String viewType;
     String about, age, matchedCount, posi;
     Dialog mDialog;
+    boolean flag = false;
 
     private final static int FADE_DURATION = 300;
     private static final String TAG = "PhotoBlogAdapter";
     OnLoveListener onLoveListener;
+    LikeUnlikePicturePrefs likeUnlikePicturePrefs;
 
     public PhotoBlogAdapter(Context context, PhotoBlog[] photoBlogList, String viewType, OnLoveListener listener) {
         this.context = context;
@@ -75,9 +84,11 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
         view.startAnimation(anim);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull final PhotoBlogAdapter.PhotoBlogViewHolder holder, final int position) {
 
+        likeUnlikePicturePrefs = new LikeUnlikePicturePrefs(context);
         if (viewType.equals("TopPhoto")) {
             if (Data.isPalupPlusSubcriber) {
                 seeAllData(holder, position);
@@ -103,7 +114,11 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                     @Override
                     public void onClick(View v) {
                         //Todo onLove call
+                        Log.e("hello", "onClick: hay" );
                         onLoveListener.giveLove(position);
+
+
+
                     }
                 });
 //              setScaleAnimation(holder.itemView);
@@ -132,6 +147,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                         @Override
                         public void onClick(View v) {
                             //Todo onLove call
+                            Log.e("hello", "onClick: hay" );
                             onLoveListener.giveLove(position);
                         }
                     });
@@ -142,6 +158,8 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                     Glide.with(holder.PhotoBlogImageView.getContext()).load(photoBlogList[position].getPhoto()).into(holder.PhotoBlogImageView);
                     holder.quetionMark.setVisibility(View.VISIBLE);
                     holder.blurEffect.setVisibility(View.VISIBLE);
+                    holder.post.setVisibility(View.GONE);
+
                     holder.profileQuetionMark.setVisibility(View.VISIBLE);
                     holder.profileBlurEffect.setVisibility(View.VISIBLE);
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +176,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                         }
                     });
                     holder.imageViewLove.setVisibility(View.GONE);
+
                     // setScaleAnimation(holder.itemView);
                 }
             }
@@ -182,6 +201,19 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                 @Override
                 public void onClick(View v) {
                     //Todo onLove call
+                    Log.e("hello", "onClick: hay3" );
+                    if(photoBlogList[position].getIsPhotoLikedByMe() == 1){
+                        Log.e("hello", "onClick: "+position );
+                        Log.e("hello", "onClick: "+photoBlogList[position].getIsPhotoLikedByMe() );
+                        flag = false;
+                        LikeUnlikePicturePrefs.setFlagStatus("likeUnlike",flag);
+                        Log.e("flag", "seeAllData: "+flag );
+                    }else {
+                        Log.e("hello", "onClick: "+photoBlogList[position].getIsPhotoLikedByMe() );
+                        flag = true;
+                        LikeUnlikePicturePrefs.setFlagStatus("likeUnlike",flag);
+                        Log.e("flag", "seeAllData: "+flag );
+                    }
                     onLoveListener.giveLove(position);
                 }
             });
@@ -236,24 +268,29 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
             }
         }
         if (isBlocked) {
+
             final PrettyDialog myBlockDialog = new PrettyDialog(context);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
-                        .setMessage(" You have  Blocked this user")
+               /* myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
+                        .setMessage("You have  Blocked this user")
                         .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
                 }).show();
+*/
+                haveBlockedUser();
+
             } else {
-                myBlockDialog.setMessage(" You have  Blocked this user")
+                /*myBlockDialog.setMessage(" You have  Blocked this user")
                         .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
-                }).show();
+                }).show();*/
+                haveBlockedUser();
 
             }
 
@@ -266,29 +303,72 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
                 }
             }
             if (isBlockedMe) {
-                final PrettyDialog myBlockDialog = new PrettyDialog(context);
+              //  final PrettyDialog myBlockDialog = new PrettyDialog(context);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                    /*myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, You have been blocked by this user", Toast.LENGTH_SHORT).show();
+
+
                 } else {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                   /* myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, you have been blocked by this user", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 viewImage(position);
             }
         }
     }
+
+    private void haveBlockedUser() {
+        //Toast.makeText(context, "blocked", Toast.LENGTH_SHORT).show();
+
+        final PrettyDialog myBlockDialog = new PrettyDialog(context);
+        myBlockDialog.setContentView(R.layout.blocked_user);
+        final Button blockedList =myBlockDialog.findViewById(R.id.BtnBlockedList);
+        final Button cancel =myBlockDialog.findViewById(R.id.button_decline);
+
+
+        blockedList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, BlockListActivity.class));
+                myBlockDialog.dismiss();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myBlockDialog.dismiss();
+            }
+        });
+
+        myBlockDialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessage("You have  Blocked this user")
+                .setMessageColor(R.color.red_A700).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
+            @Override
+            public void onClick() {
+
+                myBlockDialog.dismiss();
+
+            }
+        }).show();
+        if (Data.pd != null){
+            Data.pd.dismiss();
+        }
+    }
+
+
 
     private void isBlockedFullPage(int position) {
         boolean isBlocked = false;
@@ -303,21 +383,26 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
         if (isBlocked) {
             final PrettyDialog myBlockDialog = new PrettyDialog(context);
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+               /* Toast.makeText(context, "block", Toast.LENGTH_SHORT).show();
                 myBlockDialog.setMessage(" You have  Blocked  this user")
                         .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
-                }).show();
+                }).show();*/
+                haveBlockedUser();
             } else {
+               /* Toast.makeText(context, "block1", Toast.LENGTH_SHORT).show();
                 myBlockDialog.setMessage(" You have  Blocked  this user")
                         .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                     @Override
                     public void onClick() {
                         myBlockDialog.dismiss();
                     }
-                }).show();
+                }).show();*/
+
+                haveBlockedUser();
             }
         } else {
             for (int j = 0; j < DashBoadActivity.whoBlockMeList.size(); j++) {
@@ -329,21 +414,25 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
             if (isBlockedMe) {
                 final PrettyDialog myBlockDialog = new PrettyDialog(context);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                   /* myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, you have been blocked by this user", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    myBlockDialog.setMessage(" You have been Blocked by this user")
+                    /*myBlockDialog.setMessage(" You have been Blocked by this user")
                             .setMessageColor(R.color.app_color).addButton("Cancel", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
                         @Override
                         public void onClick() {
                             myBlockDialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
+                    Toast.makeText(context, "Sorry, you have been blocked by this user",Toast.LENGTH_SHORT).show();
+
                 }
             } else {
                 viewImage(position);
@@ -372,14 +461,20 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
             holder.post.setText(blog.getDescription());
         }
         holder.textViewLikedCount.setText(blog.getLike());
+        Data.likeCountValue = blog.getLike();
+        Log.e("like", "seeAllData: "+Data.likeCountValue);
         holder.textViewCommentCount.setText(blog.getComment());
         holder.tvViewCount.setText(blog.getViews() + "");
 
         if (photoBlogList[position].getIsPhotoLikedByMe() != null) {
             if (photoBlogList[position].getIsPhotoLikedByMe() == 1) {
                 holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
+
+
+
             } else {
                 holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_black_love_or_like));
+
             }
         }
 //        posi = String.valueOf(photoBlogList.get(position));
@@ -463,6 +558,7 @@ public class PhotoBlogAdapter extends RecyclerView.Adapter<PhotoBlogAdapter.Phot
         TextView quetionMark, profileQuetionMark;
         LinearLayout blurEffect, profileBlurEffect;
         ImageView imageViewLove;
+        CardView cardViewID;
 
         public PhotoBlogViewHolder(@NonNull View itemView) {
             super(itemView);

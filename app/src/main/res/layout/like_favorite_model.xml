@@ -24,6 +24,7 @@
             app:riv_oval="false" />
 
         <RelativeLayout
+            android:id="@+id/rlUserInfoActivity"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_alignParentLeft="true"

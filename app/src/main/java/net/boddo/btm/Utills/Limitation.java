@@ -11,7 +11,7 @@ public class Limitation {
     public static final int UPLOAD_PHOTO_PALUP_PLUS_USER = 30;
     public static final int PRIVATE_CHAT_REQUEST_NORMAL_USER_CREDITS = 50;
     public static final int TOP_PHOTO_SHOW_PHOTO = 10;
-    public static final int LIKE_FAV_VISITOR_SHOW_PHOTO = 3;
+    public static final int LIKE_FAV_VISITOR_SHOW_PHOTO = 2;
     public static final int ADS_LIMIT_SHOW = 7;
 
 

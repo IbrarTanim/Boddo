@@ -92,7 +92,7 @@ The limitations and exclusions of liability set out in this  Section and elsewhe
     <string name="user_name_too_short">User Name Too Short</string>
     <string name="password_too_short">Password too short</string>
     <string name="enter_user_name">Username</string>
-    <string name="enter_user_name_limite">User name must be not less then 3 letter</string>
+    <string name="enter_user_name_limite">Username must be not less than 3 letters</string>
     <string name="enter_password">Enter You Password</string>
     <string name="enter_confirm_password">Confirm Password</string>
     <string name="password_not_matched">Password not matched</string>
@@ -162,6 +162,9 @@ The limitations and exclusions of liability set out in this  Section and elsewhe
     <string name="your_date_of_birth">BIRTH DATE</string>
     <string name="by_clicking_join"><![CDATA[By clicking JOIN you agree with <font color=#E11D74>\'Terms & Conditions\'.</font> Learn about how process your data in our <font color=#E11D74>\'Privacy Policy</font>]]></string>
     <string name="other">Other</string>
+
+
+    <string name="sarwarAbout">Self-driven and motivated Entrepreneur with a proven track record of success and extraordinary achievement in building a company from simple ideas.</string>
 
     <string-array name="language">
         <item>Bengali</item>

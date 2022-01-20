@@ -78,7 +78,7 @@ public class GenderActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(GenderActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GenderActivity.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
                             Data.userGender = gender;
                             goTOProfileAndAccountActivity();
                         }

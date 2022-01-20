@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class ChatHistoryListAdeptar extends RecyclerView.Adapter<ChatHistoryList
         Picasso.get().load(chatList.get(position).getProfilePhoto()).into(holder.userPhoto);
         holder.userName.setText(chatList.get(position).getFirstName());
         holder.tvMessageTime.setText(Helper.getLastActionTime(chatList.get(position).getLastMessageTime()));
+        Log.e("time", "onBindViewHolder: "+chatList.get(position).getLastMessageTime() );
         //String valueCheck = String.valueOf(Helper.getLastActionTime(chatList.get(position).getLastMessageTime()));
 
 

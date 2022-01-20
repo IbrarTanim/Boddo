@@ -34,6 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileOneFragment extends Fragment implements View.OnClickListener {
 
 
+
     DashBoadActivity activity;
     View view;
     Intent intent;
@@ -82,7 +83,12 @@ public class ProfileOneFragment extends Fragment implements View.OnClickListener
 
         tvProfileOneUserName.setText(Data.userFirstName);
         //tvAge.setText(age);
-        Glide.with(activity).load(Data.profilePhoto).into(civProfileOnePropic);
+        if(Data.profilePhoto.equals("")){
+            Glide.with(activity).load(R.drawable.ic_default_message_screen_profile_picture_12_07_2021).into(civProfileOnePropic);
+        }else {
+            Glide.with(activity).load(Data.profilePhoto).into(civProfileOnePropic);
+        }
+
         tvProfileOneBalance.setText(Data.userPalupPoint + " Credits");
 
 

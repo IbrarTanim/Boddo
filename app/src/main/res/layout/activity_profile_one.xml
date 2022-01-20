@@ -87,9 +87,9 @@
                                 android:id="@+id/tvUserNameProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/twenty"
+                                android:layout_marginLeft="@dimen/twenty_five"
                                 android:layout_marginTop="@dimen/five"
-                                android:layout_marginRight="@dimen/twenty"
+                                android:layout_marginRight="@dimen/twenty_five"
                                 android:layout_marginBottom="@dimen/five"
                                 android:gravity="center"
                                 android:text="Sadia"
@@ -106,6 +106,7 @@
                             android:layout_below="@+id/llSadia"
                             android:layout_marginLeft="@dimen/ten"
                             android:background="@drawable/bg_rounded_black_transparent"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -267,7 +268,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="About"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -281,7 +283,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Gallery"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -295,7 +298,8 @@
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Gifts"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                     <TextView
@@ -304,12 +308,13 @@
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:background="@drawable/bg_rounded_blank"
-                                        android:drawableLeft="@drawable/ic_story_icon_26_09_2021"
+                                        android:drawableLeft="@drawable/ic_story"
                                         android:gravity="center"
                                         android:paddingLeft="@dimen/fifteen"
                                         android:paddingRight="@dimen/ten"
                                         android:text="Story"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
                                         android:textSize="@dimen/twelve" />
 
                                 </LinearLayout>

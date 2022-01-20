@@ -58,6 +58,7 @@ public class Data {
     public static String userLanguage = "";
     public static String whoLikedMe = "";
     public static String country="";
+    public static String likeCountValue="0";
 
 
     public static void saveLoggedInData(User user) {

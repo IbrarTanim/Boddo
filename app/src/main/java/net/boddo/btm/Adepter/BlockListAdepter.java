@@ -61,6 +61,7 @@ public class BlockListAdepter extends RecyclerView.Adapter<BlockListAdepter.Bloc
 
         Picasso.get().load(blockList.get(i).getProfilePhoto()).into(holder.blockUserPhoto);
         holder.userName.setText(blockList.get(i).getFirstName());
+        holder.user_name.setText("@"+blockList.get(i).getUserName());
        // holder.userName.setText(blockList.get(i).getCreatedAt());
         Log.e("createdAT", "onBindViewHolder: "+blockList.get(i).getCreatedAt() );
        // Helper.getLastActionTime(chatList.get(position).getLastMessageTime())
@@ -78,7 +79,7 @@ public class BlockListAdepter extends RecyclerView.Adapter<BlockListAdepter.Bloc
                         String stute = response.body();
 
                         if (stute.equals("unblock")){
-                            Toast.makeText(context, blockList.get(i).getBlockedUserId()+" is Unblock Successful.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, blockList.get(i).getFirstName()+" Successfully Unblocked", Toast.LENGTH_SHORT).show();
                             blockList.remove(i);
                             notifyDataSetChanged();
                             EventBus.getDefault().post(new Event(Constants.UNBLOCKED));
@@ -104,7 +105,7 @@ public class BlockListAdepter extends RecyclerView.Adapter<BlockListAdepter.Bloc
     public class BlockListViewHolder extends RecyclerView.ViewHolder {
 
         ImageView blockUserPhoto;
-        TextView userName,block_user_last_message_time;
+        TextView userName,block_user_last_message_time,user_name;
         Button unBlockButton;
 
         public BlockListViewHolder(@NonNull View itemView) {
@@ -113,6 +114,7 @@ public class BlockListAdepter extends RecyclerView.Adapter<BlockListAdepter.Bloc
             blockUserPhoto = itemView.findViewById(R.id.profile_image);
             userName = itemView.findViewById(R.id.block_user_name);
             unBlockButton = itemView.findViewById(R.id.unBlockButton);
+            user_name = itemView.findViewById(R.id.user_name);
             block_user_last_message_time = itemView.findViewById(R.id.block_user_last_message_time);
 
 

@@ -110,6 +110,7 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //addNewPhoto();
+               // Toast.makeText(activity, "ivCameraMyBlogPhoto", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(activity, ImageUploadActivity.class);
                 startActivity(intent);
             }
@@ -184,13 +185,13 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
                             PrettyDialog jj = new PrettyDialog(MyBlogPhotoActivity.this);
                             jj.setTitle("Dear " + Data.userName)
                                     .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
-                                    .setMessage("You can Upload 20 photos in a day.").setMessageColor(R.color.red_A700);
+                                    .setMessage("You can Upload 5 photos in a day.").setMessageColor(R.color.red_A700);
                             jj.show();
                         } else {
                             PrettyDialog jj = new PrettyDialog(MyBlogPhotoActivity.this);
                             jj.setTitle("Dear " + Data.userName)
 
-                                    .setMessage("You can Upload 20 photos in a day.").setMessageColor(R.color.red_A700);
+                                    .setMessage("You can Upload 5 photos in a day.").setMessageColor(R.color.red_A700);
                             jj.show();
                         }
 

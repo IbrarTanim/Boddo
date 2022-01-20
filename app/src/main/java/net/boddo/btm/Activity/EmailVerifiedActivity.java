@@ -69,7 +69,7 @@ public class EmailVerifiedActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(EmailVerifiedActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EmailVerifiedActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                             AuthPreference.setEmail("email",myName);
                             goTOProfileAndAccountActivity();
                         }

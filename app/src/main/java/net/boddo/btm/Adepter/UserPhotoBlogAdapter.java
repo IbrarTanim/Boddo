@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,12 @@ public class UserPhotoBlogAdapter extends RecyclerView.Adapter<UserPhotoBlogAdap
     @Override
     public void onBindViewHolder(@NonNull UserPhotoBlogViewHolder holder, final int position) {
 
-
+/*
+        if (isLiked.getIsLiked().equals("yes")) {
+            like_button.setImageDrawable(getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
+        } else if (isLiked.getIsLiked().equals("no")) {
+            like_button.setImageDrawable(getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
+        }*/
         Picasso.get().load(userPhotoBlogImagesList[position].getPhoto()).into(holder.userImage);
 
         if (!userPhotoBlogImagesList[position].getDescription().equals("")) {
@@ -52,17 +58,27 @@ public class UserPhotoBlogAdapter extends RecyclerView.Adapter<UserPhotoBlogAdap
             holder.post.setText(userPhotoBlogImagesList[position].getDescription());
         }
 
+        if(userPhotoBlogImagesList[position].getLike().equals("1")){
+            holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
+
+        }else {
+            holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
+
+        }
         holder.userLikedCount.setText(userPhotoBlogImagesList[position].getLike());
         holder.userCommentCount.setText(userPhotoBlogImagesList[position].getComment());
         holder.userCount.setText(userPhotoBlogImagesList[position].getMatched());
 
 
-        /*holder.imageViewLove.setOnClickListener(new View.OnClickListener() {
+        holder.imageViewLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onLoveListener.giveLove(position);
+               // onLoveListener.giveLove(position);
+                //Toast.makeText(context, "1", Toast.LENGTH_SHORT).show();
+                holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
+
             }
-        });*/
+        });
 
         String check = userPhotoBlogImagesList[position].getActionAt();
         if (userPhotoBlogImagesList[position].getActionAt().equals("pending")) {

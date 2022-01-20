@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -216,7 +217,13 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
                 // N is for Nougat Api 24 Android 7
                 if (Build.VERSION_CODES.N <= android.os.Build.VERSION.SDK_INT) {
-                    mImageCaptureUri = FileProvider.getUriForFile(activity, BuildConfig.APPLICATION_ID + ".provider", activity.mFileTemp);
+                    try {
+                        Log.e("errormImageCaptureUri", "loadImageCamera: ");
+                        mImageCaptureUri = FileProvider.getUriForFile(activity, BuildConfig.APPLICATION_ID + ".provider", activity.mFileTemp);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("errormImageCaptureUri", "loadImageCamera: "+e.getLocalizedMessage() );
+                    }
                 } else {
 
                     mImageCaptureUri = Uri.fromFile(mFileTemp);
@@ -230,6 +237,7 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
             startActivityForResult(intent, REQUEST_CODE_TAKE_PICTURE);
 
         } catch (ActivityNotFoundException e) {
+            Log.e("errCamera", "loadImageCamera: "+e.getLocalizedMessage() );
         }
 
         intent_source = 2;

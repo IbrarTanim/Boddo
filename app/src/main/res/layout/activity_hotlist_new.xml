@@ -61,26 +61,26 @@
 
         </LinearLayout>
 
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight="16">
+            android:layout_weight="16"
+            android:background="#E8E8E8">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <View
+                   <!-- <View
                         android:layout_width="match_parent"
-                        android:layout_height="30dp" />
-
-
+                        android:layout_height="20dp" />-->
                     <!-- <android.support.v4.widget.SwipeRefreshLayout
                          android:id="@+id/refreshLayout"
                          android:layout_width="match_parent"
@@ -114,6 +114,86 @@
                         android:id="@+id/llHotListData"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:background="#E8E8E8"/>
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/hotListrecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/ten"
+                            android:layout_marginLeft="@dimen/five"
+                            android:layout_marginBottom="@dimen/ten"
+                            android:layout_weight="15" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+         <!--   <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
+
+
+                    &lt;!&ndash; <android.support.v4.widget.SwipeRefreshLayout
+                         android:id="@+id/refreshLayout"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:layout_below="@+id/toolbar">
+                         <android.support.v7.widget.RecyclerView
+                             android:id="@+id/hotListrecyclerView"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:padding="8dp" />
+                     </android.support.v4.widget.SwipeRefreshLayout>&ndash;&gt;
+
+                    &lt;!&ndash;<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/refreshLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/three"
+                        android:layout_marginBottom="@dimen/ten"
+                        android:layout_weight="15">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/hotListrecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center" />
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>&ndash;&gt;
+
+
+                    <LinearLayout
+                        android:id="@+id/llHotListData"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:visibility="invisible">
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -132,7 +212,7 @@
                 </LinearLayout>
 
 
-            </androidx.core.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>-->
 
 
         </RelativeLayout>

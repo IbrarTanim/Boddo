@@ -65,7 +65,7 @@ public class BirthDateActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(BirthDateActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BirthDateActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                             Data.userDateOfBirgh = date;
                             goTOProfileAndAccountActivity();
                         }

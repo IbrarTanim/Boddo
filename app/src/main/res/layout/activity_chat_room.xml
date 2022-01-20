@@ -83,22 +83,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp" />
 
+
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     app:tabBackground="@drawable/tab_selected_unselected_bg"
                     app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/white"
-                    app:tabIndicatorHeight="@dimen/paddin_4dp"
+                    app:tabIndicatorColor="#54AE4C"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabIndicatorFullWidth="true"
+                    style="@style/AppTabLayout"
                     app:tabMode="fixed"
-                    app:tabPadding="@dimen/five"
-                    app:tabSelectedTextColor="@color/white"
+                    app:tabSelectedTextColor="@color/gray"
                     app:tabTextColor="@color/gray" />
 
-                <View
+               <!-- <View
                     android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+                    android:layout_height="10dp" />-->
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewPager"

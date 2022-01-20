@@ -9,7 +9,7 @@
         android:width="@dimen/two"
         android:color="@color/app_bg_color" />
 
-    <corners android:radius="@dimen/ten" />
+    <corners android:radius="30dp" />
 
 
 </shape>

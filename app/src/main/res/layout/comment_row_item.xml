@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/five"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/commentor_image_view"
-            android:layout_width="@dimen/eighty"
-            android:layout_height="@dimen/eighty"
-            android:layout_marginTop="@dimen/twenty"
+            android:layout_width="@dimen/forty"
+            android:layout_height="@dimen/forty"
+            android:layout_marginTop="@dimen/thirty"
             android:layout_marginLeft="@dimen/five"
             android:src="@drawable/rokan" />
 
         <LinearLayout
-            android:layout_width="@dimen/zero"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
+                android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:orientation="horizontal">
 
-                <View
+               <!-- <View
                     android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.5" />-->
 
                 <LinearLayout
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginTop="@dimen/ten"
                     android:layout_marginBottom="@dimen/five"
@@ -59,6 +55,7 @@
                             android:layout_weight="6"
                             android:gravity="left|center"
                             android:text="Sarwar"
+                            android:layout_marginLeft="10dp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/fifteen"
                             android:textStyle="bold" />
@@ -70,6 +67,7 @@
                             android:padding="@dimen/five"
                             android:layout_gravity="right|center"
                             android:layout_weight="1"
+                            android:visibility="gone"
                             android:src="@drawable/dot_menu_20_26_12_2020" />
 
 
@@ -81,6 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left|center"
+                        android:layout_marginLeft="10dp"
                         android:scrollbars="vertical"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/black" />
@@ -118,4 +117,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
