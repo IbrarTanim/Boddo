@@ -51,7 +51,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/ten"
             android:layout_marginBottom="@dimen/ten"
-            android:background="@drawable/button2_pink"
+            android:background="@drawable/button2"
             android:gravity="center"
             android:text="Unblock"
             android:textAppearance="?android:textAppearanceSmall"

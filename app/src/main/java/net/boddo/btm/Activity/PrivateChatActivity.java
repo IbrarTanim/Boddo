@@ -221,6 +221,9 @@ public class PrivateChatActivity extends AppCompatActivity {
             }
         });
 
+        String test = Data.otherUserId;
+        Toast.makeText(activity, Data.otherUserId, Toast.LENGTH_SHORT).show();
+
         for (int i = 0; i < DashBoadActivity.myBlockList.size(); i++) {
             if (DashBoadActivity.myBlockList.get(i).getBlockedUserId().equals(Data.otherUserId)) {
                 isBlocked = true;
@@ -243,6 +246,7 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         }
 
+        //farabi
         if (getIntent().hasExtra(Constants.OTHER_USER_ID)) {
             if (!getIntent().getStringExtra(Constants.OTHER_USER_ID).equals("")) {
                 otherUserId = getIntent().getStringExtra(Constants.OTHER_USER_ID);
@@ -487,7 +491,6 @@ public class PrivateChatActivity extends AppCompatActivity {
                             messageTV2.setText("Start the conversation & write something impressive");
                             otherProfile.setVisibility(View.VISIBLE);
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-
                             tvTopMessageFirstTime.setVisibility(View.GONE);
 
 
@@ -506,7 +509,6 @@ public class PrivateChatActivity extends AppCompatActivity {
                                 messageTV1.setText("Your chat request sent, Please wait for user approval.");
                                 otherProfile.setVisibility(View.VISIBLE);
                                 Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
-
                                 moreButton.setVisibility(View.GONE);
                                 sendButton.setVisibility(View.GONE);
                                 editTextMessage.setText("");
@@ -548,7 +550,7 @@ public class PrivateChatActivity extends AppCompatActivity {
             messageTV1.setVisibility(View.VISIBLE);
             messageTV1.setText("Your chat request sent, Please wait for user approval.");
             otherProfile.setVisibility(View.VISIBLE);
-           // Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+           Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
 
             moreButton.setVisibility(View.GONE);
             sendButton.setVisibility(View.GONE);

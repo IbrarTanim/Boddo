@@ -141,6 +141,8 @@ public class ChatAppMsgAdapter extends RecyclerView.Adapter<ChatAppMsgAdapter.Ch
                 }
             }
         });
+
+
     }
     @Override
     public int getItemCount() {

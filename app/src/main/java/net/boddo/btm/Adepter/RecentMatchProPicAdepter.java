@@ -1,11 +1,13 @@
 package net.boddo.btm.Adepter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +16,10 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
+import net.boddo.btm.Activity.PrivateChatActivity;
 import net.boddo.btm.Model.RecentMatchModel;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.Data;
 
 import java.util.List;
 
@@ -67,6 +71,29 @@ public class RecentMatchProPicAdepter extends RecyclerView.Adapter<RecentMatchPr
             age = itemView.findViewById(R.id.chatRequestAgeTV);
             address = itemView.findViewById(R.id.chatRequestAddressTV);
             civMessageRecentMatch = itemView.findViewById(R.id.civMessageRecentMatch);
+            civMessageRecentMatch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                     //Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, Data.otherUserId, Toast.LENGTH_SHORT).show();
+
+
+                    /*Intent intent = new Intent(context, PrivateChatActivity.class);
+                    *//*if (Data.isMatched.equals("yes")) {
+                        isMatch = true;
+                    }*//*
+                    //intent.putExtra("other_user_id", Data.otherUserId);
+                    context.startActivity(intent);*/
+
+                }
+            });
+
+
+
+
+
 
         }
     }

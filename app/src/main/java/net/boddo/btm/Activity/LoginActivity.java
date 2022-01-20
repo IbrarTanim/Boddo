@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
     Button loginBTN;
 
     TextView tvForgetPassword;
-
     @BindView(R.id.text_view_more_option)
     TextView moreOption;
 
@@ -65,7 +64,6 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
     long messageCountNotification, messageRequestNotifacition;
 
     ApiInterface apiInterface;
-
     private static final String TAG = "LoginActivity";
     User user;
     String userAgent;
