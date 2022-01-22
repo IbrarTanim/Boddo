@@ -14,7 +14,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.Selection;
+import android.text.Spannable;
+import android.text.SpannedString;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -107,7 +110,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         tvAboutProfile.setOnClickListener(this);
 
         if(position>0){
-            Data.userMoto = name.toString();
+            Data.userMoto = name;
             Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
             motoTextViewButton.setText(Data.userMoto);
             final Dialog motoDialog = new Dialog(activity);

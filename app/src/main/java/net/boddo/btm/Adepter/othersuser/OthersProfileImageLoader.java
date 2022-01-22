@@ -31,6 +31,7 @@ public class OthersProfileImageLoader extends PagerAdapter {
     @Override
     public int getCount() {
         //todo this will be imageList
+        int otherList = Data.othersImageList.size();
         return Data.othersImageList.size();
     }
 

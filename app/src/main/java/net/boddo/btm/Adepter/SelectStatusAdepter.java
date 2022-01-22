@@ -16,6 +16,7 @@ import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Fragment.ProfileOneFragment;
 import net.boddo.btm.Model.SelectStatusModel;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.Data;
 
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class SelectStatusAdepter extends RecyclerView.Adapter<SelectStatusAdepte
 
                 String name = selectStatusModels.get(position).getStatus();
                 String pos = String.valueOf(position);
+                Data.userMoto = name;
                 Intent intent = new Intent(context.getApplicationContext(),ProfileOneActivity.class);
                 intent.putExtra("name",name);
                 intent.putExtra("position",position);
