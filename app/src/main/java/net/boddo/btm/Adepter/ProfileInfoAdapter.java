@@ -343,7 +343,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
                 });
 
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+               // alertDialog.show();
 
 
             } else if (getAdapterPosition() == 7) {//hair color

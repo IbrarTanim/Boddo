@@ -257,14 +257,18 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         }
 
-        if (getIntent().hasExtra(Constants.OTHER_USER_ID)) {
-            if (!getIntent().getStringExtra(Constants.OTHER_USER_ID).equals("")) {
-                otherUserId = getIntent().getStringExtra(Constants.OTHER_USER_ID);
-                Picasso.get().load(Data.otherProfilePhoto).into(imageViewReceiver);
-                Helper.getOtherUserDetails(getIntent().getStringExtra(Constants.OTHER_USER_ID));
+        try {
+            if (getIntent().hasExtra(Constants.OTHER_USER_ID)) {
+                if (!getIntent().getStringExtra(Constants.OTHER_USER_ID).equals("")) {
+                    otherUserId = getIntent().getStringExtra(Constants.OTHER_USER_ID);
+                    Picasso.get().load(Data.otherProfilePhoto).into(imageViewReceiver);
+                    Helper.getOtherUserDetails(getIntent().getStringExtra(Constants.OTHER_USER_ID));
+                }
+            } else {
+                Helper.getOtherUserDetails(Data.otherUserId);
             }
-        } else {
-            Helper.getOtherUserDetails(Data.otherUserId);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         if (getIntent().hasExtra(Constants.CONVERSATION_ID)) {
             if (!getIntent().getStringExtra(Constants.CONVERSATION_ID).equals("")) {
@@ -427,15 +431,19 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         firstPortionOfMyName = Data.userFirstName.split(" ");
 
-        if (otherUserNameFromActiveList.equals("")) {
-            Log.e("otherUserNameFrom", "onCreate: "+otherUserNameFromActiveList );
-            firstPortionOfName = Data.otherUserFirstName.split(" ");
-            textViewTwoUsersName.setText(firstPortionOfName[0]);
-            second_name_online_textView.setText(firstPortionOfMyName[0]);
-        } else {
-            firstPortionOfName = otherUserNameFromActiveList.split(" ");
-            textViewTwoUsersName.setText(firstPortionOfName[0]);
-            second_name_online_textView.setText(firstPortionOfMyName[0]);
+        try {
+            if (otherUserNameFromActiveList.equals("")) {
+                Log.e("otherUserNameFrom", "onCreate: "+otherUserNameFromActiveList );
+                firstPortionOfName = Data.otherUserFirstName.split(" ");
+                textViewTwoUsersName.setText(firstPortionOfName[0]);
+                second_name_online_textView.setText(firstPortionOfMyName[0]);
+            } else {
+                firstPortionOfName = otherUserNameFromActiveList.split(" ");
+                textViewTwoUsersName.setText(firstPortionOfName[0]);
+                second_name_online_textView.setText(firstPortionOfMyName[0]);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
