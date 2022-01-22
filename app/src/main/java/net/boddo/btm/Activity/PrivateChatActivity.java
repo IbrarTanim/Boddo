@@ -87,7 +87,6 @@ import retrofit2.Response;
 
 public class PrivateChatActivity extends AppCompatActivity {
 
-
     PrivateChatActivity activity;
     @BindView(R.id.two_name_online_textView)
     TextView textViewTwoUsersName;

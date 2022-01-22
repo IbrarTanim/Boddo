@@ -52,8 +52,6 @@
             android:textSize="@dimen/twelve"
             android:layout_toEndOf="@+id/profile_image"/>
 
-
-
         <Button
             android:id="@+id/unBlockButton"
             android:layout_width="wrap_content"

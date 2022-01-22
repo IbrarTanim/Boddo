@@ -435,7 +435,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/image_sadia"
-                                android:scaleType="fitXY"/>
+                                android:scaleType="fitCenter"/>
 
 
                         </androidx.cardview.widget.CardView>
