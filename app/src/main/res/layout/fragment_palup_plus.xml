@@ -168,11 +168,12 @@
 
 
                         <LinearLayout
+                            android:id="@+id/firstClassPalupPlusFragment"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
+
                             android:orientation="vertical">
 
                             <TextView
@@ -180,9 +181,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/zero"
                                 android:layout_weight="2"
-                                android:gravity="bottom|center"
+                                android:gravity="center"
                                 android:text="1ST CLASS"
-                                android:textColor="@color/gray"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginLeft="@dimen/two"
+                                android:background="@drawable/post_select_button"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/eighteen"
                                 android:textStyle="normal" />
 
@@ -242,84 +246,121 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_weight="1">
 
-                            <TextView
-                                android:id="@+id/month2_title"
+                            <LinearLayout
+                                android:id="@+id/premiumClassPalupPlusFragment"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/zero"
-                                android:layout_weight="2"
-                                android:gravity="bottom|center"
-                                android:text="PREMIUM"
-                                android:textColor="@color/gray"
-                                android:textSize="@dimen/eighteen"
-                                android:textStyle="normal" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/zero"
-                                android:layout_weight="2" />
-
-                            <TextView
-                                android:id="@+id/month2_textView"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/zero"
-                                android:layout_weight="1"
+                                android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:text="Including"
-                                android:textColor="@color/gray"
-                                android:textSize="@dimen/fifteen"
-                                android:textStyle="normal" />
+                                android:orientation="vertical">
 
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="23dp"
+                                    android:layout_weight="1"
+                                    android:background="#aaa494"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="@dimen/three"
+                                    android:layout_marginRight="@dimen/three"
+                                    android:textColor="@color/white">
+
+                                    <TextView
+                                        android:id="@+id/month2_title"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="PREMIUM"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/eighteen"
+                                        android:textStyle="normal" />
+
+
+                                </RelativeLayout>
+
+
+
+                                <View
+                                    android:id="@+id/view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/zero"
+                                    android:layout_weight="2" />
+
+                                <TextView
+                                    android:id="@+id/month2_textView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/zero"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="Including"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/fifteen"
+                                    android:textStyle="normal" />
+
+                                <TextView
+                                    android:id="@+id/medal2_textView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/zero"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="2,500 Credits"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/ten"
+                                    android:textStyle="bold" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/zero"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/zero"
+                                    android:layout_weight="1"
+                                    android:gravity="center|bottom"
+                                    android:text="5,000 BDT"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/fifteen"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/money2_textView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/zero"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="3 months"
+                                    android:textColor="@color/gray"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
                             <TextView
-                                android:id="@+id/medal2_textView"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/zero"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="2,500 Credits"
-                                android:textColor="@color/gray"
-                                android:textSize="@dimen/ten"
-                                android:textStyle="bold" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/zero"
-                                android:layout_weight="1" />
+                                android:background="@drawable/priemium_select_button"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginTop="35dp"
+                                android:padding="@dimen/five"
+                                android:text="BEST VALUE"
+                                android:textSize="12sp"
+                                android:textColor="@color/white" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/zero"
-                                android:layout_weight="1"
-                                android:gravity="center|bottom"
-                                android:text="5,000 BDT"
-                                android:textColor="@color/gray"
-                                android:textSize="@dimen/fifteen"
-                                android:textStyle="bold" />
+                        </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/money2_textView"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/zero"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="3 months"
-                                android:textColor="@color/gray"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
 
-                        </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/plusPalupPlusFragment"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_margin="5dp"
+
                             android:layout_weight="1"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -329,9 +370,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/zero"
                                 android:layout_weight="2"
-                                android:gravity="bottom|center"
+                                android:gravity="center"
                                 android:text="PLUS"
-                                android:textColor="@color/gray"
+                                android:layout_marginRight="@dimen/two"
+                                android:layout_marginLeft="4dp"
+                                android:background="#aaa494"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/eighteen"
                                 android:textStyle="normal" />
 

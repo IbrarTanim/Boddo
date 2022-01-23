@@ -98,7 +98,7 @@ public class AllCommentsActivity extends AppCompatActivity {
         emojiconEditText = findViewById(R.id.emojicon_edit_text);
         viewWhiteBlank = findViewById(R.id.viewWhiteBlank);
 
-        emojiconEditText.requestFocus();
+        //emojiconEditText.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
@@ -110,7 +110,8 @@ public class AllCommentsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (start == 0) {
+                if (s.length() == 0) {
+                    Log.e("Textcount", "onTextChanged: "+s.length() );
                     submitButton.setVisibility(View.GONE);
                     submitButtonTouch.setVisibility(View.VISIBLE);
                 } else {

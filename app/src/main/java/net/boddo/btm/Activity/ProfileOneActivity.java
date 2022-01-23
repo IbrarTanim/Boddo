@@ -80,13 +80,12 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         activity = this;
         ButterKnife.bind(this);
 
-        String name = getIntent().getStringExtra("name");
-        int position = getIntent().getIntExtra("position",0);
 
 
 
 
-        Log.e("details", "onCreate: "+name+" "+position );
+
+      //  Log.e("details", "onCreate: "+name+" "+position );
         imageViewPager = findViewById(R.id.profile_image_view_pager);
         firstNameAndUserName = findViewById(R.id.text_view_first_name_and_user_name);
         tvUserNameProfile = findViewById(R.id.tvUserNameProfile);
@@ -109,8 +108,8 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         tvStoryProfile.setOnClickListener(this);
         tvAboutProfile.setOnClickListener(this);
 
-        if(position>0){
-            Data.userMoto = name;
+      /*  if(position>0){
+            //Data.userMoto = name;
             Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
             motoTextViewButton.setText(Data.userMoto);
             final Dialog motoDialog = new Dialog(activity);
@@ -121,7 +120,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
                 motoTextViewButton.setText("Update your status!");
             }
 
-        }
+        }*/
 
         final Dialog motoDialog = new Dialog(activity);
         motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
@@ -195,6 +194,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
                         AboutUpdate obj = new AboutUpdate(activity);
                         obj.updateAbout("moto", editTextMoto.getText().toString());
                         Data.userMoto = editTextMoto.getText().toString();
+                        Toast.makeText(activity, Data.userMoto, Toast.LENGTH_SHORT).show();
                         Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
                         motoDialog.dismiss();
                         motoTextViewButton.setText(Data.userMoto);
