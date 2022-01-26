@@ -97,21 +97,26 @@ public class AllCommentsActivity extends AppCompatActivity {
         submitButtonTouch = findViewById(R.id.submitButtonTouch);
         emojiconEditText = findViewById(R.id.emojicon_edit_text);
         viewWhiteBlank = findViewById(R.id.viewWhiteBlank);
+       // closeKeyBoard();
 
-        //emojiconEditText.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+       /* emojiconEditText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(emojiconEditText, InputMethodManager.SHOW_IMPLICIT);*/
 
         emojiconEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //submitButton.setBackgroundResource(R.drawable.send_icon_20_03_01_2021_normal);
+
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
                     Log.e("Textcount", "onTextChanged: "+s.length() );
+                    Toast.makeText(getApplicationContext(), "closeKeyBoard", Toast.LENGTH_SHORT).show();
+                   // closeKeyBoard();
                     submitButton.setVisibility(View.GONE);
                     submitButtonTouch.setVisibility(View.VISIBLE);
                 } else {
@@ -178,6 +183,14 @@ public class AllCommentsActivity extends AppCompatActivity {
         });*/
 
 
+    }
+
+    private void closeKeyBoard() {
+       /* InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(emojiconEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
 

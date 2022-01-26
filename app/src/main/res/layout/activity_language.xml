@@ -84,8 +84,46 @@
                     android:id="@+id/rvLanguage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/five"
                     android:layout_weight="15" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/bgColor"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="right|center"
+                    android:background="@color/white"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="CANCEL"
+                        android:textStyle="bold"
+                        android:padding="@dimen/elevation_5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/twenty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="SAVE"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_marginLeft="@dimen/twenty"
+                        android:textStyle="bold"
+                        android:padding="@dimen/elevation_5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/twenty" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvSave"
@@ -96,6 +134,7 @@
                     android:gravity="center"
                     android:text="Save"
                     android:textColor="@color/white"
+                    android:visibility="gone"
                     android:textSize="@dimen/twenty" />
 
             </LinearLayout>
