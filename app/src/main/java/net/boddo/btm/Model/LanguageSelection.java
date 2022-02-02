@@ -1,6 +1,7 @@
 package net.boddo.btm.Model;
 
 public class LanguageSelection {
+
     String languageName;
 
     public String getLanguageName() {

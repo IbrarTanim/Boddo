@@ -1,14 +1,10 @@
 package net.boddo.btm.Adepter;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,28 +13,25 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.makeramen.roundedimageview.RoundedImageView;
-
-import net.boddo.btm.Model.AllUser;
 import net.boddo.btm.Model.LanguageSelection;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AboutUpdate;
 import net.boddo.btm.Utills.Data;
-import net.boddo.btm.Utills.SearchUser;
+import net.boddo.btm.Utills.ItemOnClickListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class LanguageSelectionAdapter extends RecyclerView.Adapter<LanguageSelectionAdapter.viewHolder> {
 
     ArrayList<LanguageSelection> languageSelectionList;
     Context context;
+    ItemOnClickListener itemOnClickListener;
 
 
-    public LanguageSelectionAdapter(ArrayList<LanguageSelection> languageSelectionList, Context context) {
+    public LanguageSelectionAdapter(ArrayList<LanguageSelection> languageSelectionList, Context context, ItemOnClickListener itemOnClickListener) {
         this.languageSelectionList = languageSelectionList;
         this.context = context;
+        this.itemOnClickListener = itemOnClickListener;
     }
 
     @NonNull
@@ -60,6 +53,7 @@ public class LanguageSelectionAdapter extends RecyclerView.Adapter<LanguageSelec
         holder.llLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 holder.llLanguage.setBackgroundColor(ContextCompat.getColor(context, R.color.app_color));
                 holder.tvLanguageName.setTextColor(ContextCompat.getColor(context, R.color.white));
                 Toast.makeText(context, "languages", Toast.LENGTH_SHORT).show();
@@ -98,7 +92,14 @@ public class LanguageSelectionAdapter extends RecyclerView.Adapter<LanguageSelec
             llLanguage = itemView.findViewById(R.id.llLanguage);
             languageCheckBox = itemView.findViewById(R.id.languageCheckBox);
 
+            languageCheckBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    itemOnClickListener.OnClick(v, getAdapterPosition(), false);
+
+                }
+            });
         }
     }
 }

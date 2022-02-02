@@ -155,7 +155,7 @@
                                 android:text="$10"
                                 android:layout_marginRight="4dp"
                                 android:layout_marginLeft="@dimen/two"
-                                android:background="@drawable/post_select_button"
+                                android:background="@drawable/gradientbackground"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/eighteen"
                                 android:textStyle="normal" />
@@ -211,7 +211,7 @@
                                     android:text="$18"
                                     android:layout_marginRight="4dp"
                                     android:layout_marginLeft="@dimen/two"
-                                    android:background="@drawable/post_select_button"
+                                    android:background="@drawable/gradientbackground"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/eighteen"
                                     android:textStyle="normal" />
@@ -269,7 +269,7 @@
                                 android:text="$35"
                                 android:layout_marginRight="2dp"
                                 android:layout_marginLeft="4dp"
-                                android:background="@drawable/post_select_button"
+                                android:background="@drawable/gradientbackground"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/eighteen"
                                 android:textStyle="normal" />
@@ -395,7 +395,7 @@
                                     android:text="$10"
                                     android:layout_marginRight="4dp"
                                     android:layout_marginLeft="3dp"
-                                    android:background="@drawable/post_select_button"
+                                    android:background="@drawable/gradientbackground"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/eighteen"
                                     android:textStyle="normal" />
@@ -441,7 +441,7 @@
                                 android:textSize="12sp"
                                 android:textColor="@color/white"
                                 android:padding="@dimen/five"
-                                android:background="@drawable/priemium_select_button"
+                                android:background="@drawable/gradientbackground"
                                 android:layout_centerInParent="true"
                                 android:layout_alignParentTop="true"
                                 android:layout_marginTop="33dp"/>
@@ -468,7 +468,7 @@
                                     android:text="$10"
                                     android:layout_marginRight="4dp"
                                     android:layout_marginLeft="4dp"
-                                    android:background="@drawable/post_select_button"
+                                    android:background="@drawable/gradientbackground"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/eighteen"
                                     android:textStyle="normal" />
@@ -526,7 +526,7 @@
                                     android:text="$10"
 
                                     android:layout_marginLeft="4dp"
-                                    android:background="@drawable/post_select_button"
+                                    android:background="@drawable/gradientbackground"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/eighteen"
                                     android:textStyle="normal" />

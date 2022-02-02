@@ -2,16 +2,15 @@ package net.boddo.btm.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 
@@ -19,12 +18,10 @@ import net.boddo.btm.Activity.AddPhotoActivity;
 import net.boddo.btm.Activity.AllUsersActivity;
 import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Activity.DashBoadActivity;
-import net.boddo.btm.Activity.ImageUploadActivity;
 import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Activity.Settings.SettingsActivity;
 import net.boddo.btm.Activity.SupportWebViewActivity;
 import net.boddo.btm.R;
-import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 
 import java.util.Calendar;
@@ -194,9 +191,15 @@ public class ProfileOneFragment extends Fragment implements View.OnClickListener
 
     private void convertStringToDateFormat(String stringDate) {
         String[] stringArray = stringDate.split("/");
-        date = Integer.parseInt(stringArray[0]);
-        month = Integer.parseInt(stringArray[1]);
-        year = Integer.parseInt(stringArray[2]);
+
+        try {
+            date = Integer.parseInt(stringArray[0]);
+            month = Integer.parseInt(stringArray[1]);
+            year = Integer.parseInt(stringArray[2]);
+        } catch (Exception e) {
+            //Log.e("Error", )
+        }
+
     }
 
     private String getAge(int year, int month, int day) {

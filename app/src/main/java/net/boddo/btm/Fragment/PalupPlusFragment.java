@@ -2,12 +2,8 @@ package net.boddo.btm.Fragment;
 
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +22,6 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
 import com.rd.PageIndicatorView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Adepter.PalupPlusSliderAdapter;
 import net.boddo.btm.Billing.BillingManager;
@@ -40,6 +31,11 @@ import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.IabHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -143,7 +139,7 @@ public class PalupPlusFragment extends Fragment {
         firstClassPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                month6_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
+                month6_title.setBackground(getResources().getDrawable(R.drawable.gradientbackground));
                 month2_title.setBackgroundColor(Color.parseColor("#aaa494"));
                 month3_title.setBackgroundColor(Color.parseColor("#aaa494"));
 
@@ -152,7 +148,7 @@ public class PalupPlusFragment extends Fragment {
         premiumClassPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                month2_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
+                month2_title.setBackground(getResources().getDrawable(R.drawable.gradientbackground));
                 month6_title.setBackgroundColor(Color.parseColor("#aaa494"));
                 month3_title.setBackgroundColor(Color.parseColor("#aaa494"));
             }
@@ -160,7 +156,7 @@ public class PalupPlusFragment extends Fragment {
         plusPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                month3_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
+                month3_title.setBackground(getResources().getDrawable(R.drawable.gradientbackground));
                 month2_title.setBackgroundColor(Color.parseColor("#aaa494"));
                 month6_title.setBackgroundColor(Color.parseColor("#aaa494"));
 

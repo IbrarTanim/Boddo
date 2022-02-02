@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg_color">
@@ -185,7 +184,7 @@
                                 android:text="1ST CLASS"
                                 android:layout_marginRight="4dp"
                                 android:layout_marginLeft="@dimen/two"
-                                android:background="@drawable/post_select_button"
+                                android:background="@drawable/gradientbackground"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/eighteen"
                                 android:textStyle="normal" />
@@ -343,7 +342,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
-                                android:background="@drawable/priemium_select_button"
+                                android:background="@drawable/gradientbackground"
                                 android:layout_alignParentTop="true"
                                 android:layout_centerInParent="true"
                                 android:layout_marginTop="35dp"
