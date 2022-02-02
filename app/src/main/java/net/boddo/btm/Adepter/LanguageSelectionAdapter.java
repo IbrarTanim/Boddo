@@ -2,10 +2,12 @@ package net.boddo.btm.Adepter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,13 +54,15 @@ public class LanguageSelectionAdapter extends RecyclerView.Adapter<LanguageSelec
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
-        holder.tvLanguageName.setText(languageSelectionList.get(position).getLanguageName());
+        //holder.tvLanguageName.setText(languageSelectionList.get(position).getLanguageName());
+        holder.languageCheckBox.setText(languageSelectionList.get(position).getLanguageName());
 
         holder.llLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.llLanguage.setBackgroundColor(ContextCompat.getColor(context, R.color.app_color));
                 holder.tvLanguageName.setTextColor(ContextCompat.getColor(context, R.color.white));
+                Toast.makeText(context, "languages", Toast.LENGTH_SHORT).show();
 
                 String item = "";
                 for (int i = 0; i < languageSelectionList.size(); i++) {
@@ -86,11 +90,13 @@ public class LanguageSelectionAdapter extends RecyclerView.Adapter<LanguageSelec
 
         TextView tvLanguageName;
         LinearLayout llLanguage;
+        CheckBox languageCheckBox;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             tvLanguageName = itemView.findViewById(R.id.tvLanguageName);
             llLanguage = itemView.findViewById(R.id.llLanguage);
+            languageCheckBox = itemView.findViewById(R.id.languageCheckBox);
 
 
         }

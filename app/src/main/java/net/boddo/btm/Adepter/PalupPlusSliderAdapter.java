@@ -16,14 +16,14 @@ public class PalupPlusSliderAdapter extends PagerAdapter {
 
 
     int image[] = {
-            R.drawable.like_slider,
-            R.drawable.favorite_slider,
-            R.drawable.visitor_slider,
-            R.drawable.chat_request_slider,
-            R.drawable.share_picture_slider,
-            R.drawable.top_photos_slider,
-            R.drawable.global_chat_room_slider,
-            R.drawable.no_ads_slider
+            R.drawable.slider1,
+            R.drawable.slider2,
+            R.drawable.slider3,
+            R.drawable.slider4,
+            R.drawable.slider5,
+            R.drawable.slider6,
+            R.drawable.slider7,
+            R.drawable.slider8
     };
 
     private Context context;

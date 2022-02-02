@@ -9,15 +9,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/one"
+
         android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/ten"
+            android:text="Bangla"
+            android:gravity="left|center"
+            android:textSize="@dimen/twenty"
+            android:id="@+id/languageCheckBox"/>
 
         <TextView
             android:id="@+id/tvLanguageName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="left|center"
+            android:layout_marginLeft="10dp"
             android:text="Bangla"
+            android:visibility="gone"
             android:textSize="@dimen/twenty" />
 
     </LinearLayout>

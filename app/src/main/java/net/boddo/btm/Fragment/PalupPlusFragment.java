@@ -1,6 +1,7 @@
 package net.boddo.btm.Fragment;
 
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -55,8 +57,10 @@ public class PalupPlusFragment extends Fragment {
 
     RadioButton rbSubscribeButton;
     TextView text1, text2, text3, text4, text5, text6, text7, text8, text9;
+    LinearLayout firstClassPalupPlusFragment,premiumClassPalupPlusFragment,plusPalupPlusFragment;
 
     TextView tvBackMembership;
+    TextView month6_title,month2_title,month3_title;
 
     String radioButtonValue;
 
@@ -122,6 +126,12 @@ public class PalupPlusFragment extends Fragment {
 
 
         tvLongText = view.findViewById(R.id.tvLongText);
+        firstClassPalupPlusFragment = view.findViewById(R.id.firstClassPalupPlusFragment);
+        premiumClassPalupPlusFragment = view.findViewById(R.id.premiumClassPalupPlusFragment);
+        plusPalupPlusFragment = view.findViewById(R.id.plusPalupPlusFragment);
+        month6_title = view.findViewById(R.id.month6_title);
+        month2_title = view.findViewById(R.id.month2_title);
+        month3_title = view.findViewById(R.id.month3_title);
 
         /*String text = "By tapping 'Continue' and confirming your subscription, you accept Boddo's Terms &amp; Conditions and request that your subscription start immediately. Your Google Play account will be charged the fee mentioned above. Your subscription will automatically renew for the same period and price until you deactivate auto-renewal in your Google Play account settings at least 24 hours prior to the end of the current period. Google Play's cancellation rights will apply.";
 
@@ -129,6 +139,33 @@ public class PalupPlusFragment extends Fragment {
         StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
         ss.setSpan(boldSpan, 1, 33, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvLongText.setText(ss);*/
+
+        firstClassPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                month6_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
+                month2_title.setBackgroundColor(Color.parseColor("#aaa494"));
+                month3_title.setBackgroundColor(Color.parseColor("#aaa494"));
+
+            }
+        });
+        premiumClassPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                month2_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
+                month6_title.setBackgroundColor(Color.parseColor("#aaa494"));
+                month3_title.setBackgroundColor(Color.parseColor("#aaa494"));
+            }
+        });
+        plusPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                month3_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
+                month2_title.setBackgroundColor(Color.parseColor("#aaa494"));
+                month6_title.setBackgroundColor(Color.parseColor("#aaa494"));
+
+            }
+        });
 
 
         isActivityRunning = true;
@@ -217,9 +254,9 @@ public class PalupPlusFragment extends Fragment {
                 radioButtonValue = rbSubscribeButton.getText().toString();
                 switch (checkedId) {
                     case R.id.six_month_subscription:
-                        text1.setTextColor(getResources().getColor(R.color.white));
-                        text2.setTextColor(getResources().getColor(R.color.white));
-                        text3.setTextColor(getResources().getColor(R.color.white));
+                       // text1.setTextColor(getResources().getColor(R.color.white));
+                        //text2.setTextColor(getResources().getColor(R.color.white));
+                       // text3.setTextColor(getResources().getColor(R.color.white));
                         text4.setTextColor(getResources().getColor(R.color.Black));
                         text5.setTextColor(getResources().getColor(R.color.Black));
                         text6.setTextColor(getResources().getColor(R.color.Black));
@@ -231,9 +268,9 @@ public class PalupPlusFragment extends Fragment {
                         text1.setTextColor(getResources().getColor(R.color.Black));
                         text2.setTextColor(getResources().getColor(R.color.Black));
                         text3.setTextColor(getResources().getColor(R.color.Black));
-                        text4.setTextColor(getResources().getColor(R.color.white));
-                        text5.setTextColor(getResources().getColor(R.color.white));
-                        text6.setTextColor(getResources().getColor(R.color.white));
+                      //  text4.setTextColor(getResources().getColor(R.color.white));
+                       // text5.setTextColor(getResources().getColor(R.color.white));
+                        //text6.setTextColor(getResources().getColor(R.color.white));
                         text7.setTextColor(getResources().getColor(R.color.Black));
                         text8.setTextColor(getResources().getColor(R.color.Black));
                         text9.setTextColor(getResources().getColor(R.color.Black));
@@ -245,9 +282,9 @@ public class PalupPlusFragment extends Fragment {
                         text4.setTextColor(getResources().getColor(R.color.Black));
                         text5.setTextColor(getResources().getColor(R.color.Black));
                         text6.setTextColor(getResources().getColor(R.color.Black));
-                        text7.setTextColor(getResources().getColor(R.color.white));
-                        text8.setTextColor(getResources().getColor(R.color.white));
-                        text9.setTextColor(getResources().getColor(R.color.white));
+                        //text7.setTextColor(getResources().getColor(R.color.white));
+                       // text8.setTextColor(getResources().getColor(R.color.white));
+                      //  text9.setTextColor(getResources().getColor(R.color.white));
                         break;
                 }
             }
