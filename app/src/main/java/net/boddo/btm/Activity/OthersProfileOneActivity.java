@@ -89,9 +89,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
     ImageView ivBackOthersActivity, like_button_others, ivRandomDelete, ivCommentsOtherProfile;
     TextView tvAboutOtherProfile, tvGalleryOtherProfile, tvGiftsOtherProfile, tvStoryOtherProfile,tvUserGenderProfileOthers;
 
-    @BindView(R.id.image_indicator)
     PageIndicatorView indecator;
-    //PageIndicatorView indecator;
 
     OthersProfileImageLoader othersProfileImageLoader;
     public static List<ProfileImageLoader.ProfileImageInfo> imageList;
@@ -119,7 +117,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
         ivRandomDelete = findViewById(R.id.ivRandomDelete);
         like_button_others = findViewById(R.id.like_button_others);
         ivCommentsOtherProfile = findViewById(R.id.ivCommentsOtherProfile);
-        //indecator = findViewById(R.id.image_indicatorOthers);
+        indecator = findViewById(R.id.image_indicator_others);
         motoTextViewButton = findViewById(R.id.moto_textViewOthers);
         tvImageCountProfile = findViewById(R.id.tvImageCountProfileOthers);
 

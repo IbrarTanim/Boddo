@@ -16,6 +16,7 @@ import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Fragment.ProfileOneFragment;
 import net.boddo.btm.Model.SelectStatusModel;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.AboutUpdate;
 import net.boddo.btm.Utills.Data;
 
 import java.util.List;
@@ -46,12 +47,16 @@ public class SelectStatusAdepter extends RecyclerView.Adapter<SelectStatusAdepte
             @Override
             public void onClick(View v) {
 
-                String name = selectStatusModels.get(position).getStatus();
-                String pos = String.valueOf(position);
-                Data.userMoto = name;
+                //String name = selectStatusModels.get(position).getStatus();
+                //String pos = String.valueOf(position);
+
+                AboutUpdate obj = new AboutUpdate(context);
+                obj.updateAbout("moto", selectStatusModels.get(position).getStatus());
+                Data.userMoto = selectStatusModels.get(position).getStatus();
+
                 Intent intent = new Intent(context.getApplicationContext(),ProfileOneActivity.class);
-                intent.putExtra("name",name);
-                intent.putExtra("position",position);
+                //intent.putExtra("name",name);
+                //intent.putExtra("position",position);
                 context.startActivity(intent);
                 ((Activity)context).finish();
             }
