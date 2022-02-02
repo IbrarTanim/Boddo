@@ -176,6 +176,8 @@
 
                             android:orientation="vertical">
 
+                           <!-- -->
+
                             <TextView
                                 android:id="@+id/month6_title"
                                 android:layout_width="match_parent"

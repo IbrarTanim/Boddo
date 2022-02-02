@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.boddo.btm.Activity.AllLikesActivity;
 import net.boddo.btm.Adepter.AllLikesAdapter;
 import net.boddo.btm.Adepter.LanguageSelectionAdapter;
+import net.boddo.btm.Fragment.ProfileFragment;
+import net.boddo.btm.Fragment.ProfileInfoFragment;
 import net.boddo.btm.Model.LanguageSelection;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AboutUpdate;
@@ -44,6 +49,7 @@ public class LanguageActivity extends AppCompatActivity {
     String value = "";
     String key = "habits";
     boolean isChanged = false;
+    TextView btnCancelLanguageActivity,btnSaveLanguageActivity;
 
 
     @Override
@@ -67,6 +73,8 @@ public class LanguageActivity extends AppCompatActivity {
         tvBack = findViewById(R.id.tvBack);
 
         rvLanguage = findViewById(R.id.rvLanguage);
+        btnCancelLanguageActivity = findViewById(R.id.btnCancelLanguageActivity);
+        btnSaveLanguageActivity = findViewById(R.id.btnSaveLanguageActivity);
 
 
         languageSelectionAdapter = new LanguageSelectionAdapter(languageSelectionList, activity);
@@ -89,6 +97,13 @@ public class LanguageActivity extends AppCompatActivity {
         });
 
         tvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnCancelLanguageActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
