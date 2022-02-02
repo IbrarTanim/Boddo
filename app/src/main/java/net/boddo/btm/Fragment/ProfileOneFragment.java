@@ -193,10 +193,13 @@ public class ProfileOneFragment extends Fragment implements View.OnClickListener
 
 
     private void convertStringToDateFormat(String stringDate) {
-        String[] stringArray = stringDate.split("/");
-        date = Integer.parseInt(stringArray[0]);
-        month = Integer.parseInt(stringArray[1]);
-        year = Integer.parseInt(stringArray[2]);
+      try{
+          String[] stringArray = stringDate.split("/");
+          date = Integer.parseInt(stringArray[0]);
+          month = Integer.parseInt(stringArray[1]);
+          year = Integer.parseInt(stringArray[2]);
+      }catch (Exception e){}
+
     }
 
     private String getAge(int year, int month, int day) {

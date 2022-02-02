@@ -275,7 +275,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
                 listItem = context.getResources().getStringArray(R.array.language);
                 checkedItem = new boolean[listItem.length];
                 mUserItem = new ArrayList<>();
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+               /* final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Spoken languages");
                 if (Data.getLanguages() != null && Data.getLanguages().length > 0) {
                     for (int i = 0; i < Data.getLanguages().length; i++) {
@@ -343,7 +343,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
                 });
 
                 AlertDialog alertDialog = builder.create();
-                //alertDialog.show();
+                //alertDialog.show();*/
 
 
             } else if (getAdapterPosition() == 7) {//hair color

@@ -96,7 +96,7 @@
                     android:layout_height="50dp"
                     android:gravity="right|center"
                     android:background="@color/white"
-
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <TextView
@@ -127,7 +127,7 @@
 
                 </LinearLayout>
 
-                <TextView
+                <Button
                     android:id="@+id/tvSave"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/seventy"
@@ -136,7 +136,7 @@
                     android:gravity="center"
                     android:text="Save"
                     android:textColor="@color/white"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:textSize="@dimen/twenty" />
 
             </LinearLayout>

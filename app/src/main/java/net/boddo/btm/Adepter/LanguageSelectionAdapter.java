@@ -25,6 +25,7 @@ import net.boddo.btm.Model.LanguageSelection;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AboutUpdate;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.ItemOnClickListener;
 import net.boddo.btm.Utills.SearchUser;
 
 import java.util.ArrayList;
@@ -34,11 +35,14 @@ public class LanguageSelectionAdapter extends RecyclerView.Adapter<LanguageSelec
 
     ArrayList<LanguageSelection> languageSelectionList;
     Context context;
+    ItemOnClickListener itemOnClickListener;
 
 
-    public LanguageSelectionAdapter(ArrayList<LanguageSelection> languageSelectionList, Context context) {
+    public LanguageSelectionAdapter(ArrayList<LanguageSelection> languageSelectionList, Context context, ItemOnClickListener itemOnClickListener) {
+
         this.languageSelectionList = languageSelectionList;
         this.context = context;
+        this.itemOnClickListener = itemOnClickListener;
     }
 
     @NonNull
@@ -97,6 +101,13 @@ public class LanguageSelectionAdapter extends RecyclerView.Adapter<LanguageSelec
             tvLanguageName = itemView.findViewById(R.id.tvLanguageName);
             llLanguage = itemView.findViewById(R.id.llLanguage);
             languageCheckBox = itemView.findViewById(R.id.languageCheckBox);
+
+            languageCheckBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemOnClickListener.OnClick(v,getAdapterPosition(),false);
+                }
+            });
 
 
         }
