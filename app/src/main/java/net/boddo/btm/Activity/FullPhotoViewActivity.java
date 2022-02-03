@@ -1,5 +1,7 @@
 package net.boddo.btm.Activity;
 
+import static net.boddo.btm.Utills.StaticAccess.TAG_PHOTOBLOG_ID_VALUE;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,11 +10,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.DragAndDropPermissions;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,22 +31,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.github.chrisbanes.photoview.OnViewTapListener;
-import com.github.chrisbanes.photoview.PhotoView;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import net.boddo.btm.Adepter.PhotoBlogAdapter;
 import net.boddo.btm.Adepter.photoblog.PhotoLovedAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Fragment.FragmentPhotoBlogAllUser;
-import net.boddo.btm.Fragment.ProfileFragment;
 import net.boddo.btm.Model.AllComments;
-import net.boddo.btm.Model.Hotlist;
 import net.boddo.btm.Model.Likes;
 import net.boddo.btm.Model.PhotoBlog;
 import net.boddo.btm.R;
@@ -57,6 +48,9 @@ import net.boddo.btm.Utills.SearchUser;
 import net.boddo.btm.test.BottomSheetNavigationComment;
 import net.boddo.btm.test.PrivacyNetworkCall;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -64,9 +58,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.widget.ImageView.ScaleType.FIT_CENTER;
-import static net.boddo.btm.Utills.StaticAccess.TAG_PHOTOBLOG_ID_VALUE;
 
 
 public class FullPhotoViewActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
@@ -324,13 +315,7 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
         });
 
 //likeProblem
-        if(amountOfLikes<=0){
-            like_button.setImageDrawable(getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
 
-        }else {
-            like_button.setImageDrawable(getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
-
-        }
 
         /*commentButton.setOnClickListener(new View.OnClickListener() {*/
 
@@ -459,12 +444,27 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
             @Override
             public void onResponse(Call<Likes> call, Response<Likes> response) {
                 Likes isLiked = response.body();
-                if (isLiked.getIsLiked().equals("yes")) {
+
+                //TODO api check must added by Touhid
+                /**
+                 *
+                 * API
+                 * END
+                 * ISSUE
+                 *
+                 * NEED
+                 * API
+                 * RESPONSE
+                 * TO
+                 * CHECK
+                 *
+                 * **/
+                /*if (isLiked.getIsLiked().equals("yes")) {
                     like_button.setImageDrawable(null);
                     like_button.setImageDrawable(getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
                 } else if (isLiked.getIsLiked().equals("no")) {
                     like_button.setImageDrawable(getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
-                }
+                }*/
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -482,6 +482,37 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
         messageCountTextView.setText(detailsOfPhotoBlogImage.getComment());
         // totalMatchedCount.setText(detailsOfPhotoBlogImage.getMatched());
         amountOfLikes = Integer.parseInt(detailsOfPhotoBlogImage.getLike());
+
+        /**
+         *
+         * Wrong
+         * Logic
+         * Start
+         *
+         * Need
+         * To
+         * Modify
+         *
+         * **/
+        if (amountOfLikes > 0) {
+            like_button.setImageDrawable(getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
+        } else {
+            like_button.setImageDrawable(getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
+        }
+
+        /**
+         *
+         * Wrong
+         * Logic
+         * End
+         *
+         * Need
+         * To
+         * Modify
+         *
+         * **/
+
+        Log.e("TAG", "Likes" + amountOfLikes);
         photoId = Integer.parseInt(detailsOfPhotoBlogImage.getId());
         description.setText(detailsOfPhotoBlogImage.getDescription());
 
