@@ -1,11 +1,20 @@
 package net.boddo.btm.Adepter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +33,7 @@ import net.boddo.btm.Activity.about.RelationshipActivity;
 import net.boddo.btm.Activity.about.SmokingActivity;
 import net.boddo.btm.Model.PojoClass;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.AboutUpdate;
 import net.boddo.btm.Utills.Data;
 
 import java.util.ArrayList;
@@ -258,18 +268,14 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
                 context.startActivity(LanguageActivity.newIntent(context));
 
 
+
+
+
+
                 listItem = context.getResources().getStringArray(R.array.language);
                 checkedItem = new boolean[listItem.length];
                 mUserItem = new ArrayList<>();
-
-
-                /**
-                 *
-                 * Start
-                 *
-                 * **/
-
-                /*final AlertDialog.Builder builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_NoActionBar_Fullscreen);
+               /* final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Spoken languages");
                 if (Data.getLanguages() != null && Data.getLanguages().length > 0) {
                     for (int i = 0; i < Data.getLanguages().length; i++) {
@@ -337,14 +343,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
                 });
 
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show();*/
-
-
-                /**
-                 *
-                 * End
-                 *
-                 * **/
+                //alertDialog.show();*/
 
 
             } else if (getAdapterPosition() == 7) {//hair color

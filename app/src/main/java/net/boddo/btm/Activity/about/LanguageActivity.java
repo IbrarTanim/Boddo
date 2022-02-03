@@ -7,15 +7,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.boddo.btm.Activity.AllLikesActivity;
+import net.boddo.btm.Adepter.AllLikesAdapter;
 import net.boddo.btm.Adepter.LanguageSelectionAdapter;
+import net.boddo.btm.Fragment.ProfileFragment;
+import net.boddo.btm.Fragment.ProfileInfoFragment;
 import net.boddo.btm.Model.LanguageSelection;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AboutUpdate;
@@ -25,6 +34,7 @@ import net.boddo.btm.Utills.ItemOnClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LanguageActivity extends AppCompatActivity {
@@ -36,17 +46,17 @@ public class LanguageActivity extends AppCompatActivity {
 
     ArrayList<LanguageSelection> languageSelectionList;
 
+    Button tvSave;
+    List<String> languageList;
 
-    TextView tvBack;
 
+    TextView  tvBack;
     RecyclerView rvLanguage;
 
     String value = "";
     String key = "habits";
     boolean isChanged = false;
-
-    Button tvSave;
-    List<String> languageList;
+    TextView btnCancelLanguageActivity,btnSaveLanguageActivity;
 
 
     @Override
@@ -54,6 +64,7 @@ public class LanguageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
         activity = this;
+
         languageList = new ArrayList<>();
 
         ButterKnife.bind(this);
@@ -71,6 +82,8 @@ public class LanguageActivity extends AppCompatActivity {
         tvBack = findViewById(R.id.tvBack);
 
         rvLanguage = findViewById(R.id.rvLanguage);
+        btnCancelLanguageActivity = findViewById(R.id.btnCancelLanguageActivity);
+        btnSaveLanguageActivity = findViewById(R.id.btnSaveLanguageActivity);
 
 
         languageSelectionAdapter = new LanguageSelectionAdapter(languageSelectionList, activity, new ItemOnClickListener() {
@@ -120,11 +133,19 @@ public class LanguageActivity extends AppCompatActivity {
         tvSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //dataSave();
                 saveLanguage();
             }
         });
 
         tvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnCancelLanguageActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -213,6 +234,28 @@ public class LanguageActivity extends AppCompatActivity {
 
     }
 
+    private void dataSave() {
+        if (isChanged) {
+            if (AboutUpdate.result) {
+                Data.userHabits = value;
+                Toast.makeText(this, "Update Successfull", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
+
+    private void saveToServer() {
+        AboutUpdate update = new AboutUpdate(this);
+        update.updateAbout(key, value);
+    }
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, LanguageActivity.class);
+        return intent;
+    }
+
+
     private void saveLanguage() {
 
         if (isChanged) {
@@ -243,26 +286,5 @@ public class LanguageActivity extends AppCompatActivity {
 
         }
 
-    }
-
-    private void dataSave() {
-        if (isChanged) {
-            if (AboutUpdate.result) {
-                Data.userHabits = value;
-                Toast.makeText(this, "Update Successfull", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
-    }
-
-
-    private void saveToServer() {
-        AboutUpdate update = new AboutUpdate(this);
-        update.updateAbout(key, value);
-    }
-
-    public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, LanguageActivity.class);
-        return intent;
     }
 }
