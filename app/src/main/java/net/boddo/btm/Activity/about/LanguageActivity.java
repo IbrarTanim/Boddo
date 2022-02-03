@@ -38,13 +38,14 @@ public class LanguageActivity extends AppCompatActivity {
 
 
     TextView tvBack;
-    Button tvSave;
+
     RecyclerView rvLanguage;
 
     String value = "";
     String key = "habits";
     boolean isChanged = false;
 
+    Button tvSave;
     List<String> languageList;
 
 
