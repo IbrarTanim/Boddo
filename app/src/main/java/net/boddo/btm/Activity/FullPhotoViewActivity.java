@@ -445,6 +445,7 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
             public void onResponse(Call<Likes> call, Response<Likes> response) {
                 Likes isLiked = response.body();
 
+                Log.e("ILiked", isLiked.toString());
                 //TODO api check must added by Touhid
                 /**
                  *

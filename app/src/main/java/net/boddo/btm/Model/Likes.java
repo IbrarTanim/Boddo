@@ -53,6 +53,16 @@ public class Likes {
         this.allLikes = allLikes;
     }
 
+    @Override
+    public String toString() {
+        return "Likes{" +
+                "status='" + status + '\'' +
+                ", allLikes=" + allLikes +
+                ", isLiked='" + isLiked + '\'' +
+                ", totalLiked='" + totalLiked + '\'' +
+                '}';
+    }
+
     public class AllLike {
 
         @SerializedName("user_id")
@@ -105,7 +115,14 @@ public class Likes {
             this.firstName = firstName;
         }
 
+        @Override
+        public String toString() {
+            return "AllLike{" +
+                    "userId='" + userId + '\'' +
+                    ", userName='" + userName + '\'' +
+                    ", firstName='" + firstName + '\'' +
+                    ", profilePhoto='" + profilePhoto + '\'' +
+                    '}';
+        }
     }
-
-
 }

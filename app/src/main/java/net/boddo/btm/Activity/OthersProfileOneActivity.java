@@ -1,25 +1,12 @@
 package net.boddo.btm.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager.widget.ViewPager;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.Selection;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,28 +17,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.siyamed.shapeimageview.HeartImageView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.tabs.TabLayout;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.rd.PageIndicatorView;
 import com.squareup.picasso.Picasso;
 
-import net.boddo.btm.Adepter.ProfileImageLoaderAdapter;
 import net.boddo.btm.Adepter.othersuser.OthersProfileImageLoader;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Event.Event;
 import net.boddo.btm.Fragment.OthersFragment.OtherProfileInfoFragment;
-import net.boddo.btm.Fragment.OthersFragment.OthersProfileFragment;
-import net.boddo.btm.Fragment.ProfileFragment;
-import net.boddo.btm.Fragment.ProfileInfoFragment;
 import net.boddo.btm.Model.Favorite;
 import net.boddo.btm.Model.Liked;
 import net.boddo.btm.Model.Love;
 import net.boddo.btm.Model.ProfileImageLoader;
 import net.boddo.btm.R;
-import net.boddo.btm.Utills.AboutUpdate;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 
@@ -60,16 +47,12 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.Calendar;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static net.boddo.btm.Utills.StaticAccess.TAG_COME_FROM;
 
 public class OthersProfileOneActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -145,6 +128,9 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
         tvUserGenderProfileOthers.setText(Data.otherUserGender);
         ageGenderCountry.setText(" Current location : " + Data.otherUserLocation);
         firstNameAndUserName.setText(Data.otherUserFirstName);
+
+        //Touhid changed/added
+        getAllLoved();
 
         if (!Data.otherUserDateOfBirgh.equals("")) {
             convertStringToDateFormat(Data.otherUserDateOfBirgh);
@@ -275,6 +261,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
                     public void onResponse(Call<Love> call, Response<Love> response) {
                         Love love = response.body();
                         if (love.getStatus().equals("success")) {
+                            Log.e("IsLoved?", love.getIsLoved());
                             if (love.getIsLoved().equals("yes")) {
                                 new LoadLoveAndFavoriteCounteInBackground().execute();
                                 like_button_others.setImageDrawable(getResources().getDrawable(R.drawable.ic_love_fill));
@@ -747,6 +734,8 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
             call.enqueue(new Callback<Liked>() {
                 @Override
                 public void onResponse(Call<Liked> call, Response<Liked> response) {
+                    Liked liked = response.body();
+                    Log.e("DidILiked", liked.toString());
                     amountOfLikes = response.body().getLikedMe();
                     loveCount = amountOfLikes.size();
                     if (amountOfLikes != null) {

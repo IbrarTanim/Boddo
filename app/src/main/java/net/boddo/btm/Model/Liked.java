@@ -32,6 +32,14 @@ public class Liked {
         this.likedMe = likedMe;
     }
 
+    @Override
+    public String toString() {
+        return "Liked{" +
+                "status='" + status + '\'' +
+                ", likedMe=" + likedMe +
+                '}';
+    }
+
     public class LikedMe {
 
         @Nullable
@@ -105,7 +113,17 @@ public class Liked {
         public void setProfilePhoto(String profilePhoto) {
             this.profilePhoto = profilePhoto;
         }
+
+        @Override
+        public String toString() {
+            return "LikedMe{" +
+                    "isSeen='" + isSeen + '\'' +
+                    ", userId='" + userId + '\'' +
+                    ", name='" + name + '\'' +
+                    ", gender='" + gender + '\'' +
+                    ", dateOfBirth='" + dateOfBirth + '\'' +
+                    ", profilePhoto='" + profilePhoto + '\'' +
+                    '}';
+        }
     }
-
-
 }
