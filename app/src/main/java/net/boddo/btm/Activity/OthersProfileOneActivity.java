@@ -430,15 +430,17 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
                     if (favorite.getIsFavorite().equals("yes")) {
 
                         new LoadFavoutireInBackground().execute();
-                        Toast.makeText(OthersProfileOneActivity.this, "Cancel Favorite", Toast.LENGTH_SHORT).show();
+                        Data.isFavorite = "yes";
+                        Toast.makeText(OthersProfileOneActivity.this, "Successfully added to favorite", Toast.LENGTH_SHORT).show();
                         tvAddToFavorite.setText("Cancel Favorite");
                         ivAddToFavorite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_icon_fill_color_22_09_2021));
 
                     } else {
 
                         new LoadFavoutireInBackground().execute();
+                        Data.isFavorite = "";
                         tvAddToFavorite.setText("Add to Favorite");
-                        Toast.makeText(OthersProfileOneActivity.this, "Add to Favorite", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OthersProfileOneActivity.this, "Successfully removed from the favorite", Toast.LENGTH_SHORT).show();
                         ivAddToFavorite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_icon_22_09_2021));
                     }
                 } else if (favorite.getStatus().equals("limit expired")) {

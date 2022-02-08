@@ -5,21 +5,18 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import net.boddo.btm.Activity.BlockListActivity;
 import net.boddo.btm.Activity.DashBoadActivity;
-import net.boddo.btm.Activity.OthersProfileActivity;
 import net.boddo.btm.Activity.OthersProfileOneActivity;
-import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Model.Pojo;
 import net.boddo.btm.Model.ProfileImageLoader;
 import net.boddo.btm.Model.User;
-
 import net.boddo.btm.R;
+
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
 import retrofit2.Call;
