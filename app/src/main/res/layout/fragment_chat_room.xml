@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg_color">
@@ -9,23 +8,21 @@
     <View
         android:id="@+id/blankView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/forty"
+        android:layout_height="38dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/storyRlMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/twenty"
+        android:layout_height="@dimen/zero"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/blankView">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="1.5"
+            android:layout_height="@dimen/forty"
             android:background="@color/content_bg_color"
             android:orientation="horizontal">
 
@@ -38,8 +35,12 @@
             <ImageView
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:padding="@dimen/ten"
+                android:layout_weight="3"
+                android:paddingLeft="@dimen/two"
+                android:paddingTop="@dimen/five"
+                android:paddingRight="@dimen/five"
+                android:paddingBottom="@dimen/five"
+                android:scaleType="fitCenter"
                 android:src="@drawable/boddo_logo_356" />
 
             <View
@@ -62,8 +63,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="16"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <View

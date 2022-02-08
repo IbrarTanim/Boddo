@@ -7,7 +7,7 @@
     <View
         android:id="@+id/blankView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/thirty"
+        android:layout_height="38dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
 
@@ -26,6 +26,11 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="horizontal">
+
+            <View
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
 
             <ImageView
                 android:layout_width="@dimen/zero"
