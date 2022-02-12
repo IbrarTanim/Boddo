@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,7 +71,8 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
     TextView firstNameAndUserName, tvUserNameProfile;
     TextView ageGenderCountry, tvAge, tvOnlineNow;
     ImageView ivBackOthersActivity, like_button_others, ivRandomDelete, ivCommentsOtherProfile;
-    TextView tvAboutOtherProfile, tvGalleryOtherProfile, tvGiftsOtherProfile, tvStoryOtherProfile,tvUserGenderProfileOthers;
+    TextView tvAboutOtherProfile, tvGalleryOtherProfile, tvGiftsOtherProfile, tvStoryOtherProfile, tvUserGenderProfileOthers;
+    RelativeLayout rlComentLikeButton;
 
     PageIndicatorView indecator;
 
@@ -109,6 +111,15 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
         tvGiftsOtherProfile = findViewById(R.id.tvGiftsOtherProfile);
         tvStoryOtherProfile = findViewById(R.id.tvStoryOtherProfile);
         tvUserGenderProfileOthers = findViewById(R.id.tvUserGenderProfileOthers);
+        rlComentLikeButton = findViewById(R.id.rlComentLikeButton);
+
+        if (Data.userId.equals(Data.otherUserId)) {
+
+            if (rlComentLikeButton.getVisibility() == View.VISIBLE) {
+                rlComentLikeButton.setVisibility(View.GONE);
+            }
+
+        }
 
 
         llOthersProfileMenue.setOnClickListener(this);

@@ -1,5 +1,6 @@
 package net.boddo.btm.Activity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -39,37 +42,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.billingclient.api.Purchase;
-//rokan26.01.2021  import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.nex3z.notificationbadge.NotificationBadge;
 import com.squareup.picasso.Picasso;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-
-import net.boddo.btm.Event.Event;
 import net.boddo.btm.Activity.Settings.SettingsActivity;
 import net.boddo.btm.Billing.BillingManager;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
-import net.boddo.btm.Fragment.ActiveChatFragment;
+import net.boddo.btm.Event.Event;
 import net.boddo.btm.Fragment.ChatFragment;
 import net.boddo.btm.Fragment.ChatRoomFragment;
-import net.boddo.btm.Fragment.MessagesFragment;
 import net.boddo.btm.Fragment.NotificationFragment;
 import net.boddo.btm.Fragment.OthersFragment.OthersProfileFragment;
 import net.boddo.btm.Fragment.PhotoBlogFragment;
@@ -84,6 +69,17 @@ import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.SharedPref;
 import net.boddo.btm.test.GoogleAdMob;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -207,167 +203,16 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
 
     BillingManager billingManager;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_boad);
-        //rokan26.01.2021  MobileAds.initialize(this, Constants.ADMOB_APP_ID);
-        ButterKnife.bind(this);
-        initNavigationView();
-        whoBlockMeData();
-        myBlockList();
-        activity = this;
-        motoDialog = new Dialog(this);
-        motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
+    public static void setWindowFlag(Activity activity, final int bits, boolean on) {
 
-
-
-        profileCircleImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new ProfileOneFragment()).disallowAddToBackStack();
-                fragmentTransaction.commit();
-
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-        });
-
-        if (getIntent().hasExtra("message_count")) {
-            message_count = getIntent().getLongExtra("message_count", 0);
-        }
-        if (getIntent().hasExtra("message_request_count")) {
-            request_count = getIntent().getLongExtra("message_request_count", 0);
-        }
-        if (getIntent().hasExtra("like_fav_visitor_Notifacation")) {
-            likeFaviVisitorNotifi = getIntent().getBooleanExtra("like_fav_visitor_Notifacation", false);
-        }
-
-
-        if (likeFaviVisitorNotifi) {
-            badgingNotificationImageView.setNumber(1);
-            badgingNotificationImageView.setTextColor(getResources().getColor(R.color.red));
-            likeFaviVisiEntry = false;
+        Window win = activity.getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        if (on) {
+            winParams.flags |= bits;
         } else {
-            badgingNotificationImageView.setNumber(0);
-            badgingNotificationImageView.setTextColor(getResources().getColor(R.color.red));
-            likeFaviVisiEntry = true;
+            winParams.flags &= ~bits;
         }
-
-        if (message_count > 0 || request_count > 0) {
-            badgingChattingImageView.setNumber((int) message_count);
-            badgingChattingImageView.setTextColor(getResources().getColor(R.color.red));
-            entry = false;
-        } else {
-            badgingChattingImageView.setNumber(0);
-            badgingChattingImageView.setTextColor(getResources().getColor(R.color.red));
-            entry = true;
-        }
-
-
-        mDialog = new Dialog(this);
-        profileFragment = new ProfileFragment();
-        profileOneFragment = new ProfileOneFragment();
-        if (navigationView != null) {
-            navigationView.setNavigationItemSelectedListener(this);
-        }
-
-
-        if (savedInstanceState == null) {
-            Intent data = getIntent();
-            if (data.hasExtra("profile")) {
-                if (data.getStringExtra("profile").equals("profile")) {
-                    //setFragment(profileFragment);
-                    setFragment(profileOneFragment);
-                    profileButton.setColorFilter(this.getResources().getColor(R.color.menu_icon_after_click));
-                    tvProfileTab.setTextColor(this.getResources().getColor(R.color.menu_icon_after_click));
-                    visibilityHandle(tvProfileTab, tvPhoto_blogTab, tvChatroomsTab, tvNotificationTab, tvChattingTab);
-
-                }
-            } else if (data.hasExtra(Constants.CHAT_LIST)) {
-                setFragment(new ChatFragment());
-                //setFragment(new MessagesFragment());
-
-
-                chatButton.setColorFilter(this.getResources().getColor(R.color.menu_icon_after_click));
-                tvChattingTab.setTextColor(this.getResources().getColor(R.color.menu_icon_after_click));
-                visibilityHandle(tvChattingTab, tvPhoto_blogTab, tvChatroomsTab, tvNotificationTab, tvProfileTab);
-
-
-            } else {
-                setFragment(new PhotoBlogFragment());
-                photoBlogButton.setColorFilter(this.getResources().getColor(R.color.menu_icon_after_click));
-                tvPhoto_blogTab.setTextColor(this.getResources().getColor(R.color.menu_icon_after_click));
-                visibilityHandle(tvPhoto_blogTab, tvChattingTab, tvChatroomsTab, tvNotificationTab, tvProfileTab);
-
-            }
-        }
-
-        if (LoginActivity.isBonusAvailable != 0) {
-            //final PrettyDialog dialog = new PrettyDialog(this);
-
-            receiveCredits();
-
-            /*if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                dialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).
-                        setTitle("Yahoo !!!").setMessage("You have received " + LoginActivity.isBonusAvailable + ". Palup credits to visit us today, visit us tomorrow again for more free credits")
-                        .addButton("Got it", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
-                            @Override
-                            public void onClick() {
-                                dialog.cancel();
-                            }
-                        });
-                dialog.show();
-            } else {
-                dialog.setTitle("Yahoo !!!").setMessage("You have received " + LoginActivity.isBonusAvailable + ". Palup credits to visit us today, visit us tomorrow again for more free credits")
-                        .addButton("Got it", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
-                            @Override
-                            public void onClick() {
-                                dialog.cancel();
-                            }
-                        });
-                dialog.show();
-            }*/
-            LoginActivity.isBonusAvailable = 0;
-        }
-        navigationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.LEFT);
-                GoogleAdMob googleAdMob = new GoogleAdMob(DashBoadActivity.this);
-                //rokan26.01.2021  googleAdMob.getGooleAdMob("navigationBar");
-            }
-        });
-        //AsyncTask Call for Navigation Drawer Blurry profile pic
-        new AsyncCaller().execute();
-        //firebase User Online On
-
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("UserOnline");
-        myRef.child(Data.userId).setValue("1");
-
-        billingManager = new BillingManager(DashBoadActivity.this, new BillingManager.BillingUpdatesListener() {
-            @Override
-            public void onBillingClientSetupFinished() {
-                billingManager.queryPurchases();
-            }
-
-            @Override
-            public void onConsumeFinished(String token, int result) {
-            }
-
-            @Override
-            public void onPurchasesUpdated(final List<Purchase> purchases) {
-                if (purchases != null && purchases.size() > 0) {
-                    Log.d(DashBoadActivity.class.getSimpleName(), purchases.toString());
-                    if (purchases.get(purchases.size() - 1).getSku().contains("subscription")) {
-                        Data.isPalupPlusSubcriber = true;
-                    }
-                }
-            }
-        });
+        win.setAttributes(winParams);
     }
 
     public void receiveCredits() {
@@ -990,6 +835,176 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
         view3.setVisibility(View.GONE);
         view4.setVisibility(View.GONE);
         view5.setVisibility(View.GONE);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dash_boad);
+        //rokan26.01.2021  MobileAds.initialize(this, Constants.ADMOB_APP_ID);
+
+        /*View decorView = getWindow().getDecorView();
+// Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);*/
+
+        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        ButterKnife.bind(this);
+        initNavigationView();
+        whoBlockMeData();
+        myBlockList();
+        activity = this;
+        motoDialog = new Dialog(this);
+        motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
+
+
+        profileCircleImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, new ProfileOneFragment()).disallowAddToBackStack();
+                fragmentTransaction.commit();
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        if (getIntent().hasExtra("message_count")) {
+            message_count = getIntent().getLongExtra("message_count", 0);
+        }
+        if (getIntent().hasExtra("message_request_count")) {
+            request_count = getIntent().getLongExtra("message_request_count", 0);
+        }
+        if (getIntent().hasExtra("like_fav_visitor_Notifacation")) {
+            likeFaviVisitorNotifi = getIntent().getBooleanExtra("like_fav_visitor_Notifacation", false);
+        }
+
+
+        if (likeFaviVisitorNotifi) {
+            badgingNotificationImageView.setNumber(1);
+            badgingNotificationImageView.setTextColor(getResources().getColor(R.color.red));
+            likeFaviVisiEntry = false;
+        } else {
+            badgingNotificationImageView.setNumber(0);
+            badgingNotificationImageView.setTextColor(getResources().getColor(R.color.red));
+            likeFaviVisiEntry = true;
+        }
+
+        if (message_count > 0 || request_count > 0) {
+            badgingChattingImageView.setNumber((int) message_count);
+            badgingChattingImageView.setTextColor(getResources().getColor(R.color.red));
+            entry = false;
+        } else {
+            badgingChattingImageView.setNumber(0);
+            badgingChattingImageView.setTextColor(getResources().getColor(R.color.red));
+            entry = true;
+        }
+
+
+        mDialog = new Dialog(this);
+        profileFragment = new ProfileFragment();
+        profileOneFragment = new ProfileOneFragment();
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
+
+
+        if (savedInstanceState == null) {
+            Intent data = getIntent();
+            if (data.hasExtra("profile")) {
+                if (data.getStringExtra("profile").equals("profile")) {
+                    //setFragment(profileFragment);
+                    setFragment(profileOneFragment);
+                    profileButton.setColorFilter(this.getResources().getColor(R.color.menu_icon_after_click));
+                    tvProfileTab.setTextColor(this.getResources().getColor(R.color.menu_icon_after_click));
+                    visibilityHandle(tvProfileTab, tvPhoto_blogTab, tvChatroomsTab, tvNotificationTab, tvChattingTab);
+
+                }
+            } else if (data.hasExtra(Constants.CHAT_LIST)) {
+                setFragment(new ChatFragment());
+                //setFragment(new MessagesFragment());
+
+
+                chatButton.setColorFilter(this.getResources().getColor(R.color.menu_icon_after_click));
+                tvChattingTab.setTextColor(this.getResources().getColor(R.color.menu_icon_after_click));
+                visibilityHandle(tvChattingTab, tvPhoto_blogTab, tvChatroomsTab, tvNotificationTab, tvProfileTab);
+
+
+            } else {
+                setFragment(new PhotoBlogFragment());
+                photoBlogButton.setColorFilter(this.getResources().getColor(R.color.menu_icon_after_click));
+                tvPhoto_blogTab.setTextColor(this.getResources().getColor(R.color.menu_icon_after_click));
+                visibilityHandle(tvPhoto_blogTab, tvChattingTab, tvChatroomsTab, tvNotificationTab, tvProfileTab);
+
+            }
+        }
+
+        if (LoginActivity.isBonusAvailable != 0) {
+            //final PrettyDialog dialog = new PrettyDialog(this);
+
+            receiveCredits();
+            /*if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                dialog.setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary).
+                        setTitle("Yahoo !!!").setMessage("You have received " + LoginActivity.isBonusAvailable + ". Palup credits to visit us today, visit us tomorrow again for more free credits")
+                        .addButton("Got it", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
+                            @Override
+                            public void onClick() {
+                                dialog.cancel();
+                            }
+                        });
+                dialog.show();
+            } else {
+                dialog.setTitle("Yahoo !!!").setMessage("You have received " + LoginActivity.isBonusAvailable + ". Palup credits to visit us today, visit us tomorrow again for more free credits")
+                        .addButton("Got it", R.color.white, R.color.colorPrimary, new PrettyDialogCallback() {
+                            @Override
+                            public void onClick() {
+                                dialog.cancel();
+                            }
+                        });
+                dialog.show();
+            }*/
+            LoginActivity.isBonusAvailable = 0;
+        }
+        navigationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.LEFT);
+                GoogleAdMob googleAdMob = new GoogleAdMob(DashBoadActivity.this);
+                //rokan26.01.2021  googleAdMob.getGooleAdMob("navigationBar");
+            }
+        });
+        //AsyncTask Call for Navigation Drawer Blurry profile pic
+        new AsyncCaller().execute();
+        //firebase User Online On
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("UserOnline");
+        myRef.child(Data.userId).setValue("1");
+
+        billingManager = new BillingManager(DashBoadActivity.this, new BillingManager.BillingUpdatesListener() {
+            @Override
+            public void onBillingClientSetupFinished() {
+                billingManager.queryPurchases();
+            }
+
+            @Override
+            public void onConsumeFinished(String token, int result) {
+            }
+
+            @Override
+            public void onPurchasesUpdated(final List<Purchase> purchases) {
+                if (purchases != null && purchases.size() > 0) {
+                    Log.d(DashBoadActivity.class.getSimpleName(), purchases.toString());
+                    if (purchases.get(purchases.size() - 1).getSku().contains("subscription")) {
+                        Data.isPalupPlusSubcriber = true;
+                    }
+                }
+            }
+        });
     }
 
 }
