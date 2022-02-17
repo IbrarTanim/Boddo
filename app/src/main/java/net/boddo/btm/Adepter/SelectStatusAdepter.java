@@ -3,17 +3,15 @@ package net.boddo.btm.Adepter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.boddo.btm.Activity.ProfileOneActivity;
-import net.boddo.btm.Fragment.ProfileOneFragment;
 import net.boddo.btm.Model.SelectStatusModel;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AboutUpdate;
@@ -40,9 +38,11 @@ public class SelectStatusAdepter extends RecyclerView.Adapter<SelectStatusAdepte
 
     @Override
     public void onBindViewHolder(SelectStatusAdepter.SelectStatusViewHolder holder, int position) {
-        holder.tvSelectStatusRowItem.setText(selectStatusModels.get(position).getStatus());
 
-        
+        String status = selectStatusModels.get(position).getStatus();
+        holder.tvSelectStatusRowItem.setText(status);
+
+
         holder.tvSelectStatusRowItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,14 +51,15 @@ public class SelectStatusAdepter extends RecyclerView.Adapter<SelectStatusAdepte
                 //String pos = String.valueOf(position);
 
                 AboutUpdate obj = new AboutUpdate(context);
-                obj.updateAbout("moto", selectStatusModels.get(position).getStatus());
-                Data.userMoto = selectStatusModels.get(position).getStatus();
+                obj.updateAbout("moto", status);
+                Data.userMoto = status;
 
-                Intent intent = new Intent(context.getApplicationContext(),ProfileOneActivity.class);
+                Toast.makeText(context, "Status updated", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context.getApplicationContext(), ProfileOneActivity.class);
                 //intent.putExtra("name",name);
                 //intent.putExtra("position",position);
                 context.startActivity(intent);
-                ((Activity)context).finish();
+                ((Activity) context).finish();
             }
         });
     }

@@ -139,7 +139,7 @@ public class PalupPlusFragment extends Fragment {
         firstClassPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                month6_title.setBackground(getResources().getDrawable(R.drawable.gradientbackground));
+                month6_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
                 month2_title.setBackgroundColor(Color.parseColor("#aaa494"));
                 month3_title.setBackgroundColor(Color.parseColor("#aaa494"));
 
@@ -148,7 +148,7 @@ public class PalupPlusFragment extends Fragment {
         premiumClassPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                month2_title.setBackground(getResources().getDrawable(R.drawable.gradientbackground));
+                month2_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
                 month6_title.setBackgroundColor(Color.parseColor("#aaa494"));
                 month3_title.setBackgroundColor(Color.parseColor("#aaa494"));
             }
@@ -156,7 +156,7 @@ public class PalupPlusFragment extends Fragment {
         plusPalupPlusFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                month3_title.setBackground(getResources().getDrawable(R.drawable.gradientbackground));
+                month3_title.setBackground(getResources().getDrawable(R.drawable.post_select_button));
                 month2_title.setBackgroundColor(Color.parseColor("#aaa494"));
                 month6_title.setBackgroundColor(Color.parseColor("#aaa494"));
 

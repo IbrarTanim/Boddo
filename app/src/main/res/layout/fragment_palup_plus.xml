@@ -186,7 +186,7 @@
                                 android:text="1ST CLASS"
                                 android:layout_marginRight="4dp"
                                 android:layout_marginLeft="@dimen/two"
-                                android:background="@drawable/gradientbackground"
+                                android:background="@drawable/post_select_button"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/eighteen"
                                 android:textStyle="normal" />
@@ -344,7 +344,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
-                                android:background="@drawable/gradientbackground"
+                                android:background="@drawable/priemium_select_button"
                                 android:layout_alignParentTop="true"
                                 android:layout_centerInParent="true"
                                 android:layout_marginTop="35dp"

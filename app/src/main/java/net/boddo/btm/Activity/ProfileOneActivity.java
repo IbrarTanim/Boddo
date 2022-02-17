@@ -1,6 +1,19 @@
 package net.boddo.btm.Activity;
 
-import androidx.annotation.RequiresApi;
+import android.app.Dialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,38 +21,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.Html;
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.SpannedString;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.rd.PageIndicatorView;
 
 import net.boddo.btm.Adepter.ProfileImageLoaderAdapter;
-import net.boddo.btm.Adepter.ProfileViewPagerAdepter;
-import net.boddo.btm.Callbacks.ApiInterface;
-import net.boddo.btm.Fragment.CustomBottomSheetProfile;
-import net.boddo.btm.Fragment.NotificationFragment;
-import net.boddo.btm.Fragment.PhotoFragment;
 import net.boddo.btm.Fragment.ProfileFragment;
 import net.boddo.btm.Fragment.ProfileInfoFragment;
 import net.boddo.btm.Model.ProfileImageLoader;
@@ -50,9 +35,7 @@ import net.boddo.btm.Utills.Data;
 import java.util.Calendar;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ProfileOneActivity extends AppCompatActivity implements View.OnClickListener {
     ProfileOneActivity activity;
@@ -112,8 +95,8 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         tvAboutProfile.setOnClickListener(this);
 
         //if(position>0){
-            //Data.userMoto = name;
-            Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
+        //Data.userMoto = name;
+        //Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
             motoTextViewButton.setText(Data.userMoto);
             final Dialog motoDialog = new Dialog(activity);
             motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
@@ -197,7 +180,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
                         AboutUpdate obj = new AboutUpdate(activity);
                         obj.updateAbout("moto", editTextMoto.getText().toString());
                         Data.userMoto = editTextMoto.getText().toString();
-                        Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
                         motoDialog.dismiss();
                         motoTextViewButton.setText(Data.userMoto);
 

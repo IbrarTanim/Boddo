@@ -1,5 +1,8 @@
 package net.boddo.btm.Activity;
 
+import static net.boddo.btm.Utills.StaticAccess.TAG_PHOTOBLOG_ID_VALUE;
+
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +17,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,19 +34,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.github.chrisbanes.photoview.PhotoView;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import net.boddo.btm.Adepter.photoblog.PhotoLovedAdapter;
-import net.boddo.btm.Event.Event;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
+import net.boddo.btm.Event.Event;
 import net.boddo.btm.Model.AllComments;
 import net.boddo.btm.Model.Likes;
 import net.boddo.btm.Model.UserPhotoBlogImages;
@@ -53,6 +50,13 @@ import net.boddo.btm.Utills.SearchUser;
 import net.boddo.btm.test.BottomSheetNavigationComment;
 import net.boddo.btm.test.PrivacyNetworkCall;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -60,8 +64,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static net.boddo.btm.Utills.StaticAccess.TAG_PHOTOBLOG_ID_VALUE;
 
 public class FullImageFromOwnProfileActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -549,10 +551,70 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
                 privacyNetworkCall.onPrivacy(Constants.SECRET_KEY, type, photoId, Data.userId);
                 privacyType.setText("Private");
                 return true;
+            case R.id.report_menu:
+                onReportButton();
             default:
                 return false;
         }
 
+    }
+
+    public void onReportButton() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.picture_fullview_report_dialog);
+        /*final EditText editTextDescription = dialog.findViewById(R.id.edit_text_report);
+        LinearLayout orLayout = dialog.findViewById(R.id.or_layout);
+        TextView title = dialog.findViewById(R.id.title);
+        LinearLayout reportLayout = dialog.findViewById(R.id.report_layout);*/
+
+        RadioGroup reportGroup = dialog.findViewById(R.id.report_radio_group);
+
+        Button cancelButton = (Button) dialog.findViewById(R.id.report_cancel_btn);
+        Button reportButton = (Button) dialog.findViewById(R.id.report_submit_btn);
+
+        cancelButton.setOnClickListener(v -> dialog.dismiss());
+
+        reportButton.setOnClickListener(v -> {
+
+
+            int selectedId = reportGroup.getCheckedRadioButtonId();
+
+            if (selectedId == -1) {
+
+                Toast.makeText(FullImageFromOwnProfileActivity.this, "Please select your reason first..", Toast.LENGTH_SHORT).show();
+
+            } else {
+
+                RadioButton selectedBTN = dialog.findViewById(selectedId);
+                String reportReason = String.valueOf(selectedBTN.getText());
+
+                if (reportReason != null) {
+                    apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+                    Call<String> call = apiInterface.getReportUser(Constants.SECRET_KEY, Data.userId, Data.otherUserId, reportReason);
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            String res = response.body();
+                            if (res.equals("success")) {
+                                Toast.makeText(FullImageFromOwnProfileActivity.this, "Report send Successful", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(FullImageFromOwnProfileActivity.this, "Report send Unsuccessful", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                        }
+                    });
+                    dialog.dismiss();
+                }
+
+
+            }
+
+        });
+        dialog.show();
     }
 
 

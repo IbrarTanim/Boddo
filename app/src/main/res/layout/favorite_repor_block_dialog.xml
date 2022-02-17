@@ -73,6 +73,8 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/ten">
 
+                    <!--TODO-->
+
                     <ImageView
                         android:id="@+id/ivAddToFavorite"
                         android:layout_width="@dimen/zero"

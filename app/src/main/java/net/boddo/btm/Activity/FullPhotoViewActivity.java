@@ -14,10 +14,11 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -653,35 +654,57 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
     public void onReportButton() {
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.custom_alert_dialog_chat_room_option);
-        final EditText editTextDescription = dialog.findViewById(R.id.edit_text_report);
-        //LinearLayout orLayout = dialog.findViewById(R.id.or_layout);
+        dialog.setContentView(R.layout.picture_fullview_report_dialog);
+        /*final EditText editTextDescription = dialog.findViewById(R.id.edit_text_report);
+        LinearLayout orLayout = dialog.findViewById(R.id.or_layout);
         TextView title = dialog.findViewById(R.id.title);
-        LinearLayout reportLayout = dialog.findViewById(R.id.report_layout);
-        Button cancelButton = (Button) dialog.findViewById(R.id.button_decline);
-        Button reportButton = (Button) dialog.findViewById(R.id.button_done);
+        LinearLayout reportLayout = dialog.findViewById(R.id.report_layout);*/
+
+        RadioGroup reportGroup = dialog.findViewById(R.id.report_radio_group);
+
+        Button cancelButton = (Button) dialog.findViewById(R.id.report_cancel_btn);
+        Button reportButton = (Button) dialog.findViewById(R.id.report_submit_btn);
 
         cancelButton.setOnClickListener(v -> dialog.dismiss());
 
         reportButton.setOnClickListener(v -> {
-            apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-            Call<String> call = apiInterface.getReportUser(Constants.SECRET_KEY, Data.userId, Data.otherUserId, editTextDescription.getText().toString());
-            call.enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    String res = response.body();
-                    if (res.equals("success")) {
-                        Toast.makeText(FullPhotoViewActivity.this, "Report send Successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(FullPhotoViewActivity.this, "Report send Unsuccessful", Toast.LENGTH_SHORT).show();
-                    }
+
+
+            int selectedId = reportGroup.getCheckedRadioButtonId();
+
+            if (selectedId == -1) {
+
+                Toast.makeText(FullPhotoViewActivity.this, "Please select your reason first..", Toast.LENGTH_SHORT).show();
+
+            } else {
+
+                RadioButton selectedBTN = dialog.findViewById(selectedId);
+                String reportReason = String.valueOf(selectedBTN.getText());
+
+                if (reportReason != null) {
+                    apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+                    Call<String> call = apiInterface.getReportUser(Constants.SECRET_KEY, Data.userId, Data.otherUserId, reportReason);
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            String res = response.body();
+                            if (res.equals("success")) {
+                                Toast.makeText(FullPhotoViewActivity.this, "Report send Successful", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(FullPhotoViewActivity.this, "Report send Unsuccessful", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                        }
+                    });
+                    dialog.dismiss();
                 }
 
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                }
-            });
-            dialog.dismiss();
+
+            }
+
         });
         dialog.show();
     }

@@ -12,85 +12,90 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/forty"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/storyRlMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/twenty"
+        android:layout_height="@dimen/zero"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blankView">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="1.5"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/content_bg_color"
             android:orientation="horizontal">
 
-            <View
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
             <TextView
                 android:id="@+id/tvBackSettings"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:drawableLeft="@drawable/back_icon_20_26_12_2020"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:drawablePadding="@dimen/ten"
-                android:gravity="left|center"
                 android:text="Status"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
+                android:layout_marginStart="@dimen/fifteen"
+                android:drawableStart="@drawable/back_icon_20_26_12_2020"
+                android:padding="@dimen/ten"
+                android:textSize="20sp" />
 
 
         </LinearLayout>
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
 
+        <!--<androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight="14"
+            android:background="@color/bgColor">-->
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:background="@color/bgColor"
-            android:layout_weight="14">
-
-
+            android:layout_height="wrap_content"
+            android:background="@color/bgColor">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSelectStatusActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp" />
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="35dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/one"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:id="@+id/rvSelectStatusActivity"/>
-
-            </LinearLayout>
-
-
+                    android:layout_height="@dimen/hundrad" />
 
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+
+        <!--</androidx.core.widget.NestedScrollView>-->
 
 
     </LinearLayout>

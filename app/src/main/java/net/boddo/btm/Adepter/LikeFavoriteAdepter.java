@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,16 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import net.boddo.btm.Activity.BuyCreditActivity;
-import net.boddo.btm.Event.Event;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
+import net.boddo.btm.Event.Event;
 import net.boddo.btm.Model.Liked;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
@@ -43,8 +36,13 @@ import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.Limitation;
 import net.boddo.btm.Utills.SearchUser;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -114,9 +112,11 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
     public void onBindViewHolder(@NonNull final LikeFavoriteAdepter.LoveFavoriteViewHolder holder, final int position) {
 
         String dDate = likedMeList.get(position).getDateOfBirth();
-        if (!likedMeList.get(position).getDateOfBirth().equals("")) {
-            convertStringToDateFormat(likedMeList.get(position).getDateOfBirth());
-            age = getAge(year, month, date);
+        if (likedMeList.get(position).getDateOfBirth() != null) {
+            if (!likedMeList.get(position).getDateOfBirth().equals("")) {
+                convertStringToDateFormat(likedMeList.get(position).getDateOfBirth());
+                age = getAge(year, month, date);
+            }
         }
 
         if (Data.isPalupPlusSubcriber) {
@@ -159,11 +159,14 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
                 if (position <= Limitation.LIKE_FAV_VISITOR_SHOW_PHOTO - 1) {
                     holder.tvUserNameActivity.setText(likedMeList.get(position).getName());
                     holder.tvUserAgeActivity.setText(age);
-                    if (likedMeList.get(position).getGender().equals("Male")) {
-                        holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
-                    } else {
-                        holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                    if (likedMeList.get(position).getGender() != null) {
+                        Log.e("Gender issue", String.valueOf(likedMeList.get(position).getUserId()));
+                        if (likedMeList.get(position).getGender().equals("Male")) {
+                            holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
+                        } else {
+                            holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
 
+                        }
                     }
 
 
@@ -178,10 +181,12 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
 
                     holder.tvUserNameActivity.setText(likedMeList.get(position).getName());
                     holder.tvUserAgeActivity.setText(age);
-                    if (likedMeList.get(position).getGender().equals("Male")) {
-                        holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
-                    } else {
-                        holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                    if (likedMeList.get(position).getGender() != null) {
+                        if (likedMeList.get(position).getGender().equals("Male")) {
+                            holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
+                        } else {
+                            holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                        }
                     }
 
 
