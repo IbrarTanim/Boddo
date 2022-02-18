@@ -55,6 +55,7 @@ public class PalupPlusSliderAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //profile_image_sliding_layout
         View view = layoutInflater.inflate(R.layout.profile_image_sliding_layout, container, false);
         final ImageView imageView = view.findViewById(R.id.sender_imageView);
         imageView.setImageResource(image[position]);

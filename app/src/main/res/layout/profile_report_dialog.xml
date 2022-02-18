@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="20dp"
     android:layout_gravity="center"
     app:cardCornerRadius="@dimen/ten"
     android:layout_marginTop="15dp">
@@ -21,48 +20,57 @@
             android:text="Report User"/>
 
         <RadioGroup
+            android:id="@+id/profile_report_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/fifty">
 
             <RadioButton
+                android:id="@+id/btn_fake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fake Profile"/>
 
             <RadioButton
+                android:id="@+id/btn_spam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Spam"/>
 
             <RadioButton
+                android:id="@+id/btn_scam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Scam"/>
 
             <RadioButton
+                android:id="@+id/btn_advertising"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Advertising"/>
 
             <RadioButton
+                android:id="@+id/btn_pornography"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pornography"/>
 
 
             <RadioButton
+                android:id="@+id/btn_offence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Personal offence"/>
 
             <RadioButton
+                android:id="@+id/btn_chat_offence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chat room offence"/>
 
             <RadioButton
+                android:id="@+id/btn_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Other reason"/>
@@ -70,6 +78,7 @@
         </RadioGroup>
 
         <Button
+            android:id="@+id/profile_report_submit_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -83,6 +92,7 @@
             android:background="@drawable/button2"/>
 
         <Button
+            android:id="@+id/profile_report_cancel_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

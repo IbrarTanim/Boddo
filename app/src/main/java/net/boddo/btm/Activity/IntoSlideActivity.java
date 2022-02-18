@@ -14,10 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import net.boddo.btm.Utills.SharedPref;
-
-import net.boddo.btm.R;
 import net.boddo.btm.Adepter.SlideAdepter;
+import net.boddo.btm.R;
+import net.boddo.btm.Utills.SharedPref;
 
 public class IntoSlideActivity extends AppCompatActivity implements ViewPager.PageTransformer {
 
@@ -173,14 +172,14 @@ public class IntoSlideActivity extends AppCompatActivity implements ViewPager.Pa
 
     public void skipBTN(View view) {
         sharedPref.setHasClickedSkipOrLetsGoButton("isSkippedOrLetsGoButtonClicked", true);
-        Intent intent = new Intent(IntoSlideActivity.this, LoginActivity.class);
+        Intent intent = new Intent(IntoSlideActivity.this, LandingActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void finishBTN(View view) {
         sharedPref.setHasClickedSkipOrLetsGoButton("isSkippedOrLetsGoButtonClicked", true);
-        Intent intent = new Intent(IntoSlideActivity.this, LoginActivity.class);
+        Intent intent = new Intent(IntoSlideActivity.this, LandingActivity.class);
         startActivity(intent);
         finish();
     }

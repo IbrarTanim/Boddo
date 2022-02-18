@@ -11,9 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -357,13 +358,12 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
     public void onReportButton() {
         final Dialog dialog = new Dialog(activity);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.custom_alert_dialog_chat_room_option);
-        final EditText editTextDescription = dialog.findViewById(R.id.edit_text_report);
-        //LinearLayout orLayout = dialog.findViewById(R.id.or_layout);
-        TextView title = dialog.findViewById(R.id.title);
-        LinearLayout reportLayout = dialog.findViewById(R.id.report_layout);
-        Button cancelButton = (Button) dialog.findViewById(R.id.button_decline);
-        Button reportButton = (Button) dialog.findViewById(R.id.button_done);
+        dialog.setContentView(R.layout.profile_report_dialog);
+
+        RadioGroup reportReasonGroup = dialog.findViewById(R.id.profile_report_group);
+
+        Button cancelButton = (Button) dialog.findViewById(R.id.profile_report_cancel_btn);
+        Button reportButton = (Button) dialog.findViewById(R.id.profile_report_submit_btn);
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -374,24 +374,43 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-                Call<String> call = apiInterface.getReportUser(Constants.SECRET_KEY, Data.userId, Data.otherUserId, editTextDescription.getText().toString());
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        String res = response.body();
-                        if (res.equals("success")) {
-                            Toast.makeText(activity, "Report send Successful", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(activity, "Report send Unsuccessful", Toast.LENGTH_SHORT).show();
-                        }
+
+                int selectedReasonBTN = reportReasonGroup.getCheckedRadioButtonId();
+
+                if (selectedReasonBTN != -1) {
+
+                    RadioButton selectedBTN = dialog.findViewById(selectedReasonBTN);
+
+                    String reasonForReport = String.valueOf(selectedBTN.getText());
+
+                    if (reasonForReport != null) {
+
+                        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+                        Call<String> call = apiInterface.getReportUser(Constants.SECRET_KEY, Data.userId, Data.otherUserId, reasonForReport);
+                        call.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                String res = response.body();
+                                if (res.equals("success")) {
+                                    Toast.makeText(activity, "Report send Successful", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity, "Report send Unsuccessful", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+                            }
+                        });
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(OthersProfileOneActivity.this, "Select your reason first.", Toast.LENGTH_SHORT).show();
                     }
 
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                    }
-                });
-                dialog.dismiss();
+                } else {
+                    Toast.makeText(OthersProfileOneActivity.this, "Select your reason first.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         dialog.show();
