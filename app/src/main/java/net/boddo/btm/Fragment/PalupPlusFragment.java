@@ -240,7 +240,7 @@ public class PalupPlusFragment extends Fragment {
         viewFlipper.setAdapter(imageLoaderAdapter);
 
         Timer timeTasker = new Timer();
-        timeTasker.scheduleAtFixedRate(new TimeTasker(), 2000, 4000);
+        timeTasker.scheduleAtFixedRate(new TimeTasker(), 1000, 2000);
 
 
         subscribeRbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -417,6 +417,12 @@ public class PalupPlusFragment extends Fragment {
                             viewFlipper.setCurrentItem(3);
                         } else if (viewFlipper.getCurrentItem() == 3) {
                             viewFlipper.setCurrentItem(4);
+                        } else if (viewFlipper.getCurrentItem() == 4) {
+                            viewFlipper.setCurrentItem(5);
+                        } else if (viewFlipper.getCurrentItem() == 5) {
+                            viewFlipper.setCurrentItem(6);
+                        } else if (viewFlipper.getCurrentItem() == 6) {
+                            viewFlipper.setCurrentItem(7);
                         } else {
                             viewFlipper.setCurrentItem(0);
                         }
