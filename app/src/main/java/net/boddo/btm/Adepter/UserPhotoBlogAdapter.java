@@ -9,18 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.daasuu.bl.BubbleLayout;
+import com.squareup.picasso.Picasso;
 
 import net.boddo.btm.Activity.FullImageFromOwnProfileActivity;
 import net.boddo.btm.Model.UserPhotoBlogImages;
 import net.boddo.btm.R;
-
-import com.squareup.picasso.Picasso;
 
 public class UserPhotoBlogAdapter extends RecyclerView.Adapter<UserPhotoBlogAdapter.UserPhotoBlogViewHolder> {
 
@@ -51,39 +48,42 @@ public class UserPhotoBlogAdapter extends RecyclerView.Adapter<UserPhotoBlogAdap
         } else if (isLiked.getIsLiked().equals("no")) {
             like_button.setImageDrawable(getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
         }*/
-        Picasso.get().load(userPhotoBlogImagesList[position].getPhoto()).into(holder.userImage);
 
-        if (!userPhotoBlogImagesList[position].getDescription().equals("")) {
+        int pos = position;
+
+        Picasso.get().load(userPhotoBlogImagesList[pos].getPhoto()).into(holder.userImage);
+
+        if (!userPhotoBlogImagesList[pos].getDescription().equals("")) {
             holder.post.setVisibility(View.VISIBLE);
-            holder.post.setText(userPhotoBlogImagesList[position].getDescription());
+            holder.post.setText(userPhotoBlogImagesList[pos].getDescription());
         }
 
-        if(userPhotoBlogImagesList[position].getLike().equals("1")){
+        if (userPhotoBlogImagesList[pos].getLike().equals("1")) {
             holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
 
-        }else {
+        } else {
             holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.like_icon_56_05_01_2021));
 
         }
-        holder.userLikedCount.setText(userPhotoBlogImagesList[position].getLike());
-        holder.userCommentCount.setText(userPhotoBlogImagesList[position].getComment());
-        holder.userCount.setText(userPhotoBlogImagesList[position].getMatched());
+        holder.userLikedCount.setText(userPhotoBlogImagesList[pos].getLike());
+        holder.userCommentCount.setText(userPhotoBlogImagesList[pos].getComment());
+        holder.userCount.setText(userPhotoBlogImagesList[pos].getViews());
 
 
         holder.imageViewLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // onLoveListener.giveLove(position);
+                // onLoveListener.giveLove(position);
                 //Toast.makeText(context, "1", Toast.LENGTH_SHORT).show();
                 holder.imageViewLove.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_red_love_or_like_fill));
 
             }
         });
 
-        String check = userPhotoBlogImagesList[position].getActionAt();
-        if (userPhotoBlogImagesList[position].getActionAt().equals("pending")) {
+        String check = userPhotoBlogImagesList[pos].getActionAt();
+        if (userPhotoBlogImagesList[pos].getActionAt().equals("pending")) {
             holder.llPrivacy.setVisibility(View.VISIBLE);
-            holder.tvStatusReview.setText("Status: " + userPhotoBlogImagesList[position].getActionAt());
+            holder.tvStatusReview.setText("Status: " + userPhotoBlogImagesList[pos].getActionAt());
         } else {
             holder.llPrivacy.setVisibility(View.GONE);
         }
@@ -93,8 +93,8 @@ public class UserPhotoBlogAdapter extends RecyclerView.Adapter<UserPhotoBlogAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, FullImageFromOwnProfileActivity.class);
-                intent.putExtra("PhotoBlog", (Parcelable) userPhotoBlogImagesList[position]);
-                intent.putExtra("position", position);
+                intent.putExtra("PhotoBlog", (Parcelable) userPhotoBlogImagesList[pos]);
+                intent.putExtra("position", pos);
                 context.startActivity(intent);
 
             }

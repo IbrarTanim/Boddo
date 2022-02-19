@@ -24,9 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import net.boddo.btm.Adepter.UserPhotoBlogAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -36,9 +37,6 @@ import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.theartofdev.edmodo.cropper.CropImage;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +44,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import id.zelory.compressor.Compressor;
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
@@ -129,6 +126,10 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserPhotoBlogImages[]> call, Response<UserPhotoBlogImages[]> response) {
                 userPhotoBlogImages = response.body();
+                for (UserPhotoBlogImages userPhotoBlogImage1 : userPhotoBlogImages) {
+                    Log.e("Gallery", userPhotoBlogImage1.toString());
+                }
+
                 //recyclerView.setLayoutManager(new GridLayoutManager(MyBlogPhotoActivity.this, 2));
 
                 layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

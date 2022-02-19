@@ -1,67 +1,100 @@
+
 package net.boddo.btm.Model;
 
-import android.os.Parcel;
+
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 public class UserPhotoBlogImages implements Parcelable {
-        @SerializedName("id")
-        @Expose
-        private String id;
-        @SerializedName("user_id")
-        @Expose
-        private String userId;
-        @SerializedName("photo")
-        @Expose
-        private String photo;
-        @SerializedName("description")
-        @Expose
-        private String description;
-        @SerializedName("like")
-        @Expose
-        private String like;
-        @SerializedName("comment")
-        @Expose
-        private String comment;
-        @SerializedName("matched")
-        @Expose
-        private String matched;
-        @SerializedName("status")
-        @Expose
-        private String status;
-        @SerializedName("created_at")
-        @Expose
-        private String createdAt;
-        @SerializedName("action_at")
-        @Expose
-        private String actionAt;
 
-    protected UserPhotoBlogImages(Parcel in) {
-        id = in.readString();
-        userId = in.readString();
-        photo = in.readString();
-        description = in.readString();
-        like = in.readString();
-        comment = in.readString();
-        matched = in.readString();
-        status = in.readString();
-        createdAt = in.readString();
-        actionAt = in.readString();
-    }
+    public final static Creator<UserPhotoBlogImages> CREATOR = new Creator<UserPhotoBlogImages>() {
 
-    public static final Creator<UserPhotoBlogImages> CREATOR = new Creator<UserPhotoBlogImages>() {
-        @Override
-        public UserPhotoBlogImages createFromParcel(Parcel in) {
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public UserPhotoBlogImages createFromParcel(android.os.Parcel in) {
             return new UserPhotoBlogImages(in);
         }
 
-        @Override
         public UserPhotoBlogImages[] newArray(int size) {
-            return new UserPhotoBlogImages[size];
+            return (new UserPhotoBlogImages[size]);
         }
+
     };
+    @SerializedName("table_id")
+    @Expose
+    private String tableId;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("user_id")
+    @Expose
+    private String userId;
+    @SerializedName("photo")
+    @Expose
+    private String photo;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("like")
+    @Expose
+    private String like;
+    @SerializedName("comment")
+    @Expose
+    private String comment;
+    @SerializedName("matched")
+    @Expose
+    private String matched;
+    @SerializedName("views")
+    @Expose
+    private String views;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("privacy")
+    @Expose
+    private String privacy;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("action_at")
+    @Expose
+    private String actionAt;
+    @SerializedName("update_time")
+    @Expose
+    private String updateTime;
+
+    protected UserPhotoBlogImages(android.os.Parcel in) {
+        this.tableId = ((String) in.readValue((String.class.getClassLoader())));
+        this.id = ((String) in.readValue((String.class.getClassLoader())));
+        this.userId = ((String) in.readValue((String.class.getClassLoader())));
+        this.photo = ((String) in.readValue((String.class.getClassLoader())));
+        this.description = ((String) in.readValue((String.class.getClassLoader())));
+        this.like = ((String) in.readValue((String.class.getClassLoader())));
+        this.comment = ((String) in.readValue((String.class.getClassLoader())));
+        this.matched = ((String) in.readValue((String.class.getClassLoader())));
+        this.views = ((String) in.readValue((String.class.getClassLoader())));
+        this.status = ((String) in.readValue((String.class.getClassLoader())));
+        this.privacy = ((String) in.readValue((String.class.getClassLoader())));
+        this.createdAt = ((String) in.readValue((String.class.getClassLoader())));
+        this.actionAt = ((String) in.readValue((String.class.getClassLoader())));
+        this.updateTime = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public UserPhotoBlogImages() {
+    }
+
+    public String getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(String tableId) {
+        this.tableId = tableId;
+    }
 
     public String getId() {
         return id;
@@ -119,12 +152,28 @@ public class UserPhotoBlogImages implements Parcelable {
         this.matched = matched;
     }
 
+    public String getViews() {
+        return views;
+    }
+
+    public void setViews(String views) {
+        this.views = views;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(String privacy) {
+        this.privacy = privacy;
     }
 
     public String getCreatedAt() {
@@ -143,22 +192,53 @@ public class UserPhotoBlogImages implements Parcelable {
         this.actionAt = actionAt;
     }
 
-    @Override
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(tableId);
+        dest.writeValue(id);
+        dest.writeValue(userId);
+        dest.writeValue(photo);
+        dest.writeValue(description);
+        dest.writeValue(like);
+        dest.writeValue(comment);
+        dest.writeValue(matched);
+        dest.writeValue(views);
+        dest.writeValue(status);
+        dest.writeValue(privacy);
+        dest.writeValue(createdAt);
+        dest.writeValue(actionAt);
+        dest.writeValue(updateTime);
+    }
+
     public int describeContents() {
         return 0;
     }
 
+
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(userId);
-        dest.writeString(photo);
-        dest.writeString(description);
-        dest.writeString(like);
-        dest.writeString(comment);
-        dest.writeString(matched);
-        dest.writeString(status);
-        dest.writeString(createdAt);
-        dest.writeString(actionAt);
+    public String toString() {
+        return "UserPhotoBlogImages{" +
+                "tableId='" + tableId + '\'' +
+                ", id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", photo='" + photo + '\'' +
+                ", description='" + description + '\'' +
+                ", like='" + like + '\'' +
+                ", comment='" + comment + '\'' +
+                ", matched='" + matched + '\'' +
+                ", views='" + views + '\'' +
+                ", status='" + status + '\'' +
+                ", privacy='" + privacy + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", actionAt='" + actionAt + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                '}';
     }
 }

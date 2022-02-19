@@ -849,7 +849,7 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);*/
 
-        //setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
         getWindow().setStatusBarColor(getColor(R.color.transparent));
 
         ButterKnife.bind(this);

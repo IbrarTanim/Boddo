@@ -290,4 +290,30 @@ public class PhotoBlog implements Parcelable {
         }
         dest.writeTypedList(photoblogList);
     }
+
+
+    @Override
+    public String toString() {
+        return "PhotoBlog{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", photo='" + photo + '\'' +
+                ", description='" + description + '\'' +
+                ", like='" + like + '\'' +
+                ", comment='" + comment + '\'' +
+                ", matched='" + matched + '\'' +
+                ", status='" + status + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", actionAt='" + actionAt + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", profilePhoto='" + profilePhoto + '\'' +
+                ", gender='" + gender + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", isSuspended='" + isSuspended + '\'' +
+                ", views='" + views + '\'' +
+                ", isPhotoLikedByMe=" + isPhotoLikedByMe +
+                ", photoblogList=" + photoblogList +
+                '}';
+    }
 }

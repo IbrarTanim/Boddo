@@ -17,10 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
-
 import net.boddo.btm.Activity.FullPhotoViewActivity;
 import net.boddo.btm.Activity.photoblog.OnLoveListener;
 import net.boddo.btm.Activity.photoblog.SpacesItemDecoration;
@@ -33,6 +29,10 @@ import net.boddo.btm.Model.PhotoBlog;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -158,6 +158,12 @@ public class FragmentPhotoBlogAllUser extends Fragment implements OnLoveListener
             public void onResponse(Call<PhotoBlog[]> call, retrofit2.Response<PhotoBlog[]> response) {
                 if (response.body().length != 0) {
                     photoBlogs = response.body();
+
+                    for (PhotoBlog photoBlog : photoBlogs) {
+
+                        Log.e("PhotoBlog", photoBlog.toString());
+
+                    }
                     prepareAllPhoto();
 
                     //Data.PhotoBlogCount =
