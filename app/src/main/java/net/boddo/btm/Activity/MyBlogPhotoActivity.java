@@ -40,6 +40,9 @@ import net.boddo.btm.Utills.Data;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -61,6 +64,8 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     private static final int REQUEST_GALLERY_CODE = 200;
     private static final int READ_REQUEST_CODE = 300;
+
+    private int TODAY_UPLOAD_COUNT = 0;
 
    /* @BindView(R.id.add_image_button)
     FloatingActionButton addImage;*/
@@ -87,7 +92,7 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_blog_photo);
         activity = this;
         ButterKnife.bind(this);
-        getAllImageList();
+        //getAllImageList();
 
         ivCameraMyBlogPhoto = findViewById(R.id.ivCameraMyBlogPhoto);
         tvBackMyBlogPhoto = findViewById(R.id.tvBackMyBlogPhoto);
@@ -107,9 +112,15 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //addNewPhoto();
-               // Toast.makeText(activity, "ivCameraMyBlogPhoto", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(activity, ImageUploadActivity.class);
-                startActivity(intent);
+                // Toast.makeText(activity, "ivCameraMyBlogPhoto", Toast.LENGTH_SHORT).show();
+
+                if (TODAY_UPLOAD_COUNT >= 3) {
+                    Toast.makeText(activity, "You have reached your limit.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(activity, ImageUploadActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -126,8 +137,33 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserPhotoBlogImages[]> call, Response<UserPhotoBlogImages[]> response) {
                 userPhotoBlogImages = response.body();
+
+                Calendar calendar = Calendar.getInstance(Locale.getDefault());
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                String currentDate = formatter.format(calendar.getTime());
+                Log.e("Current Date: ", currentDate);
+
+                TODAY_UPLOAD_COUNT = 0;
                 for (UserPhotoBlogImages userPhotoBlogImage1 : userPhotoBlogImages) {
                     Log.e("Gallery", userPhotoBlogImage1.toString());
+
+                    String photoDate = userPhotoBlogImage1.getCreatedAt();
+                    try {
+
+                        Log.e("Photo Date: ", photoDate);
+
+                        if (photoDate.contains(currentDate)) {
+
+                            TODAY_UPLOAD_COUNT++;
+
+                            Log.e("Photo Date: ", "Contains");
+
+
+                        }
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                        Log.e("Photo Date Error: ", e.getMessage());
+                    }
                 }
 
                 //recyclerView.setLayoutManager(new GridLayoutManager(MyBlogPhotoActivity.this, 2));

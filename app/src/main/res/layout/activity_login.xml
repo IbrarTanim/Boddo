@@ -69,39 +69,34 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_email"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/fifty"
-            android:layout_marginRight="@dimen/fifty"
-            android:layout_weight="1">
+            android:layout_marginRight="@dimen/fifty">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/paddin_16dp"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:paddingBottom="@dimen/paddin_16dp" />
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_password"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/fifty"
             android:layout_marginRight="@dimen/fifty"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/seven"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/paddin_16dp"
                 android:hint="@string/password"
                 android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:paddingBottom="@dimen/paddin_16dp" />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <View

@@ -1,36 +1,28 @@
 package net.boddo.btm.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO;
+import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO_PATH;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.theartofdev.edmodo.cropper.CropImage;
+import androidx.appcompat.app.AppCompatActivity;
 
-import net.boddo.btm.Adepter.UserPhotoBlogAdapter;
+import com.bumptech.glide.Glide;
+
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Model.UserPhotoBlogImages;
@@ -39,19 +31,12 @@ import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.ImageProcessing;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Objects;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
-import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO;
-import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO_PATH;
 
 public class PhotoPostActivity extends AppCompatActivity implements View.OnClickListener {
     PhotoPostActivity activity;
@@ -141,6 +126,10 @@ public class PhotoPostActivity extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onResponse(Call<UserPhotoBlogImages[]> call, Response<UserPhotoBlogImages[]> response) {
                     if (response.code() == 200) {
+                        UserPhotoBlogImages[] userPhotoBlogImages = response.body();
+                        for (UserPhotoBlogImages userPhotoBlogImage1 : userPhotoBlogImages) {
+                            Log.e("Photo Post", userPhotoBlogImage1.toString());
+                        }
                         Toast.makeText(activity, "Your image is in review. Please wait for a while!", Toast.LENGTH_LONG).show();
                         finish();
 
