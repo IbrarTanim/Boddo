@@ -114,7 +114,7 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
                 //addNewPhoto();
                 // Toast.makeText(activity, "ivCameraMyBlogPhoto", Toast.LENGTH_SHORT).show();
 
-                if (TODAY_UPLOAD_COUNT >= 3) {
+                if (!Data.isPalupPlusSubcriber && TODAY_UPLOAD_COUNT >= 3) {
                     Toast.makeText(activity, "You have reached your limit.", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(activity, ImageUploadActivity.class);

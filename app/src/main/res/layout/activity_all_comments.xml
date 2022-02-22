@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg_color">
@@ -11,149 +10,152 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/forty"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/storyRlMain"
+        android:id="@+id/back_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/twenty"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:background="@color/content_bg_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blankView">
 
+        <!--android:layout_weight="1.5"-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="1.5"
-            android:background="@color/content_bg_color"
-            android:orientation="horizontal">
+        <View
+            android:layout_width="@dimen/zero"
+            android:layout_height="@dimen/forty"
+            android:layout_weight="0.2" />
 
-            <View
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
-
-            <TextView
-                android:id="@+id/comment_title"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:drawableLeft="@drawable/back_icon_20_26_12_2020"
-                android:drawablePadding="@dimen/ten"
-                android:gravity="left|center"
-                android:textColor="@color/black" />
-
-
-        </LinearLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="16">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/content_bg_color" />
-
-                <View
-                    android:id="@+id/viewWhiteBlank"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:background="@color/white"
-                    android:visibility="gone" />
-
-
-            </LinearLayout>
-
-
-        </androidx.core.widget.NestedScrollView>
-
-
-
-
-            <LinearLayout
-                android:id="@+id/message_layout"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-
-                android:background="@drawable/blocked_user_dialog_bag"
-                android:shadowDx = "-2"
-                android:shadowDy = "-2"
-                android:shadowRadius = "1"
-                android:orientation="horizontal"
-                android:shadowColor = "#E8E8E8">
-
-
-                <!-- <ImageView
-                     android:id="@+id/emoji_btn"
-                     android:layout_width="20dp"
-                     android:layout_height="40dp"
-                     android:layout_gravity="center_vertical"
-                     android:padding="4dp"
-                     android:background="@drawable/messagebox_shape"
-                     android:src="@drawable/smile"
-                     android:visibility="invisible" />-->
-
-                <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
-                    android:id="@+id/emojicon_edit_text"
-                    android:layout_width="367dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:gravity="center|left"
-                    android:hint="Type a comment"
-                    android:imeOptions="actionSend"
-                    android:inputType="textMultiLine"
-                    android:maxLines="3"
-                    android:textColor="@color/black"
-                    />
-
-                <RelativeLayout
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent">
-
-
-                    <ImageView
-                        android:id="@+id/submit_btn"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_centerInParent="true"
-                        android:padding="@dimen/five"
-                        android:src="@drawable/send_icon_20_03_01_2021_touch"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/submitButtonTouch"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_centerInParent="true"
-                        android:padding="@dimen/five"
-                        android:src="@drawable/send_icon_20_03_01_2021_normal" />
-
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-
+        <TextView
+            android:id="@+id/comment_title"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="6"
+            android:drawableLeft="@drawable/back_icon_20_26_12_2020"
+            android:drawablePadding="@dimen/ten"
+            android:gravity="left|center"
+            android:textColor="@color/black" />
 
 
     </LinearLayout>
 
+    <!--<androidx.core.widget.NestedScrollView
+        android:id="@+id/storyRlMain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_layout"
+        app:layout_constraintBottom_toBottomOf="parent">
+        &lt;!&ndash;android:layout_weight="16"&ndash;&gt;
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/content_bg_color" />
+
+            <View
+                android:id="@+id/viewWhiteBlank"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/thirty"
+        android:layout_marginBottom="@dimen/seventy"
+        android:background="@color/content_bg_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_layout" />
+
+    <LinearLayout
+        android:id="@+id/message_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/blocked_user_dialog_bag"
+        android:orientation="horizontal"
+        android:shadowColor="#E8E8E8"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <!-- <ImageView
+             android:id="@+id/emoji_btn"
+             android:layout_width="20dp"
+             android:layout_height="40dp"
+             android:layout_gravity="center_vertical"
+             android:padding="4dp"
+             android:background="@drawable/messagebox_shape"
+             android:src="@drawable/smile"
+             android:visibility="invisible" />-->
+
+        <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
+            android:id="@+id/emojicon_edit_text"
+            android:layout_width="367dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center|left"
+            android:hint="Type a comment"
+            android:imeOptions="actionSend"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:textColor="@color/black" />
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/submit_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/five"
+                android:src="@drawable/send_icon_20_03_01_2021_touch"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/submitButtonTouch"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/five"
+                android:src="@drawable/send_icon_20_03_01_2021_normal" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

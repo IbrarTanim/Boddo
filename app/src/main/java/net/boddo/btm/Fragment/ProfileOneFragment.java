@@ -2,16 +2,16 @@ package net.boddo.btm.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 
@@ -19,12 +19,10 @@ import net.boddo.btm.Activity.AddPhotoActivity;
 import net.boddo.btm.Activity.AllUsersActivity;
 import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Activity.DashBoadActivity;
-import net.boddo.btm.Activity.ImageUploadActivity;
 import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Activity.Settings.SettingsActivity;
 import net.boddo.btm.Activity.SupportWebViewActivity;
 import net.boddo.btm.R;
-import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 
 import java.util.Calendar;
@@ -64,6 +62,8 @@ public class ProfileOneFragment extends Fragment implements View.OnClickListener
             view = inflater.inflate(R.layout.fragment_profile_one, container, false);
         }
         activity = (DashBoadActivity) getActivity();
+
+        Log.e("Palup Points", Data.userPalupPoint);
 
         ivProfileOnePropicSearch = view.findViewById(R.id.ivProfileOnePropicSearch);
         ivProfileOnePropicSupport = view.findViewById(R.id.ivProfileOnePropicSupport);

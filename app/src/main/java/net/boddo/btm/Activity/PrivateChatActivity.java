@@ -19,16 +19,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,11 +33,19 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import net.boddo.btm.Adepter.LikeFavoriteAdepter;
-import net.boddo.btm.Event.Event;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
+
 import net.boddo.btm.Adepter.ChatAppMsgAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
+import net.boddo.btm.Event.Event;
 import net.boddo.btm.Fragment.CustomBottomSheetChat;
 import net.boddo.btm.Fragment.OthersFragment.OthersProfileFragment;
 import net.boddo.btm.Model.ChatAppMsgDTO;
@@ -55,15 +57,6 @@ import net.boddo.btm.Utills.Helper;
 import net.boddo.btm.Utills.Limitation;
 import net.boddo.btm.Utills.SearchUser;
 import net.boddo.btm.test.CustomGalleryBottomSheet;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.gson.JsonObject;
-import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -681,12 +674,15 @@ public class PrivateChatActivity extends AppCompatActivity {
                 //showPrettyDialog(holder, position, message);
                 if (Integer.parseInt(Data.userPalupPoint) >= Limitation.LIKE_FAV_VISITOR_CREDITS) {
 
-                    PrettyDialog jj = new PrettyDialog(PrivateChatActivity.this);
+                    //TODO -------------------------
+                    Toast.makeText(activity, "Under construction..", Toast.LENGTH_SHORT).show();
+
+                    /*PrettyDialog jj = new PrettyDialog(PrivateChatActivity.this);
                     jj.setTitle("Dear " + Data.userName)
                             .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
                             .setMessage("You don't have sufficient balance").setMessageColor(R.color.red_A700);
 
-                    jj.show();
+                    jj.show();*/
                 } else {
 
                     insufficientCredits();

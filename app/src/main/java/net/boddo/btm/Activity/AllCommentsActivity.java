@@ -29,19 +29,14 @@ import net.boddo.btm.Utills.Data;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import hani.momanii.supernova_emoji_library.Actions.EmojIconActions;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
-import hani.momanii.supernova_emoji_library.Helper.EmojiconTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static net.boddo.btm.Utills.StaticAccess.TAG_PHOTOBLOG_ID_VALUE;
 
 public class AllCommentsActivity extends AppCompatActivity {
 
@@ -59,7 +54,7 @@ public class AllCommentsActivity extends AppCompatActivity {
     ImageView submitButtonTouch;
 
 
-    View viewWhiteBlank;
+    //View viewWhiteBlank;
 
     /*@BindView(R.id.back_arrow)
     ImageView backButton;*/
@@ -96,8 +91,8 @@ public class AllCommentsActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.submit_btn);
         submitButtonTouch = findViewById(R.id.submitButtonTouch);
         emojiconEditText = findViewById(R.id.emojicon_edit_text);
-        viewWhiteBlank = findViewById(R.id.viewWhiteBlank);
-       // closeKeyBoard();
+        //viewWhiteBlank = findViewById(R.id.viewWhiteBlank);
+        // closeKeyBoard();
 
        /* emojiconEditText.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -241,7 +236,7 @@ public class AllCommentsActivity extends AppCompatActivity {
                     submitButton.setVisibility(View.GONE);
                     commentTitle.setText(commentList.size() + " " + "Comments");
 
-                    viewWhiteBlank.setVisibility(View.VISIBLE);
+                    //viewWhiteBlank.setVisibility(View.VISIBLE);
                 }
             }
 
