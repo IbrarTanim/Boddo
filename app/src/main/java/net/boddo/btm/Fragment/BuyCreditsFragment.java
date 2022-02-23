@@ -1,12 +1,12 @@
 package net.boddo.btm.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,23 +15,21 @@ import androidx.fragment.app.Fragment;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import net.boddo.btm.Activity.BuyCreditActivity;
-import net.boddo.btm.Event.Event;
+import net.boddo.btm.Activity.DashBoadActivity;
 import net.boddo.btm.Billing.BillingManager;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
+import net.boddo.btm.Event.Event;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 
-import butterknife.BindView;
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
+
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,7 +54,7 @@ public class BuyCreditsFragment extends Fragment implements View.OnClickListener
     private static final String PUB_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA08bDDN4RoTGfmEqKk6gFDXtPCSTHx2b65ARv7+B+rrqQX5hMWZo8HT0LplsWvq4ZGN6GottC2IQXqe6uS77ytjEtodIaeKPADG3Hla2Q9eeYhnw6ohntaSCa1b/sBJ1CA86QcUTDM60U2/+FOtX/HkloVjrCY8LWk6TVvdr3NHtsAB/YWUPiiF9ioNDMPY1NmkPZEoPRVrYv35e8BePWYUE0VFwpWTOIcFI2m4rSrMwpPpCtr3c1884rgzLXJIrOazS986QLE7Qgk2j/SvOEPD1W2MJyxPvvIkV+ihh09WFPi6tGT/DR39BxZjbB/CkeKw1OylZDBRorSuBBvBti3QIDAQAB";
 
 
-    LinearLayout llBuyCredit_1000, llBuyCredit_2000, llBuyCredit_5000, llBuyCredit_10000;
+    RadioButton llBuyCredit_1000, llBuyCredit_2000, llBuyCredit_5000, llBuyCredit_10000;
     TextView tvContinue, tvBackCredits;
 
 
@@ -93,7 +91,7 @@ public class BuyCreditsFragment extends Fragment implements View.OnClickListener
         llBuyCredit_2000 = view.findViewById(R.id.llBuyCredit_2000);
         llBuyCredit_5000 = view.findViewById(R.id.llBuyCredit_5000);
         llBuyCredit_10000 = view.findViewById(R.id.llBuyCredit_10000);
-        tvContinue = view.findViewById(R.id.tvContinue);
+        tvContinue = view.findViewById(R.id.continue_button);
         tvBackCredits = view.findViewById(R.id.tvBackCredits);
 
         llBuyCredit_1000.setOnClickListener(this);
@@ -181,7 +179,8 @@ public class BuyCreditsFragment extends Fragment implements View.OnClickListener
                 break;
 
             case R.id.tvBackCredits:
-                getActivity().finish();
+                startActivity(new Intent(getActivity(), DashBoadActivity.class));
+                //getActivity().finish();
                 //activity.goBack();
                 break;
 

@@ -1,6 +1,7 @@
 package net.boddo.btm.Fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.android.billingclient.api.Purchase;
 import com.rd.PageIndicatorView;
 
 import net.boddo.btm.Activity.BuyCreditActivity;
+import net.boddo.btm.Activity.DashBoadActivity;
 import net.boddo.btm.Adepter.PalupPlusSliderAdapter;
 import net.boddo.btm.Billing.BillingManager;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -232,7 +234,8 @@ public class PalupPlusFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //activity.goBack();
-                activity.finish();
+                //activity.finish();
+                startActivity(new Intent(activity, DashBoadActivity.class));
             }
         });
 
