@@ -40,9 +40,6 @@ import net.boddo.btm.Utills.Data;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -111,15 +108,55 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
         ivCameraMyBlogPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //addNewPhoto();
-                // Toast.makeText(activity, "ivCameraMyBlogPhoto", Toast.LENGTH_SHORT).show();
 
-                if (!Data.isPalupPlusSubcriber && TODAY_UPLOAD_COUNT >= 3) {
+                apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+
+                Call<String> postCall = apiInterface.onPhotoLimit(Constants.SECRET_KEY, Data.userId);
+
+                postCall.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        if (response.body() != null) {
+
+                            Log.e("Photo Blog Limit", response.body());
+
+                            if (response.body().equals("success")) {
+
+                                Intent intent = new Intent(activity, ImageUploadActivity.class);
+                                startActivity(intent);
+
+                            } else if (response.body().equals("limit expired")) {
+
+                                Toast.makeText(activity, "You have reached your limit. Please subscribe Boddo Plus to upload more.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+
+                                Toast.makeText(activity, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        } else {
+
+                            Toast.makeText(activity, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Toast.makeText(activity, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                /*if (!Data.isPalupPlusSubcriber && TODAY_UPLOAD_COUNT >= 3) {
                     Toast.makeText(activity, "You have reached your limit.", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(activity, ImageUploadActivity.class);
                     startActivity(intent);
-                }
+                }*/
 
             }
         });
@@ -138,12 +175,11 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
             public void onResponse(Call<UserPhotoBlogImages[]> call, Response<UserPhotoBlogImages[]> response) {
                 userPhotoBlogImages = response.body();
 
-                Calendar calendar = Calendar.getInstance(Locale.getDefault());
+                /*Calendar calendar = Calendar.getInstance(Locale.getDefault());
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 String currentDate = formatter.format(calendar.getTime());
                 Log.e("Current Date: ", currentDate);
 
-                TODAY_UPLOAD_COUNT = 0;
                 for (UserPhotoBlogImages userPhotoBlogImage1 : userPhotoBlogImages) {
                     Log.e("Gallery", userPhotoBlogImage1.toString());
 
@@ -164,7 +200,7 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
                         //e.printStackTrace();
                         Log.e("Photo Date Error: ", e.getMessage());
                     }
-                }
+                }*/
 
                 //recyclerView.setLayoutManager(new GridLayoutManager(MyBlogPhotoActivity.this, 2));
 

@@ -142,7 +142,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     @BindView(R.id.RLPrivateChatScreen)
     RelativeLayout RLPrivateChatScreen;
 
-  //  @BindView(R.id.chat_left_msg_text_view)
+    //  @BindView(R.id.chat_left_msg_text_view)
     TextView chat_left_msg_text_view;
 
     Dialog mDialog;
@@ -167,7 +167,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     int leftMessageCount = 0;
     int rightMessageCount = 0;
     BroadcastReceiver receiver;
-    boolean isCheck=false;
+    boolean isCheck = false;
     BottomSheetBehavior bottomSheetBehavior;
     RelativeLayout bottomSheetLayout;
     FirebaseDatabase database;
@@ -208,10 +208,10 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         flagPreference = new FlagPreference(this);
         String f = FlagPreference.getFlag("flag");
-        Log.e("f", "onCreate: "+f );
-        if(f.equals("true")){
+        Log.e("f", "onCreate: " + f);
+        if (f.equals("true")) {
             flag = true;
-        }else {
+        } else {
             flag = false;
         }
 
@@ -284,33 +284,31 @@ public class PrivateChatActivity extends AppCompatActivity {
         getRequestAcceptDetails();
 
 
-
-        if(accepted!=null && accepted.equals("accepted")){
+        if (accepted != null && accepted.equals("accepted")) {
             rvFirstTimeBG.setVisibility(View.GONE);
             Log.e("accepted", "onCreate: accepted");
-        }else {
+        } else {
             rvFirstTimeBG.setVisibility(View.VISIBLE);
         }
-
 
 
         //menu_name_online_textView
         menu_name_online_textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(PrivateChatActivity.this,v);
-                popupMenu.getMenuInflater().inflate(R.menu.screen_color_menu,popupMenu.getMenu());
+                PopupMenu popupMenu = new PopupMenu(PrivateChatActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.screen_color_menu, popupMenu.getMenu());
                 popupMenu.show();
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        if(b==true){
-                            b=false;
+                        if (b == true) {
+                            b = false;
                             RLPrivateChatScreen.setBackgroundColor(Color.rgb(63, 66, 77));
 
-                        }else {
-                            b=true;
+                        } else {
+                            b = true;
                             RLPrivateChatScreen.setBackgroundColor(Color.WHITE);
 
                         }
@@ -426,7 +424,7 @@ public class PrivateChatActivity extends AppCompatActivity {
 
         try {
             if (otherUserNameFromActiveList.equals("")) {
-                Log.e("otherUserNameFrom", "onCreate: "+otherUserNameFromActiveList );
+                Log.e("otherUserNameFrom", "onCreate: " + otherUserNameFromActiveList);
                 firstPortionOfName = Data.otherUserFirstName.split(" ");
                 textViewTwoUsersName.setText(firstPortionOfName[0]);
                 second_name_online_textView.setText(firstPortionOfMyName[0]);
@@ -448,15 +446,15 @@ public class PrivateChatActivity extends AppCompatActivity {
 
 
         mLastClickTime = SystemClock.elapsedRealtime();
-        msgContent = editTextMessage.getText().toString().replace("'","\'");
+        msgContent = editTextMessage.getText().toString().replace("'", "\'");
         if (msgContent.length() > 0 && !msgContent.equals("")) {
             apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("secret_key",Constants.SECRET_KEY);
-            jsonObject.addProperty("user_id",Data.userId);
-            jsonObject.addProperty("other_user_id",Data.otherUserId);
-            jsonObject.addProperty("message",msgContent);
-            Log.e("responeCheck", "onSendButtonClicked: "+jsonObject.toString() );
+            jsonObject.addProperty("secret_key", Constants.SECRET_KEY);
+            jsonObject.addProperty("user_id", Data.userId);
+            jsonObject.addProperty("other_user_id", Data.otherUserId);
+            jsonObject.addProperty("message", msgContent);
+            Log.e("responeCheck", "onSendButtonClicked: " + jsonObject.toString());
             Call<ChatAppMsgDTO> call = apiInterface.startChat(Constants.SECRET_KEY, Data.userId, Data.otherUserId, msgContent);
             call.enqueue(new Callback<ChatAppMsgDTO>() {
                 @SuppressLint("SetTextI18n")
@@ -464,18 +462,18 @@ public class PrivateChatActivity extends AppCompatActivity {
                 public void onResponse(Call<ChatAppMsgDTO> call, Response<ChatAppMsgDTO> response) {
                     String responeCheck = response.toString();
 
-                    accepted=response.body().getRequest();
-                    if(response.body().getRequest().equals("accepted")){
-                       // rvFirstTimeBG.setVisibility(View.GONE);
+                    accepted = response.body().getRequest();
+                    if (response.body().getRequest().equals("accepted")) {
+                        // rvFirstTimeBG.setVisibility(View.GONE);
 
-                        if(flag==true && Data.otherUserId.equals(otherUserId) ){
+                        if (flag == true && Data.otherUserId.equals(otherUserId)) {
                             rvFirstTimeBG.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
                             messageTV2.setVisibility(View.VISIBLE);
                             messageTV3.setVisibility(View.VISIBLE);
                             messageTV3.setText("Chat request accepted");
                             messageTV2.setText("Start the conversation & write something impressive");
-                        }else{
+                        } else {
                             otherProfile.setVisibility(View.INVISIBLE);
                             rvFirstTimeBG.setVisibility(View.VISIBLE);
                             messageTV1.setVisibility(View.INVISIBLE);
@@ -487,20 +485,20 @@ public class PrivateChatActivity extends AppCompatActivity {
                             otherProfile.setVisibility(View.VISIBLE);
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
                             recyclerView.setVisibility(View.VISIBLE);
-                            Log.e("accepted", "onResponse: accepted" );
+                            Log.e("accepted", "onResponse: accepted");
                         }
 
-                    }else if (response.body().getStatus().equals("success")) {
+                    } else if (response.body().getStatus().equals("success")) {
                         if (response.body().getRequest().equals("accepted")) {
 
-                            if(flag==true && flag==true && Data.otherUserId.equals(otherUserId) ){
+                            if (flag == true && flag == true && Data.otherUserId.equals(otherUserId)) {
                                 rvFirstTimeBG.setVisibility(View.VISIBLE);
                                 recyclerView.setVisibility(View.VISIBLE);
                                 messageTV2.setVisibility(View.VISIBLE);
                                 messageTV3.setVisibility(View.VISIBLE);
                                 messageTV3.setText("Chat request accepted");
                                 messageTV2.setText("Start the conversation & write something impressive");
-                            }else {
+                            } else {
                                 message = response.body().getSingleMessage();
                                 msgDtoList.add(message);
                                 int newMsgPosition = msgDtoList.size() - 1;
@@ -522,13 +520,12 @@ public class PrivateChatActivity extends AppCompatActivity {
                                 tvTopMessageFirstTime.setVisibility(View.GONE);
 
 
-
                                 editTextMessage.setText("");
                                 //increase the sender message amount
                                 countMessages();
                             }
 
-                        }  else if (response.body().getRequest().equals("requested")) {
+                        } else if (response.body().getRequest().equals("requested")) {
                             if (msgDtoList.size() == 1) {
 
                                 rvFirstTimeBG.setVisibility(View.VISIBLE);
@@ -573,22 +570,22 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     private void chatRequestNotAcceptedMsg() {
 
-       // flag = false;
-    //    FlagPreference.setFlag("flag",flag.toString());
+        // flag = false;
+        //    FlagPreference.setFlag("flag",flag.toString());
 
-            rvFirstTimeBG.setVisibility(View.VISIBLE);
-            tvWait.setVisibility(View.VISIBLE);
-            tvTopMessageFirstTime.setVisibility(View.VISIBLE);
-            tvTopMessageFirstTime.setText("Chat request sent");
-            messageTV1.setVisibility(View.VISIBLE);
-            messageTV1.setText("Your chat request sent, Please wait for user approval.");
-            otherProfile.setVisibility(View.VISIBLE);
-           // Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
+        rvFirstTimeBG.setVisibility(View.VISIBLE);
+        tvWait.setVisibility(View.VISIBLE);
+        tvTopMessageFirstTime.setVisibility(View.VISIBLE);
+        tvTopMessageFirstTime.setText("Chat request sent");
+        messageTV1.setVisibility(View.VISIBLE);
+        messageTV1.setText("Your chat request sent, Please wait for user approval.");
+        otherProfile.setVisibility(View.VISIBLE);
+        // Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
 
-            moreButton.setVisibility(View.GONE);
-            sendButton.setVisibility(View.GONE);
-            editTextMessage.setText("");
-            
+        moreButton.setVisibility(View.GONE);
+        sendButton.setVisibility(View.GONE);
+        editTextMessage.setText("");
+
     }
 
     /*public void dialogShow() {
@@ -665,7 +662,7 @@ public class PrivateChatActivity extends AppCompatActivity {
         final Button btnDiscoverBoddoPlus = dialog.findViewById(R.id.btnDiscoverBoddoPlus);
         final Button notnow = dialog.findViewById(R.id.notnow);
 
-       // tvFindoutMessage.setText("You have reached your daily chat request limits. Buy more chat request or activate Boddo Plus.");
+        // tvFindoutMessage.setText("You have reached your daily chat request limits. Buy more chat request or activate Boddo Plus.");
 
 
         payView.setOnClickListener(new View.OnClickListener() {
@@ -674,15 +671,35 @@ public class PrivateChatActivity extends AppCompatActivity {
                 //showPrettyDialog(holder, position, message);
                 if (Integer.parseInt(Data.userPalupPoint) >= Limitation.LIKE_FAV_VISITOR_CREDITS) {
 
-                    //TODO -------------------------
-                    Toast.makeText(activity, "Under construction..", Toast.LENGTH_SHORT).show();
+                    ApiInterface newApiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+                    Call<String> buyCall = newApiInterface.onPurchaseMessage(Constants.SECRET_KEY, Data.userId);
+                    buyCall.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
 
-                    /*PrettyDialog jj = new PrettyDialog(PrivateChatActivity.this);
-                    jj.setTitle("Dear " + Data.userName)
-                            .setIcon(R.drawable.logo1).setIconTint(R.color.colorPrimary)
-                            .setMessage("You don't have sufficient balance").setMessageColor(R.color.red_A700);
+                            if (response.code() == 200) {
+                                if (response.body() != null) {
+                                    if (response.body().equals("success")) {
+                                        Toast.makeText(activity, "Congratulations, you have purchased 10 chat request.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(activity, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(activity, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(activity, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+                            }
 
-                    jj.show();*/
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                            Toast.makeText(activity, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
                 } else {
 
                     insufficientCredits();
@@ -808,15 +825,14 @@ public class PrivateChatActivity extends AppCompatActivity {
                 if (response.body().getStatus().equals("success")) {
                     msgDtoList = response.body().getMessage();
                     sizeOfArrayList = msgDtoList.size();
-                    Log.e("msgDtoList", "onResponse: "+msgDtoList.size() );
+                    Log.e("msgDtoList", "onResponse: " + msgDtoList.size());
 
 
-
-                    if (isCheck){
+                    if (isCheck) {
                         OthersProfileFragment.isMatch = true;
                     }
 
-                    if (OthersProfileFragment.isMatch){
+                    if (OthersProfileFragment.isMatch) {
 
                         if (sizeOfArrayList == 0) {
                             otherProfile.setVisibility(View.VISIBLE);
@@ -828,10 +844,10 @@ public class PrivateChatActivity extends AppCompatActivity {
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
                             recyclerView.setVisibility(View.INVISIBLE);
                             OthersProfileFragment.isMatch = false;
-                             isCheck = true;
-                        }else if(sizeOfArrayList == 1){
+                            isCheck = true;
+                        } else if (sizeOfArrayList == 1) {
                             chatRequestNotAcceptedMsg();
-                        }else {
+                        } else {
 
                             otherProfile.setVisibility(View.INVISIBLE);
                             rvFirstTimeBG.setVisibility(View.INVISIBLE);
@@ -844,7 +860,7 @@ public class PrivateChatActivity extends AppCompatActivity {
 
                         }
 
-                    }else {
+                    } else {
 
                         if (sizeOfArrayList == 0) {
                             //farabi
@@ -856,16 +872,16 @@ public class PrivateChatActivity extends AppCompatActivity {
                             messageTV3.setVisibility(View.INVISIBLE);
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);
                             recyclerView.setVisibility(View.INVISIBLE);
-                        }else if(sizeOfArrayList == 1){
+                        } else if (sizeOfArrayList == 1) {
                             chatRequestNotAcceptedMsg();
-                        }else {
+                        } else {
 
-                            if(flag==true){
+                            if (flag == true) {
                                 rvFirstTimeBG.setVisibility(View.GONE);
                                 recyclerView.setVisibility(View.VISIBLE);
-                            }else {
+                            } else {
 
-                                accepted=response.body().getRequest();
+                                accepted = response.body().getRequest();
                                 otherProfile.setVisibility(View.INVISIBLE);
                                 rvFirstTimeBG.setVisibility(View.VISIBLE);
                                 messageTV1.setVisibility(View.INVISIBLE);
@@ -879,7 +895,7 @@ public class PrivateChatActivity extends AppCompatActivity {
                                 recyclerView.setVisibility(View.VISIBLE);
                             }
 
-                    }
+                        }
 
                     }
                     positionOfTheMessage = msgDtoList.size();
@@ -932,16 +948,15 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     @OnTextChanged(R.id.emojicon_edit_text)
     public void onEditTextChanged() {
-        if (editTextMessage.getText().toString().length() > 0){
+        if (editTextMessage.getText().toString().length() > 0) {
             sendButton.setEnabled(true);
             sendButton.setColorFilter(getResources().getColor(R.color.colorPrimary));
             setTyping();
-        }else{
+        } else {
             sendButton.setEnabled(false);
             sendButton.setColorFilter(getResources().getColor(R.color.gray_light_light));
         }
     }
-
 
 
     private void setTyping() {
@@ -964,15 +979,15 @@ public class PrivateChatActivity extends AppCompatActivity {
 
 
         mLastClickTime = SystemClock.elapsedRealtime();
-        msgContent = editTextMessage.getText().toString().replace("'","\'");
+        msgContent = editTextMessage.getText().toString().replace("'", "\'");
         if (msgContent.length() > 0 && !msgContent.equals("")) {
             apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("secret_key",Constants.SECRET_KEY);
-            jsonObject.addProperty("user_id",Data.userId);
-            jsonObject.addProperty("other_user_id",Data.otherUserId);
-            jsonObject.addProperty("message",msgContent);
-            Log.e("responeCheck", "onSendButtonClicked: "+jsonObject.toString() );
+            jsonObject.addProperty("secret_key", Constants.SECRET_KEY);
+            jsonObject.addProperty("user_id", Data.userId);
+            jsonObject.addProperty("other_user_id", Data.otherUserId);
+            jsonObject.addProperty("message", msgContent);
+            Log.e("responeCheck", "onSendButtonClicked: " + jsonObject.toString());
             Call<ChatAppMsgDTO> call = apiInterface.startChat(Constants.SECRET_KEY, Data.userId, Data.otherUserId, msgContent);
             call.enqueue(new Callback<ChatAppMsgDTO>() {
                 @SuppressLint("SetTextI18n")
@@ -992,7 +1007,7 @@ public class PrivateChatActivity extends AppCompatActivity {
 
                             rvFirstTimeBG.setVisibility(View.GONE);
                             flag = true;
-                            FlagPreference.setFlag("flag",flag.toString());
+                            FlagPreference.setFlag("flag", flag.toString());
 
 
                          /*   messageTV3.setVisibility(View.VISIBLE);
@@ -1005,7 +1020,6 @@ public class PrivateChatActivity extends AppCompatActivity {
                             Picasso.get().load(Data.otherProfilePhoto).into(otherProfile);*/
 
                             tvTopMessageFirstTime.setVisibility(View.GONE);
-
 
 
                             editTextMessage.setText("");
@@ -1054,9 +1068,6 @@ public class PrivateChatActivity extends AppCompatActivity {
                                 });
                                 dialog.show();*/
                                 //editTextMessage.setText("");
-
-
-
 
 
                             } else {
@@ -1174,7 +1185,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getLocalBroadCastReceiver();
-      //  chatRequestNotAcceptedMsg();
+        //  chatRequestNotAcceptedMsg();
     }
 
     @Override

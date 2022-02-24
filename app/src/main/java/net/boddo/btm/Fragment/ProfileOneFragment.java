@@ -23,6 +23,7 @@ import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Activity.Settings.SettingsActivity;
 import net.boddo.btm.Activity.SupportWebViewActivity;
 import net.boddo.btm.R;
+import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 
 import java.util.Calendar;
@@ -64,6 +65,8 @@ public class ProfileOneFragment extends Fragment implements View.OnClickListener
         activity = (DashBoadActivity) getActivity();
 
         Log.e("Palup Points", Data.userPalupPoint);
+        Log.e("TAG", "Secret Key: " + Constants.SECRET_KEY);
+        Log.e("TAG", "User Id: " + Data.userId);
 
         ivProfileOnePropicSearch = view.findViewById(R.id.ivProfileOnePropicSearch);
         ivProfileOnePropicSupport = view.findViewById(R.id.ivProfileOnePropicSupport);

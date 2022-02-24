@@ -5,14 +5,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.orhanobut.logger.Logger;
 
-import java.net.SocketTimeoutException;
-import java.text.DateFormat;
-import java.util.concurrent.TimeUnit;
-
 import net.boddo.btm.BuildConfig;
 import net.boddo.btm.Services.NetworkConnectionInterceptor;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.NetworkUtils;
+
+import java.net.SocketTimeoutException;
+import java.text.DateFormat;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -116,6 +117,7 @@ public class ApiClient {
 
     private static Gson buildGson() {
         return gson = new GsonBuilder()
+                .setLenient()
                 .serializeNulls()
                 .setDateFormat(DateFormat.LONG)
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
