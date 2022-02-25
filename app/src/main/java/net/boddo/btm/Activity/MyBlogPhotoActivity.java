@@ -128,7 +128,8 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
 
                             } else if (response.body().equals("limit expired")) {
 
-                                Toast.makeText(activity, "You have reached your limit. Please subscribe Boddo Plus to upload more.", Toast.LENGTH_SHORT).show();
+                                limitExpiredDialog();
+                                //Toast.makeText(activity, "You have reached your limit. Please subscribe Boddo Plus to upload more.", Toast.LENGTH_SHORT).show();
 
                             } else {
 
@@ -449,6 +450,42 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
             int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
             return cursor.getString(idx);
         }
+    }
+
+    private void limitExpiredDialog() {
+        final Dialog dialog = new Dialog(activity);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.limit_expired_dialog);
+
+        TextView titleText = dialog.findViewById(R.id.title);
+        TextView infoText = dialog.findViewById(R.id.tvNormalInterfaceText);
+
+        titleText.setText("Notification");
+        infoText.setText("You have reached your daily picture share limit. For more picture share activate Boddo Plus.");
+
+        Button button_decline = dialog.findViewById(R.id.button_decline);
+        Button discoverBoddo = dialog.findViewById(R.id.discoverBoddo);
+        discoverBoddo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPalupPlusWindow();
+                dialog.dismiss();
+            }
+        });
+        button_decline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    public void goToPalupPlusWindow() {
+        Intent intent = new Intent(activity, BuyCreditActivity.class);
+        intent.putExtra(Constants.PALUP_PLUS, Constants.PALUP_PLUS);
+        startActivity(intent);
     }
 
     @Override

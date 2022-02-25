@@ -64,6 +64,29 @@ public class ProfileOneFragment extends Fragment implements View.OnClickListener
         }
         activity = (DashBoadActivity) getActivity();
 
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = view.findViewById(R.id.blankView);
+        int statusBarHeight = GetStatusBarHeight();
+        if (statusBarHeight != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = statusBarHeight;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
+
         Log.e("Palup Points", Data.userPalupPoint);
         Log.e("TAG", "Secret Key: " + Constants.SECRET_KEY);
         Log.e("TAG", "User Id: " + Data.userId);
@@ -217,6 +240,16 @@ public class ProfileOneFragment extends Fragment implements View.OnClickListener
         Integer ageInt = new Integer(age);
         String ageS = String.valueOf(ageInt);
         return ageS;
+    }
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
 }

@@ -1,7 +1,6 @@
 package net.boddo.btm.Fragment;
 
 
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,49 +13,30 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.tabs.TabLayout;
 import com.nex3z.notificationbadge.NotificationBadge;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import net.boddo.btm.Activity.ChatRequestActivity;
 import net.boddo.btm.Activity.ProfileOneActivity;
 import net.boddo.btm.Activity.RecentMatchProPicActivity;
 import net.boddo.btm.Activity.StoryActivity;
 import net.boddo.btm.Adepter.ChatHistoryListAdeptar;
+import net.boddo.btm.Adepter.PhotoBlogTabAdapter;
 import net.boddo.btm.Adepter.photoblog.HotlistAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Event.Event;
-import net.boddo.btm.Activity.HotlistActivityNew;
-import net.boddo.btm.Adepter.PhotoBlogTabAdapter;
 import net.boddo.btm.Model.ActiveChat;
 import net.boddo.btm.Model.ChatRequest;
 import net.boddo.btm.Model.Hotlist;
@@ -65,11 +45,16 @@ import net.boddo.btm.R;
 import net.boddo.btm.Services.FirebaseCloudMessagingService;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
-import net.boddo.btm.Utills.SearchUser;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -147,6 +132,29 @@ public class ChatFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
         ButterKnife.bind(this, view);
         //init(view);
+
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = view.findViewById(R.id.blankView);
+        int statusBarHeight = GetStatusBarHeight();
+        if (statusBarHeight != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = statusBarHeight;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
 
         badgingMessCountView = view.findViewById(R.id.badging_messCount_view);
         badgingMessageRequestView = view.findViewById(R.id.badging_message_request_view);
@@ -617,5 +625,15 @@ public class ChatFragment extends Fragment {
         }
     }
 
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
 }

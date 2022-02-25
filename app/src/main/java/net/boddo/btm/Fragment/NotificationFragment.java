@@ -3,7 +3,6 @@ package net.boddo.btm.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,16 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.nex3z.notificationbadge.NotificationBadge;
 
+import net.boddo.btm.Adepter.PhotoBlogTabAdapter;
+import net.boddo.btm.Event.Event;
+import net.boddo.btm.R;
+import net.boddo.btm.Utills.Constants;
+import net.boddo.btm.Utills.Data;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import net.boddo.btm.Event.Event;
-import net.boddo.btm.Adepter.PhotoBlogTabAdapter;
-import net.boddo.btm.R;
-import net.boddo.btm.Utills.Constants;
-import net.boddo.btm.Utills.Data;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -48,6 +48,29 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         ButterKnife.bind(this, view);
+
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = view.findViewById(R.id.blankView);
+        int statusBarHeight = GetStatusBarHeight();
+        if (statusBarHeight != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = statusBarHeight;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
 
         likeFavoTablayout = view.findViewById(R.id.like_favo_tablayout);
         likeFavoViewPager = view.findViewById(R.id.like_favo_viewPager);
@@ -104,9 +127,20 @@ public class NotificationFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
 
-       Data.LikeCount = 0;
-       Data.FevoriteCount=0;
-       Data.VisitorCount =0;
+        Data.LikeCount = 0;
+        Data.FevoriteCount = 0;
+        Data.VisitorCount = 0;
+    }
+
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }
 

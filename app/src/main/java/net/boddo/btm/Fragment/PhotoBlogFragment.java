@@ -1,6 +1,7 @@
 package net.boddo.btm.Fragment;
 
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,10 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -30,24 +33,24 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.tabs.TabLayout;
 import com.nex3z.notificationbadge.NotificationBadge;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
+import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Activity.HotlistActivityNew;
-import net.boddo.btm.Activity.PictureUploadActivity;
+import net.boddo.btm.Activity.ImageUploadActivity;
 import net.boddo.btm.Adepter.PhotoBlogTabAdapter;
 import net.boddo.btm.Adepter.photoblog.HotlistAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Event.Event;
-import net.boddo.btm.Activity.ImageUploadActivity;
 import net.boddo.btm.Model.Hotlist;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.SearchUser;
 import net.boddo.btm.interfaces.PictureUploadListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,6 +61,7 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhotoblogImageClickListener, PictureUploadListener {
 
@@ -68,6 +72,7 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
     private ViewPager viewPager;
     NotificationBadge badgingTopPhotoCountView;
     NotificationBadge badgingPhotoBlogCountView;
+    View blankView;
 
 //    String URL = "https://bluetigermobile.com/palup/apis/random_hotlist.php";
 
@@ -110,6 +115,7 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
     LinearLayout hotlistLayout;
 
     BroadcastReceiver br;
+    private Context context;
 
     int itemScrolledCount;
 
@@ -120,6 +126,28 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
         final View view = inflater.inflate(R.layout.fragment_photo_blog, container, false);
         ButterKnife.bind(this, view);
 
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        blankView = view.findViewById(R.id.blankView);
+        int statusBarHeight = GetStatusBarHeight();
+        if (statusBarHeight != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = statusBarHeight;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
 
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(br);
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
@@ -290,9 +318,47 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
     @OnClick(R.id.upload_new_image)
     public void onUploadNewImageButtonClicked() {
 
-        Intent intent = new Intent(getActivity(), ImageUploadActivity.class);
-        //Intent intent = new Intent(getActivity(), PictureUploadActivity.class);
-        startActivity(intent);
+
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+
+        Call<String> postCall = apiInterface.onPhotoLimit(Constants.SECRET_KEY, Data.userId);
+
+        postCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                if (response.body() != null) {
+
+                    Log.e("Photo Blog Limit", response.body());
+
+                    if (response.body().equals("success")) {
+
+                        Intent intent = new Intent(getActivity(), ImageUploadActivity.class);
+                        startActivity(intent);
+
+                    } else if (response.body().equals("limit expired")) {
+
+                        limitExpiredDialog();
+
+                    } else {
+
+                        Toast.makeText(context, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } else {
+
+                    Toast.makeText(context, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, "Internal server connection failed! Please try again later.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -326,6 +392,43 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
     }
 
 
+    private void limitExpiredDialog() {
+        final Dialog dialog = new Dialog(context);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.limit_expired_dialog);
+
+        TextView titleText = dialog.findViewById(R.id.title);
+        TextView infoText = dialog.findViewById(R.id.tvNormalInterfaceText);
+
+        titleText.setText("Notification");
+        infoText.setText("You have reached your daily picture share limit. For more picture share activate Boddo Plus.");
+
+        Button button_decline = dialog.findViewById(R.id.button_decline);
+        Button discoverBoddo = dialog.findViewById(R.id.discoverBoddo);
+        discoverBoddo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPalupPlusWindow();
+                dialog.dismiss();
+            }
+        });
+        button_decline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    public void goToPalupPlusWindow() {
+        Intent intent = new Intent(getActivity(), BuyCreditActivity.class);
+        intent.putExtra(Constants.PALUP_PLUS, Constants.PALUP_PLUS);
+        startActivity(intent);
+    }
+
+
     private void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -333,5 +436,20 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 }

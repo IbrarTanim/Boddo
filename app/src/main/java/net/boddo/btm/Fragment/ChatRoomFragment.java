@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,8 +23,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import net.boddo.btm.Activity.BuyCreditActivity;
 import net.boddo.btm.Activity.ChatRoomActivity;
-import net.boddo.btm.Activity.DashBoadActivity;
-import net.boddo.btm.Activity.HotlistActivityNew;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.Model.ChatRoom;
@@ -40,8 +37,6 @@ import net.boddo.btm.Utills.SharedPref;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -127,6 +122,30 @@ public class ChatRoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat_room, container, false);
         ButterKnife.bind(this, view);
+
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = view.findViewById(R.id.blankView);
+        int statusBarHeight = GetStatusBarHeight();
+        if (statusBarHeight != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = statusBarHeight;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
+
         // Inflate the layout for this fragment
         country = Data.userCountry.split(",");
         onlineUser();
@@ -507,4 +526,16 @@ public class ChatRoomFragment extends Fragment {
                     ).show();
         }
     }*/
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+
 }

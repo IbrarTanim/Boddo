@@ -4,82 +4,177 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/blankView"
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
-
-    <RelativeLayout
-        android:id="@+id/storyRlMain"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/blankView">
+        android:background="@color/white"
+        android:paddingBottom="@dimen/ten"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <View
+            android:id="@+id/blankView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/llMenueBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/forty"
-            android:layout_alignParentTop="true"
-            android:layout_weight="1.5"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
+            android:layout_height="45dp"
+            android:paddingTop="@dimen/five"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blankView">
 
             <ImageView
-                android:layout_width="@dimen/zero"
+                android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:paddingLeft="@dimen/two"
-                android:paddingTop="@dimen/five"
-                android:paddingRight="@dimen/five"
-                android:paddingBottom="@dimen/five"
+                android:layout_marginStart="@dimen/ten"
                 android:scaleType="fitCenter"
-                android:src="@drawable/boddo_logo_356" />
+                android:src="@drawable/boddo_logo_356"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="4" />
 
             <ImageView
                 android:id="@+id/ivHotlistIcon"
                 android:layout_width="@dimen/forty"
                 android:layout_height="@dimen/forty"
-                android:layout_marginRight="@dimen/ten"
-                android:background="@color/transparent"
+                android:layout_marginEnd="@dimen/ten"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
-                android:src="@drawable/hotlist_icon_09_01_2021" />
+                android:src="@drawable/hotlist_icon_09_01_2021"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/upload_new_image"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/upload_new_image"
                 android:layout_width="@dimen/forty"
                 android:layout_height="@dimen/forty"
-                android:layout_marginRight="@dimen/ten"
-                android:background="@color/transparent"
+                android:layout_marginEnd="@dimen/ten"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
-                android:src="@drawable/camera_icon_09_01_2021" />
+                android:src="@drawable/camera_icon_09_01_2021"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/top_photo_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten"
+            android:layout_marginTop="@dimen/ten"
+            android:layout_marginEnd="@dimen/ten"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llMenueBar">
+            <!--android:background="@color/app_bg_color"-->
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:id="@+id/profile_image_hotlist"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/user_image_view"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/rokan" />
+
+
+                    <!--<View
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="#96cc72"/>-->
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civJoinHotlist"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/five"
+                        android:src="@drawable/join_hotlist_icon"
+                        android:tint="@color/white"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="3dp" />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/TvJoinHotlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="Join Hotlist"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recent_hot_list_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_layout"
+        app:layout_constraintBottom_toBottomOf="parent">-->
+
+    <RelativeLayout
+        android:id="@+id/storyRlMain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_layout">
 
         <LinearLayout
             android:id="@+id/llData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/llMenueBar"
             android:orientation="vertical">
+            <!--android:layout_below="@id/llMenueBar"-->
 
-            <View
+
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/twenty"
-                android:background="@color/white" />
+                android:background="@color/white"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,15 +185,15 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
+                    style="@style/AppTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_weight="1"
                     app:tabBackground="@drawable/tab_selected_unselected_bg"
                     app:tabGravity="fill"
                     app:tabIndicatorColor="#54AE4C"
-                    app:tabIndicatorHeight="2dp"
                     app:tabIndicatorFullWidth="true"
-                    style="@style/AppTabLayout"
+                    app:tabIndicatorHeight="2dp"
                     app:tabMode="fixed"
                     app:tabPadding="@dimen/five"
                     app:tabSelectedTextColor="@color/gray"
@@ -116,76 +211,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/top_photo_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginTop="@dimen/twenty"
-                    android:layout_marginBottom="@dimen/ten"
-                    android:background="@color/app_bg_color"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:id="@+id/profile_image_hotlist"
-                        android:layout_width="80dp"
-                        android:layout_height="100dp"
-                        android:background="@color/transparent">
-
-                        <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/user_image_view"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/rokan"
-                            app:riv_mutate_background="true"
-                            app:riv_oval="false" />
-
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_alignParentBottom="true"
-                            android:background="#96cc72" />
-
-
-                        <TextView
-                            android:id="@+id/TvJoinHotlist"
-                            android:layout_width="match_parent"
-                            android:layout_height="15dp"
-                            android:layout_alignParentBottom="true"
-                            android:gravity="center"
-                            android:singleLine="true"
-                            android:text="JOIN HOTLIST"
-                            android:textColor="@color/white"
-                            android:textSize="10dp"
-                            android:textStyle="bold" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/civJoinHotlist"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="15dp"
-                            android:src="@drawable/join_hotlist_icon"
-                            android:tint="@color/white"
-                            app:civ_border_color="@color/white"
-                            app:civ_border_width="3dp" />
-
-
-                    </RelativeLayout>
-
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recent_hot_list_recycler_view"
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10" />
-
-                </LinearLayout>
+                <!--TODO Here Hotlist Design Change Touhid-->
 
 
                 <LinearLayout
@@ -211,7 +237,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="35dp"
             android:layout_alignParentTop="true"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -226,7 +252,7 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="220dp"
+                    android:layout_marginStart="220dp"
                     app:badgeBackground="@drawable/badging_bg"
                     app:maxTextLength="2" />
 
@@ -247,7 +273,10 @@
 
             </RelativeLayout>
         </LinearLayout>
+
     </RelativeLayout>
+
+    <!--</androidx.core.widget.NestedScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
