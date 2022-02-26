@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -18,18 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.boddo.btm.Adepter.ProfileImageLoaderAdapter;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -39,6 +35,13 @@ import net.boddo.btm.Model.ProfileImageLoader;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -423,6 +426,9 @@ public class AddPhotoActivity extends AppCompatActivity implements Constants, Ea
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 301) {
+            //skip
+        }
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, AddPhotoActivity.this);
     }
 
@@ -721,5 +727,27 @@ public class AddPhotoActivity extends AppCompatActivity implements Constants, Ea
                 alertDialogForDeletingProfilePhoto(serial);
                 break;
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        String[] permission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+        checkSelfPermission(permission, 301);
+
+    }
+
+    private void checkSelfPermission(String[] permissions, int requestCode) {
+
+        if (ContextCompat.checkSelfPermission(activity, permissions[0]) == PackageManager.PERMISSION_DENIED &&
+                ContextCompat.checkSelfPermission(activity, permissions[1]) == PackageManager.PERMISSION_DENIED &&
+                ContextCompat.checkSelfPermission(activity, permissions[2]) == PackageManager.PERMISSION_DENIED) {
+
+            ActivityCompat.requestPermissions(activity, permissions, requestCode);
+
+        }
+
     }
 }

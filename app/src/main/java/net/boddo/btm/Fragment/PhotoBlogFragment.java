@@ -425,6 +425,7 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
     public void goToPalupPlusWindow() {
         Intent intent = new Intent(getActivity(), BuyCreditActivity.class);
         intent.putExtra(Constants.PALUP_PLUS, Constants.PALUP_PLUS);
+        intent.putExtra("Membership", true);
         startActivity(intent);
     }
 

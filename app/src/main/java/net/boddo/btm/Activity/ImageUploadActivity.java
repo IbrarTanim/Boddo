@@ -1,14 +1,18 @@
 package net.boddo.btm.Activity;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
+import static net.boddo.btm.Utills.StaticAccess.REQUEST_CODE_TAKE_PICTURE;
+import static net.boddo.btm.Utills.StaticAccess.SELECT_PICTURE;
+import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO;
+import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO_PATH;
+import static net.boddo.btm.Utills.StaticAccess.TEMP_PHOTO_FILE_NAME;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -23,9 +27,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -35,18 +44,10 @@ import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.ImageProcessing;
 import net.boddo.btm.Utills.InternalStorageContentProvider;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import id.zelory.compressor.Compressor;
-
-import static net.boddo.btm.Utills.StaticAccess.REQUEST_CODE_TAKE_PICTURE;
-import static net.boddo.btm.Utills.StaticAccess.SELECT_PICTURE;
-import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO;
-import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO_PATH;
-import static net.boddo.btm.Utills.StaticAccess.TEMP_PHOTO_FILE_NAME;
 
 public class ImageUploadActivity extends AppCompatActivity implements View.OnClickListener {
     ImageUploadActivity activity;
@@ -87,9 +88,18 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
         //Glide.with(getActivity()).load(Data.profilePhoto).apply(RequestOptions.bitmapTransform(new RoundedCorners(10))).into(userImageView);
         Glide.with(activity).load(Data.profilePhoto).into(civImageUpload);
 
-                //getProfilePhoto()).into(holder.civAllLikesProfilePic);
+        //getProfilePhoto()).into(holder.civAllLikesProfilePic);
 
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        String[] permission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+        checkSelfPermission(permission, 101);
 
     }
 
@@ -294,5 +304,21 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
         return Base64.encodeToString(imageByte, Base64.DEFAULT);
     }*/
 
+    private void checkSelfPermission(String[] permissions, int requestCode) {
 
+        if (ContextCompat.checkSelfPermission(activity, permissions[0]) == PackageManager.PERMISSION_DENIED &&
+                ContextCompat.checkSelfPermission(activity, permissions[1]) == PackageManager.PERMISSION_DENIED &&
+                ContextCompat.checkSelfPermission(activity, permissions[2]) == PackageManager.PERMISSION_DENIED) {
+
+            ActivityCompat.requestPermissions(activity, permissions, requestCode);
+
+        }
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

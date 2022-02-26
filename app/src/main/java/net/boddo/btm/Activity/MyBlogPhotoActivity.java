@@ -485,6 +485,7 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
     public void goToPalupPlusWindow() {
         Intent intent = new Intent(activity, BuyCreditActivity.class);
         intent.putExtra(Constants.PALUP_PLUS, Constants.PALUP_PLUS);
+        intent.putExtra("Membership", true);
         startActivity(intent);
     }
 
