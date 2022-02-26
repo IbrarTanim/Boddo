@@ -171,81 +171,7 @@
                                 android:textSize="@dimen/fifteen" />
                         </LinearLayout>
 
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/randomdeleteCardView"
-                            android:layout_width="@dimen/fifty"
-                            android:layout_height="@dimen/fifty"
-                            android:layout_above="@+id/info_layoutOthers"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginRight="@dimen/ten"
-                            android:layout_marginBottom="@dimen/thirty"
-                            android:layout_toLeftOf="@+id/rlComentLikeButton"
-                            android:background="@drawable/background_shep_round_white"
-                            android:elevation="0dp"
-                            app:cardCornerRadius="100dp"
-                            app:cardElevation="20dp">
-
-                            <ImageView
-                                android:id="@+id/ivRandomDelete"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="@dimen/fifteen"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_cross_play_match_01_08_2021" />
-
-                        </androidx.cardview.widget.CardView>
-
-                        <RelativeLayout
-                            android:id="@+id/rlComentLikeButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/info_layoutOthers"
-                            android:layout_centerHorizontal="true"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginBottom="@dimen/twenty">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/comment_buttonCardView"
-                                android:layout_width="@dimen/seventy"
-                                android:layout_height="@dimen/seventy"
-                                android:layout_gravity="center_vertical"
-                                android:background="@drawable/background_shep_round_white"
-                                android:elevation="5dp"
-                                app:cardCornerRadius="100dp"
-                                app:cardElevation="20dp">
-
-                                <ImageView
-                                    android:id="@+id/ivCommentsOtherProfile"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:padding="@dimen/twenty_five"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/ic_message_icon_01_08_2021" />
-
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/like_buttonCardView"
-                                android:layout_width="@dimen/seventy"
-                                android:layout_height="@dimen/seventy"
-                                android:layout_marginLeft="@dimen/ten"
-                                android:layout_toRightOf="@+id/comment_buttonCardView"
-                                android:elevation="0dp"
-                                app:cardCornerRadius="100dp"
-                                app:cardElevation="20dp">
-
-                                <ImageView
-                                    android:id="@+id/like_button_others"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:padding="@dimen/twenty_five"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/ic_like_icon_01_08_2021" />
-
-                            </androidx.cardview.widget.CardView>
-
-                        </RelativeLayout>
+                        <!--Working Area-->
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/info_layoutOthers"
@@ -444,7 +370,78 @@
 
                         </androidx.cardview.widget.CardView>
 
+
                     </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rlComentLikeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="@dimen/twenty"
+                    android:layout_marginBottom="195dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/randomdeleteCardView"
+                        android:layout_width="@dimen/forty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_margin="@dimen/five"
+                        android:background="@drawable/background_shep_round_white"
+                        app:cardCornerRadius="100dp"
+                        app:cardElevation="@dimen/seven">
+
+                        <ImageView
+                            android:id="@+id/ivRandomDelete"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="@dimen/fifteen"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_cross_play_match_01_08_2021" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/comment_buttonCardView"
+                        android:layout_width="@dimen/seventy"
+                        android:layout_height="@dimen/seventy"
+                        android:layout_margin="@dimen/five"
+                        android:background="@drawable/background_shep_round_white"
+                        app:cardCornerRadius="100dp"
+                        app:cardElevation="@dimen/seven">
+
+                        <ImageView
+                            android:id="@+id/ivCommentsOtherProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/twenty_five"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_message_icon_01_08_2021" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/like_buttonCardView"
+                        android:layout_width="@dimen/seventy"
+                        android:layout_height="@dimen/seventy"
+                        android:layout_marginBottom="@dimen/ten"
+                        app:cardCornerRadius="100dp"
+                        app:cardElevation="@dimen/seven">
+
+                        <ImageView
+                            android:id="@+id/like_button_others"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/twenty_five"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_like_icon_01_08_2021" />
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 

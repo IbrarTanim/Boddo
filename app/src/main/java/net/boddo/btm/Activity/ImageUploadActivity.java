@@ -97,10 +97,8 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-
         String[] permission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
         checkSelfPermission(permission, 101);
-
     }
 
     @Override
@@ -129,6 +127,7 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         imageSelection(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @TargetApi(Build.VERSION_CODES.O)

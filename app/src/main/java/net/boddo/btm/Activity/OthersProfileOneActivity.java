@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,7 +72,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
     TextView ageGenderCountry, tvAge, tvOnlineNow;
     ImageView ivBackOthersActivity, like_button_others, ivRandomDelete, ivCommentsOtherProfile;
     TextView tvAboutOtherProfile, tvGalleryOtherProfile, tvGiftsOtherProfile, tvStoryOtherProfile, tvUserGenderProfileOthers;
-    RelativeLayout rlComentLikeButton;
+    LinearLayout rlComentLikeButton;
 
     PageIndicatorView indecator;
 
