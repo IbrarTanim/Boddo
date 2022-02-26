@@ -237,8 +237,6 @@
             android:id="@+id/image_details_layout"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_below="@+id/ivFullImageHandle"
-            android:layout_centerInParent="true"
             android:layout_marginLeft="@dimen/ten"
             android:layout_marginTop="@dimen/ten"
             android:layout_marginRight="@dimen/ten"
@@ -246,6 +244,8 @@
             android:orientation="horizontal"
             android:paddingLeft="@dimen/five"
             android:paddingRight="@dimen/five"
+            android:layout_above="@+id/rlComentLikeButton"
+            android:layout_centerInParent="true"
             android:visibility="gone">
 
 
@@ -264,10 +264,12 @@
 
             <ImageView
                 android:id="@+id/ivAllLikes"
-                android:layout_width="@dimen/twenty"
-                android:layout_height="@dimen/twenty"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_gravity="center"
-                android:background="@drawable/arrow_more_like_list_20_03_01_2021" />
+                android:padding="@dimen/fifteen"
+                android:src="@drawable/arrow_more_like_list_20_03_01_2021" />
 
         </LinearLayout>
 

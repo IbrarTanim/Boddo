@@ -402,6 +402,7 @@ public class AddPhotoActivity extends AppCompatActivity implements Constants, Ea
                 .setAllowRotation(true)
                 .setMinCropResultSize(720, 720)
                 .setRequestedSize(720, 720)
+                .setFixAspectRatio(true)
                 .setOutputCompressQuality(100)
                 .start(AddPhotoActivity.this);
     }

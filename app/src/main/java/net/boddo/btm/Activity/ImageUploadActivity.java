@@ -97,8 +97,9 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        String[] permission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
-        checkSelfPermission(permission, 101);
+        checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 101);
+        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 102);
+        checkSelfPermission(Manifest.permission.CAMERA, 103);
     }
 
     @Override
@@ -303,13 +304,11 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
         return Base64.encodeToString(imageByte, Base64.DEFAULT);
     }*/
 
-    private void checkSelfPermission(String[] permissions, int requestCode) {
+    private void checkSelfPermission(String permissions, int requestCode) {
 
-        if (ContextCompat.checkSelfPermission(activity, permissions[0]) == PackageManager.PERMISSION_DENIED &&
-                ContextCompat.checkSelfPermission(activity, permissions[1]) == PackageManager.PERMISSION_DENIED &&
-                ContextCompat.checkSelfPermission(activity, permissions[2]) == PackageManager.PERMISSION_DENIED) {
+        if (ContextCompat.checkSelfPermission(activity, permissions) == PackageManager.PERMISSION_DENIED) {
 
-            ActivityCompat.requestPermissions(activity, permissions, requestCode);
+            ActivityCompat.requestPermissions(activity, new String[]{permissions}, requestCode);
 
         }
 
@@ -320,4 +319,5 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
 }

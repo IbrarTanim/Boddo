@@ -233,9 +233,9 @@ public class PalupPlusFragment extends Fragment {
         tvBackMembership.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //activity.goBack();
-                //activity.finish();
-                startActivity(new Intent(activity, DashBoadActivity.class));
+                Intent intent = new Intent(activity, DashBoadActivity.class);
+                intent.putExtra("profile", "profile");
+                startActivity(intent);
             }
         });
 

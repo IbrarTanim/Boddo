@@ -179,7 +179,9 @@ public class BuyCreditsFragment extends Fragment implements View.OnClickListener
                 break;
 
             case R.id.tvBackCredits:
-                startActivity(new Intent(getActivity(), DashBoadActivity.class));
+                Intent intent = new Intent(getActivity(), DashBoadActivity.class);
+                intent.putExtra("profile", "profile");
+                startActivity(intent);
                 //getActivity().finish();
                 //activity.goBack();
                 break;

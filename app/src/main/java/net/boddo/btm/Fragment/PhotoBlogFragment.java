@@ -222,6 +222,11 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
                 hotlist = response.body();
                 if (hotlist.length > 0) {
                     hotlist = response.body();
+                    for (Hotlist hot : hotlist) {
+                        if (hot.getUserId().equals(Data.userId)) {
+                            TvJoinHotlist.setText("Joined");
+                        }
+                    }
                     prepareList();
                 }
             }

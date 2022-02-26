@@ -72,4 +72,5 @@ public class Hotlist {
         this.profilePhoto = profilePhoto;
     }
 
+
 }
