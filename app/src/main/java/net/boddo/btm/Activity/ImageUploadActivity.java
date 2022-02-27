@@ -189,6 +189,10 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
         com.theartofdev.edmodo.cropper.CropImage.activity(uri)
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setOutputCompressFormat(Bitmap.CompressFormat.PNG)
+                .setFixAspectRatio(true)
+                .setAspectRatio(2, 3)
+                .setAllowRotation(false)
+                .setOutputCompressQuality(100)
                 .start(activity);
     }
 

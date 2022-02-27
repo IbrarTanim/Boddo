@@ -320,6 +320,7 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
 
         /*commentButton.setOnClickListener(new View.OnClickListener() {*/
 
+        //TODO BY TOUHID
 
         like_button.setOnClickListener(new View.OnClickListener() {
             @Override

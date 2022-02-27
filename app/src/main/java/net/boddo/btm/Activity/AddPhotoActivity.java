@@ -398,13 +398,15 @@ public class AddPhotoActivity extends AppCompatActivity implements Constants, Ea
 
     public void cropProfileImage() {
         CropImage.activity()
-                .setAspectRatio(7, 11)
-                .setAllowRotation(true)
-                .setMinCropResultSize(720, 720)
-                .setRequestedSize(720, 720)
                 .setFixAspectRatio(true)
+                .setAspectRatio(2, 3)
+                .setAllowRotation(false)
                 .setOutputCompressQuality(100)
                 .start(AddPhotoActivity.this);
+
+
+                /*.setMinCropResultSize(720, 720)
+                .setRequestedSize(720, 720)*/
     }
 
 

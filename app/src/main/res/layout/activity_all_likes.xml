@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg_color">
@@ -9,17 +8,57 @@
     <View
         android:id="@+id/blankView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/forty"
+        android:layout_height="40dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llMenueBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingTop="@dimen/five"
+        android:paddingBottom="@dimen/five"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blankView">
+
+        <TextView
+            android:id="@+id/tvBackAllLStory"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/ten"
+            android:drawableStart="@drawable/back_icon_20_26_12_2020"
+            android:drawablePadding="@dimen/five"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/all_likes_love_btn"
+            android:layout_width="@dimen/forty"
+            android:layout_height="@dimen/forty"
+            android:layout_marginEnd="@dimen/ten"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/five"
+            android:src="@drawable/like_icon_56_05_01_2021"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/storyRlMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/zero"
         android:layout_marginTop="@dimen/twenty"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/blankView">
+        app:layout_constraintTop_toBottomOf="@+id/llMenueBar">
 
 
         <LinearLayout
@@ -27,14 +66,15 @@
             android:layout_height="@dimen/zero"
             android:layout_weight="1.5"
             android:background="@color/content_bg_color"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <View
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tvBackAllLStory"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
@@ -43,7 +83,7 @@
                 android:drawablePadding="@dimen/ten"
                 android:gravity="left|center"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
+                android:textSize="@dimen/twenty" />-->
 
 
         </LinearLayout>
