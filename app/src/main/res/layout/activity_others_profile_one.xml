@@ -388,8 +388,8 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/randomdeleteCardView"
-                        android:layout_width="@dimen/forty"
-                        android:layout_height="@dimen/forty"
+                        android:layout_width="@dimen/thirty"
+                        android:layout_height="@dimen/thirty"
                         android:layout_margin="@dimen/five"
                         android:background="@drawable/background_shep_round_white"
                         app:cardCornerRadius="100dp"
@@ -400,7 +400,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="?attr/selectableItemBackgroundBorderless"
-                            android:padding="@dimen/fifteen"
+                            android:padding="@dimen/ten"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_cross_play_match_01_08_2021" />
 
@@ -408,8 +408,8 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/comment_buttonCardView"
-                        android:layout_width="@dimen/seventy"
-                        android:layout_height="@dimen/seventy"
+                        android:layout_width="@dimen/fifty"
+                        android:layout_height="@dimen/fifty"
                         android:layout_margin="@dimen/five"
                         android:background="@drawable/background_shep_round_white"
                         app:cardCornerRadius="100dp"
@@ -419,16 +419,17 @@
                             android:id="@+id/ivCommentsOtherProfile"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="@dimen/twenty_five"
+                            android:background="?attr/selectableItemBackgroundBorderless"
                             android:scaleType="fitCenter"
+                            android:padding="@dimen/fifteen"
                             android:src="@drawable/ic_message_icon_01_08_2021" />
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/like_buttonCardView"
-                        android:layout_width="@dimen/seventy"
-                        android:layout_height="@dimen/seventy"
+                        android:layout_width="@dimen/fifty"
+                        android:layout_height="@dimen/fifty"
                         android:layout_marginBottom="@dimen/ten"
                         app:cardCornerRadius="100dp"
                         app:cardElevation="@dimen/seven">
@@ -437,8 +438,9 @@
                             android:id="@+id/like_button_others"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="@dimen/twenty_five"
+                            android:background="?attr/selectableItemBackgroundBorderless"
                             android:scaleType="fitCenter"
+                            android:padding="@dimen/fifteen"
                             android:src="@drawable/ic_like_icon_01_08_2021" />
 
                     </androidx.cardview.widget.CardView>

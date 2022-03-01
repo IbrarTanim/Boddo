@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg_color">
@@ -11,328 +10,331 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/forty"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/storyRlMain" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/storyRlMain"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llMenueBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/twenty"
-        android:orientation="vertical"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingTop="@dimen/five"
+        android:paddingBottom="@dimen/five"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blankView">
 
+        <TextView
+            android:id="@+id/tvBackProfileAndAccounts"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/ten"
+            android:layout_weight="2"
+            android:background="?attr/selectableItemBackground"
+            android:drawableStart="@drawable/back_icon_20_26_12_2020"
+            android:drawablePadding="@dimen/ten"
+            android:gravity="center"
+            android:text="Profile &amp; account"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llMenueBar">
 
         <LinearLayout
+            android:id="@+id/storyRlMain"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="1.5"
-            android:background="@color/content_bg_color"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <TextView
-                android:id="@+id/tvBackProfileAndAccounts"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:drawableLeft="@drawable/back_icon_20_26_12_2020"
-                android:drawablePadding="@dimen/ten"
-                android:gravity="left|center"
-                android:text="Profile &amp; account"
-                android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="16"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Full name"
-                    android:textColor="@color/black" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" />
 
-                <TextView
-                    android:id="@+id/tvFullName"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:drawableRight="@drawable/arrow_icon_28_02_2021"
-                    android:drawablePadding="@dimen/five"
-                    android:gravity="center"
-                    android:text="Sarwar Hossain" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Full name"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvFullName"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/arrow_icon_28_02_2021"
+                        android:drawablePadding="@dimen/five"
+                        android:gravity="center"
+                        android:text="Sarwar Hossain" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Username"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/arrow_icon_28_02_2021"
+                        android:gravity="center"
+                        android:text="Sarwar" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Gender"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/arrow_icon_28_02_2021"
+                        android:drawablePadding="@dimen/five"
+                        android:gravity="center"
+                        android:text="Male" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Birth date"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvBirthDate"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/arrow_icon_28_02_2021"
+                        android:drawablePadding="@dimen/five"
+                        android:gravity="center"
+                        android:text="01/01/1986" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Email"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/arrow_icon_28_02_2021"
+                        android:drawablePadding="@dimen/five"
+                        android:gravity="center"
+                        android:text="sarwar@boddo.net" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Password"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvPassword"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/arrow_icon_28_02_2021"
+                        android:drawablePadding="@dimen/five"
+                        android:gravity="center"
+                        android:text="********" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="UID"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvUID"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="134577" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Version"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvVersion"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/twenty"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="1.0.1" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <LinearLayout
+                    android:id="@+id/llDeleteAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sixty"
+                    android:layout_marginBottom="@dimen/one"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/ten"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="DELETE ACCOUNT"
+                        android:textSize="@dimen/fifteen"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Username"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvUserName"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:drawableRight="@drawable/arrow_icon_28_02_2021"
-                    android:text="Sarwar" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Gender"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvGender"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:drawableRight="@drawable/arrow_icon_28_02_2021"
-                    android:drawablePadding="@dimen/five"
-                    android:gravity="center"
-                    android:text="Male" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Birth date"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvBirthDate"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:drawableRight="@drawable/arrow_icon_28_02_2021"
-                    android:drawablePadding="@dimen/five"
-                    android:gravity="center"
-                    android:text="01/01/1986" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Email"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvEmail"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:drawableRight="@drawable/arrow_icon_28_02_2021"
-                    android:drawablePadding="@dimen/five"
-                    android:gravity="center"
-                    android:text="sarwar@boddo.net" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Password"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvPassword"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:drawableRight="@drawable/arrow_icon_28_02_2021"
-                    android:drawablePadding="@dimen/five"
-                    android:gravity="center"
-                    android:text="********" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="UID"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvUID"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="134577" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Version"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvVersion"
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/twenty"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1.0.1" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <LinearLayout
-                android:id="@+id/llDeleteAccount"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_marginBottom="@dimen/one"
-                android:layout_weight="2"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ten"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="DELETE ACCOUNT"
-                    android:textSize="@dimen/fifteen"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
 
 
         </LinearLayout>
 
-
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

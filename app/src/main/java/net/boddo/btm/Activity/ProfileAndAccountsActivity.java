@@ -1,32 +1,21 @@
 package net.boddo.btm.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import net.boddo.btm.Activity.Settings.SettingsActivity;
 import net.boddo.btm.BuildConfig;
-import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
-import net.boddo.btm.Model.ProfileUser;
-import net.boddo.btm.Model.User;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AuthPreference;
-import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
 import net.boddo.btm.Utills.SharedPref;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static net.boddo.btm.Utills.Constants.EMAIL;
 
 public class ProfileAndAccountsActivity extends AppCompatActivity implements View.OnClickListener {
     ProfileAndAccountsActivity activity;
@@ -43,6 +32,29 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_and_accounts);
+
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = findViewById(R.id.blankView);
+        int statusBarHeight = GetStatusBarHeight();
+        if (statusBarHeight != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = statusBarHeight;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
 
         activity = this;
         authPreference = new AuthPreference(activity);
@@ -122,14 +134,24 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
                 finish();
                 break;
                 case R.id.tvPassword:
-                startActivity(new Intent(activity,PasswordActivity.class));
-                finish();
-                break;
-                case R.id.llDeleteAccount:
-                startActivity(new Intent(activity,DeleteAccountActivity.class));
+                    startActivity(new Intent(activity, PasswordActivity.class));
+                    finish();
+                    break;
+            case R.id.llDeleteAccount:
+                startActivity(new Intent(activity, DeleteAccountActivity.class));
                 finish();
                 break;
 
         }
+    }
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }
