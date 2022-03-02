@@ -122,13 +122,13 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
         if (Data.isPalupPlusSubcriber) {
             holder.tvUserNameActivity.setText(likedMeList.get(position).getName());
             holder.tvUserAgeActivity.setText(age);
-            if (likedMeList.get(position).getGender().equals("Male")) {
-                holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
-            } else {
-                holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+            if (likedMeList.get(position).getGender() != null) {
+                if (likedMeList.get(position).getGender().equals("Male")) {
+                    holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
+                } else {
+                    holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                }
             }
-
-
             Picasso.get().load(likedMeList.get(position).getProfilePhoto()).into(holder.likeimageView);
             holder.likeimageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -141,10 +141,12 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
                 holder.tvUserNameActivity.setText(likedMeList.get(position).getName());
                 holder.tvUserAgeActivity.setText(age);
 
-                if (likedMeList.get(position).getGender().equals("Male")) {
-                    holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
-                } else {
-                    holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                if (likedMeList.get(position).getGender() != null) {
+                    if (likedMeList.get(position).getGender().equals("Male")) {
+                        holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
+                    } else {
+                        holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                    }
                 }
 
 
@@ -168,8 +170,6 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
 
                         }
                     }
-
-
                     Picasso.get().load(likedMeList.get(position).getProfilePhoto()).into(holder.likeimageView);
                     holder.likeimageView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -253,8 +253,8 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
             @Override
             public void onClick(View v) {
                 //showPrettyDialog(holder, position, message);
-                Log.e("IntergerValue", "onClick: "+Integer.parseInt(Data.userPalupPoint));
-                Log.e("IntergerValue", "onClick: "+Limitation.LIKE_FAV_VISITOR_CREDITS);
+                Log.e("IntergerValue", "onClick: " + Integer.parseInt(Data.userPalupPoint));
+                Log.e("IntergerValue", "onClick: " + Limitation.LIKE_FAV_VISITOR_CREDITS);
 
                 if (Integer.parseInt(Data.userPalupPoint) >= Limitation.LIKE_FAV_VISITOR_CREDITS) {
                     apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
@@ -269,10 +269,14 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
                                 Picasso.get().load(likedMeList.get(position).getProfilePhoto()).into(holder.likeimageView);
                                 holder.tvUserNameActivity.setText(likedMeList.get(position).getName());
                                 holder.tvUserAgeActivity.setText(age);
-                                if (likedMeList.get(position).getGender().equals("Male")) {
-                                    holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
-                                } else {
-                                    holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                                try {
+                                    if (likedMeList.get(position).getGender().equals("Male")) {
+                                        holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
+                                    } else {
+                                        holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
+                                    }
+                                } catch (Exception e) {
+                                    //Skip
                                 }
 
 
@@ -351,7 +355,7 @@ public class LikeFavoriteAdepter extends RecyclerView.Adapter<LikeFavoriteAdepte
         TextView tvUserNameActivity, tvUserAgeActivity;
         ImageView ivMaleFemale;
         LinearLayout blurEffect;
-        RelativeLayout layout,rlUserInfoActivity;
+        RelativeLayout layout, rlUserInfoActivity;
 
         public LoveFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);

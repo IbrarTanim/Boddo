@@ -14,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import net.boddo.btm.Model.AllUser;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Data;
-import net.boddo.btm.Utills.Helper;
 import net.boddo.btm.Utills.SearchUser;
 
 import java.util.Calendar;
@@ -53,6 +51,7 @@ public class AllUserAdapter extends RecyclerView.Adapter<AllUserAdapter.viewHold
 
     private void convertStringToDateFormat(String stringDate) {
         String[] stringArray = stringDate.split("/");
+        //String[] stringArray = stringDate.split("/");
         date = Integer.parseInt(stringArray[0]);
         month = Integer.parseInt(stringArray[1]);
         year = Integer.parseInt(stringArray[2]);
@@ -82,19 +81,21 @@ public class AllUserAdapter extends RecyclerView.Adapter<AllUserAdapter.viewHold
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
+        int positionLocal = position;
+
         if (!allUsers[position].getDateOfBirth().equals("")) {
-            convertStringToDateFormat(allUsers[position].getDateOfBirth());
+            convertStringToDateFormat(allUsers[positionLocal].getDateOfBirth());
             age = getAge(year, month, date);
             holder.description.setText(age);
 
         }
 
-        Glide.with(holder.profileImage.getContext()).load(allUsers[position].getProfilePhoto()).into(holder.profileImage);
-        String name = allUsers[position].getFirstName() + ", @" + allUsers[position].getUserName();
+        Glide.with(holder.profileImage.getContext()).load(allUsers[positionLocal].getProfilePhoto()).into(holder.profileImage);
+        String name = allUsers[positionLocal].getFirstName() + ", @" + allUsers[positionLocal].getUserName();
 
-        holder.fullName.setText(allUsers[position].getFirstName());
+        holder.fullName.setText(allUsers[positionLocal].getFirstName());
 
-        if (allUsers[position].getGender().equals("Female")) {
+        if (allUsers[positionLocal].getGender().equals("Female")) {
             holder.ivMaleFemale.setImageResource(R.drawable.female_icon_30_3_2021);
         } else {
             holder.ivMaleFemale.setImageResource(R.drawable.male_icon_30_3_2021);
@@ -108,7 +109,7 @@ public class AllUserAdapter extends RecyclerView.Adapter<AllUserAdapter.viewHold
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 final SearchUser searchUser = new SearchUser(context);
-                Data.otherUserId = allUsers[position].getUserId();
+                Data.otherUserId = allUsers[positionLocal].getUserId();
                 Data.pd = new ProgressDialog(context);
                 Data.pd.setTitle("Loading...");
                 Data.pd.setMessage("Please wait for a while...");

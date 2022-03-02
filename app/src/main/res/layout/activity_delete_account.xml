@@ -79,7 +79,9 @@
                     android:gravity="center"
                     android:text="Please share a quick reason for deleting your profile to confirm"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/fifteen"
+                    android:paddingStart="@dimen/forty"
+                    android:paddingEnd="@dimen/forty"
+                    android:textSize="15sp"
                     android:textStyle="normal" />
 
                 <View
