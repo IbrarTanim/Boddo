@@ -852,6 +852,10 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
         setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
         getWindow().setStatusBarColor(getColor(R.color.transparent));
 
+        //get status bar height for the device
+        Data.STATUS_BAR_HEIGHT = GetStatusBarHeight();
+        Log.e(TAG, "Height : " + Data.STATUS_BAR_HEIGHT);
+
         ButterKnife.bind(this);
         initNavigationView();
         whoBlockMeData();
@@ -1005,6 +1009,16 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
                 }
             }
         });
+    }
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
 }

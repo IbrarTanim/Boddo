@@ -188,6 +188,8 @@ public class Data {
 
     public static List<String> chatRoomEntered = null;
 
-    public static  String chatRoomShowAdminAndUser = "";
+    public static String chatRoomShowAdminAndUser = "";
+
+    public static int STATUS_BAR_HEIGHT = 0;
 
 }

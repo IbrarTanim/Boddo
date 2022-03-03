@@ -96,6 +96,7 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
     ImageView iv_back, ivTitleShowHide, ivAllLikes, ivFullImageHandle;
     CircleImageView profileImageView;
     RecyclerView recyclerView;
+    //TODO
     RelativeLayout rlComentLikeButton;
 
     boolean isImageFitToScreen;
