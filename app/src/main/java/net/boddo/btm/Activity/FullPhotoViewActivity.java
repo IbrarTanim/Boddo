@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -181,6 +182,8 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
 
     int position;
 
+    RelativeLayout mainLayout;
+
 
     @BindView(R.id.loadingBar)
     ProgressBar progressBar;
@@ -212,6 +215,14 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
         detailsOfPhotoBlogImage = getIntent().getExtras().getParcelable("Details");
         position = getIntent().getExtras().getInt("position");
         int posi = position;
+
+        if (Data.STATUS_BAR_HEIGHT != 0) {
+            View view = findViewById(R.id.top_bar);
+            ViewGroup.LayoutParams params = view.getLayoutParams();
+            params.height = Data.STATUS_BAR_HEIGHT;
+            view.setLayoutParams(params);
+        }
+
 
 
        /* topLayout.setEnabled(false);
@@ -257,13 +268,11 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
         llDescription = findViewById(R.id.llDescription);
 
         llBlankWhite = findViewById(R.id.llBlankWhite);
-
         ivFullScreen = findViewById(R.id.ivFullScreen);
-
         ivFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fullImageHandle();
+                //fullImageHandle();
             }
         });
 
@@ -271,7 +280,7 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
             @Override
             public void onClick(View v) {
 
-                fullImageHandle();
+                //fullImageHandle();
             }
         });
 
@@ -654,6 +663,7 @@ public class FullPhotoViewActivity extends AppCompatActivity implements PopupMen
 
     public void onReportButton() {
         final Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.picture_fullview_report_dialog);
         /*final EditText editTextDescription = dialog.findViewById(R.id.edit_text_report);

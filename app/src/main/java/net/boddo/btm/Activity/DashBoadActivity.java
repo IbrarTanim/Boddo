@@ -856,6 +856,7 @@ public class DashBoadActivity extends AppCompatActivity implements NavigationVie
         Data.STATUS_BAR_HEIGHT = GetStatusBarHeight();
         Log.e(TAG, "Height : " + Data.STATUS_BAR_HEIGHT);
 
+
         ButterKnife.bind(this);
         initNavigationView();
         whoBlockMeData();

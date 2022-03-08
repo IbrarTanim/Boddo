@@ -183,20 +183,20 @@
                                     android:id="@+id/month6_title"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_marginLeft="@dimen/two"
-                                    android:layout_marginRight="4dp"
+                                    android:layout_marginStart="@dimen/two"
+                                    android:layout_marginEnd="4dp"
                                     android:layout_weight="2"
                                     android:background="@drawable/post_select_button"
                                     android:gravity="center"
                                     android:text="1ST CLASS"
                                     android:textColor="@color/white"
-                                    android:textSize="@dimen/eighteen"
+                                    android:textSize="18sp"
                                     android:textStyle="normal" />
 
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_weight="2" />
+                                    android:layout_weight="1.5" />
 
                                 <TextView
                                     android:id="@+id/month_textView"
@@ -204,10 +204,10 @@
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="Including"
+                                    android:text="5,000 Credits"
                                     android:textColor="@color/gray"
-                                    android:textSize="@dimen/fifteen"
-                                    android:textStyle="normal" />
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/medal_textView"
@@ -215,36 +215,36 @@
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="5,000 Credits"
+                                    android:text="Including"
                                     android:textColor="@color/gray"
-                                    android:textSize="@dimen/ten"
-                                    android:textStyle="bold" />
+                                    android:textSize="11sp"
+                                    android:textStyle="normal" />
 
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_weight="1" />
+                                    android:layout_weight="0.5" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1"
-                                    android:gravity="center|bottom"
-                                    android:text="10,000 BDT"
+                                    android:layout_marginStart="@dimen/seven"
                                     android:textColor="@color/gray"
-                                    android:textSize="@dimen/fifteen"
+                                    android:text="$70"
+                                    android:textSize="15sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/money_textView"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
+                                    android:layout_marginStart="@dimen/seven"
                                     android:text="6 months"
                                     android:textColor="@color/gray"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                                    android:layout_weight="1.5"
+                                    android:textSize="11sp"
+                                    android:textStyle="normal" />
 
 
                             </LinearLayout>
@@ -290,7 +290,7 @@
                                         android:id="@+id/view"
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
-                                        android:layout_weight="2" />
+                                        android:layout_weight="1.5" />
 
                                     <TextView
                                         android:id="@+id/month2_textView"
@@ -298,10 +298,10 @@
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="Including"
+                                        android:text="1500 Credits"
                                         android:textColor="@color/gray"
-                                        android:textSize="@dimen/fifteen"
-                                        android:textStyle="normal" />
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:id="@+id/medal2_textView"
@@ -309,36 +309,36 @@
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="2,500 Credits"
+                                        android:text="Including"
                                         android:textColor="@color/gray"
-                                        android:textSize="@dimen/ten"
-                                        android:textStyle="bold" />
+                                        android:textSize="11sp"
+                                        android:textStyle="normal" />
 
                                     <View
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
-                                        android:layout_weight="1" />
+                                        android:layout_weight="0.5" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1"
-                                        android:gravity="center|bottom"
                                         android:text="5,000 BDT"
                                         android:textColor="@color/gray"
-                                        android:textSize="@dimen/fifteen"
+                                        android:layout_marginStart="@dimen/seven"
+                                        android:textSize="15sp"
                                         android:textStyle="bold" />
 
                                     <TextView
                                         android:id="@+id/money2_textView"
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
+                                        android:layout_marginStart="@dimen/seven"
                                         android:text="3 months"
                                         android:textColor="@color/gray"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
+                                        android:layout_weight="1.5"
+                                        android:textSize="11sp"
+                                        android:textStyle="normal" />
 
                                 </LinearLayout>
 
@@ -357,7 +357,6 @@
 
                             </RelativeLayout>
 
-
                             <LinearLayout
                                 android:id="@+id/plusPalupPlusFragment"
                                 android:layout_width="0dp"
@@ -371,20 +370,20 @@
                                     android:id="@+id/month3_title"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_marginLeft="4dp"
-                                    android:layout_marginRight="@dimen/two"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="@dimen/two"
                                     android:layout_weight="2"
                                     android:background="#aaa494"
                                     android:gravity="center"
                                     android:text="PLUS"
                                     android:textColor="@color/white"
-                                    android:textSize="@dimen/eighteen"
+                                    android:textSize="18sp"
                                     android:textStyle="normal" />
 
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_weight="2" />
+                                    android:layout_weight="1.5" />
 
                                 <TextView
                                     android:id="@+id/month3_textView"
@@ -392,10 +391,10 @@
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="Including"
+                                    android:text="500 Credits"
                                     android:textColor="@color/gray"
-                                    android:textSize="@dimen/fifteen"
-                                    android:textStyle="normal" />
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/medal3_textView"
@@ -403,36 +402,34 @@
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="1,000 Credits"
+                                    android:text="Including"
                                     android:textColor="@color/gray"
-                                    android:textSize="@dimen/ten"
-                                    android:textStyle="bold" />
+                                    android:textSize="11sp" />
 
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_weight="1" />
+                                    android:layout_weight="0.5" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1"
-                                    android:gravity="center|bottom"
                                     android:text="2,000 BDT"
                                     android:textColor="@color/gray"
-                                    android:textSize="@dimen/fifteen"
+                                    android:layout_marginStart="@dimen/seven"
+                                    android:textSize="15sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/money3_textView"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
+                                    android:layout_marginStart="@dimen/seven"
                                     android:text="1 months"
                                     android:textColor="@color/gray"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                                    android:layout_weight="1.5"
+                                    android:textSize="11sp" />
 
 
                             </LinearLayout>

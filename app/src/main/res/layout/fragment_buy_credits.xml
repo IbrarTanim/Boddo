@@ -158,7 +158,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-
                                 android:orientation="vertical">
 
                                 <TextView
@@ -178,7 +177,7 @@
                                 <TextView
                                     android:id="@+id/medal_textView"
                                     android:layout_width="match_parent"
-                                    android:layout_height="142dp"
+                                    android:layout_height="@dimen/zero"
                                     android:layout_weight="1.8"
                                     android:gravity="center"
                                     android:text="1,000 Credits"
@@ -187,7 +186,6 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/ten"
@@ -216,12 +214,11 @@
 
 
                                     <TextView
-
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:layout_marginLeft="@dimen/two"
-                                        android:layout_marginRight="4dp"
-                                        android:background="@drawable/post_select_button"
+                                        android:layout_marginStart="4dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:background="@color/gray_light_light"
                                         android:gravity="center"
                                         android:text="$18"
                                         android:textColor="@color/white"
@@ -234,20 +231,19 @@
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1.8"
                                         android:gravity="center"
-                                        android:text="5,000 BDT"
+                                        android:text="2,000 Credits"
                                         android:textColor="@color/gray"
-                                        android:textSize="@dimen/ten"
+                                        android:textSize="@dimen/text_size_10sp"
                                         android:textStyle="bold" />
 
                                     <TextView
-
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/ten"
+                                        android:layout_marginStart="@dimen/ten"
                                         android:layout_marginBottom="@dimen/ten"
                                         android:layout_weight="0.2"
                                         android:gravity="start|bottom"
-                                        android:text="Save $15"
+                                        android:text="Save $2"
                                         android:textColor="@color/gray"
                                         android:textSize="10sp"
                                         android:textStyle="bold" />
@@ -269,9 +265,9 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
-                                    android:layout_marginLeft="4dp"
-                                    android:layout_marginRight="2dp"
-                                    android:background="@drawable/post_select_button"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="4dp"
+                                    android:background="@color/gray_light_light"
                                     android:gravity="center"
                                     android:text="$35"
                                     android:textColor="@color/white"
@@ -285,7 +281,7 @@
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1.8"
                                     android:gravity="center"
-                                    android:text="1,000 Credits"
+                                    android:text="5,000 Credits"
                                     android:textColor="@color/gray"
                                     android:textSize="@dimen/ten"
                                     android:textStyle="bold" />
@@ -383,46 +379,38 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-
                                     android:orientation="vertical">
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:layout_marginLeft="3dp"
-                                        android:layout_marginRight="4dp"
-                                        android:background="@drawable/post_select_button"
+                                        android:layout_marginStart="3dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:background="@color/gray_light_light"
                                         android:gravity="center"
-                                        android:text="$10"
+                                        android:text="$50"
                                         android:textColor="@color/white"
                                         android:textSize="@dimen/eighteen"
                                         android:textStyle="normal" />
 
 
                                     <TextView
-
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1.8"
                                         android:gravity="center"
-                                        android:text="2,500 Credits"
+                                        android:text="10,000 Credits"
                                         android:textColor="@color/gray"
                                         android:textSize="@dimen/ten"
                                         android:textStyle="bold" />
 
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="@dimen/zero"
-                                        android:layout_weight="1" />
-
 
                                     <TextView
-
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
                                         android:layout_marginLeft="@dimen/ten"
                                         android:layout_marginBottom="@dimen/ten"
-                                        android:layout_weight=".2"
+                                        android:layout_weight="0.2"
                                         android:gravity="start|bottom"
                                         android:text="Save $50"
                                         android:textColor="@color/gray"
@@ -463,9 +451,9 @@
                                         android:layout_height="40dp"
                                         android:layout_marginLeft="4dp"
                                         android:layout_marginRight="4dp"
-                                        android:background="@drawable/post_select_button"
+                                        android:background="@color/gray_light_light"
                                         android:gravity="center"
-                                        android:text="$10"
+                                        android:text="$200"
                                         android:textColor="@color/white"
                                         android:textSize="@dimen/eighteen"
                                         android:textStyle="normal" />
@@ -477,7 +465,7 @@
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1.8"
                                         android:gravity="center"
-                                        android:text="2,500 Credits"
+                                        android:text="50,000 Credits"
                                         android:textColor="@color/gray"
                                         android:textSize="@dimen/ten"
                                         android:textStyle="bold" />
@@ -516,10 +504,10 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:layout_marginLeft="4dp"
-                                        android:background="@drawable/post_select_button"
+                                        android:background="@color/gray_light_light"
 
                                         android:gravity="center"
-                                        android:text="$10"
+                                        android:text="$300"
                                         android:textColor="@color/white"
                                         android:textSize="@dimen/eighteen"
                                         android:textStyle="normal" />
@@ -531,7 +519,7 @@
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1.8"
                                         android:gravity="center"
-                                        android:text="2,500 Credits"
+                                        android:text="100,000 Credits"
                                         android:textColor="@color/gray"
                                         android:textSize="@dimen/ten"
                                         android:textStyle="bold" />
@@ -541,7 +529,7 @@
 
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
-                                        android:layout_marginLeft="@dimen/ten"
+                                        android:layout_marginStart="@dimen/ten"
                                         android:layout_marginBottom="@dimen/ten"
                                         android:layout_weight=".2"
                                         android:gravity="start|bottom"

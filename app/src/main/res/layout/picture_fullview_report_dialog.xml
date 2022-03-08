@@ -17,7 +17,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ation"/>
+            android:text="Ation"
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="match_parent"
@@ -25,8 +26,11 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="35dp"
-            android:textSize="20dp"
-            android:text="Take an action on this profile Don't worry this  is anonymous."/>
+            android:gravity="center"
+            android:text="Take an action on this profile. Don't worry this is anonymous."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <RadioGroup
             android:id="@+id/report_radio_group"

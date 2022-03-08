@@ -4,22 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 import android.widget.NumberPicker;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AboutUpdate;
 import net.boddo.btm.Utills.Data;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HeightActivity extends AppCompatActivity {
 
@@ -36,25 +30,24 @@ public class HeightActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_height);
+
+        if (Data.STATUS_BAR_HEIGHT != 0) {
+            View blankView = findViewById(R.id.blankView);
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = Data.STATUS_BAR_HEIGHT;
+            blankView.setLayoutParams(params);
+        }
+
         activity = this;
 
         //ButterKnife.bind(this);
 
         npHeight = findViewById(R.id.npHeight);
-
-
-        if (!Data.userHeight.equals("")) {
-            String userHeight = Data.userHeight;
-            npHeight.setValue(201);
-            Toast.makeText(activity, userHeight, Toast.LENGTH_SHORT).show();
-            //npHeight.setValue(Integer.parseInt(userHeight));
-
-        }
-
-
-
         npHeight.setMinValue(140);
         npHeight.setMaxValue(220);
+        if (Data.userHeight != null || !Data.userHeight.equals("")) {
+            npHeight.setValue(Integer.parseInt(Data.userHeight));
+        }
         npHeight.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
