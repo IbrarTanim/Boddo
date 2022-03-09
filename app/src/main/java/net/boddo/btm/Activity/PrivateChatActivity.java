@@ -787,6 +787,7 @@ public class PrivateChatActivity extends AppCompatActivity {
 
     private void palupDailog() {
         mDialog = new Dialog(this);
+        mDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         mDialog.setContentView(R.layout.custom_alert_dialog_subscription);
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mDialog.show();

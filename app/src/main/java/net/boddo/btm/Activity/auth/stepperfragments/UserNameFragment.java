@@ -1,4 +1,7 @@
 package net.boddo.btm.Activity.auth.stepperfragments;
+
+import static net.boddo.btm.Utills.Constants.SECRET_KEY;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,21 +18,20 @@ import androidx.fragment.app.Fragment;
 
 import com.badoualy.stepperindicator.StepperIndicator;
 
-import java.util.regex.Pattern;
-
 import net.boddo.btm.Activity.auth.BaseCommunicator;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
+
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static net.boddo.btm.Utills.Constants.SECRET_KEY;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +47,7 @@ public class UserNameFragment extends Fragment {
     public static Fragment newInstance() {
         return new UserNameFragment();
     }
+
     @BindView(R.id.edit_text_userName)
     EditText etUserName;
     @BindView(R.id.next_button)

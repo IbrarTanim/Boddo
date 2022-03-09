@@ -24,6 +24,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rd.PageIndicatorView;
+
 import net.boddo.btm.Adepter.ProfileImageLoaderAdapter;
 import net.boddo.btm.Adepter.ProfileViewPagerAdepter;
 import net.boddo.btm.Callbacks.ApiInterface;
@@ -31,12 +36,6 @@ import net.boddo.btm.Model.ProfileImageLoader;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.AboutUpdate;
 import net.boddo.btm.Utills.Data;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import com.rd.PageIndicatorView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -106,6 +105,7 @@ public class ProfileFragment extends Fragment {
             window.setStatusBarColor(getActivity().getResources().getColor(R.color.transparent));
         }
         final Dialog motoDialog = new Dialog(getContext());
+        motoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
         motoTextViewButton = view.findViewById(R.id.moto_textView);
         if (!Data.userMoto.equals("")) {

@@ -562,6 +562,7 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
 
     public void onReportButton() {
         final Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.picture_fullview_report_dialog);
         /*final EditText editTextDescription = dialog.findViewById(R.id.edit_text_report);

@@ -69,8 +69,6 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         int position = getIntent().getIntExtra("position",0);*/
 
 
-
-
         //Log.e("details", "onCreate: "+name+" "+position );
         imageViewPager = findViewById(R.id.profile_image_view_pager);
         firstNameAndUserName = findViewById(R.id.text_view_first_name_and_user_name);
@@ -97,18 +95,20 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
         //if(position>0){
         //Data.userMoto = name;
         //Toast.makeText(activity, "Status updated successfully", Toast.LENGTH_SHORT).show();
+        motoTextViewButton.setText(Data.userMoto);
+        final Dialog motoDialog = new Dialog(activity);
+        motoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
+        if (!Data.userMoto.equals("")) {
             motoTextViewButton.setText(Data.userMoto);
-            final Dialog motoDialog = new Dialog(activity);
-            motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
-            if (!Data.userMoto.equals("")) {
-                motoTextViewButton.setText(Data.userMoto);
-            } else {
-                motoTextViewButton.setText("Update your status!");
-            }
+        } else {
+            motoTextViewButton.setText("Update your status!");
+        }
 
         //}
 
         final Dialog motoDialogDialog = new Dialog(activity);
+        motoDialogDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         motoDialogDialog.setContentView(R.layout.custom_moto_alert_dialog);
         if (!Data.userMoto.equals("")) {
             motoTextViewButton.setText(Data.userMoto);
@@ -162,7 +162,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
                 cancelAbout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.e("cancel", "onClick: cancel" );
+                        Log.e("cancel", "onClick: cancel");
                         motoDialog.dismiss();
                     }
                 });
@@ -170,7 +170,7 @@ public class ProfileOneActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onClick(View v) {
 
-                        startActivity(new Intent(getApplicationContext(),SelectStatusActivity.class));
+                        startActivity(new Intent(getApplicationContext(), SelectStatusActivity.class));
                         finish();
                     }
                 });

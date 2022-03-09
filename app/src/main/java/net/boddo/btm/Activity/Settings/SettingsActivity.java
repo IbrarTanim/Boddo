@@ -107,6 +107,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         ButterKnife.bind(this);
         dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         //userUID.setText("UID: " + Data.userId);
 

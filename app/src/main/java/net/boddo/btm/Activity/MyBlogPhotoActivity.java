@@ -454,6 +454,7 @@ public class MyBlogPhotoActivity extends AppCompatActivity {
 
     private void limitExpiredDialog() {
         final Dialog dialog = new Dialog(activity);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.limit_expired_dialog);
 

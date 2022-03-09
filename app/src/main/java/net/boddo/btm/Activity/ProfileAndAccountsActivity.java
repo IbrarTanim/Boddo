@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +23,7 @@ public class ProfileAndAccountsActivity extends AppCompatActivity implements Vie
     private SharedPref sharedPref;
     private TextView tvBackProfileAndAccounts, tvUID, tvVersion,tvFullName,
             tvUserName,tvGender,tvDate,tvPassword,tvEmail;
-    private LinearLayout llDeleteAccount;
+    private TextView llDeleteAccount;
     private AuthPreference authPreference;
 
 

@@ -2,13 +2,14 @@ package net.boddo.btm.Activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,10 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.gson.JsonObject;
 import com.valdesekamdem.library.mdtoast.MDToast;
-
-import java.util.UUID;
 
 import net.boddo.btm.Activity.auth.RegistrantionActivity;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -36,11 +34,11 @@ import net.boddo.btm.Utills.SharedPref;
 import net.boddo.btm.dialog.LoadingDialog;
 import net.boddo.btm.dialog.LoginBottomSheetDialog;
 
+import java.util.UUID;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -79,6 +77,29 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = findViewById(R.id.blankView);
+        int statusBarHeight = GetStatusBarHeight();
+        if (statusBarHeight != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = statusBarHeight;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
+
         sharedPref = new SharedPref(this);
         authPreference = new AuthPreference(this);
 
@@ -103,6 +124,18 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
             email.setText("");
             userPassword.setText("");
         }
+
+        ImageButton backBTN = findViewById(R.id.back_btn);
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backIntent = new Intent(LoginActivity.this, LandingActivity.class);
+                backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                backIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(backIntent);
+            }
+        });
     }
 
     // TODO keyboard mangement is necessary
@@ -307,7 +340,11 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        Intent backIntent = new Intent(this, LandingActivity.class);
+        backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        backIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(backIntent);
     }
 
     @Override
@@ -320,5 +357,15 @@ public class LoginActivity extends AppCompatActivity implements Constants, Login
             Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
             startActivity(intent);
         }
+    }
+
+    public int GetStatusBarHeight() {
+        // returns 0 for no result found
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }

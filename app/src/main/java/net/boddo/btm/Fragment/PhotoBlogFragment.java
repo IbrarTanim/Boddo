@@ -399,6 +399,7 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
 
     private void limitExpiredDialog() {
         final Dialog dialog = new Dialog(context);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.limit_expired_dialog);
 

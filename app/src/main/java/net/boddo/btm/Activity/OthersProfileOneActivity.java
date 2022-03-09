@@ -152,6 +152,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
 
 
         final Dialog motoDialog = new Dialog(activity);
+        motoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         motoDialog.setContentView(R.layout.custom_moto_alert_dialog);
         if (!Data.otherUserMoto.equals("")) {
             motoTextViewButton.setText(Data.otherUserMoto);
@@ -282,6 +283,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
 
 
                                     final Dialog dialog = new Dialog(activity);
+                                    dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                                     dialog.setCancelable(false);
                                     dialog.setContentView(R.layout.matching_model);
 
@@ -356,6 +358,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
 
     public void onReportButton() {
         final Dialog dialog = new Dialog(activity);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.profile_report_dialog);
 
@@ -609,6 +612,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
 
     private void favoriteReporBlockDialog() {
         final Dialog dialog = new Dialog(activity);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.favorite_repor_block_dialog);
 
@@ -731,6 +735,7 @@ public class OthersProfileOneActivity extends AppCompatActivity implements View.
 
     private void limitExpiredDialog(String message) {
         final Dialog dialog = new Dialog(activity);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.limit_expired_dialog);
 

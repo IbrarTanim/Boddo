@@ -29,31 +29,31 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
+import com.rd.PageIndicatorView;
+import com.squareup.picasso.Picasso;
+
 import net.boddo.btm.Activity.BlockListActivity;
 import net.boddo.btm.Activity.BuyCreditActivity;
-import net.boddo.btm.Event.Event;
 import net.boddo.btm.Activity.PrivateChatActivity;
 import net.boddo.btm.Adepter.ProfileViewPagerAdepter;
 import net.boddo.btm.Adepter.othersuser.OthersProfileImageLoader;
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
+import net.boddo.btm.Event.Event;
 import net.boddo.btm.Model.Favorite;
 import net.boddo.btm.Model.Liked;
 import net.boddo.btm.Model.Love;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
-
-import com.google.android.material.tabs.TabLayout;
-import com.rd.PageIndicatorView;
-import com.squareup.picasso.Picasso;
+import net.boddo.btm.test.MetchDailog;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.Calendar;
 import java.util.List;
 
-import net.boddo.btm.test.MetchDailog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -360,6 +360,7 @@ public class OthersProfileFragment extends Fragment {
 
     public void onReportButton() {
         final Dialog dialog = new Dialog(getContext());
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.custom_alert_dialog_chat_room_option);
         final EditText editTextDescription = dialog.findViewById(R.id.edit_text_report);
@@ -517,6 +518,7 @@ public class OthersProfileFragment extends Fragment {
 
     private void limitExpiredDialog() {
         final Dialog dialog = new Dialog(getActivity());
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.limit_expired_dialog);
 

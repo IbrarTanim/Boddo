@@ -303,7 +303,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/llDeleteAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/fifty"
+                    android:layout_marginRight="@dimen/fifty"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_green"
+                    android:gravity="center"
+                    android:text="Delete Account"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:fontFamily="sans-serif-medium" />
+
+                <!--<LinearLayout
                     android:id="@+id/llDeleteAccount"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/sixty"
@@ -319,10 +335,10 @@
                         android:gravity="center"
                         android:text="DELETE ACCOUNT"
                         android:textSize="@dimen/fifteen"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
 
-                </LinearLayout>
+                </LinearLayout>-->
 
                 <View
                     android:layout_width="match_parent"
