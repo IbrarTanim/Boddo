@@ -163,8 +163,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:orientation="horizontal">
 
 
@@ -174,7 +174,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-
                                 android:orientation="vertical">
 
                                 <!-- -->
@@ -183,8 +182,8 @@
                                     android:id="@+id/month6_title"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_marginStart="@dimen/two"
-                                    android:layout_marginEnd="4dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
                                     android:layout_weight="2"
                                     android:background="@drawable/post_select_button"
                                     android:gravity="center"
@@ -265,8 +264,8 @@
                                     <RelativeLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="23dp"
-                                        android:layout_marginLeft="@dimen/three"
-                                        android:layout_marginRight="@dimen/three"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
                                         android:layout_weight="1"
                                         android:background="#aaa494"
                                         android:gravity="center"
@@ -323,7 +322,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="@dimen/zero"
                                         android:layout_weight="1"
-                                        android:text="5,000 BDT"
+                                        android:text="$40"
                                         android:textColor="@color/gray"
                                         android:layout_marginStart="@dimen/seven"
                                         android:textSize="15sp"
@@ -370,8 +369,8 @@
                                     android:id="@+id/month3_title"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginEnd="@dimen/two"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
                                     android:layout_weight="2"
                                     android:background="#aaa494"
                                     android:gravity="center"
@@ -415,7 +414,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/zero"
                                     android:layout_weight="1"
-                                    android:text="2,000 BDT"
+                                    android:text="$15"
                                     android:textColor="@color/gray"
                                     android:layout_marginStart="@dimen/seven"
                                     android:textSize="15sp"

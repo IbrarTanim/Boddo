@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -162,6 +163,13 @@ public class FullImageFromOwnProfileActivity extends AppCompatActivity implement
         sharedpreferences = activity.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
         ButterKnife.bind(this);
+
+        if (Data.STATUS_BAR_HEIGHT != 0) {
+            View view = findViewById(R.id.top_bar);
+            ViewGroup.LayoutParams params = view.getLayoutParams();
+            params.height = Data.STATUS_BAR_HEIGHT;
+            view.setLayoutParams(params);
+        }
 
         tvUserName = findViewById(R.id.tvUserName);
         ivFullScreen = findViewById(R.id.ivFullScreen);

@@ -376,7 +376,8 @@
             android:layout_height="@dimen/forty"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@color/transparent" />
+            android:background="@color/transparent"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

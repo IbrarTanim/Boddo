@@ -147,8 +147,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:orientation="horizontal">
 
 
@@ -164,8 +164,8 @@
                                     android:id="@+id/month6_title"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
-                                    android:layout_marginLeft="@dimen/two"
-                                    android:layout_marginRight="4dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
                                     android:background="@drawable/post_select_button"
                                     android:gravity="center"
                                     android:text="$10"
@@ -216,8 +216,8 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:layout_marginStart="4dp"
-                                        android:layout_marginEnd="4dp"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginEnd="5dp"
                                         android:background="@color/gray_light_light"
                                         android:gravity="center"
                                         android:text="$18"
@@ -265,8 +265,8 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginEnd="4dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
                                     android:background="@color/gray_light_light"
                                     android:gravity="center"
                                     android:text="$35"
@@ -364,8 +364,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
                             android:orientation="horizontal">
 
                             <RelativeLayout
@@ -384,8 +384,8 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:layout_marginStart="3dp"
-                                        android:layout_marginEnd="4dp"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginEnd="5dp"
                                         android:background="@color/gray_light_light"
                                         android:gravity="center"
                                         android:text="$50"
@@ -449,8 +449,8 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:layout_marginLeft="4dp"
-                                        android:layout_marginRight="4dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
                                         android:background="@color/gray_light_light"
                                         android:gravity="center"
                                         android:text="$200"
@@ -503,7 +503,8 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:layout_marginLeft="4dp"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginEnd="5dp"
                                         android:background="@color/gray_light_light"
 
                                         android:gravity="center"
