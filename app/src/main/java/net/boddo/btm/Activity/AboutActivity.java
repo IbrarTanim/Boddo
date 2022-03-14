@@ -1,24 +1,18 @@
 package net.boddo.btm.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import net.boddo.btm.Fragment.ProfileFragment;
-import net.boddo.btm.Fragment.ProfileOneFragment;
-import net.boddo.btm.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
+import net.boddo.btm.R;
+import net.boddo.btm.Utills.Data;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -35,6 +29,29 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         activity = this;
+
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = findViewById(R.id.blankView);
+        if (Data.STATUS_BAR_HEIGHT != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = Data.STATUS_BAR_HEIGHT;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
+
         sadiaEmailBtn = findViewById(R.id.sadiaEmailBtn);
         ranaEmailBtn = findViewById(R.id.ranaEmailBtn);
         fbAboutActivity = findViewById(R.id.fbAboutActivity);

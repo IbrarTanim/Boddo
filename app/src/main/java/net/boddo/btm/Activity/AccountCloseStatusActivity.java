@@ -1,14 +1,15 @@
 package net.boddo.btm.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import net.boddo.btm.Callbacks.ApiClient;
 import net.boddo.btm.Callbacks.ApiInterface;
@@ -33,6 +34,29 @@ public class AccountCloseStatusActivity extends AppCompatActivity implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_close_status);
+
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = findViewById(R.id.blankView);
+        if (Data.STATUS_BAR_HEIGHT != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = Data.STATUS_BAR_HEIGHT;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
+
         activity = this;
 
         tvBackAccountClose = findViewById(R.id.tvBackAccountClose);
