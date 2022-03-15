@@ -2,9 +2,7 @@ package net.boddo.btm.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -27,16 +25,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import net.boddo.btm.Adepter.AllUserAdapter;
-import net.boddo.btm.Adepter.LikeFavoriteAdepter;
 import net.boddo.btm.Model.AllUser;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,8 +64,9 @@ public class AllUsersActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.allUserRecycler);
         tvBackActiveAllUsers = findViewById(R.id.tvBackActiveAllUsers);
 
-        progressBar = findViewById(R.id.loadingBar);
-        progressBar.setVisibility(View.VISIBLE);
+        /*progressBar = findViewById(R.id.loadingBar);
+        progressBar.setVisibility(View.VISIBLE);*/
+        net.boddo.btm.Utills.ProgressDialog.show(this);
 
         editTextSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -96,7 +93,8 @@ public class AllUsersActivity extends AppCompatActivity {
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 Gson gson = gsonBuilder.create();
                 AllUser[] allUsers = gson.fromJson(response, AllUser[].class);
-                progressBar.setVisibility(View.GONE);
+                //progressBar.setVisibility(View.GONE);
+                net.boddo.btm.Utills.ProgressDialog.cancel();
                 recyclerView.setVisibility(View.VISIBLE);
 
                 layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

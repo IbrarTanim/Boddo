@@ -7,6 +7,7 @@ import static net.boddo.btm.Utills.StaticAccess.TAG_UPLOADED_PHOTO_PATH;
 import static net.boddo.btm.Utills.StaticAccess.TEMP_PHOTO_FILE_NAME;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -90,6 +91,8 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
         //getProfilePhoto()).into(holder.civAllLikesProfilePic);
 
+        //initialize result launchers
+
 
     }
 
@@ -97,9 +100,9 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 101);
+        /*checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE, 101);
         checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 102);
-        checkSelfPermission(Manifest.permission.CAMERA, 103);
+        checkSelfPermission(Manifest.permission.CAMERA, 103);*/
     }
 
     @Override
@@ -210,62 +213,119 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
 
     // load image from camera
+    @SuppressLint("NewApi")
     public void loadImageCamera() {
-        // flag for using item or task
-        File sdCardDirectory = new File(Environment.getExternalStorageDirectory() + appImagePath);
-        if (!sdCardDirectory.exists()) {
-            sdCardDirectory.mkdirs();
-        }
-        String state1 = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state1)) {
-            mFileTemp = new File(Environment.getExternalStorageDirectory() + appImagePath, TEMP_PHOTO_FILE_NAME);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_MEDIA_LOCATION, Manifest.permission.CAMERA};
+                requestPermissions(trackerPerms, 100);
+            } else {
+                String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+                requestPermissions(trackerPerms, 100);
+            }
         } else {
-            mFileTemp = new File(activity.getFilesDir() + appImagePath, TEMP_PHOTO_FILE_NAME);
-        }
-        //musicControl = true;
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        try {
-            Uri mImageCaptureUri = null;
-            String state2 = Environment.getExternalStorageState();
-            if (Environment.MEDIA_MOUNTED.equals(state2)) {
-
-                // N is for Nougat Api 24 Android 7
-                if (Build.VERSION_CODES.N <= android.os.Build.VERSION.SDK_INT) {
-                    try {
-                        Log.e("errormImageCaptureUri", "loadImageCamera: ");
-                        mImageCaptureUri = FileProvider.getUriForFile(activity, BuildConfig.APPLICATION_ID + ".provider", activity.mFileTemp);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("errormImageCaptureUri", "loadImageCamera: "+e.getLocalizedMessage() );
-                    }
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED
+                    || ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                    || ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                    || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_MEDIA_LOCATION, Manifest.permission.CAMERA};
+                    requestPermissions(trackerPerms, 100);
                 } else {
+                    String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+                    requestPermissions(trackerPerms, 100);
+                }
+            } else {
+                // flag for using item or task
+                File sdCardDirectory = new File(Environment.getExternalStorageDirectory() + appImagePath);
+                if (!sdCardDirectory.exists()) {
+                    sdCardDirectory.mkdirs();
+                }
+                String state1 = Environment.getExternalStorageState();
+                if (Environment.MEDIA_MOUNTED.equals(state1)) {
+                    mFileTemp = new File(Environment.getExternalStorageDirectory() + appImagePath, TEMP_PHOTO_FILE_NAME);
+                } else {
+                    mFileTemp = new File(activity.getFilesDir() + appImagePath, TEMP_PHOTO_FILE_NAME);
+                }
+                //musicControl = true;
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                try {
+                    Uri mImageCaptureUri = null;
+                    String state2 = Environment.getExternalStorageState();
+                    if (Environment.MEDIA_MOUNTED.equals(state2)) {
 
-                    mImageCaptureUri = Uri.fromFile(mFileTemp);
+                        // N is for Nougat Api 24 Android 7
+                        if (Build.VERSION_CODES.N <= android.os.Build.VERSION.SDK_INT) {
+                            try {
+                                Log.e("errormImageCaptureUri", "loadImageCamera: ");
+                                mImageCaptureUri = FileProvider.getUriForFile(activity, BuildConfig.APPLICATION_ID + ".provider", activity.mFileTemp);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Log.e("errormImageCaptureUri", "loadImageCamera: " + e.getLocalizedMessage());
+                            }
+                        } else {
+
+                            mImageCaptureUri = Uri.fromFile(mFileTemp);
+                        }
+
+                    } else {
+                        mImageCaptureUri = InternalStorageContentProvider.CONTENT_URI;
+                    }
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
+                    intent.putExtra("return-data", true);
+                    startActivityForResult(intent, REQUEST_CODE_TAKE_PICTURE);
+
+                } catch (ActivityNotFoundException e) {
+                    Log.e("errCamera", "loadImageCamera: " + e.getLocalizedMessage());
                 }
 
-            } else {
-                mImageCaptureUri = InternalStorageContentProvider.CONTENT_URI;
+                intent_source = 2;
             }
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
-            intent.putExtra("return-data", true);
-            startActivityForResult(intent, REQUEST_CODE_TAKE_PICTURE);
-
-        } catch (ActivityNotFoundException e) {
-            Log.e("errCamera", "loadImageCamera: "+e.getLocalizedMessage() );
         }
-
-        intent_source = 2;
     }
 
 
     // load image from Gallery
+    @SuppressLint("NewApi")
     public void loadImageGallery() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
 
-        intent_source = 1;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_MEDIA_LOCATION, Manifest.permission.CAMERA};
+                requestPermissions(trackerPerms, 100);
+            } else {
+                String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+                requestPermissions(trackerPerms, 100);
+            }
+        } else {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED
+                    || ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                    || ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                    || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_MEDIA_LOCATION, Manifest.permission.CAMERA};
+                    requestPermissions(trackerPerms, 100);
+                } else {
+                    String[] trackerPerms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+                    requestPermissions(trackerPerms, 100);
+                }
+            } else {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+
+                intent_source = 1;
+            }
+        }
+
+
     }
 
 
