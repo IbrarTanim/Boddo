@@ -1,6 +1,7 @@
 package net.boddo.btm.Fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,6 +41,8 @@ import retrofit2.Callback;
 public class FragmentPhotoBlogAllUser extends Fragment implements OnLoveListener {
 
     private static final String TAG = "FragmentPhotoBlogAllUse";
+
+    private Context context;
 
     RecyclerView recyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -151,12 +154,15 @@ public class FragmentPhotoBlogAllUser extends Fragment implements OnLoveListener
 
 
     public void getAllPhotos() {
+
+
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<PhotoBlog[]> call = apiInterface.getAllPhotoBlogImages(Constants.SECRET_KEY, Data.userId);
         call.enqueue(new Callback<PhotoBlog[]>() {
             @Override
             public void onResponse(Call<PhotoBlog[]> call, retrofit2.Response<PhotoBlog[]> response) {
                 if (response.body().length != 0) {
+
                     photoBlogs = response.body();
 
                     for (PhotoBlog photoBlog : photoBlogs) {
@@ -166,13 +172,12 @@ public class FragmentPhotoBlogAllUser extends Fragment implements OnLoveListener
                     }
                     prepareAllPhoto();
 
-                    //Data.PhotoBlogCount =
+
                 }
             }
 
             @Override
             public void onFailure(Call<PhotoBlog[]> call, Throwable t) {
-
             }
         });
     }
@@ -250,5 +255,11 @@ public class FragmentPhotoBlogAllUser extends Fragment implements OnLoveListener
                 Log.d(TAG, t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 }

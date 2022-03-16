@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -149,6 +151,8 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
          * End
          * */
 
+        net.boddo.btm.Utills.ProgressDialog.show(context);
+
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(br);
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
@@ -221,6 +225,15 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
             public void onResponse(Call<Hotlist[]> call, retrofit2.Response<Hotlist[]> response) {
                 hotlist = response.body();
                 if (hotlist.length > 0) {
+
+                    //cancel progress
+                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            net.boddo.btm.Utills.ProgressDialog.cancel();
+                        }
+                    }, 2000);
+
                     hotlist = response.body();
                     for (Hotlist hot : hotlist) {
                         if (hot.getUserId().equals(Data.userId)) {
@@ -228,12 +241,25 @@ public class PhotoBlogFragment extends Fragment implements HotlistAdapter.OnPhot
                         }
                     }
                     prepareList();
+                } else {
+                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            net.boddo.btm.Utills.ProgressDialog.cancel();
+                        }
+                    }, 2000);
                 }
             }
 
             @Override
             public void onFailure(Call<Hotlist[]> call, Throwable t) {
-                Log.d(TAG, t.getMessage());
+                //Log.d(TAG, t.getMessage());
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        net.boddo.btm.Utills.ProgressDialog.cancel();
+                    }
+                }, 2000);
             }
         });
     }

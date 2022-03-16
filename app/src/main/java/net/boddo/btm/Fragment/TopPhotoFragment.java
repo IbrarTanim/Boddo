@@ -1,6 +1,7 @@
 package net.boddo.btm.Fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import org.greenrobot.eventbus.EventBus;
-
 import net.boddo.btm.Activity.photoblog.OnLoveListener;
 import net.boddo.btm.Activity.photoblog.SpacesItemDecoration;
 import net.boddo.btm.Adepter.PhotoBlogAdapter;
@@ -28,6 +27,9 @@ import net.boddo.btm.Model.PhotoBlog;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+
+import org.greenrobot.eventbus.EventBus;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -41,6 +43,8 @@ public class TopPhotoFragment extends Fragment implements OnLoveListener {
 
     private boolean isHotListVisible = true;
     Intent intent;
+
+    private Context context;
 
     public TopPhotoFragment() {
         // Required empty public constructor
@@ -88,7 +92,6 @@ public class TopPhotoFragment extends Fragment implements OnLoveListener {
                 super.onScrolled(recyclerView, dx, dy);
 
                 visibleItemCount = layoutManager.getChildCount();
-//                totalItemCount = layoutManager.getItemCount();
                 int[] firstVisibleItems = null;
                 firstVisibleItems = layoutManager.findFirstVisibleItemPositions(firstVisibleItems);
                 if (firstVisibleItems != null && firstVisibleItems.length > 0) {
@@ -107,13 +110,6 @@ public class TopPhotoFragment extends Fragment implements OnLoveListener {
                         isHotListVisible = true;
                     }
                 }
-
-//                if (loading) {
-//                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-//                        loading = false;
-//                        Log.d("tag", "LOAD NEXT ITEM");
-//                    }
-//                }
             }
         });
 
@@ -140,7 +136,6 @@ public class TopPhotoFragment extends Fragment implements OnLoveListener {
 
             @Override
             public void onFailure(Call<PhotoBlog[]> call, Throwable t) {
-                Log.d(TAG,t.getMessage());
             }
         });
     }
@@ -156,33 +151,39 @@ public class TopPhotoFragment extends Fragment implements OnLoveListener {
     @Override
     public void giveLove(int position) {
 
-            ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-            Call<Likes> call = apiInterface.giveLike(Constants.SECRET_KEY, Data.userId, Integer.parseInt(photoBlogs[position].getId()));
-            call.enqueue(new Callback<Likes>() {
-                @Override
-                public void onResponse(Call<Likes> call, retrofit2.Response<Likes> response) {
-                    Likes like = response.body();
-                    if (like.getStatus().equals("like")) {
-                        int previousLiked = Integer.parseInt(photoBlogs[position].getLike()) + 1;
-                        photoBlogs[position].setLike(String.valueOf(previousLiked));
-                        photoBlogs[position].setIsPhotoLikedByMe(1);
-                        adapter.notifyItemChanged(position, photoBlogs[position]);
-                    } else if (like.getStatus().equals("dislike")) {
-                        int previousLiked = Integer.parseInt(photoBlogs[position].getLike()) - 1;
-                        photoBlogs[position].setLike(String.valueOf(previousLiked));
-                        photoBlogs[position].setIsPhotoLikedByMe(0);
-                        adapter.notifyItemChanged(position, photoBlogs[position]);
-                    }
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<Likes> call = apiInterface.giveLike(Constants.SECRET_KEY, Data.userId, Integer.parseInt(photoBlogs[position].getId()));
+        call.enqueue(new Callback<Likes>() {
+            @Override
+            public void onResponse(Call<Likes> call, retrofit2.Response<Likes> response) {
+                Likes like = response.body();
+                if (like.getStatus().equals("like")) {
+                    int previousLiked = Integer.parseInt(photoBlogs[position].getLike()) + 1;
+                    photoBlogs[position].setLike(String.valueOf(previousLiked));
+                    photoBlogs[position].setIsPhotoLikedByMe(1);
+                    adapter.notifyItemChanged(position, photoBlogs[position]);
+                } else if (like.getStatus().equals("dislike")) {
+                    int previousLiked = Integer.parseInt(photoBlogs[position].getLike()) - 1;
+                    photoBlogs[position].setLike(String.valueOf(previousLiked));
+                    photoBlogs[position].setIsPhotoLikedByMe(0);
+                    adapter.notifyItemChanged(position, photoBlogs[position]);
+                }
 //                updateLoveUi(position);
 
-                }
+            }
 
-                @Override
-                public void onFailure(Call<Likes> call, Throwable t) {
-                    Log.d("FullPhotoViewActivity", t.getMessage());
-                }
-            });
+            @Override
+            public void onFailure(Call<Likes> call, Throwable t) {
+                Log.d("FullPhotoViewActivity", t.getMessage());
+            }
+        });
 
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 }

@@ -45,6 +45,7 @@ import net.boddo.btm.R;
 import net.boddo.btm.Services.FirebaseCloudMessagingService;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
+import net.boddo.btm.Utills.ProgressDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -64,6 +65,8 @@ import retrofit2.Response;
 public class ChatFragment extends Fragment {
 
     //private static final String TAG = "ChatFragment";
+
+    private Context context;
 
     NotificationBadge badgingMessCountView;
     NotificationBadge badgingMessageRequestView;
@@ -155,6 +158,8 @@ public class ChatFragment extends Fragment {
          * Size
          * End
          * */
+
+        ProgressDialog.show(context);
 
         badgingMessCountView = view.findViewById(R.id.badging_messCount_view);
         badgingMessageRequestView = view.findViewById(R.id.badging_message_request_view);
@@ -403,8 +408,9 @@ public class ChatFragment extends Fragment {
                     new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            active_chatProgressBar.setVisibility(View.GONE);
-                          //  chatHistoryRecyclerView.setVisibility(View.GONE);
+                            ProgressDialog.cancel();
+                            //active_chatProgressBar.setVisibility(View.GONE);
+                            //  chatHistoryRecyclerView.setVisibility(View.GONE);
                             llmNoChatListMsg.setVisibility(View.VISIBLE);
                         }
                     }, 2000);
@@ -415,8 +421,9 @@ public class ChatFragment extends Fragment {
                 } else {
                     List<ActiveChat.ChatList> chatLists = activeChat.getChatList();
                     chatHistoryRecyclerView.setVisibility(View.VISIBLE);
-                   // llmNoChatListMsg.setVisibility(View.GONE);
-                    active_chatProgressBar.setVisibility(View.GONE);
+                    ProgressDialog.cancel();
+                    // llmNoChatListMsg.setVisibility(View.GONE);
+                    //active_chatProgressBar.setVisibility(View.GONE);
                     chatHistoryListAdeptar = new ChatHistoryListAdeptar(getActivity(), chatLists);
                     chatHistoryRecyclerView.setAdapter(chatHistoryListAdeptar);
                     //   emptyView.setVisibility(View.GONE);
@@ -429,7 +436,8 @@ public class ChatFragment extends Fragment {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        active_chatProgressBar.setVisibility(View.GONE);
+                        ProgressDialog.cancel();
+                        //active_chatProgressBar.setVisibility(View.GONE);
                         //  chatHistoryRecyclerView.setVisibility(View.GONE);
                         llmNoChatListMsg.setVisibility(View.VISIBLE);
 
@@ -597,6 +605,7 @@ public class ChatFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        this.context = context;
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }

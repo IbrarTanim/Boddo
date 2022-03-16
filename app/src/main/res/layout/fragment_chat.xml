@@ -303,11 +303,11 @@
 
 
             <ProgressBar
+                android:id="@+id/active_chatProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/active_chatProgressBar"
                 android:layout_centerInParent="true"
-                android:visibility="visible"/>
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/active_user_chatList"

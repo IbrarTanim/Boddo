@@ -1,17 +1,18 @@
 package net.boddo.btm.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import net.boddo.btm.Adepter.ChatRequestAdepter;
 import net.boddo.btm.Callbacks.ApiClient;
@@ -20,7 +21,7 @@ import net.boddo.btm.Model.ChatRequest;
 import net.boddo.btm.R;
 import net.boddo.btm.Utills.Constants;
 import net.boddo.btm.Utills.Data;
-import net.boddo.btm.interfaces.getChartRequestAccepted;
+import net.boddo.btm.Utills.ProgressDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,30 @@ public class ChatRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_request);
 
         activity = this;
+
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * Start
+         * */
+        View blankView = findViewById(R.id.blankView);
+        if (Data.STATUS_BAR_HEIGHT != 0) {
+            ViewGroup.LayoutParams params = blankView.getLayoutParams();
+            params.height = Data.STATUS_BAR_HEIGHT;
+            blankView.setLayoutParams(params);
+            //Log.e(TAG, "Status Bar Height: " + statusBarHeight );
+        }
+        /**
+         * Set
+         * Status
+         * Bar
+         * Size
+         * End
+         * */
+
+        ProgressDialog.show(this);
 
         rvChartRequest = findViewById(R.id.rvChartRequest);
         tvBackChartRequest = findViewById(R.id.tvBackChartRequest);
@@ -84,12 +109,19 @@ public class ChatRequestActivity extends AppCompatActivity {
                         chatRequest = response.body();
                         requestedMessageList = chatRequest.getRequestedMessage();
                         llmNoChatRequest.setVisibility(View.GONE);
-                        charRequestPB.setVisibility(View.GONE);
+                        //charRequestPB.setVisibility(View.GONE);
                         rvChartRequest.setVisibility(View.VISIBLE);
                         chatRequestAdepter = new ChatRequestAdepter(getApplicationContext(), requestedMessageList);
                         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
                         rvChartRequest.setLayoutManager(llm);
                         rvChartRequest.setAdapter(chatRequestAdepter);
+
+                        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ProgressDialog.cancel();
+                            }
+                        }, 2000);
 
                     } else {
                         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
@@ -97,7 +129,8 @@ public class ChatRequestActivity extends AppCompatActivity {
                             public void run() {
                                 llmNoChatRequest.setVisibility(View.VISIBLE);
                                 rvChartRequest.setVisibility(View.GONE);
-                                charRequestPB.setVisibility(View.GONE);
+                                //charRequestPB.setVisibility(View.GONE);
+                                ProgressDialog.cancel();
                             }
                         },2000);
 
@@ -112,7 +145,8 @@ public class ChatRequestActivity extends AppCompatActivity {
                     public void run() {
                         llmNoChatRequest.setVisibility(View.VISIBLE);
                         rvChartRequest.setVisibility(View.GONE);
-                        charRequestPB.setVisibility(View.GONE);
+                        //charRequestPB.setVisibility(View.GONE);
+                        ProgressDialog.cancel();
                     }
                 },2000);
 

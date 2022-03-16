@@ -30,8 +30,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import am.appwise.components.ni.NoInternetDialog;
-import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -212,7 +210,7 @@ public class SplashScreenActivity extends AppCompatActivity implements Constants
                         startActivity(intent);
                         finish();
 
-                        final PrettyDialog prettyDialog = new PrettyDialog(SplashScreenActivity.this);
+                        /*final PrettyDialog prettyDialog = new PrettyDialog(SplashScreenActivity.this);
                         prettyDialog.setTitle("Dear " + user.getUserName() + ",")
                                 .setMessage("You have been suspended from palup.Please try to contact with palup administrator for more information")
                                 .setIcon(R.drawable.ic_warning_white_24dp)
@@ -222,7 +220,7 @@ public class SplashScreenActivity extends AppCompatActivity implements Constants
                                         prettyDialog.dismiss();
                                         finish();
                                     }
-                                }).show();
+                                }).show();*/
                     }
 
                     else {

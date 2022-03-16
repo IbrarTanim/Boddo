@@ -12,56 +12,51 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/forty"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/llRecentMatchBlank" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/llRecentMatchBlank"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/twenty"
+        android:layout_height="@dimen/zero"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blankView">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight="1.5"
-            android:background="@color/content_bg_color"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/content_bg_color">
 
             <TextView
                 android:id="@+id/tvBackStory"
-                android:layout_width="@dimen/zero"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:drawableLeft="@drawable/back_icon_20_26_12_2020"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/ten"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/back_icon_20_26_12_2020"
                 android:drawablePadding="@dimen/ten"
-                android:gravity="left|center"
+                android:gravity="center"
                 android:text="Story"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty" />
+                android:textSize="16sp" />
 
 
             <TextView
                 android:id="@+id/tvShareHistory"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:layout_marginTop="@dimen/ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:drawableTop="@drawable/ic_add_story_04_11_2021"
                 android:text="Share a story"
-                android:gravity="center|top"
+                android:layout_alignParentEnd="true"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twelve" />
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/ten"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:textSize="12sp" />
 
-
-
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <RelativeLayout
@@ -103,7 +98,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:id="@+id/storyPB"/>
+                        android:id="@+id/storyPB"
+                        android:visibility="gone" />
 
 
                 </LinearLayout>
